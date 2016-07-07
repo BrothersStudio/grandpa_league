@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
  
-public class TrainingPanelAppear : MonoBehaviour {
+public class TrainingPanelAppear : MonoBehaviour 
+{
     private Panel PanelObject; // Assign in inspector
 
     void Start() 
