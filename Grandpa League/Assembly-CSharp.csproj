@@ -45,7 +45,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\TrainingPanelAppear.cs" />
+     <Compile Include="Assets\Scripts\Child.cs" />
+     <Compile Include="Assets\Scripts\Grandpa.cs" />
+     <Compile Include="Assets\Scripts\Parent.cs" />
+     <Compile Include="Assets\Scripts\Team.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
