@@ -57,6 +57,7 @@
     <Compile Include="grandpa_league\Assets\Scripts\Grandpa.cs" />
     <Compile Include="grandpa_league\Assets\Scripts\Parent.cs" />
     <Compile Include="grandpa_league\Assets\Scripts\PlayerInfo.cs" />
+    <Compile Include="grandpa_league\Assets\Scripts\Team.cs" />
     <Reference Include="UnityEngine.UI">
       <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
     </Reference>
