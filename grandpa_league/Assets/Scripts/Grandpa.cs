@@ -1,39 +1,41 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
-public class Grandpa 
+public class Grandpa : Character
 {
-
-    public string name;
-
-    public int craziness;
-    public int wisdom;
+    private int     m_insanity  = 0;
+    private int     m_wisdom    = 0;
+    private double  m_money     = 100.00;
     
-	public Grandpa(string inputName)
+	public Grandpa(string name, string age, string wisdom, string insanity)
 	{
-        name = inputName;
-        
-        craziness = 0;
-        wisdom = 100;
+        this.m_name = name;
+        this.m_age = Int32.Parse(age);
+        this.m_wisdom = Int32.Parse(wisdom);
+        this.m_insanity = Int32.Parse(insanity);
 	}
-    
-    public void AddCraziness(int added_craziness)
+
+    public Grandpa(string name)
     {
-        craziness += added_craziness;
+        this.m_name = name;
     }
 
-    public void SubtractCraziness(int subtracted_craziness)
+    public int Wisdom
     {
-        craziness -= subtracted_craziness;
+        get { return this.m_wisdom; }
+        set { this.m_wisdom = value; }
     }
 
-    public void AddedWisdom(int added_wisdom)
+    public int Insanity
     {
-        wisdom += added_wisdom;
-    }    
-    
-    public void SubtractWisdom(int subtracted_wisdom)
+        get { return this.m_insanity; }
+        set { this.m_insanity = value; }
+    }
+
+    public double Money
     {
-        wisdom -= subtracted_wisdom;
-    }    
+        get { return this.m_money; }
+        set { this.m_money = value; }
+    }
 }

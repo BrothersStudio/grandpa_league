@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<characters>
+  <character type="0" name="child_0" gender="0" age="7" cuteness="10" intelligence="3" fine_motor="3" gross_motor="10" disposition="3" />
+  <character type="0" name="child_1" gender="1" age="7" cuteness="10" intelligence="3" fine_motor="3" gross_motor="10" disposition="3" />
+  <character type="0" name="child_2" gender="0" age="7" cuteness="10" intelligence="3" fine_motor="3" gross_motor="10" disposition="3" />
+  <character type="0" name="child_3" gender="0" age="7" cuteness="10" intelligence="3" fine_motor="3" gross_motor="10" disposition="3" />
+  <character type="0" name="child_4" gender="0" age="7" cuteness="10" intelligence="3" fine_motor="3" gross_motor="10" disposition="3" />
+  <character type="0" name="child_6" gender="0" age="7" cuteness="10" intelligence="3" fine_motor="3" gross_motor="10" disposition="3" />
+  <character type="1" name="parent_0" gender="0" age="35" wealth="10" intelligence="3" />
+  <character type="1" name="parent_1" gender="0" age="35" wealth="10" intelligence="3" />
+  <character type="1" name="parent_2" gender="0" age="35" wealth="10" intelligence="3" />
+  <character type="2" name="grandpa_0" age="88" wisdom="10" insanity="3" />
+  <character type="2" name="grandpa_1" age="88" wisdom="10" insanity="3" />
+</characters>

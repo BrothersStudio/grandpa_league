@@ -1,11 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <ProjectGuid>{EDB44A65-A849-96DF-6F98-1E7CFA8B8A52}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -45,16 +46,27 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="grandpa_league\Assets\Scripts\Child.cs" />
-     <Compile Include="grandpa_league\Assets\Scripts\Grandpa.cs" />
-     <Compile Include="grandpa_league\Assets\Scripts\Parent.cs" />
-     <Compile Include="grandpa_league\Assets\Scripts\Team.cs" />
- <Reference Include="UnityEngine.UI">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Networking">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
- </Reference>
+    <Compile Include="grandpa_league\Assets\Scripts\Calendar.cs" />
+    <Compile Include="grandpa_league\Assets\Scripts\Character.cs" />
+    <Compile Include="grandpa_league\Assets\Scripts\CharacterManager.cs" />
+    <Compile Include="grandpa_league\Assets\Scripts\Child.cs" />
+    <Compile Include="grandpa_league\Assets\Scripts\Constants.cs" />
+    <Compile Include="grandpa_league\Assets\Scripts\DataManager.cs" />
+    <Compile Include="grandpa_league\Assets\Scripts\Enums.cs" />
+    <Compile Include="grandpa_league\Assets\Scripts\Family.cs" />
+    <Compile Include="grandpa_league\Assets\Scripts\Grandpa.cs" />
+    <Compile Include="grandpa_league\Assets\Scripts\Parent.cs" />
+    <Compile Include="grandpa_league\Assets\Scripts\PlayerInfo.cs" />
+    <Compile Include="grandpa_league\Assets\Scripts\Team.cs" />
+    <Reference Include="UnityEngine.UI">
+      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="grandpa_league\Assets\Data\characters.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -64,5 +76,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  
 </Project>
