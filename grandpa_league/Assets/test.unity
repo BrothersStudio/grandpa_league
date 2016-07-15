@@ -116,7 +116,7 @@ RectTransform:
   m_Children:
   - {fileID: 1610350747}
   m_Father: {fileID: 2028055217}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 93, y: 100}
@@ -227,7 +227,7 @@ RectTransform:
   m_Children:
   - {fileID: 1038518546}
   m_Father: {fileID: 2028055217}
-  m_RootOrder: 21
+  m_RootOrder: 22
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -354, y: -123}
@@ -454,7 +454,7 @@ RectTransform:
   m_Children:
   - {fileID: 1282271904}
   m_Father: {fileID: 2028055217}
-  m_RootOrder: 23
+  m_RootOrder: 24
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -130, y: -123}
@@ -565,7 +565,7 @@ RectTransform:
   m_Children:
   - {fileID: 1321349856}
   m_Father: {fileID: 2028055217}
-  m_RootOrder: 26
+  m_RootOrder: 27
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 206, y: -123}
@@ -775,6 +775,7 @@ MonoBehaviour:
   - {fileID: 361463784}
   - {fileID: 52205197}
   - {fileID: 715028800}
+  month_title: {fileID: 2013034682}
 --- !u!4 &87242171
 Transform:
   m_ObjectHideFlags: 0
@@ -819,7 +820,7 @@ RectTransform:
   m_Children:
   - {fileID: 611821498}
   m_Father: {fileID: 2028055217}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -242, y: 100}
@@ -1360,7 +1361,7 @@ RectTransform:
   m_Children:
   - {fileID: 1467736994}
   m_Father: {fileID: 2028055217}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -354, y: 26}
@@ -1471,7 +1472,7 @@ RectTransform:
   m_Children:
   - {fileID: 1838718262}
   m_Father: {fileID: 2028055217}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -242, y: 26}
@@ -1696,7 +1697,7 @@ RectTransform:
   m_Children:
   - {fileID: 1768378729}
   m_Father: {fileID: 2028055217}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 206, y: 26}
@@ -1950,7 +1951,7 @@ RectTransform:
   m_Children:
   - {fileID: 512214151}
   m_Father: {fileID: 2028055217}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 93, y: 26}
@@ -2061,7 +2062,7 @@ RectTransform:
   m_Children:
   - {fileID: 1283827906}
   m_Father: {fileID: 2028055217}
-  m_RootOrder: 25
+  m_RootOrder: 26
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 93, y: -123}
@@ -2243,7 +2244,7 @@ RectTransform:
   m_Children:
   - {fileID: 1333801281}
   m_Father: {fileID: 2028055217}
-  m_RootOrder: 22
+  m_RootOrder: 23
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -242, y: -123}
@@ -2381,16 +2382,16 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: 12
 --- !u!222 &512214153
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2643,18 +2644,18 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 24
     m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 10
+    m_BestFit: 1
+    m_MinSize: 2
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: 1
 --- !u!222 &580417337
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2719,16 +2720,16 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: 4
 --- !u!222 &599286259
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2793,16 +2794,16 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: 15
 --- !u!222 &603290355
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2867,16 +2868,16 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: 7
 --- !u!222 &605203324
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2941,16 +2942,16 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: 2
 --- !u!222 &611821500
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3275,7 +3276,7 @@ RectTransform:
   m_Children:
   - {fileID: 1758785618}
   m_Father: {fileID: 2028055217}
-  m_RootOrder: 27
+  m_RootOrder: 28
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 317, y: -123}
@@ -3413,16 +3414,16 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: 17
 --- !u!222 &732820015
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3460,7 +3461,7 @@ RectTransform:
   m_Children:
   - {fileID: 1241572163}
   m_Father: {fileID: 2028055217}
-  m_RootOrder: 24
+  m_RootOrder: 25
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -19, y: -123}
@@ -4034,7 +4035,7 @@ RectTransform:
   m_Children:
   - {fileID: 1334622031}
   m_Father: {fileID: 2028055217}
-  m_RootOrder: 20
+  m_RootOrder: 21
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 317, y: -48}
@@ -4172,16 +4173,16 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: 6
 --- !u!222 &887288677
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4576,7 +4577,7 @@ RectTransform:
   m_Children:
   - {fileID: 605203322}
   m_Father: {fileID: 2028055217}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 317, y: 100}
@@ -4687,7 +4688,7 @@ RectTransform:
   m_Children:
   - {fileID: 1106446962}
   m_Father: {fileID: 2028055217}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -130, y: 26}
@@ -4825,16 +4826,16 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: 20
 --- !u!222 &1034340440
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4899,16 +4900,16 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: 22
 --- !u!222 &1038518548
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5020,7 +5021,7 @@ RectTransform:
   m_Children:
   - {fileID: 1720246405}
   m_Father: {fileID: 2028055217}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -19, y: -48}
@@ -5232,16 +5233,16 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: 11
 --- !u!222 &1087505111
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5428,16 +5429,16 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: 10
 --- !u!222 &1106446964
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5624,7 +5625,7 @@ RectTransform:
   m_Children:
   - {fileID: 1401870756}
   m_Father: {fileID: 2028055217}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -130, y: 100}
@@ -5830,16 +5831,16 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: 25
 --- !u!222 &1241572165
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5904,16 +5905,16 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: 24
 --- !u!222 &1282271906
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5978,16 +5979,16 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: 26
 --- !u!222 &1283827908
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6052,16 +6053,16 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: 27
 --- !u!222 &1321349858
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6268,16 +6269,16 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: 23
 --- !u!222 &1333801283
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6342,16 +6343,16 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: 21
 --- !u!222 &1334622033
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6416,16 +6417,16 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: 19
 --- !u!222 &1381443038
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6686,16 +6687,16 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: 3
 --- !u!222 &1401870758
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7135,16 +7136,16 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: 8
 --- !u!222 &1467736996
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7283,16 +7284,16 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: 16
 --- !u!222 &1551440446
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7667,16 +7668,16 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: 5
 --- !u!222 &1610350749
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7969,7 +7970,7 @@ RectTransform:
   m_Children:
   - {fileID: 1754062934}
   m_Father: {fileID: 2028055217}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 317, y: 26}
@@ -8080,7 +8081,7 @@ RectTransform:
   m_Children:
   - {fileID: 1087505109}
   m_Father: {fileID: 2028055217}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -19, y: 26}
@@ -8313,7 +8314,7 @@ RectTransform:
   m_Children:
   - {fileID: 580417335}
   m_Father: {fileID: 2028055217}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -354, y: 100}
@@ -8715,16 +8716,16 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: 18
 --- !u!222 &1720246407
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8836,7 +8837,7 @@ RectTransform:
   m_Children:
   - {fileID: 1551440444}
   m_Father: {fileID: 2028055217}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -242, y: -48}
@@ -8974,16 +8975,16 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: 14
 --- !u!222 &1754062936
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9048,16 +9049,16 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: 28
 --- !u!222 &1758785620
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9122,16 +9123,16 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: 13
 --- !u!222 &1768378731
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9254,7 +9255,7 @@ RectTransform:
   m_Children:
   - {fileID: 599286257}
   m_Father: {fileID: 2028055217}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -19, y: 100}
@@ -9365,7 +9366,7 @@ RectTransform:
   m_Children:
   - {fileID: 1381443036}
   m_Father: {fileID: 2028055217}
-  m_RootOrder: 18
+  m_RootOrder: 19
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 93, y: -48}
@@ -9503,16 +9504,16 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: 9
 --- !u!222 &1838718264
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9550,7 +9551,7 @@ RectTransform:
   m_Children:
   - {fileID: 887288675}
   m_Father: {fileID: 2028055217}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 206, y: 100}
@@ -9929,7 +9930,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 2028055217}
-  m_RootOrder: 28
+  m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 162.5}
@@ -10005,7 +10006,7 @@ RectTransform:
   m_Children:
   - {fileID: 1034340438}
   m_Father: {fileID: 2028055217}
-  m_RootOrder: 19
+  m_RootOrder: 20
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 206, y: -48}
@@ -10113,6 +10114,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
+  - {fileID: 2013034681}
   - {fileID: 1639088977}
   - {fileID: 134145452}
   - {fileID: 1151396157}
@@ -10141,7 +10143,6 @@ RectTransform:
   - {fileID: 361463783}
   - {fileID: 52205196}
   - {fileID: 715028799}
-  - {fileID: 2013034681}
   m_Father: {fileID: 294479211}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
@@ -10315,7 +10316,7 @@ RectTransform:
   m_Children:
   - {fileID: 603290353}
   m_Father: {fileID: 2028055217}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -354, y: -48}
@@ -10426,7 +10427,7 @@ RectTransform:
   m_Children:
   - {fileID: 732820013}
   m_Father: {fileID: 2028055217}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -130, y: -48}
