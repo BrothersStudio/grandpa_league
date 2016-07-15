@@ -1,33 +1,60 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 using UnityEngine.UI;
 
 public class LoadFamily : MonoBehaviour 
 {
-	public GameObject parent_panel;
-	public GameObject prefab_panel;
+	public GameObject family_panel;
+	public GameObject content_panel;
+	public GameObject prefab_content_button;
+	public GameObject character_stat_panel;
 
-	public void DisplayFamily () 
+	private GameObject[] prefab_content_panel_instance;
+
+	public void DisplayFamily ()
 	{
 		int family_size = 5;
 
-		float prefab_height = prefab_panel.GetComponent<RectTransform> ().rect.height;
-		float parent_height = parent_panel.GetComponent<RectTransform> ().rect.height;
+		// Fit scroll panel to correct size
+		prefab_content_panel_instance = new GameObject[family_size];
 
-		float current_lower_x = parent_panel.GetComponent<RectTransform> ().offsetMin.x;
-		float new_lower_y = (float)family_size * prefab_height - parent_height;
+		float prefab_height = prefab_content_button.GetComponent<RectTransform> ().rect.height;
+		float parent_height = content_panel.GetComponent<RectTransform> ().rect.height;
 
-		parent_panel.GetComponent<RectTransform>().offsetMin = new Vector2(current_lower_x, new_lower_y);
+		float current_lower_x = content_panel.GetComponent<RectTransform> ().offsetMin.x;
+		float new_lower_y = parent_height - (float)family_size * prefab_height;
 
-		for (int i = 0; i < family_size; i++) 
+		content_panel.GetComponent<RectTransform>().offsetMin = new Vector2(current_lower_x, new_lower_y);
+
+		// Instantiate panels for family members
+		for (int i = 0; i 	< family_size; i++) 
 		{
-			GameObject member_panel = Instantiate(prefab_panel) as GameObject;
-			member_panel.transform.SetParent(parent_panel.transform, false);
+			prefab_content_panel_instance[i] = Instantiate(prefab_content_button) as GameObject;
+			prefab_content_panel_instance[i].transform.SetParent(content_panel.transform, false);
 
-			float height = member_panel.GetComponent<RectTransform> ().rect.height;
-			float current_x = member_panel.GetComponent<RectTransform> ().anchoredPosition.x;
-			float current_y = member_panel.GetComponent<RectTransform> ().anchoredPosition.y;
-			member_panel.GetComponent<RectTransform> ().anchoredPosition = new Vector2 (current_x, current_y - (float)i * height);
+			// Move to correct location
+			float height = prefab_content_panel_instance[i].GetComponent<RectTransform> ().rect.height;
+			float current_x = prefab_content_panel_instance[i].GetComponent<RectTransform> ().anchoredPosition.x;
+			float current_y = prefab_content_panel_instance[i].GetComponent<RectTransform> ().anchoredPosition.y;
+			prefab_content_panel_instance[i].GetComponent<RectTransform> ().anchoredPosition = new Vector2 (current_x, current_y - (float)i * height);
+
+			// Add character display image to button
+			prefab_content_panel_instance[i].GetComponent<Button>().onClick.AddListener(() => 
+				{
+					character_stat_panel.SetActive (true);
+					// Add specific stat text setting here
+					//character_stat_panel.GetComponents<Text>()
+				});
 		}
+	}
+		
+	public void RemoveFamilyPanels ()
+	{
+		for (int i = 0; i < prefab_content_panel_instance.Length; i++)
+		{
+			Destroy (prefab_content_panel_instance [i]);
+		}
+		Array.Clear(prefab_content_panel_instance, 0, prefab_content_panel_instance.Length);
 	}
 }
