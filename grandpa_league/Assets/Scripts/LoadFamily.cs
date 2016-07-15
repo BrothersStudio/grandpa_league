@@ -14,7 +14,7 @@ public class LoadFamily : MonoBehaviour
 
 	public void DisplayFamily ()
 	{
-		int family_size = 5;
+		int family_size = 15;
 
 		// Fit scroll panel to correct size
 		prefab_content_panel_instance = new GameObject[family_size];
