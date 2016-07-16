@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class Main : MonoBehaviour {
 
@@ -11,10 +12,14 @@ public class Main : MonoBehaviour {
 	private string[] months;
 	private int current_month;
 
+    private static DataManager m_dataManager = new DataManager("player1");
+    
 	public void Awake()
 	{
-		InitializeMonthNames ();
 		InitializeHighlight ();
+        List<Child> currentPlayersChildren = m_dataManager.PlayerFamily.Children;
+        Grandpa currentPlayersGrandpa = m_dataManager.PlayerFamily.Grandpa;
+        List<Family> currentLeagueFamilies = m_dataManager.LeagueFamilies;        
 	}
 
 	public void AdvanceDayHighlight()
@@ -36,9 +41,36 @@ public class Main : MonoBehaviour {
 		}
 		days [current_day].image.color = Color.red;
 	}
-		
+
+    public void AdvanceDay()
+    {
+        foreach (SimulationEvent ev in m_dataManager.Calendar.GetEventsForCurrentDay())
+        {
+            //DISPLAY THE DESCRIPTION OF THE EVENT AND PROMPT USER FOR INPUT
+            string name = ev.EventName;
+            string description = ev.EventDescription;
+
+            //LOOP THROUGH ALL OF THE REQUIREMENTS FOR EVENT AND PROMPT USER FOR INPUT IF NEEDED
+            ev.Requirements.Accept = true;
+
+            //EXECUTE THE EVENT
+            int eventOutcome = ev.RunEvent(m_dataManager);
+
+            //CHECK THE OUTCOME
+            if (eventOutcome == (int)Enums.EventOutcome.SUCCESS)
+            {
+                continue;
+                //OUTPUT STRING FOR EVENT HERE (TODO will be something like ev.GetString(eventOutCome);
+                //if it is a "soft" fail e.g. not enough money or child too young then start loop over
+            }
+        }
+
+        m_dataManager.Calendar.AdvanceDay();    //once all the event processing done we update the calendar day
+    }
+	
 	private void InitializeHighlight()
 	{
+		InitializeMonthNames ();        
 		current_day = 0;
 		days [0].image.color = Color.red;
 

@@ -5,11 +5,11 @@ using System;
 
 public class CharacterManager
 {
-    private List<Child> m_children = new List<Child>();
-    private List<Parent> m_parents = new List<Parent>();
-    private List<Grandpa> m_grandparents = new List<Grandpa>();
+    private static List<Child> m_children = new List<Child>();
+    private static List<Parent> m_parents = new List<Parent>();
+    private static List<Grandpa> m_grandparents = new List<Grandpa>();
 
-    public CharacterManager()
+    static CharacterManager()
     {
         XDocument topLevel = XDocument.Load("../Data/characters.xml");
         List<XElement> allCharacters = topLevel.Elements("character").ToList();
@@ -19,7 +19,7 @@ public class CharacterManager
             switch(Int32.Parse(character.Attribute("type").Value))
             {
                 case (int)Enums.Character.CHILD:
-                    this.m_children.Add(new Child(  character.Attribute("name").Value,
+                    m_children.Add(new Child(  character.Attribute("name").Value,
                                                     character.Attribute("gender").Value,
                                                     character.Attribute("age").Value,
                                                     character.Attribute("cuteness").Value,
@@ -30,7 +30,7 @@ public class CharacterManager
                                                     ));
                     break;
                 case (int)Enums.Character.PARENT:
-                    this.m_parents.Add(new Parent(  character.Attribute("name").Value,
+                    m_parents.Add(new Parent(  character.Attribute("name").Value,
                                                     character.Attribute("gender").Value,
                                                     character.Attribute("age").Value,
                                                     character.Attribute("wealth").Value,
@@ -38,7 +38,7 @@ public class CharacterManager
                                                     ));
                     break;
                 case (int)Enums.Character.GRANDPA:
-                    this.m_grandparents.Add(new Grandpa(character.Attribute("name").Value,
+                    m_grandparents.Add(new Grandpa(character.Attribute("name").Value,
                                                         character.Attribute("age").Value,
                                                         character.Attribute("wisdom").Value,
                                                         character.Attribute("insanity").Value
@@ -50,23 +50,31 @@ public class CharacterManager
         }
     }
 
-    public Parent GetRandomParent()
+    public static Parent GetRandomParent()
     {
-        int randomInt = Constants.RANDOM.Next(this.m_parents.Count);
-        Parent returnVal = this.m_parents[randomInt];
-        this.m_parents.RemoveAt(randomInt);
+        int randomInt = Constants.RANDOM.Next(m_parents.Count);
+        Parent returnVal = m_parents[randomInt];
+        m_parents.RemoveAt(randomInt);
         return returnVal;
     }
 
-    public List<Child> GetRandomChildren(int numChildren)
+    public static List<Child> GetRandomChildren(int numChildren)
     {
         List<Child> returnList = new List<Child>();
         for (int i = 0; i < numChildren; i++)
         {
-            int randomInt = Constants.RANDOM.Next(this.m_children.Count);
-            returnList.Add(this.m_children[randomInt]);
-            this.m_children.RemoveAt(randomInt);
+            int randomInt = Constants.RANDOM.Next(m_children.Count);
+            returnList.Add(m_children[randomInt]);
+            m_children.RemoveAt(randomInt);
         }
         return returnList;
+    }
+
+    public static Grandpa GetRandomGrandpa()
+    {
+        int randomInt = Constants.RANDOM.Next(m_grandparents.Count);
+        Grandpa returnVal = m_grandparents[randomInt];
+        m_grandparents.RemoveAt(randomInt);
+        return returnVal;
     }
 }
