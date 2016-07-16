@@ -1,5 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <events>
-  <character type="0" id="100" name="name_of_event" description="you need {0} to do {1}" priority="1"/>
-  <character type="1" id="101" name="name_of_event_2" description="you need {0} to do {1}!" priority="2" month="1" day="2"/>
+  <character type="0" id="1" name="Grandpa wins the lottery" description="You won the lottery! con fucking gratys" priority="1"
+             req_children="false" req_parent="false" req_grandpa="false" req_money="false" req_accept="false"/>
+  <character type="1" id="2" name="name_of_event_2" description="you need {0} to do {1}!" priority="2" month="1" day="2" 
+             req_children="false" req_parent="false" req_grandpa="true" req_money="false" req_accept="true"/>
 </events>

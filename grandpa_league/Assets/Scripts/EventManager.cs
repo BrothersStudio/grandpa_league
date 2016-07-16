@@ -86,7 +86,7 @@ public static class EventManager
         {
             leagueFam.ApplyStatUpgrades();
         }
-        manager.PlayerFamily.ApplyStatUpdates();
+		manager.PlayerFamily.ApplyStatUpgrades();
 
         return (int)Enums.EventOutcome.SUCCESS;
     }

@@ -59,6 +59,7 @@
      <Compile Include="Assets\Scripts\Main.cs" />
      <Compile Include="Assets\Scripts\Parent.cs" />
      <Compile Include="Assets\Scripts\PlayerInfo.cs" />
+     <Compile Include="Assets\Scripts\Requirement.cs" />
      <Compile Include="Assets\Scripts\SimulationEvent.cs" />
      <Compile Include="Assets\Scripts\Team.cs" />
      <None Include="Assets\Data\Characters.xml" />
