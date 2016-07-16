@@ -22,6 +22,7 @@
         this.m_moneyNeeded = money;
         this.m_acceptRejectNeeded = accept;
     }
+
     public Parent Parent
     {
         get { return this.m_parent; }

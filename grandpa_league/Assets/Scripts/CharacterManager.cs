@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using UnityEngine;
+using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 using System;
@@ -11,8 +12,8 @@ public class CharacterManager
 
     static CharacterManager()
     {
-        XDocument topLevel = XDocument.Load("../Data/characters.xml");
-        List<XElement> allCharacters = topLevel.Elements("character").ToList();
+		XDocument topLevel = XDocument.Load(Application.dataPath + "/Data/characters.xml");
+		List<XElement> allCharacters = topLevel.Root.Descendants("character").ToList();
 
         foreach (XElement character in allCharacters)
         {

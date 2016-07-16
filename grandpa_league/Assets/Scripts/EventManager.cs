@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using UnityEngine;
+using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 using System;
@@ -11,8 +12,9 @@ public static class EventManager
 
     static EventManager()
     {
-        XDocument topLevel = XDocument.Load("../Data/events.xml");
-        List<XElement> allEvents = topLevel.Elements("event").ToList();
+
+		XDocument topLevel = XDocument.Load(Application.dataPath + "/Data/events.xml");
+		var allEvents = topLevel.Root.Descendants("event").ToList();
 
         foreach (XElement simEvent in allEvents)
         {
@@ -34,7 +36,7 @@ public static class EventManager
                                                             ));
                     break;
                 case (int)Enums.EventType.KNOWN:
-                    m_hiddenEvents.Add(new SimulationEvent( eventRequirements,
+                    m_knownEvents.Add(new SimulationEvent( eventRequirements,
                                                             simEvent.Attribute("name").Value,
                                                             simEvent.Attribute("description").Value,
                                                             Int32.Parse(simEvent.Attribute("id").Value),

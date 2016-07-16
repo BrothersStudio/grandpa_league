@@ -9,6 +9,6 @@
   <character type="1" name="parent_0" gender="0" age="35" wealth="10" intelligence="3" />
   <character type="1" name="parent_1" gender="0" age="35" wealth="10" intelligence="3" />
   <character type="1" name="parent_2" gender="0" age="35" wealth="10" intelligence="3" />
-  <character type="2" name="grandpa_0" age="88" wisdom="10" insanity="3" />
-  <character type="2" name="grandpa_1" age="88" wisdom="10" insanity="3" />
+  <character type="2" name="Joe Cool" age="88" wisdom="10" insanity="3" />
+  <character type="2" name="Patrick Carney" age="88" wisdom="10" insanity="3" />
 </characters>

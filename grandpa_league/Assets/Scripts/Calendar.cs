@@ -56,6 +56,9 @@ public class Day
         this.m_day = day;
         this.m_month = month;
         this.m_dayName = dayName;
+
+		this.m_events = new List<SimulationEvent> ();
+
         int randomInt = Constants.RANDOM.Next(Constants.RANDOM_FACTOR - 1);
         if (randomInt == 1)
             this.m_events.Add(EventManager.GetRandomEvent());
@@ -67,8 +70,8 @@ public class Day
 
         if(this.m_dayName == "Sunday")
         {
-            SimulationEvent weekleyLevelUp = new SimulationEvent(null, "level_up", "", 0, 0, 0);
-            this.m_events.Add(weekleyLevelUp);
+            SimulationEvent weeklyLevelUp = new SimulationEvent(null, "level_up", "", 0, 0, 0);
+            this.m_events.Add(weeklyLevelUp);
         }
     }
 
