@@ -31,38 +31,56 @@ public class LoadFamily : MonoBehaviour
 
 		prefab_content_panel_instance = new GameObject[family_size];
 
-		MakePanel (PlayerFamily.Children[0]);
-		//MakePanel (PlayerFamily.Grandpa);
-		//MakePanel (PlayerFamily.Parents[1]);
-
-		// Instantiate panel for grandpa
-		/*
 		int panel_ind = 0;
-		prefab_content_panel_instance[panel_ind] = Instantiate(prefab_content_button) as GameObject;
-		prefab_content_panel_instance[panel_ind].transform.SetParent(content_panel.transform, false);
-
-		// Move to correct location
-		float height = prefab_content_panel_instance[panel_ind].GetComponent<RectTransform> ().rect.height;
-		float current_x = prefab_content_panel_instance[panel_ind].GetComponent<RectTransform> ().anchoredPosition.x;
-		float current_y = prefab_content_panel_instance[panel_ind].GetComponent<RectTransform> ().anchoredPosition.y;
-		prefab_content_panel_instance[panel_ind].GetComponent<RectTransform> ().anchoredPosition = 
-			new Vector2 (current_x, current_y - (float)panel_ind * height);
-
-		// Set name
-		prefab_content_panel_instance[panel_ind].GetComponentInChildren<Text>().text = PlayerFamily.Grandpa.Name;
+		MakePanel (PlayerFamily.Grandpa, panel_ind);
 
 		// Add character display activation to button
 		prefab_content_panel_instance[panel_ind].GetComponent<Button>().onClick.AddListener(() => 
 			{
 				grandpa_stat_panel.SetActive (true);
+				parent_stat_panel.SetActive (false);
+				child_stat_panel.SetActive (false);
+
 				// Add specific stat text setting here
-				//character_stat_panel.GetComponents<Text>()
+				grandpa_stat_panel.transform.Find("Name").GetComponent<Text>().text = PlayerFamily.Grandpa.Name;
+				grandpa_stat_panel.transform.Find("Age").GetComponent<Text>().text = "Age: " + PlayerFamily.Grandpa.Age;
+				grandpa_stat_panel.transform.Find("Insanity").GetComponent<Text>().text = "Insanity: " + PlayerFamily.Grandpa.Insanity;
+				grandpa_stat_panel.transform.Find("Wisdom").GetComponent<Text>().text = "Wisdom: " + PlayerFamily.Grandpa.Wisdom;
+				grandpa_stat_panel.transform.Find("Money").GetComponent<Text>().text = "Money: $" + PlayerFamily.Grandpa.Money;
 			});
-		
+
 		foreach (Parent parent in PlayerFamily.Parents) 
 		{
-			
-		}*/
+			panel_ind++;
+			MakePanel (parent, panel_ind);
+
+			// Add character display activation to button
+			prefab_content_panel_instance[panel_ind].GetComponent<Button>().onClick.AddListener(() => 
+				{
+					grandpa_stat_panel.SetActive (false);
+					parent_stat_panel.SetActive (true);
+					child_stat_panel.SetActive (false);
+
+					// Add specific stat text setting here
+					//character_stat_panel.GetComponents<Text>()
+				});
+		}
+		foreach (Child child in PlayerFamily.Children) 
+		{
+			panel_ind++;
+			MakePanel (child, panel_ind);
+
+			// Add character display activation to button
+			prefab_content_panel_instance[panel_ind].GetComponent<Button>().onClick.AddListener(() => 
+				{
+					grandpa_stat_panel.SetActive (false);
+					parent_stat_panel.SetActive (false);
+					child_stat_panel.SetActive (true);
+
+					// Add specific stat text setting here
+					//character_stat_panel.GetComponents<Text>()
+				});
+		}
 	}
 		
 	public void RemoveFamilyPanels ()
@@ -74,23 +92,19 @@ public class LoadFamily : MonoBehaviour
 		Array.Clear(prefab_content_panel_instance, 0, prefab_content_panel_instance.Length);
 	}
 
-	private void MakePanel<T>(T member)
+	private void MakePanel<T>(T member, int panel_ind) where T : Character
 	{
-		Type listType = typeof(T);
-		if (listType == typeof(Grandpa)) 
-		{
-			Debug.Log ("Found Grandpa!");
-		} 
-		else if (listType == typeof(Parent)) 
-		{
-			Debug.Log ("Found Parent!");
-		} 
-		else if (listType == typeof(Child)) 
-		{
-			Debug.Log ("Found Child!");
-		} 
-		else {
-			Debug.LogError ("No type found in family panel creation. Something is really wrong.");
-		}
+		prefab_content_panel_instance[panel_ind] = Instantiate(prefab_content_button) as GameObject;
+		prefab_content_panel_instance[panel_ind].transform.SetParent(content_panel.transform, false);
+
+		// Move to correct location
+		float height = prefab_content_panel_instance[panel_ind].GetComponent<RectTransform> ().rect.height;
+		float current_x = prefab_content_panel_instance[panel_ind].GetComponent<RectTransform> ().anchoredPosition.x;
+		float current_y = prefab_content_panel_instance[panel_ind].GetComponent<RectTransform> ().anchoredPosition.y;
+		prefab_content_panel_instance[panel_ind].GetComponent<RectTransform> ().anchoredPosition = 
+			new Vector2 (current_x, current_y - (float)panel_ind * height);
+
+		// Set name
+		prefab_content_panel_instance[panel_ind].GetComponentInChildren<Text>().text = member.Name;
 	}
 }
