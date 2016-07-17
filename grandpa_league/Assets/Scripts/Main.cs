@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System;
 
 public class Main : MonoBehaviour {
 
@@ -12,14 +13,16 @@ public class Main : MonoBehaviour {
 	private string[] months;
 	private int current_month;
 
-    private static DataManager m_dataManager = new DataManager("player1");
+	public GameObject family_content_panel;
+
+	private static DataManager m_dataManager = new DataManager("player1");
     
 	public void Awake()
 	{
 		InitializeHighlight ();
         List<Child> currentPlayersChildren = m_dataManager.PlayerFamily.Children;
         Grandpa currentPlayersGrandpa = m_dataManager.PlayerFamily.Grandpa;
-        List<Family> currentLeagueFamilies = m_dataManager.LeagueFamilies;        
+        List<Family> currentLeagueFamilies = m_dataManager.LeagueFamilies; 
 	}
 
 	public void AdvanceDayHighlight()
@@ -66,8 +69,17 @@ public class Main : MonoBehaviour {
         }
 
         m_dataManager.Calendar.AdvanceDay();    //once all the event processing done we update the calendar day
+		AdvanceDayHighlight();
     }
-	
+
+	public void DisplayFamilyContent(string type)
+	{
+		if (type == "family") 
+		{
+			family_content_panel.GetComponent<LoadFamily> ().DisplayFamily (m_dataManager.PlayerFamily);
+		}
+	}
+
 	private void InitializeHighlight()
 	{
 		InitializeMonthNames ();        

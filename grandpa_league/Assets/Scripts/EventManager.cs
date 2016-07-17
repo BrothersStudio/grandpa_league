@@ -14,7 +14,7 @@ public static class EventManager
     {
 
 		XDocument topLevel = XDocument.Load(Application.dataPath + "/Data/events.xml");
-		var allEvents = topLevel.Root.Descendants("event").ToList();
+		List<XElement> allEvents = topLevel.Root.Descendants("event").ToList();
 
         foreach (XElement simEvent in allEvents)
         {

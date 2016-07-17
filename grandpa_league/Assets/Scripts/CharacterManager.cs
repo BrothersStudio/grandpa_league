@@ -51,12 +51,18 @@ public class CharacterManager
         }
     }
 
-    public static Parent GetRandomParent()
+	public static List<Parent> GetRandomParents(int numParents)
     {
-        int randomInt = Constants.RANDOM.Next(m_parents.Count);
-        Parent returnVal = m_parents[randomInt];
-        m_parents.RemoveAt(randomInt);
-        return returnVal;
+		List<Parent> returnList = new List<Parent>();
+		for (int i = 0; i < numParents; i++)
+		{
+			if (m_parents.Count == 0)
+				Debug.LogError ("Trying to assign random parents, but none are left!");
+			int randomInt = Constants.RANDOM.Next(m_parents.Count);
+			returnList.Add(m_parents[randomInt]);
+			m_parents.RemoveAt(randomInt);
+		}
+		return returnList;
     }
 
     public static List<Child> GetRandomChildren(int numChildren)
@@ -64,6 +70,8 @@ public class CharacterManager
         List<Child> returnList = new List<Child>();
         for (int i = 0; i < numChildren; i++)
         {
+			if (m_children.Count == 0)
+				Debug.LogError ("Trying to assign random children, but none are left!");			
             int randomInt = Constants.RANDOM.Next(m_children.Count);
             returnList.Add(m_children[randomInt]);
             m_children.RemoveAt(randomInt);

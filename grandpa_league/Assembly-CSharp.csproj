@@ -62,7 +62,7 @@
      <Compile Include="Assets\Scripts\Requirement.cs" />
      <Compile Include="Assets\Scripts\SimulationEvent.cs" />
      <Compile Include="Assets\Scripts\Team.cs" />
-     <None Include="Assets\Data\Characters.xml" />
+     <None Include="Assets\Data\characters.xml" />
      <None Include="Assets\Data\events.xml" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

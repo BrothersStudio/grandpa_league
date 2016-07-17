@@ -5,10 +5,16 @@
   <character type="0" name="child_2" gender="0" age="7" cuteness="10" intelligence="3" fine_motor="3" gross_motor="10" disposition="3" />
   <character type="0" name="child_3" gender="0" age="7" cuteness="10" intelligence="3" fine_motor="3" gross_motor="10" disposition="3" />
   <character type="0" name="child_4" gender="0" age="7" cuteness="10" intelligence="3" fine_motor="3" gross_motor="10" disposition="3" />
+  <character type="0" name="child_5" gender="0" age="7" cuteness="10" intelligence="3" fine_motor="3" gross_motor="10" disposition="3" />
   <character type="0" name="child_6" gender="0" age="7" cuteness="10" intelligence="3" fine_motor="3" gross_motor="10" disposition="3" />
-  <character type="1" name="parent_0" gender="0" age="35" wealth="10" intelligence="3" />
-  <character type="1" name="parent_1" gender="0" age="35" wealth="10" intelligence="3" />
-  <character type="1" name="parent_2" gender="0" age="35" wealth="10" intelligence="3" />
+  <character type="0" name="child_7" gender="0" age="7" cuteness="10" intelligence="3" fine_motor="3" gross_motor="10" disposition="3" />
+  <character type="0" name="child_8" gender="0" age="7" cuteness="10" intelligence="3" fine_motor="3" gross_motor="10" disposition="3" />
+  <character type="1" name="Bob Bobs" gender="0" age="35" wealth="10" intelligence="3" />
+  <character type="1" name="Jim Bobs" gender="0" age="35" wealth="10" intelligence="3" />
+  <character type="1" name="Mike Samson" gender="0" age="35" wealth="10" intelligence="3" />
+  <character type="1" name="Beth Beths" gender="1" age="35" wealth="10" intelligence="3" />
+  <character type="1" name="Beth Botts" gender="1" age="35" wealth="10" intelligence="3" />
   <character type="2" name="Joe Cool" age="88" wisdom="10" insanity="3" />
+  <character type="2" name="Joe Pool" age="88" wisdom="10" insanity="3" />
   <character type="2" name="Patrick Carney" age="88" wisdom="10" insanity="3" />
 </characters>

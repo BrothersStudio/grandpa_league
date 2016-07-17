@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class DataManager
 {
@@ -15,10 +16,10 @@ public class DataManager
 
         this.m_playerFamily = new Family();
         this.m_playerFamily.Grandpa = new Grandpa(playerName);
-        this.m_playerFamily.Parent = CharacterManager.GetRandomParent();
+		this.m_playerFamily.Parents = CharacterManager.GetRandomParents(Constants.INITIAL_PARENTS);
         this.m_playerFamily.Children = CharacterManager.GetRandomChildren(Constants.INITIAL_CHILDREN);
 
-        for (int i = 0; i < Constants.NUM_FAMILIES; i++)
+        for (int i = 1; i < Constants.NUM_FAMILIES; i++)
             this.m_league.Add(new Family(true));
     }
 

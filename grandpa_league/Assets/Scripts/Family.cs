@@ -2,10 +2,10 @@
 
 public class Family
 {
-    private     string      m_familyName    = "";
-    private     Grandpa     m_grandpa       = null;
-    private     Parent      m_parent        = null;
-    private     List<Child> m_children      = new List<Child>();
+    private     string        m_familyName    = "";
+    private     Grandpa       m_grandpa       = null;
+	private     List<Parent>  m_parents        = new List<Parent>();
+    private     List<Child>   m_children      = new List<Child>();
 
     public Family(bool random=false)
     {
@@ -13,7 +13,7 @@ public class Family
             return;
 
         this.m_grandpa = CharacterManager.GetRandomGrandpa();
-        this.m_parent = CharacterManager.GetRandomParent();
+		this.m_parents = CharacterManager.GetRandomParents(Constants.INITIAL_PARENTS);
         this.m_children = CharacterManager.GetRandomChildren(Constants.INITIAL_CHILDREN);
         this.m_familyName = this.m_grandpa.Name.Split(' ')[1];      //TODO: FIX THIS HACK
     }
@@ -24,10 +24,10 @@ public class Family
         set { this.m_grandpa = value; }
     }
 
-    public Parent Parent
+    public List<Parent> Parents
     {
-        get { return this.m_parent; }
-        set { this.m_parent = value; }
+        get { return this.m_parents; }
+        set { this.m_parents = value; }
     }
 
     public List<Child> Children
@@ -41,8 +41,10 @@ public class Family
         this.m_grandpa.Insanity *= (int)(1 + this.m_grandpa.InsanityGrowth);
         this.m_grandpa.Wisdom *= (int)(1 + this.m_grandpa.WisdomGrowth);
 
-        this.m_parent.Intelligence *= (int)(1 + this.m_parent.IntelligenceGrowth);
-        this.m_parent.Wealth *= (int)(1 + this.m_parent.WealthGrowth);
+		foreach (Parent parent in this.m_parents) {
+			parent.Intelligence *= (int)(1 + parent.IntelligenceGrowth);
+			parent.Wealth *= (int)(1 + parent.WealthGrowth);
+		}
 
         foreach(Child child in this.m_children)
         {
@@ -53,4 +55,29 @@ public class Family
             child.Disposition *= (int)(1 + child.DispositionGrowth);
         }
     }
+
+	public int FamilySize
+	{
+		get {return this.m_parents.Count + this.m_children.Count + 1;}
+	}
+
+	/*
+	public List<string> FamilyFirstNames
+	{
+		get 
+		{
+			List<string> returnList = new List<string>();
+
+			returnList.Add (this.m_grandpa.Name);
+			foreach (Parent parent in this.m_parents)
+			{
+				returnList.Add (parent.Name);
+			}
+			foreach (Child child in this.m_children)
+			{
+				returnList.Add (child.Name);
+			}
+			return returnList;
+		}
+	}*/
 }
