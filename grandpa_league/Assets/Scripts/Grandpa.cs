@@ -26,12 +26,6 @@ public class Grandpa : Character
         this.m_name = name;
     }
 
-	public int Age
-	{
-		get { return this.m_age; }
-		set { this.m_age = value; }
-	}
-
     public int Wisdom
     {
         get { return this.m_wisdom; }

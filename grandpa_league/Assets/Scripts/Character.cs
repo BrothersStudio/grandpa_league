@@ -16,4 +16,9 @@
         set { this.m_gender = value; }
     }
 
+	public int Age
+	{
+		get { return this.m_age; }
+		set { this.m_age = value; }
+	}
 }

@@ -41,7 +41,6 @@ public class LoadFamily : MonoBehaviour
 				parent_stat_panel.SetActive (false);
 				child_stat_panel.SetActive (false);
 
-				// Add specific stat text setting here
 				grandpa_stat_panel.transform.Find("Name").GetComponent<Text>().text = PlayerFamily.Grandpa.Name;
 				grandpa_stat_panel.transform.Find("Age").GetComponent<Text>().text = "Age: " + PlayerFamily.Grandpa.Age;
 				grandpa_stat_panel.transform.Find("Insanity").GetComponent<Text>().text = "Insanity: " + PlayerFamily.Grandpa.Insanity;
@@ -61,8 +60,10 @@ public class LoadFamily : MonoBehaviour
 					parent_stat_panel.SetActive (true);
 					child_stat_panel.SetActive (false);
 
-					// Add specific stat text setting here
-					//character_stat_panel.GetComponents<Text>()
+					parent_stat_panel.transform.Find("Name").GetComponent<Text>().text = parent.Name;
+					parent_stat_panel.transform.Find("Age").GetComponent<Text>().text = "Age: " + parent.Age;
+					parent_stat_panel.transform.Find("Wealth").GetComponent<Text>().text = "Wealth: $" + parent.Wealth;
+					parent_stat_panel.transform.Find("Intelligence").GetComponent<Text>().text = "Intelligence: " + parent.Intelligence;
 				});
 		}
 		foreach (Child child in PlayerFamily.Children) 
@@ -77,8 +78,13 @@ public class LoadFamily : MonoBehaviour
 					parent_stat_panel.SetActive (false);
 					child_stat_panel.SetActive (true);
 
-					// Add specific stat text setting here
-					//character_stat_panel.GetComponents<Text>()
+					child_stat_panel.transform.Find("Name").GetComponent<Text>().text = child.Name;
+					child_stat_panel.transform.Find("Age").GetComponent<Text>().text = "Age: " + child.Age;
+					child_stat_panel.transform.Find("Cuteness").GetComponent<Text>().text = "Cuteness: " + child.Cuteness;
+					child_stat_panel.transform.Find("Intelligence").GetComponent<Text>().text = "Intelligence: " + child.Intelligence;
+					child_stat_panel.transform.Find("Fine Motor Skills").GetComponent<Text>().text = "Fine Motor Skills: " + child.FineMotorSkills;
+					child_stat_panel.transform.Find("Gross Motor Skills").GetComponent<Text>().text = "Gross Motor Skills: " + child.GrossMotorSkills;
+					child_stat_panel.transform.Find("Disposition").GetComponent<Text>().text = "Disposition: " + child.Disposition;
 				});
 		}
 	}
