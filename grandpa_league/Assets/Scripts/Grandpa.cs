@@ -4,18 +4,20 @@ public class Grandpa : Character
 {
     private int     m_insanity          = 0;
     private int     m_wisdom            = 0;
-    private double  m_money             = 100.00;
-    private int     m_pride             = 0;            //currently pride should only apply to PlayerCharacter but we can keep it here
+    private int     m_money             = 0;
+    private int     m_pride             = 0;
 
     private double  m_insanityGrowth    = 0;
     private double  m_wisdomGrowth      = 0;
+	private double  m_moneyGrowth       = 0;
     
-	public Grandpa(string name, string age, string wisdom, string insanity)
+	public Grandpa(string name, string age, string wisdom, string insanity, string money)
 	{
         this.m_name = name;
         this.m_age = Int32.Parse(age);
         this.m_wisdom = Int32.Parse(wisdom);
         this.m_insanity = Int32.Parse(insanity);
+		this.m_money = Int32.Parse(money);
 
         this.m_insanityGrowth = -1 * (this.m_insanity / 300);
         this.m_wisdomGrowth = (this.m_wisdom / 300);
@@ -50,11 +52,17 @@ public class Grandpa : Character
         set { this.m_insanityGrowth = value; }
     }
 
-    public double Money
+    public int Money
     {
         get { return this.m_money; }
         set { this.m_money = value; }
     }
+
+	public double MoneyGrowth
+	{
+		get { return this.m_moneyGrowth; }
+		set { this.m_moneyGrowth = value; }
+	}
 
     public int Pride
     {
