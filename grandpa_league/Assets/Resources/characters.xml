@@ -1,20 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <characters>
-  <character type="0" name="child_0" gender="0" age="7" cuteness="10" intelligence="3" artistry="3" athleticism="10" popularity="3" />
-  <character type="0" name="child_1" gender="1" age="7" cuteness="10" intelligence="3" artistry="3" athleticism="10" popularity="3" />
-  <character type="0" name="child_2" gender="0" age="7" cuteness="10" intelligence="3" artistry="3" athleticism="10" popularity="3" />
-  <character type="0" name="child_3" gender="0" age="7" cuteness="10" intelligence="3" artistry="3" athleticism="10" popularity="3" />
-  <character type="0" name="child_4" gender="0" age="7" cuteness="10" intelligence="3" artistry="3" athleticism="10" popularity="3" />
-  <character type="0" name="child_5" gender="0" age="7" cuteness="10" intelligence="3" artistry="3" athleticism="10" popularity="3" />
-  <character type="0" name="child_6" gender="0" age="7" cuteness="10" intelligence="3" artistry="3" athleticism="10" popularity="3" />
-  <character type="0" name="child_7" gender="0" age="7" cuteness="10" intelligence="3" artistry="3" athleticism="10" popularity="3" />
-  <character type="0" name="child_8" gender="0" age="7" cuteness="10" intelligence="3" artistry="3" athleticism="10" popularity="3" />
-  <character type="1" name="Bob Bobs" gender="0" age="35" popularity="10" intelligence="3" love="3" />
-  <character type="1" name="Jim Bobs" gender="0" age="35" popularity="10" intelligence="3" love="3" />
-  <character type="1" name="Mike Samson" gender="0" age="35" popularity="10" intelligence="3" love="3" />
-  <character type="1" name="Beth Beths" gender="1" age="35" popularity="10" intelligence="3" love="3" />
-  <character type="1" name="Beth Botts" gender="1" age="35" popularity="10" intelligence="3" love="3" />
-  <character type="2" name="Joe Cool" age="88" wisdom="10" insanity="3" money="50" />
-  <character type="2" name="Joe Pool" age="88" wisdom="10" insanity="3" money="50" />
-  <character type="2" name="Patrick Carney" age="88" wisdom="10" insanity="3" money="50" />
+  <!-- Character examples
+  <character type="0" name="example_child" gender="0" age="7" cuteness="10" intelligence="3" artistry="3" athleticism="10" popularity="3" />
+  <character type="1" name="example_parent" gender="0" age="35" popularity="10" intelligence="3" love="3" />
+  <character type="2" name="example_grandpa" age="88" wisdom="10" insanity="3" money="50" />  
+  -->
+  
+  <!-- CHILDREN -->
+  <character type="0" name="Jacob" gender="0" age="7" cuteness="10" intelligence="40" artistry="5" athleticism="80" popularity="50" />
+  <character type="0" name="Ethan" gender="0" age="5" cuteness="35" intelligence=75 artistry="5" athleticism="25" popularity="5" />
+  <character type="0" name="Michael" gender="0" age="5" cuteness="60" intelligence="25" artistry="25" athleticism="25" popularity="60" />
+  <character type="0" name="Christopher" gender="0" age="4" cuteness="75" intelligence="25" artistry="60" athleticism="10" popularity="20" />
+  <character type="0" name="Isabella" gender="1" age="8" cuteness="50" intelligence="15" artistry="50" athleticism="10" popularity="60" />
+  <character type="0" name="Emma" gender="1" age="6" cuteness="40" intelligence="5" artistry="70" athleticism="5" popularity="70" />
+  <character type="0" name="Olivia" gender="1" age="4" cuteness="10" intelligence="3" artistry="3" athleticism="10" popularity="3" />
+  <character type="0" name="Sophia" gender="1" age="9" cuteness="5" intelligence="70" artistry="60" athleticism="15" popularity="5" />
+
+  <!-- PARENTS -->
+  <character type="1" name="Jim" gender="0" age="33" popularity="50" intelligence="20" love="50" />
+  <character type="1" name="Mike" gender="0" age="40" popularity="15" intelligence="70" love="20" />
+  <character type="1" name="Beth" gender="1" age="35" popularity="70" intelligence="5" love="45" />
+  <character type="1" name="Candice" gender="1" age="45" popularity="50" intelligence="75" love="5" />
+  
+  <!-- GRANDPARENTS -->
+  <character type="2" name="Captain Sparky McBreeches" age="88" wisdom="10" insanity="70" money="5000" />
+  <character type="2" name="Dick Walter" age="82" wisdom="50" insanity="30" money="2000" />
+  <character type="2" name="Frank Dinglebop" age="85" wisdom="40" insanity="40" money="3500" />
 </characters>
