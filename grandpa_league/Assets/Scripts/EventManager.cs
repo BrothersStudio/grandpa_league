@@ -4,6 +4,7 @@ using System.Linq;
 using System.Xml.Linq;
 using System;
 using System.Reflection;
+using System.IO;
 
 public static class EventManager
 {
@@ -13,8 +14,10 @@ public static class EventManager
     static EventManager()
     {
 
-		XDocument topLevel = XDocument.Load(Application.dataPath + "/Data/events.xml");
-		List<XElement> allEvents = topLevel.Root.Descendants("event").ToList();
+        TextAsset tmp = Resources.Load("events") as TextAsset;
+        TextReader reader = new StringReader(tmp.text);
+        XDocument topLevel = XDocument.Load(reader);
+        List<XElement> allEvents = topLevel.Root.Descendants("event").ToList();
 
         foreach (XElement simEvent in allEvents)
         {
@@ -28,22 +31,25 @@ public static class EventManager
             {
                 case (int)Enums.EventType.HIDDEN:
                     m_hiddenEvents.Add(new SimulationEvent( eventRequirements,
+                                                            Double.Parse(simEvent.Attribute("chance").Value),
                                                             simEvent.Attribute("name").Value,
                                                             simEvent.Attribute("description").Value,
                                                             Int32.Parse(simEvent.Attribute("id").Value),
                                                             0,
                                                             Int32.Parse(simEvent.Attribute("priority").Value)
+                                                            
                                                             ));
                     break;
                 case (int)Enums.EventType.KNOWN:
-                    m_knownEvents.Add(new SimulationEvent( eventRequirements,
+                    m_knownEvents.Add(new SimulationEvent(eventRequirements,
+                                                            1.0,
                                                             simEvent.Attribute("name").Value,
                                                             simEvent.Attribute("description").Value,
                                                             Int32.Parse(simEvent.Attribute("id").Value),
                                                             1,
                                                             Int32.Parse(simEvent.Attribute("priority").Value),
                                                             Int32.Parse(simEvent.Attribute("month").Value),
-                                                            Int32.Parse(simEvent.Attribute("day").Value)
+                                                            simEvent.Attribute("day").Value == null ? 0 : Int32.Parse(simEvent.Attribute("day").Value)
                                                             ));
                     break;
                 default:
@@ -69,11 +75,22 @@ public static class EventManager
         return eventsOnDay;
     }
 
-    public static Func<DataManager, Requirement, int> GetEventFunctionById(int eventId)
+    public static List<SimulationEvent> GetEventsByMonth(int month)
+    {
+        List<SimulationEvent> eventsInMonth = new List<SimulationEvent>();
+        foreach(SimulationEvent ev in m_knownEvents)
+        {
+            if (ev.EventMonth == month && ev.EventDay == 0)
+                eventsInMonth.Add(ev);
+        }
+        return eventsInMonth;
+    }
+
+    public static Func<DataManager, Requirement, Outcome> GetEventFunctionById(int eventId)
     {
         string eventMethodName = "Event" + eventId.ToString();
         MethodInfo methodInfo = typeof(EventManager).GetMethod(eventMethodName);
-        return (Func<DataManager, Requirement, int>)Delegate.CreateDelegate(typeof(Func<DataManager, Requirement, int>), methodInfo);
+        return (Func<DataManager, Requirement, Outcome>)Delegate.CreateDelegate(typeof(Func<DataManager, Requirement, Outcome>), methodInfo);
     }
 
 
@@ -82,7 +99,7 @@ public static class EventManager
      * EVENT FUNCTION BANE /MUST/ BE OF THE FORMAT Event[EVENTID] */
 
     //NAME: WEEKLY STAT UPGRADE DO NOT CHANGE FROM Event0
-    public static int Event0(DataManager manager, Requirement requirements)
+    public static Outcome Event0(DataManager manager, Requirement requirements)
     {
         foreach(Family leagueFam in manager.LeagueFamilies)
         {
@@ -90,25 +107,25 @@ public static class EventManager
         }
 		manager.PlayerFamily.ApplyStatUpgrades();
 
-        return (int)Enums.EventOutcome.SUCCESS;
+        return new Outcome((int)Enums.EventOutcome.SUCCESS, "");
     }
 
     //NAME: GRANDPA WINS LOTTERY
-    public static int Event1(DataManager manager, Requirement requirements)
+    public static Outcome Event1(DataManager manager, Requirement requirements)
     {
         manager.PlayerFamily.Grandpa.Money += 1000;
-        return (int)Enums.EventOutcome.SUCCESS;
+        return new Outcome((int)Enums.EventOutcome.SUCCESS, "GJ you're rich!");
     }
 
     //NAME: GRANDPA CHANGES HIS NAME
-    public static int Event2(DataManager manager, Requirement requirements)
+    public static Outcome Event2(DataManager manager, Requirement requirements)
     {
         if (requirements.Accept)
         {
             manager.PlayerFamily.Grandpa.Name = "Leeroy Jenkins";
-            return (int)Enums.EventOutcome.SUCCESS;
+            return new Outcome((int)Enums.EventOutcome.SUCCESS, "NICE!");
 
         }
-        return (int)Enums.EventOutcome.FAILURE;
+        return new Outcome((int)Enums.EventOutcome.FAILURE, "BOO!");
     }
 }

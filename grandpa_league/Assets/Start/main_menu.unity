@@ -387,7 +387,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 917574741}
+      - m_Target: {fileID: 917574742}
         m_MethodName: OnExitClicked
         m_Mode: 1
         m_Arguments:
@@ -612,7 +612,7 @@ GameObject:
   - 92: {fileID: 917574738}
   - 124: {fileID: 917574737}
   - 81: {fileID: 917574736}
-  - 114: {fileID: 917574741}
+  - 114: {fileID: 917574742}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -688,7 +688,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1484921728}
   m_RootOrder: 0
---- !u!114 &917574741
+--- !u!114 &917574742
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -703,6 +703,9 @@ MonoBehaviour:
   loadGame: {fileID: 1206892582}
   exit: {fileID: 539511007}
   panel: {fileID: 1835279319}
+  inputField: {fileID: 1100606622}
+  confirmButton: {fileID: 964832284}
+  cancelButton: {fileID: 2147063438}
 --- !u!1 &964832282
 GameObject:
   m_ObjectHideFlags: 0
@@ -778,7 +781,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 964832285}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 917574742}
+        m_MethodName: OnConfirmButtonClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &964832285
@@ -1005,7 +1019,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 917574741}
+      - m_Target: {fileID: 917574742}
         m_MethodName: OnNewGameClicked
         m_Mode: 1
         m_Arguments:
@@ -1452,10 +1466,10 @@ RectTransform:
   - {fileID: 2147063437}
   m_Father: {fileID: 20670924}
   m_RootOrder: 4
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -2.1, y: -40.8}
-  m_SizeDelta: {x: -643.2, y: -383.6}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 300, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1912418055
 GameObject:
@@ -1680,7 +1694,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2147063439}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 917574742}
+        m_MethodName: OnCancelButtonClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &2147063439

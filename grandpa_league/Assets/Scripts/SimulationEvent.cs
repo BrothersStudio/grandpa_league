@@ -8,7 +8,7 @@ public class SimulationEvent
     private int m_eventType = -1;
     private int m_eventId = -1;
     private int m_priority = -1;
-    private Func<DataManager, Requirement, int> m_eventFunction = null;
+    private Func<DataManager, Requirement, Outcome> m_eventFunction = null;
     private List<string> m_outcomeStrings = new List<string>();         //TODO: add strings to events.xml and load them into here
                                                                         //possible just a list of ids in events.xml which correspond
                                                                         //to strings in strings.xml
@@ -16,8 +16,9 @@ public class SimulationEvent
     private Requirement m_requirements = null;
     private int m_eventMonth = 0;
     private int m_eventDay = 0;
+    private double m_chance = 0;
 
-    public SimulationEvent(Requirement requirements, string eventName, string eventDescription, int eventId, int eventType, int priority, int month=0, int day=0)
+    public SimulationEvent(Requirement requirements, double chance, string eventName, string eventDescription, int eventId, int eventType, int priority, int month=0, int day=0)
     {
         this.m_eventDescription = eventDescription;
         this.m_eventName = eventName;
@@ -29,11 +30,12 @@ public class SimulationEvent
         this.m_eventDay = day;
 
         this.m_requirements = requirements;
+        this.m_chance = chance;
 
         this.m_eventFunction = EventManager.GetEventFunctionById(eventId);
     }
 
-    public int RunEvent(DataManager currentManager)
+    public Outcome RunEvent(DataManager currentManager)
     {
         return this.m_eventFunction(currentManager, this.m_requirements);      //TODO: need something like check the return value and return the right string for what happened
     }
@@ -65,5 +67,10 @@ public class SimulationEvent
     public string EventDescription
     {
         get { return this.m_eventDescription; }
+    }
+
+    public double Chance
+    {
+        get { return this.m_chance; }
     }
 }

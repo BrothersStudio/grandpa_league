@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 using System;
+using System.IO;
 
 public class CharacterManager
 {
@@ -12,7 +13,9 @@ public class CharacterManager
 
     static CharacterManager()
     {
-		XDocument topLevel = XDocument.Load(Application.dataPath + "/Data/characters.xml");
+        TextAsset tmp = Resources.Load("characters") as TextAsset;
+        TextReader reader = new StringReader(tmp.text);
+        XDocument topLevel = XDocument.Load(reader);
 		List<XElement> allCharacters = topLevel.Root.Descendants("character").ToList();
 
         foreach (XElement character in allCharacters)
@@ -21,30 +24,30 @@ public class CharacterManager
             {
                 case (int)Enums.Character.CHILD:
                     m_children.Add(new Child(  character.Attribute("name").Value,
-                                                    character.Attribute("gender").Value,
-                                                    character.Attribute("age").Value,
-                                                    character.Attribute("cuteness").Value,
-                                                    character.Attribute("intelligence").Value,
-                                                    character.Attribute("artistry").Value,
-                                                    character.Attribute("athleticism").Value,
-                                                    character.Attribute("popularity").Value
+                                                    Int32.Parse(character.Attribute("gender").Value),
+                                                    Int32.Parse(character.Attribute("age").Value),
+                                                    Int32.Parse(character.Attribute("cuteness").Value),
+                                                    Int32.Parse(character.Attribute("intelligence").Value),
+                                                    Int32.Parse(character.Attribute("artistry").Value),
+                                                    Int32.Parse(character.Attribute("athleticism").Value),
+                                                    Int32.Parse(character.Attribute("popularity").Value)
                                                     ));
                     break;
                 case (int)Enums.Character.PARENT:
                     m_parents.Add(new Parent(  character.Attribute("name").Value,
-                                                    character.Attribute("gender").Value,
-                                                    character.Attribute("age").Value,
-                                                    character.Attribute("intelligence").Value,
-												    character.Attribute("popularity").Value,
-													character.Attribute("love").Value
+                                                    Int32.Parse(character.Attribute("gender").Value),
+                                                    Int32.Parse(character.Attribute("age").Value),
+                                                    Int32.Parse(character.Attribute("intelligence").Value),
+                                                    Int32.Parse(character.Attribute("popularity").Value),
+                                                    Int32.Parse(character.Attribute("love").Value)
                                                     ));
                     break;
                 case (int)Enums.Character.GRANDPA:
                     m_grandparents.Add(new Grandpa(character.Attribute("name").Value,
-                                                        character.Attribute("age").Value,
-                                                        character.Attribute("wisdom").Value,
-                                                        character.Attribute("insanity").Value,
-					 									character.Attribute("money").Value
+                                                        Int32.Parse(character.Attribute("age").Value),
+                                                        Int32.Parse(character.Attribute("wisdom").Value),
+                                                        Int32.Parse(character.Attribute("insanity").Value),
+                                                        Int32.Parse(character.Attribute("money").Value)
                                                     ));
                     break;
                 default:

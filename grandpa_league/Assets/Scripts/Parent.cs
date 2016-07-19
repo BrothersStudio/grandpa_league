@@ -3,26 +3,30 @@ using System;
 
 public class Parent : Character
 {
-    private int     m_intelligence  = 0;
-	private int     m_popularity    = 0;
-	private int     m_love          = 0;
+    private int     m_intelligence          = 0;
+	private int     m_popularity            = 0;
+	private int     m_love                  = 0;
 
-    private double  m_intelligenceGrowth  = 0;
-	private double  m_popularityGrowth    = 0;
-	private double  m_loveGrowth          = 0;
+    private double  m_intelligenceGrowth    = 0;
+	private double  m_popularityGrowth      = 0;
+	private double  m_loveGrowth            = 0;
 
-	public Parent(string name, string gender, string age, string intelligence, string popularity, string love)
+    private int     m_value                   = 0;
+
+	public Parent(string name, int gender, int age, int intelligence, int popularity, int love)
     {
         this.m_name = name;
-        this.m_gender = Int32.Parse(gender);
-        this.m_age = Int32.Parse(age);
-        this.m_intelligence = Int32.Parse(intelligence);
-		this.m_popularity = Int32.Parse(popularity);
-		this.m_love = Int32.Parse(love);
+        this.m_gender = gender;
+        this.m_age = age;
+        this.m_intelligence = intelligence;
+		this.m_popularity = popularity;
+		this.m_love = love;
 
         this.m_intelligenceGrowth = (this.m_intelligence / 300);
 		this.m_popularityGrowth = (this.m_popularity / 300);
 		this.m_loveGrowth = (this.m_love / 300);
+
+        this.m_value = (this.m_intelligence + this.m_popularity + this.m_love) * (int)(1 + this.m_intelligenceGrowth + this.m_popularityGrowth + this.m_loveGrowth);
     }
 
     public int Intelligence
@@ -60,4 +64,10 @@ public class Parent : Character
 		get { return this.m_loveGrowth; }
 		set { this.m_loveGrowth = value; }
 	}
+
+    public int Value
+    {
+        get { return this.m_value; }
+        set { this.m_value = value; }
+    }
 }

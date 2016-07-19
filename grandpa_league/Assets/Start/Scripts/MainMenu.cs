@@ -14,14 +14,6 @@ public class MainMenu : MonoBehaviour
     public Button confirmButton;
     public Button cancelButton;
 
-    public GameObject persist;
-
-    void Awake()
-    {
-        persist.name = "persist";
-        DontDestroyOnLoad(persist);
-    }
-
     void Start()
     {
         panel.SetActive(false);

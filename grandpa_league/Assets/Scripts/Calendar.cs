@@ -36,9 +36,16 @@ public class Calendar
     private void GenerateCalendarForYear()
     {
         for (var i = 1; i <= 12; i++)
+            { 
             for (var j = 1; j <= 4; j++)
                 for (var k = 1; k <= 7; k++)
                     this.m_days.Add(new Day(Constants.DAY_NAMES[k], i, k*j, this.m_currentYear));
+
+            foreach (SimulationEvent seasonalEvent in EventManager.GetEventsByMonth(i))
+                {
+                this.m_days[Constants.RANDOM.Next(1, 27) * i].AddEvent(seasonalEvent);
+                }
+            }
     }
 }
 
@@ -59,9 +66,9 @@ public class Day
 
 		this.m_events = new List<SimulationEvent> ();
 
-        int randomInt = Constants.RANDOM.Next(Constants.RANDOM_FACTOR - 1);
-        if (randomInt == 1)
-            this.m_events.Add(EventManager.GetRandomEvent());
+        SimulationEvent randomEvent = EventManager.GetRandomEvent();
+        if(Constants.RANDOM.Next(0, 100) <= randomEvent.Chance * 100)
+            this.m_events.Add(randomEvent);
 
         foreach (SimulationEvent knownEvent in EventManager.GetEventsByDate(this.m_month, this.m_day, this.m_year))
         {
@@ -70,7 +77,7 @@ public class Day
 
         if(this.m_dayName == "Sunday")
         {
-            SimulationEvent weeklyLevelUp = new SimulationEvent(null, "level_up", "", 0, 0, 0);
+            SimulationEvent weeklyLevelUp = new SimulationEvent(null, 1, "level_up", "", 0, 0, 0);
             this.m_events.Add(weeklyLevelUp);
         }
     }

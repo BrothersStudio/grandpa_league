@@ -19,8 +19,6 @@ public class Main : MonoBehaviour {
 
 	public void Awake()
 	{
-        //m_dataManager = new DataManager(GameObject.Find("persist").GetComponent<InputField>().text);
-        //Debug.Log(GameObject.Find("persist").GetComponent<InputField>().text);
         m_dataManager = new DataManager(PlayerPrefs.GetString("name"));
 
         InitializeHighlight ();
@@ -61,11 +59,12 @@ public class Main : MonoBehaviour {
             ev.Requirements.Accept = true;
 
             //EXECUTE THE EVENT
-            int eventOutcome = ev.RunEvent(m_dataManager);
+            Outcome eventOutcome = ev.RunEvent(m_dataManager);
 
             //CHECK THE OUTCOME
-            if (eventOutcome == (int)Enums.EventOutcome.SUCCESS)
+            if (eventOutcome.Status == (int)Enums.EventOutcome.SUCCESS)
             {
+                Debug.Log(eventOutcome.OutcomeDescription);
                 continue;
                 //OUTPUT STRING FOR EVENT HERE (TODO will be something like ev.GetString(eventOutCome);
                 //if it is a "soft" fail e.g. not enough money or child too young then start loop over

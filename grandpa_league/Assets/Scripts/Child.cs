@@ -15,22 +15,27 @@ public class Child : Character
     private     double  m_athleticismGrowth     = 0;
     private     double  m_popularityGrowth      = 0;
 
-	public Child(string name, string gender, string age, string cuteness, string intelligence, string artistry, string athleticism, string popularity)
+    private     int     m_value                   = 0;
+
+	public Child(string name, int gender, int age, int cuteness, int intelligence, int artistry, int athleticism, int popularity)
     {
         this.m_name = name;
-        this.m_gender = Int32.Parse(gender);
-        this.m_age = Int32.Parse(age);
-        this.m_cuteness = Int32.Parse(cuteness);
-        this.m_intelligence = Int32.Parse(intelligence);
-		this.m_artistry = Int32.Parse(artistry);
-		this.m_athleticism = Int32.Parse(athleticism);
-		this.m_popularity = Int32.Parse(popularity);
+        this.m_gender = gender;
+        this.m_age = age;
+        this.m_cuteness = cuteness;
+        this.m_intelligence = intelligence;
+		this.m_artistry = artistry;
+		this.m_athleticism = athleticism;
+		this.m_popularity = popularity;
 
         this.m_cutenessGrowth = -1 * this.m_cuteness / 300;
         this.m_intelligenceGrowth = this.m_intelligence / 300;
 		this.m_artistryGrowth = this.m_artistry / 300;
 		this.m_athleticismGrowth = this.m_athleticism / 300;
 		this.m_popularityGrowth = -1 * this.m_popularity / 300;
+
+        this.m_value = (this.m_cuteness + this.m_intelligence + this.m_artistry + this.m_athleticism + this.m_popularity) 
+            * (int)(this.m_cutenessGrowth + this.m_intelligenceGrowth + this.m_artistryGrowth + this.m_athleticismGrowth + this.m_popularityGrowth);
 }
     
     public int Cuteness
@@ -91,5 +96,11 @@ public class Child : Character
     {
 		get { return this.m_popularityGrowth; }
 		set { this.m_popularityGrowth = value; }
+    }
+
+    public int Value
+    {
+        get { return this.m_value; }
+        set { this.m_value = value; }
     }
 }

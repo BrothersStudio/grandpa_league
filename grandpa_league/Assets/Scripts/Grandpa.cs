@@ -11,13 +11,13 @@ public class Grandpa : Character
     private double  m_wisdomGrowth      = 0;
 	private double  m_moneyGrowth       = 0;
     
-	public Grandpa(string name, string age, string wisdom, string insanity, string money)
+	public Grandpa(string name, int age, int wisdom, int insanity, int money)
 	{
         this.m_name = name;
-        this.m_age = Int32.Parse(age);
-        this.m_wisdom = Int32.Parse(wisdom);
-        this.m_insanity = Int32.Parse(insanity);
-		this.m_money = Int32.Parse(money);
+        this.m_age = age;
+        this.m_wisdom = wisdom;
+        this.m_insanity = insanity;
+		this.m_money = money;
 
         this.m_insanityGrowth = -1 * (this.m_insanity / 300);
         this.m_wisdomGrowth = (this.m_wisdom / 300);
