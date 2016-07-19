@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LoadFamily : MonoBehaviour 
+public class LoadFamilyPanel : MonoBehaviour 
 {
 	public GameObject family_panel;
 	public GameObject content_panel;
