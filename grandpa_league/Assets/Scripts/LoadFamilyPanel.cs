@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LoadFamily : MonoBehaviour 
+public class LoadFamilyPanel : MonoBehaviour 
 {
 	public GameObject family_panel;
 	public GameObject content_panel;
@@ -49,9 +49,11 @@ public class LoadFamily : MonoBehaviour
 				grandpa_stat_panel.transform.Find("Pride").GetComponent<Text>().text = "Pride: " + PlayerFamily.Grandpa.Pride;
 			});
 
-		foreach (Parent parent in PlayerFamily.Parents) 
+		foreach (Parent parent_instance in PlayerFamily.Parents) 
 		{
 			panel_ind++;
+			Parent parent = parent_instance;
+
 			MakePanel (parent, panel_ind);
 
 			// Add character display activation to button
@@ -68,9 +70,12 @@ public class LoadFamily : MonoBehaviour
 					parent_stat_panel.transform.Find("Love").GetComponent<Text>().text = "Love: " + parent.Love;
 				});
 		}
-		foreach (Child child in PlayerFamily.Children) 
+
+		foreach (Child child_instance in PlayerFamily.Children) 
 		{
 			panel_ind++;
+			Child child = child_instance;
+
 			MakePanel (child, panel_ind);
 
 			// Add character display activation to button

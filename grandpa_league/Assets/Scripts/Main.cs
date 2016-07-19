@@ -7,13 +7,13 @@ using System;
 public class Main : MonoBehaviour {
 
 	public Button[] days;
-	private int current_day;
+	private int current_day = 0;
 
 	public Text month_title;
-	private string[] months;
-	private int current_month;
+	private int current_month = 1;
 
 	public GameObject family_content_panel;
+	public GameObject trading_panel;
 
     private static DataManager m_dataManager;
 
@@ -34,11 +34,11 @@ public class Main : MonoBehaviour {
 		{
 			current_day = 0;
 			current_month++;
-			if (current_month == 12)
+			if (current_month > 12)
 			{
-				current_month = 0;
+				current_month = 1;
 			}
-			month_title.text = months[current_month];
+			month_title.text = Constants.MONTH_NAMES[current_month];
 		}
 		else
 		{
@@ -75,38 +75,22 @@ public class Main : MonoBehaviour {
 		AdvanceDayHighlight();
     }
 
-	public void DisplayFamilyContent(string type)
+	public void DisplayContent(string type)
 	{
 		if (type == "family") 
 		{
-			family_content_panel.GetComponent<LoadFamily> ().DisplayFamily (m_dataManager.PlayerFamily);
+			family_content_panel.GetComponent<LoadFamilyPanel> ().DisplayFamily (m_dataManager.PlayerFamily);
+		} 
+		else if (type == "trading") 
+		{
+			trading_panel.GetComponent<LoadTradingPanel> ().DisplayAllFamilies (m_dataManager.PlayerFamily, m_dataManager.LeagueFamilies);
 		}
 	}
 
 	private void InitializeHighlight()
-	{
-		InitializeMonthNames ();        
-		current_day = 0;
-		days [0].image.color = Color.red;
+	{     
+		days [current_day].image.color = Color.red;
 
-		current_month = 0;
-		month_title.text = months[current_month];
-	}
-
-	private void InitializeMonthNames()
-	{
-		months = new string[12];
-		months [0]  = "January";
-		months [1]  = "February";
-		months [2]  = "March";
-		months [3]  = "April";
-		months [4]  = "May";
-		months [5]  = "June";
-		months [6]  = "July";
-		months [7]  = "August";
-		months [8]  = "September";
-		months [9]  = "October";
-		months [10] = "November";
-		months [11] = "December";
+		month_title.text = Constants.MONTH_NAMES[1];
 	}
 }
