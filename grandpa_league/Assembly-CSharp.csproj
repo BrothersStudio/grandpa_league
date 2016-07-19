@@ -62,6 +62,8 @@
      <Compile Include="Assets\Scripts\Requirement.cs" />
      <Compile Include="Assets\Scripts\SimulationEvent.cs" />
      <Compile Include="Assets\Scripts\Team.cs" />
+     <Compile Include="Assets\Start\Scripts\MainMenu.cs" />
+     <Compile Include="Assets\Start\Scripts\Splash.cs" />
      <None Include="Assets\Data\characters.xml" />
      <None Include="Assets\Data\events.xml" />
  <Reference Include="UnityEngine.UI">
