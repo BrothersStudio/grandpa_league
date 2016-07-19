@@ -25,24 +25,26 @@ public class CharacterManager
                                                     character.Attribute("age").Value,
                                                     character.Attribute("cuteness").Value,
                                                     character.Attribute("intelligence").Value,
-                                                    character.Attribute("fine_motor").Value,
-                                                    character.Attribute("gross_motor").Value,
-                                                    character.Attribute("disposition").Value
+                                                    character.Attribute("artistry").Value,
+                                                    character.Attribute("athleticism").Value,
+                                                    character.Attribute("popularity").Value
                                                     ));
                     break;
                 case (int)Enums.Character.PARENT:
                     m_parents.Add(new Parent(  character.Attribute("name").Value,
                                                     character.Attribute("gender").Value,
                                                     character.Attribute("age").Value,
-                                                    character.Attribute("wealth").Value,
-                                                    character.Attribute("intelligence").Value
+                                                    character.Attribute("intelligence").Value,
+												    character.Attribute("popularity").Value,
+													character.Attribute("love").Value
                                                     ));
                     break;
                 case (int)Enums.Character.GRANDPA:
                     m_grandparents.Add(new Grandpa(character.Attribute("name").Value,
                                                         character.Attribute("age").Value,
                                                         character.Attribute("wisdom").Value,
-                                                        character.Attribute("insanity").Value
+                                                        character.Attribute("insanity").Value,
+					 									character.Attribute("money").Value
                                                     ));
                     break;
                 default:

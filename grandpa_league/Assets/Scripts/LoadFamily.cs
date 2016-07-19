@@ -46,6 +46,7 @@ public class LoadFamily : MonoBehaviour
 				grandpa_stat_panel.transform.Find("Insanity").GetComponent<Text>().text = "Insanity: " + PlayerFamily.Grandpa.Insanity;
 				grandpa_stat_panel.transform.Find("Wisdom").GetComponent<Text>().text = "Wisdom: " + PlayerFamily.Grandpa.Wisdom;
 				grandpa_stat_panel.transform.Find("Money").GetComponent<Text>().text = "Money: $" + PlayerFamily.Grandpa.Money;
+				grandpa_stat_panel.transform.Find("Pride").GetComponent<Text>().text = "Pride: " + PlayerFamily.Grandpa.Pride;
 			});
 
 		foreach (Parent parent in PlayerFamily.Parents) 
@@ -62,8 +63,9 @@ public class LoadFamily : MonoBehaviour
 
 					parent_stat_panel.transform.Find("Name").GetComponent<Text>().text = parent.Name;
 					parent_stat_panel.transform.Find("Age").GetComponent<Text>().text = "Age: " + parent.Age;
-					parent_stat_panel.transform.Find("Wealth").GetComponent<Text>().text = "Wealth: $" + parent.Wealth;
+					parent_stat_panel.transform.Find("Popularity").GetComponent<Text>().text = "Popularity: " + parent.Popularity;
 					parent_stat_panel.transform.Find("Intelligence").GetComponent<Text>().text = "Intelligence: " + parent.Intelligence;
+					parent_stat_panel.transform.Find("Love").GetComponent<Text>().text = "Love: " + parent.Love;
 				});
 		}
 		foreach (Child child in PlayerFamily.Children) 
@@ -82,9 +84,9 @@ public class LoadFamily : MonoBehaviour
 					child_stat_panel.transform.Find("Age").GetComponent<Text>().text = "Age: " + child.Age;
 					child_stat_panel.transform.Find("Cuteness").GetComponent<Text>().text = "Cuteness: " + child.Cuteness;
 					child_stat_panel.transform.Find("Intelligence").GetComponent<Text>().text = "Intelligence: " + child.Intelligence;
-					child_stat_panel.transform.Find("Fine Motor Skills").GetComponent<Text>().text = "Fine Motor Skills: " + child.FineMotorSkills;
-					child_stat_panel.transform.Find("Gross Motor Skills").GetComponent<Text>().text = "Gross Motor Skills: " + child.GrossMotorSkills;
-					child_stat_panel.transform.Find("Disposition").GetComponent<Text>().text = "Disposition: " + child.Disposition;
+					child_stat_panel.transform.Find("Artistry").GetComponent<Text>().text = "Artistry: " + child.Artistry;
+					child_stat_panel.transform.Find("Athleticism").GetComponent<Text>().text = "Athleticism: " + child.Athleticism;
+					child_stat_panel.transform.Find("Popularity").GetComponent<Text>().text = "Popularity: " + child.Popularity;
 				});
 		}
 	}
