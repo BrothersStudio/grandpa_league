@@ -8,7 +8,7 @@
   
   <!-- CHILDREN -->
   <character type="0" name="Jacob" gender="0" age="7" cuteness="10" intelligence="40" artistry="5" athleticism="80" popularity="50" />
-  <character type="0" name="Ethan" gender="0" age="5" cuteness="35" intelligence=75 artistry="5" athleticism="25" popularity="5" />
+  <character type="0" name="Ethan" gender="0" age="5" cuteness="35" intelligence="75" artistry="5" athleticism="25" popularity="5" />
   <character type="0" name="Michael" gender="0" age="5" cuteness="60" intelligence="25" artistry="25" athleticism="25" popularity="60" />
   <character type="0" name="Christopher" gender="0" age="4" cuteness="75" intelligence="25" artistry="60" athleticism="10" popularity="20" />
   <character type="0" name="Isabella" gender="1" age="8" cuteness="50" intelligence="15" artistry="50" athleticism="10" popularity="60" />

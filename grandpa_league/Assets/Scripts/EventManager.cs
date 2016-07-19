@@ -21,11 +21,15 @@ public static class EventManager
 
         foreach (XElement simEvent in allEvents)
         {
-            Requirement eventRequirements = new Requirement(Convert.ToBoolean(simEvent.Attribute("req_children").Value),
-                                                            Convert.ToBoolean(simEvent.Attribute("req_parent").Value),
-                                                            Convert.ToBoolean(simEvent.Attribute("req_grandpa").Value),
-                                                            Convert.ToBoolean(simEvent.Attribute("req_money").Value),
-                                                            Convert.ToBoolean(simEvent.Attribute("req_accept").Value));
+            Requirement eventRequirements = new Requirement(Convert.ToBoolean(Int32.Parse(simEvent.Attribute("req_children").Value) & 1),
+                                                            Convert.ToBoolean(Int32.Parse(simEvent.Attribute("req_parent").Value) & 1),
+                                                            Convert.ToBoolean(Int32.Parse(simEvent.Attribute("req_grandpa").Value) & 1),
+                                                            Convert.ToBoolean(Int32.Parse(simEvent.Attribute("req_money").Value) & 1),
+                                                            Convert.ToBoolean(Int32.Parse(simEvent.Attribute("req_accept").Value) & 1),
+                                                            Convert.ToBoolean(Int32.Parse(simEvent.Attribute("req_children").Value) >> 1 & 1),
+                                                            Convert.ToBoolean(Int32.Parse(simEvent.Attribute("req_parent").Value) >> 1 & 1),
+                                                            Convert.ToBoolean(Int32.Parse(simEvent.Attribute("req_grandpa").Value) >> 1 & 1)
+                                                            );
 
             switch (Int32.Parse(simEvent.Attribute("type").Value))
             {

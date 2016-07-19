@@ -15,11 +15,11 @@ public class Calendar
     public void AdvanceDay()
     {
         this.m_currentDay++;
-        if(this.m_currentDay == 29)
+        if (this.m_currentDay == 29)
         {
             this.m_currentDay = 1;
             this.m_currentMonth++;
-            if(this.m_currentMonth == 13)
+            if (this.m_currentMonth == 13)
             {
                 this.m_currentMonth = 1;
                 this.m_currentYear++;
@@ -36,16 +36,30 @@ public class Calendar
     private void GenerateCalendarForYear()
     {
         for (var i = 1; i <= 12; i++)
-            { 
+        {
             for (var j = 1; j <= 4; j++)
                 for (var k = 1; k <= 7; k++)
-                    this.m_days.Add(new Day(Constants.DAY_NAMES[k], i, k*j, this.m_currentYear));
+                    this.m_days.Add(new Day(Constants.DAY_NAMES[k], i, k * j, this.m_currentYear));
 
             foreach (SimulationEvent seasonalEvent in EventManager.GetEventsByMonth(i))
-                {
+            {
                 this.m_days[Constants.RANDOM.Next(1, 27) * i].AddEvent(seasonalEvent);
-                }
             }
+        }
+    }
+
+    public Dictionary<string, int> GetCurrentDay()
+    {
+        Dictionary<string, int> currentDay = new Dictionary<string, int>();
+        currentDay.Add("month", this.m_currentMonth);
+        currentDay.Add("day", this.m_currentDay);
+        currentDay.Add("year", this.m_currentYear);
+        return currentDay;
+    }
+
+    public void ScheduleEventByDate(SimulationEvent simEvent, int day, int month)
+    {
+       this.m_days[28 * (month - 1) + (day - 1)].AddEvent(simEvent);
     }
 }
 
