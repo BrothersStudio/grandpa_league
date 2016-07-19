@@ -15,11 +15,15 @@ public class Main : MonoBehaviour {
 
 	public GameObject family_content_panel;
 
-	private static DataManager m_dataManager = new DataManager("player1");
-    
+    private static DataManager m_dataManager;
+
 	public void Awake()
 	{
-		InitializeHighlight ();
+        //m_dataManager = new DataManager(GameObject.Find("persist").GetComponent<InputField>().text);
+        //Debug.Log(GameObject.Find("persist").GetComponent<InputField>().text);
+        m_dataManager = new DataManager(PlayerPrefs.GetString("name"));
+
+        InitializeHighlight ();
         List<Child> currentPlayersChildren = m_dataManager.PlayerFamily.Children;
         Grandpa currentPlayersGrandpa = m_dataManager.PlayerFamily.Grandpa;
         List<Family> currentLeagueFamilies = m_dataManager.LeagueFamilies; 
