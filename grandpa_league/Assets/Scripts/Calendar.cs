@@ -84,7 +84,7 @@ public class Day
         foreach(SimulationEvent ev in randomEvents)
         {
             bool addEvent = Constants.RANDOM.Next(1, 100000) <= ev.Chance * 100000;
-            if (ev.EventMonth != 0 && ev.EventMonth == month && addEvent)
+            if (ev.EventMonth != 0 && ev.EventMonth >= month && ev.EventMonthMax <= month && addEvent)
                 this.m_events.Add(ev);
             else if (ev.EventMonth == 0 && addEvent)
                 this.m_events.Add(ev);

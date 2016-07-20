@@ -46,7 +46,7 @@ public static class EventManager
                                                             Int32.Parse(simEvent.Attribute("id").Value),
                                                             (int)Enums.EventType.HIDDEN,
                                                             Int32.Parse(simEvent.Attribute("priority").Value),
-                                                            simEvent.Attributes("month").Count() == 0 ? 0 : Int32.Parse(simEvent.Attribute("month").Value)
+                                                            simEvent.Attributes("month").Count() == 0 ? "0" : simEvent.Attribute("month").Value
                                                             ));
                     break;
                 case (int)Enums.EventType.KNOWN:
@@ -57,7 +57,7 @@ public static class EventManager
                                                             Int32.Parse(simEvent.Attribute("id").Value),
                                                             (int)Enums.EventType.KNOWN,
                                                             Int32.Parse(simEvent.Attribute("priority").Value),
-                                                            Int32.Parse(simEvent.Attribute("month").Value),
+                                                            simEvent.Attribute("month").Value,
                                                             simEvent.Attributes("day").Count() == 0 ? 0 : Int32.Parse(simEvent.Attribute("day").Value)
                                                             ));
                     break;
@@ -123,7 +123,7 @@ public static class EventManager
         List<SimulationEvent> eventsInMonth = new List<SimulationEvent>();
         foreach(SimulationEvent ev in m_knownEvents)
         {
-            if (ev.EventMonth == month && ev.EventDay == 0)
+            if (ev.EventMonth >= month && ev.EventMonthMax <= month && ev.EventDay == 0)
                 eventsInMonth.Add(ev);
         }
         return eventsInMonth;

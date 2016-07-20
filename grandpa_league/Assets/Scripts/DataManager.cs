@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 public class DataManager
 {
     private PlayerInfo          m_currentInfo       = null;
