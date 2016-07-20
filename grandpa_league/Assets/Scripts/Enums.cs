@@ -10,7 +10,7 @@
 
     public enum Priority { LOW = 0, MED = 1, HIGH = 2 }
 
-    public enum EventType { HIDDEN = 0, KNOWN = 1 }
+    public enum EventType { HIDDEN = 0, KNOWN = 1, RESERVED = 2 }
 
     public enum EventOutcome { SUCCESS = 0, FAILURE = 1, FAIL_AGE = 2, FAIL_MONEY = 3 }
 }

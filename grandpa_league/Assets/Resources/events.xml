@@ -1,12 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <events>
   <!-- for documentation concerning how to write an event check the wiki -->
+  <!-- RESERVED EVENTS -->
+  <event type="2" id="0" name="weekly_stat_up" description="" priority="0"
+         chance="1" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00"/>
 
   <!-- HIDDEN EVENTS -->
-  <event type="0" id="1" name="Grandpa wins the lottery" description="You won the lottery! con fucking gratys" priority="1"
-             chance="0.2" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00"/>  
+  <event type="0" id="1" name="Grandpa wins the lottery" description="You won the lottery! con fucking gratys" priority="1" month="1"
+         chance="0.2" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00"/>  
 
   <!-- KNOWN EVENTS req_ of the form 1=true, 0=false, [RANDOM][REQUIRED]-->
   <event type="1" id="2" name="name_of_event_2" description="you need {0} to do {1}!" priority="2" month="1" day="2" 
-             req_children="11" req_parent="00" req_grandpa="00" req_money="01" req_accept="01"/>
+         req_children="11" age="4-10" req_parent="00" req_grandpa="00" req_money="01" req_accept="01"/>
 </events>

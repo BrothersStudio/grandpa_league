@@ -30,7 +30,7 @@ public class Calendar
 
     public List<SimulationEvent> GetEventsForCurrentDay()
     {
-        return this.m_days[this.m_currentDay * this.m_currentMonth].GetEvents();
+        return this.m_days[(this.m_currentDay - 1) + (28 * (this.m_currentMonth - 1))].GetEvents();
     }
 
     private void GenerateCalendarForYear()
@@ -80,9 +80,15 @@ public class Day
 
 		this.m_events = new List<SimulationEvent> ();
 
-        SimulationEvent randomEvent = EventManager.GetRandomEvent();
-        if(Constants.RANDOM.Next(0, 100) <= randomEvent.Chance * 100)
-            this.m_events.Add(randomEvent);
+        List<SimulationEvent> randomEvents = EventManager.GetAllHiddenEvents();
+        foreach(SimulationEvent ev in randomEvents)
+        {
+            bool addEvent = Constants.RANDOM.Next(1, 100000) <= ev.Chance * 100000;
+            if (ev.EventMonth != 0 && ev.EventMonth == month && addEvent)
+                this.m_events.Add(ev);
+            else if (ev.EventMonth == 0 && addEvent)
+                this.m_events.Add(ev);
+        }
 
         foreach (SimulationEvent knownEvent in EventManager.GetEventsByDate(this.m_month, this.m_day, this.m_year))
         {
@@ -91,8 +97,7 @@ public class Day
 
         if(this.m_dayName == "Sunday")
         {
-            SimulationEvent weeklyLevelUp = new SimulationEvent(null, 1, "level_up", "", 0, 0, 0);
-            this.m_events.Add(weeklyLevelUp);
+            this.m_events.Add(EventManager.GetSystemEventById(0));
         }
     }
 

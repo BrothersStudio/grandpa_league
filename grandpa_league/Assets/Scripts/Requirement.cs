@@ -1,4 +1,6 @@
 ﻿
+using System;
+
 public class Requirement
 {
     //set by what is read in from events.xml
@@ -12,6 +14,10 @@ public class Requirement
     private bool m_randomParent = false;
     private bool m_randomGrandpa = false;
 
+    private int m_qualification = 0;
+    private int m_minAge = 0;
+    private int m_maxAge = 1000;
+
     //set by user's choices
     private Child m_child = null;
     private Parent m_parent = null;
@@ -19,7 +25,7 @@ public class Requirement
     private int m_money = 0;
     private bool m_accepted = false;
 
-    public Requirement(bool child, bool parent, bool grandpa, bool money, bool accept, bool randomChild, bool randomParent, bool randomGrandpa)
+    public Requirement(bool child, bool parent, bool grandpa, bool money, bool accept, bool randomChild, bool randomParent, bool randomGrandpa, int qualification, string age)
     {
         this.m_childNeeded = child;
         this.m_parentNeeded = parent;
@@ -30,6 +36,15 @@ public class Requirement
         this.m_randomChild = randomChild;
         this.m_randomParent = randomParent;
         this.m_randomGrandpa = randomGrandpa;
+
+        this.m_qualification = qualification;
+
+        if(age != null)
+        {
+            var split = age.Split('-');
+            this.m_minAge = Int32.Parse(split[0]);
+            this.m_maxAge = split.Length == 1 ? 1000 : Int32.Parse(split[1]); 
+        }
     }
 
     public Parent Parent
@@ -60,5 +75,10 @@ public class Requirement
     {
         get { return this.m_accepted; }
         set { this.m_accepted = value; }
+    }
+
+    public int Qualification
+    {
+        get { return this.m_qualification; }
     }
 }

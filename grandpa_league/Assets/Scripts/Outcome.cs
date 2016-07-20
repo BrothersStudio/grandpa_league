@@ -2,6 +2,7 @@
 {
     private     int     m_status            = -1;
     private     string  m_outcomeString     = "";
+    private     string  m_mail              = null;
 
     public Outcome(int status, string outcomeDescription)
     {
@@ -19,6 +20,12 @@
     {
         get { return this.m_outcomeString; }
         set { this.m_outcomeString = value; }
+    }
+
+    public string Mail
+    {
+        get { return this.m_mail; }
+        set { this.m_mail = value; }
     }
 }
 
