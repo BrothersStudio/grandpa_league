@@ -20,16 +20,16 @@
   <character type="0" name="Joshua" gender="0" age="6" cuteness="40" intelligence="5" artistry="70" athleticism="5" popularity="70" />
   <character type="0" name="Samson" gender="0" age="4" cuteness="10" intelligence="3" artistry="3" athleticism="10" popularity="3" />
   <character type="0" name="Raul" gender="0" age="9" cuteness="5" intelligence="70" artistry="60" athleticism="15" popularity="5" />
-  <character type="0" name="Remmy" gender="0" age="10" cuteness="25" intelligence="60" artistry="20" athleticism="60" popularity="70" />
-  <character type="0" name="Sally Mae" gender="1" age="5" cuteness="65" intelligence="50" artistry="30" athleticism="35" popularity="60" />
+  <character type="0" name="Remmy" gender="0" age="10" cuteness="25" intelligence="60" artistry="20" athleticism="25" popularity="70" />
+  <character type="0" name="Sally Mae" gender="1" age="5" cuteness="65" intelligence="50" artistry="30" athleticism="35" popularity="20" />
   <character type="0" name="Jimmy" gender="0" age="3" cuteness="75" intelligence="20" artistry="15" athleticism="10" popularity="70" />
-  <character type="0" name="Ivan" gender="0" age="8" cuteness="40" intelligence="10" artistry="15" athleticism="75" popularity="40" /> 
+  <character type="0" name="Ivan" gender="0" age="8" cuteness="50" intelligence="10" artistry="15" athleticism="80" popularity="40" /> 
   <character type="0" name="Paige" gender="1" age="5" cuteness="55" intelligence="15" artistry="55" athleticism="55" popularity="20" />
   <character type="0" name="Penny" gender="1" age="7" cuteness="60" intelligence="50" artistry="10" athleticism="70" popularity="65" />
-  <character type="0" name="Roberto" gender="0" age="5" cuteness="15" intelligence="50" artistry="65" athleticism="35" popularity="10" />
+  <character type="0" name="Roberto" gender="0" age="5" cuteness="40" intelligence="50" artistry="65" athleticism="35" popularity="10" />
   <character type="0" name="Frankie" gender="0" age="4" cuteness="20" intelligence="20" artistry="20" athleticism="10" popularity="65" />
-  <character type="0" name="Janice" gender="1" age="8" cuteness="65" intelligence="70" artistry="60" athleticism="60" popularity="2" />
-  <character type="0" name="Antonio" gender="0" age="5" cuteness="40" intelligence="50" artistry="10" athleticism="60" popularity="50" />
+  <character type="0" name="Janice" gender="1" age="8" cuteness="65" intelligence="70" artistry="5" athleticism="60" popularity="2" />
+  <character type="0" name="Antonio" gender="0" age="5" cuteness="40" intelligence="" artistry="10" athleticism="60" popularity="45" />
   <character type="0" name="Kyle Jr" gender="0" age="4" cuteness="10" intelligence="15" artistry="75" athleticism="15" popularity="10" />
   
 
