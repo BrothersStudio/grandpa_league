@@ -2375,7 +2375,7 @@ GameObject:
   - 222: {fileID: 441199639}
   - 114: {fileID: 441199638}
   m_Layer: 5
-  m_Name: Your Family Content
+  m_Name: Enemy Family Content
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2524,6 +2524,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f123c1e63e1475148bd1a2915c0788d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefab_family_list_button: {fileID: 143406, guid: 214f4859cef00c944b3721be43791122,
+    type: 2}
+  player_family_content_panel: {fileID: 801416602}
+  enemy_families_content_panel: {fileID: 441199636}
 --- !u!1 &497280964
 GameObject:
   m_ObjectHideFlags: 0
@@ -12053,7 +12057,7 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 87242170}
-        m_MethodName: DisplayFamilyContent
+        m_MethodName: DisplayContent
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
