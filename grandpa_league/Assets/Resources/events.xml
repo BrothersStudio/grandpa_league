@@ -6,7 +6,7 @@
          chance="1" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00"/>
 
   <!-- HIDDEN EVENTS -->
-  <event type="0" id="1" name="Grandpa wins the lottery" description="You won the lottery! con fucking gratys" priority="1" month="1"
+  <event type="0" id="1" name="Grandpa wins the lottery" description="You won the lottery! con fucking gratys" priority="1" month="1-2"
          chance="0.2" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00"/>  
 
   <!-- KNOWN EVENTS req_ of the form 1=true, 0=false, [RANDOM][REQUIRED]-->

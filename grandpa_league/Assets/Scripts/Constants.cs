@@ -9,15 +9,14 @@ static class Constants
 	public static Random RANDOM = new Random();
 
     public static string[] DAY_NAMES = 
-		{ 
-			"",
-			"Monday",
+		{
+            "Sunday",
+            "Monday",
 			"Tuesday",
 			"Wednesday",
 			"Thursday",
 			"Friday",
-			"Saturday",
-			"Sunday"
+			"Saturday"
 		};
 	public static string[] MONTH_NAMES = 
 		{
