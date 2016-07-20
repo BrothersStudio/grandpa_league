@@ -20,6 +20,12 @@ public class Family
         this.m_familyName = this.m_grandpa.Name.Split(' ')[1];      //TODO: FIX THIS HACK
     }
 
+	public string FamilyName
+	{
+		get { return this.m_familyName;  }
+		set { this.m_familyName = value; }
+	}
+
 	public int Chemistry
 	{
 		get { return this.m_chemistry;  }
