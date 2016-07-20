@@ -10,6 +10,7 @@ public static class EventManager
 {
     private static List<SimulationEvent> m_knownEvents = new List<SimulationEvent>();
     private static List<SimulationEvent> m_hiddenEvents = new List<SimulationEvent>();
+    private static List<SimulationEvent> m_reservedEvents = new List<SimulationEvent>();
 
     static EventManager()
     {
@@ -21,11 +22,19 @@ public static class EventManager
 
         foreach (XElement simEvent in allEvents)
         {
-            Requirement eventRequirements = new Requirement(Convert.ToBoolean(simEvent.Attribute("req_children").Value),
-                                                            Convert.ToBoolean(simEvent.Attribute("req_parent").Value),
-                                                            Convert.ToBoolean(simEvent.Attribute("req_grandpa").Value),
-                                                            Convert.ToBoolean(simEvent.Attribute("req_money").Value),
-                                                            Convert.ToBoolean(simEvent.Attribute("req_accept").Value));
+            string qualification = simEvent.Attributes("qualification").Count() == 0 ? "NONE" : simEvent.Attribute("qualification").Value;
+
+            Requirement eventRequirements = new Requirement(Convert.ToBoolean(Int32.Parse(simEvent.Attribute("req_children").Value) & 1),
+                                                            Convert.ToBoolean(Int32.Parse(simEvent.Attribute("req_parent").Value) & 1),
+                                                            Convert.ToBoolean(Int32.Parse(simEvent.Attribute("req_grandpa").Value) & 1),
+                                                            Convert.ToBoolean(Int32.Parse(simEvent.Attribute("req_money").Value) & 1),
+                                                            Convert.ToBoolean(Int32.Parse(simEvent.Attribute("req_accept").Value) & 1),
+                                                            Convert.ToBoolean(Int32.Parse(simEvent.Attribute("req_children").Value) >> 1 & 1),
+                                                            Convert.ToBoolean(Int32.Parse(simEvent.Attribute("req_parent").Value) >> 1 & 1),
+                                                            Convert.ToBoolean(Int32.Parse(simEvent.Attribute("req_grandpa").Value) >> 1 & 1),
+                                                            Qualification.GetQualificationByString(qualification),
+                                                            simEvent.Attributes("age").Count() == 0 ? null : Convert.ToString(simEvent.Attribute("age").Value)
+                                                            );
 
             switch (Int32.Parse(simEvent.Attribute("type").Value))
             {
@@ -35,9 +44,9 @@ public static class EventManager
                                                             simEvent.Attribute("name").Value,
                                                             simEvent.Attribute("description").Value,
                                                             Int32.Parse(simEvent.Attribute("id").Value),
-                                                            0,
-                                                            Int32.Parse(simEvent.Attribute("priority").Value)
-                                                            
+                                                            (int)Enums.EventType.HIDDEN,
+                                                            Int32.Parse(simEvent.Attribute("priority").Value),
+                                                            simEvent.Attributes("month").Count() == 0 ? 0 : Int32.Parse(simEvent.Attribute("month").Value)
                                                             ));
                     break;
                 case (int)Enums.EventType.KNOWN:
@@ -46,10 +55,20 @@ public static class EventManager
                                                             simEvent.Attribute("name").Value,
                                                             simEvent.Attribute("description").Value,
                                                             Int32.Parse(simEvent.Attribute("id").Value),
-                                                            1,
+                                                            (int)Enums.EventType.KNOWN,
                                                             Int32.Parse(simEvent.Attribute("priority").Value),
                                                             Int32.Parse(simEvent.Attribute("month").Value),
-                                                            simEvent.Attribute("day").Value == null ? 0 : Int32.Parse(simEvent.Attribute("day").Value)
+                                                            simEvent.Attributes("day").Count() == 0 ? 0 : Int32.Parse(simEvent.Attribute("day").Value)
+                                                            ));
+                    break;
+                case (int)Enums.EventType.RESERVED:
+                    m_reservedEvents.Add(new SimulationEvent(eventRequirements,
+                                                            Double.Parse(simEvent.Attribute("chance").Value),
+                                                            simEvent.Attribute("name").Value,
+                                                            simEvent.Attribute("description").Value,
+                                                            Int32.Parse(simEvent.Attribute("id").Value),
+                                                            (int)Enums.EventType.RESERVED,
+                                                            Int32.Parse(simEvent.Attribute("priority").Value)
                                                             ));
                     break;
                 default:
@@ -64,6 +83,11 @@ public static class EventManager
         return m_hiddenEvents[rand];
     }
 
+    public static List<SimulationEvent> GetAllHiddenEvents()
+    {
+        return m_hiddenEvents;
+    }
+
     public static List<SimulationEvent> GetEventsByDate(int month, int day, int year)
     {
         List<SimulationEvent> eventsOnDay = new List<SimulationEvent>();
@@ -73,6 +97,25 @@ public static class EventManager
                 eventsOnDay.Add(ev);
         }
         return eventsOnDay;
+    }
+
+    public static SimulationEvent GetEventById(int id)
+    {
+        foreach (SimulationEvent ev in m_hiddenEvents)
+            if (ev.EventId == id)
+                return ev;
+        foreach (SimulationEvent ev in m_knownEvents)
+            if (ev.EventId == id)
+                return ev;
+        return null;
+    }
+
+    public static SimulationEvent GetSystemEventById(int id)
+    {
+        foreach (SimulationEvent ev in m_reservedEvents)
+            if (ev.EventId == id)
+                return ev;
+        return null;
     }
 
     public static List<SimulationEvent> GetEventsByMonth(int month)
@@ -107,14 +150,16 @@ public static class EventManager
         }
 		manager.PlayerFamily.ApplyStatUpgrades();
 
-        return new Outcome((int)Enums.EventOutcome.SUCCESS, "");
+        return new Outcome((int)Enums.EventOutcome.SUCCESS, "level_upgrade_applied");
     }
 
     //NAME: GRANDPA WINS LOTTERY
     public static Outcome Event1(DataManager manager, Requirement requirements)
     {
         manager.PlayerFamily.Grandpa.Money += 1000;
-        return new Outcome((int)Enums.EventOutcome.SUCCESS, "GJ you're rich!");
+
+        requirements.Child.Age += 100;
+        return new Outcome((int)Enums.EventOutcome.SUCCESS, String.Format("grandpa_won_lottery: {0}", manager.PlayerFamily.Grandpa.Money));
     }
 
     //NAME: GRANDPA CHANGES HIS NAME
@@ -123,7 +168,7 @@ public static class EventManager
         if (requirements.Accept)
         {
             manager.PlayerFamily.Grandpa.Name = "Leeroy Jenkins";
-            return new Outcome((int)Enums.EventOutcome.SUCCESS, "NICE!");
+            return new Outcome((int)Enums.EventOutcome.SUCCESS, String.Format("Grandpa renamed {0}", manager.PlayerFamily.Grandpa.Name));
 
         }
         return new Outcome((int)Enums.EventOutcome.FAILURE, "BOO!");

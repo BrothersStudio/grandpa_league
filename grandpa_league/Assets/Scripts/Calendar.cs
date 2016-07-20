@@ -15,11 +15,11 @@ public class Calendar
     public void AdvanceDay()
     {
         this.m_currentDay++;
-        if(this.m_currentDay == 29)
+        if (this.m_currentDay == 29)
         {
             this.m_currentDay = 1;
             this.m_currentMonth++;
-            if(this.m_currentMonth == 13)
+            if (this.m_currentMonth == 13)
             {
                 this.m_currentMonth = 1;
                 this.m_currentYear++;
@@ -30,22 +30,36 @@ public class Calendar
 
     public List<SimulationEvent> GetEventsForCurrentDay()
     {
-        return this.m_days[this.m_currentDay * this.m_currentMonth].GetEvents();
+        return this.m_days[(this.m_currentDay - 1) + (28 * (this.m_currentMonth - 1))].GetEvents();
     }
 
     private void GenerateCalendarForYear()
     {
         for (var i = 1; i <= 12; i++)
-            { 
+        {
             for (var j = 1; j <= 4; j++)
                 for (var k = 1; k <= 7; k++)
-                    this.m_days.Add(new Day(Constants.DAY_NAMES[k], i, k*j, this.m_currentYear));
+                    this.m_days.Add(new Day(Constants.DAY_NAMES[k], i, k * j, this.m_currentYear));
 
             foreach (SimulationEvent seasonalEvent in EventManager.GetEventsByMonth(i))
-                {
+            {
                 this.m_days[Constants.RANDOM.Next(1, 27) * i].AddEvent(seasonalEvent);
-                }
             }
+        }
+    }
+
+    public Dictionary<string, int> GetCurrentDay()
+    {
+        Dictionary<string, int> currentDay = new Dictionary<string, int>();
+        currentDay.Add("month", this.m_currentMonth);
+        currentDay.Add("day", this.m_currentDay);
+        currentDay.Add("year", this.m_currentYear);
+        return currentDay;
+    }
+
+    public void ScheduleEventByDate(SimulationEvent simEvent, int day, int month)
+    {
+       this.m_days[28 * (month - 1) + (day - 1)].AddEvent(simEvent);
     }
 }
 
@@ -66,9 +80,15 @@ public class Day
 
 		this.m_events = new List<SimulationEvent> ();
 
-        SimulationEvent randomEvent = EventManager.GetRandomEvent();
-        if(Constants.RANDOM.Next(0, 100) <= randomEvent.Chance * 100)
-            this.m_events.Add(randomEvent);
+        List<SimulationEvent> randomEvents = EventManager.GetAllHiddenEvents();
+        foreach(SimulationEvent ev in randomEvents)
+        {
+            bool addEvent = Constants.RANDOM.Next(1, 100000) <= ev.Chance * 100000;
+            if (ev.EventMonth != 0 && ev.EventMonth == month && addEvent)
+                this.m_events.Add(ev);
+            else if (ev.EventMonth == 0 && addEvent)
+                this.m_events.Add(ev);
+        }
 
         foreach (SimulationEvent knownEvent in EventManager.GetEventsByDate(this.m_month, this.m_day, this.m_year))
         {
@@ -77,8 +97,7 @@ public class Day
 
         if(this.m_dayName == "Sunday")
         {
-            SimulationEvent weeklyLevelUp = new SimulationEvent(null, 1, "level_up", "", 0, 0, 0);
-            this.m_events.Add(weeklyLevelUp);
+            this.m_events.Add(EventManager.GetSystemEventById(0));
         }
     }
 

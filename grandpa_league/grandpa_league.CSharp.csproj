@@ -75,11 +75,13 @@
     <Compile Include="Assets\Scripts\EventManager.cs" />
     <Compile Include="Assets\Scripts\Family.cs" />
     <Compile Include="Assets\Scripts\Grandpa.cs" />
-    <Compile Include="Assets\Scripts\LoadFamily.cs" />
+    <Compile Include="Assets\Scripts\LoadFamilyPanel.cs" />
+    <Compile Include="Assets\Scripts\LoadTradingPanel.cs" />
     <Compile Include="Assets\Scripts\Main.cs" />
     <Compile Include="Assets\Scripts\Outcome.cs" />
     <Compile Include="Assets\Scripts\Parent.cs" />
     <Compile Include="Assets\Scripts\PlayerInfo.cs" />
+    <Compile Include="Assets\Scripts\Qualification.cs" />
     <Compile Include="Assets\Scripts\Requirement.cs" />
     <Compile Include="Assets\Scripts\SimulationEvent.cs" />
     <Compile Include="Assets\Scripts\Team.cs" />
@@ -87,8 +89,11 @@
     <Compile Include="Assets\Start\Scripts\Splash.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Resources\characters.xml" />
-    <None Include="Assets\Resources\events.xml">
+    <None Include="Assets\Resources\characters.xml">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Assets\Resources\events.xml" />
+    <None Include="Assets\Resources\qualifications.xml">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>

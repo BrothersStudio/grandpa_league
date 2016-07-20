@@ -51,12 +51,16 @@ public class Main : MonoBehaviour {
     {
         foreach (SimulationEvent ev in m_dataManager.Calendar.GetEventsForCurrentDay())
         {
+            Debug.Assert(ev != null);
             //DISPLAY THE DESCRIPTION OF THE EVENT AND PROMPT USER FOR INPUT
             string name = ev.EventName;
             string description = ev.EventDescription;
+            var day = m_dataManager.Calendar.GetCurrentDay();
+            Debug.Log(Qualification.GetQualificationString(ev.Requirements.Qualification) + " " + day["month"] + "/" + day["day"] + "/" + day["year"]);
 
             //LOOP THROUGH ALL OF THE REQUIREMENTS FOR EVENT AND PROMPT USER FOR INPUT IF NEEDED
             ev.Requirements.Accept = true;
+            ev.Requirements.Child = m_dataManager.PlayerFamily.Children[0];
 
             //EXECUTE THE EVENT
             Outcome eventOutcome = ev.RunEvent(m_dataManager);
@@ -93,4 +97,9 @@ public class Main : MonoBehaviour {
 
 		month_title.text = Constants.MONTH_NAMES[1];
 	}
+
+    public static DataManager GetDataManager()
+    {
+        return m_dataManager;
+    }
 }
