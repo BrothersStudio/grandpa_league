@@ -25,6 +25,18 @@ public class Character
 		set { this.m_age = value; }
 	}
 
+    public List<int> Qualifications
+    {
+        get { return this.m_qualifications; }
+    }
+
+    public bool MeetsAgeRequirement(int minAge, int maxAge)
+    {
+        if (this.m_age >= minAge && this.m_age <= maxAge)
+            return true;
+        return false;
+    }
+
     public void AddQualification(int qualification)
     {
         if (!this.m_qualifications.Contains(qualification))

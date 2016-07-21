@@ -39,11 +39,11 @@ public class Requirement
 
         this.m_qualification = qualification;
 
-        if(age != null)
+        if (age != null)
         {
             var split = age.Split('-');
             this.m_minAge = Int32.Parse(split[0]);
-            this.m_maxAge = split.Length == 1 ? 1000 : Int32.Parse(split[1]); 
+            this.m_maxAge = split.Length == 1 ? 1000 : Int32.Parse(split[1]);
         }
     }
 
@@ -53,10 +53,20 @@ public class Requirement
         set { this.m_parent = value; }
     }
 
+    public bool RandomParent
+    {
+        get { return this.m_randomParent; }
+    }
+
     public Child Child
     {
         get { return this.m_child; }
         set { this.m_child = value; }
+    }
+
+    public bool RandomChild
+    {
+        get { return this.m_randomChild; }
     }
 
     public Grandpa Grandpa
@@ -65,11 +75,22 @@ public class Requirement
         set { this.m_grandpa = value; }
     }
 
+    public bool RandomGrandpa
+    {
+        get { return this.m_randomGrandpa; }
+    }
+
     public int Money
     {
         get { return this.m_money; }
         set { this.m_money = value; }
     }
+
+    public bool ReqMoney
+    {
+        get { return this.m_moneyNeeded; }
+    }
+
 
     public bool Accept
     {
@@ -77,8 +98,23 @@ public class Requirement
         set { this.m_accepted = value; }
     }
 
+    public bool ReqAccept
+    {
+        get { return this.m_acceptRejectNeeded; }
+    }
+
     public int Qualification
     {
         get { return this.m_qualification; }
+    }
+
+    public int MinAge
+    {
+        get { return this.m_minAge; }
+    }
+
+    public int MaxAge
+    {
+        get { return this.m_maxAge; }
     }
 }

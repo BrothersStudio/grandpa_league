@@ -16,9 +16,18 @@ public class Main : MonoBehaviour {
 	public GameObject trading_panel;
 
     private static DataManager m_dataManager;
+    public GameObject user_input_panel;
+    bool panelUp = false;
+
+    public void Update()
+    {
+        while (panelUp)
+            break;
+    }
 
 	public void Awake()
 	{
+        user_input_panel.SetActive(false);
         m_dataManager = new DataManager(PlayerPrefs.GetString("name"));
 
         InitializeHighlight ();
@@ -52,27 +61,67 @@ public class Main : MonoBehaviour {
         foreach (SimulationEvent ev in m_dataManager.Calendar.GetEventsForCurrentDay())
         {
             Debug.Assert(ev != null);
-            //DISPLAY THE DESCRIPTION OF THE EVENT AND PROMPT USER FOR INPUT
-            string name = ev.EventName;
-            string description = ev.EventDescription;
             var day = m_dataManager.Calendar.GetCurrentDay();
-            Debug.Log(Qualification.GetQualificationString(ev.Requirements.Qualification) + " " + day["month"] + "/" + day["day"] + "/" + day["year"]);
+            string debugString = String.Format("Currently running event \"{0}\", ID: {1}  on date {2}/{3}/{4}. Has qualification {5} and age requirement {6}-{7}.\n Requires Random: Parent? {8}, Child? {9}, Grandpa? {10} \n Requires: Money? {11}, Accept/Reject? {12} \n Also has minMonth {13} and maxMonth {14}. Priority {15}",
+                                    ev.EventName, ev.EventId, day["month"], day["day"], day["year"], Qualification.GetQualificationString(ev.Requirements.Qualification), ev.Requirements.MinAge, ev.Requirements.MaxAge, ev.Requirements.RandomParent, ev.Requirements.RandomChild, ev.Requirements.RandomGrandpa,
+                                    ev.Requirements.ReqMoney, ev.Requirements.ReqAccept, ev.EventMonth, ev.EventMonthMax, ev.Priority);
+            Debug.Log(debugString);
 
-            //LOOP THROUGH ALL OF THE REQUIREMENTS FOR EVENT AND PROMPT USER FOR INPUT IF NEEDED
-            ev.Requirements.Accept = true;
-            ev.Requirements.Child = m_dataManager.PlayerFamily.Children[0];
+            if (ev.Requirements.Qualification != Qualification.GetQualificationByString("NONE"))
+            { 
+                bool hasQual = false;
+                Character qualChar = null;
+                foreach (Character ch in m_dataManager.PlayerFamily.GetAllCharacters())
+                {
+                    foreach (int qual in ch.Qualifications)
+                        if (qual == ev.Requirements.Qualification && ch.MeetsAgeRequirement(ev.Requirements.MinAge, ev.Requirements.MaxAge))
+                        {
+                            qualChar = ch;
+                            hasQual = true;
+                        }
+                    if (hasQual) break;
+                }
+                if (!hasQual)
+                    break;      //immediately exit the event since no one has the qualificaiton STOP. THE FUNCTION. STOP HAVING IT BE RUN.
+
+                if (qualChar.GetType() == typeof(Child))
+                    ev.Requirements.Child = (Child)qualChar;
+                else if (qualChar.GetType() == typeof(Parent))
+                    ev.Requirements.Parent = (Parent)qualChar;
+                else if (qualChar.GetType() == typeof(Grandpa))
+                    ev.Requirements.Grandpa = (Grandpa)qualChar;
+            }
+            //at this point the function has checked the event qualification requirements and chosen the first qualifying member
+
+            //now we will loop through and check if we need any random things..(without overwriting the random char we just possibly chose)
+            if (ev.Requirements.RandomChild && ev.Requirements.Child == null)
+                ev.Requirements.Child = m_dataManager.PlayerFamily.GetRandomEligibleChild(ev.Requirements.MinAge, ev.Requirements.MaxAge);
+            if (ev.Requirements.RandomParent && ev.Requirements.Parent == null)
+                ev.Requirements.Parent = m_dataManager.PlayerFamily.GetRandomParent();
+            if (ev.Requirements.RandomGrandpa && ev.Requirements.Grandpa == null)
+                ev.Requirements.Grandpa = m_dataManager.LeagueFamilies[Constants.RANDOM.Next(0, m_dataManager.LeagueFamilies.Count)].Grandpa;
+
+
+            //DISPLAY THE DESCRIPTION OF THE EVENT AND PROMPT USER FOR INPUT
+            //Use requirement object to generate the panel which will get the input from the user, display the name and discription (if necessary)
+
+            user_input_panel.GetComponentsInChildren<Button>()[0].onClick.AddListener(() =>
+            {
+                panelUp = false;
+            });
+            user_input_panel.SetActive(true);
+            panelUp = true;
+
 
             //EXECUTE THE EVENT
             Outcome eventOutcome = ev.RunEvent(m_dataManager);
-
+            Debug.Log("event completed");
             //CHECK THE OUTCOME
-            if (eventOutcome.Status == (int)Enums.EventOutcome.SUCCESS)
-            {
-                Debug.Log(eventOutcome.OutcomeDescription);
-                continue;
-                //OUTPUT STRING FOR EVENT HERE (TODO will be something like ev.GetString(eventOutCome);
-                //if it is a "soft" fail e.g. not enough money or child too young then start loop over
-            }
+            if (eventOutcome.Status == (int)Enums.EventOutcome.PASS)
+                break;
+
+            //Otherwise display the outcome panel with text eventOutcome.OutcomeDescription
+            //send mail to mail panel using eventOutcome.Mail
         }
 
         m_dataManager.Calendar.AdvanceDay();    //once all the event processing done we update the calendar day

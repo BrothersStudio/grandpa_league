@@ -46,7 +46,7 @@ public static class EventManager
                                                             Int32.Parse(simEvent.Attribute("id").Value),
                                                             (int)Enums.EventType.HIDDEN,
                                                             Int32.Parse(simEvent.Attribute("priority").Value),
-                                                            simEvent.Attributes("month").Count() == 0 ? 0 : Int32.Parse(simEvent.Attribute("month").Value)
+                                                            simEvent.Attributes("month").Count() == 0 ? "0" : simEvent.Attribute("month").Value
                                                             ));
                     break;
                 case (int)Enums.EventType.KNOWN:
@@ -57,7 +57,7 @@ public static class EventManager
                                                             Int32.Parse(simEvent.Attribute("id").Value),
                                                             (int)Enums.EventType.KNOWN,
                                                             Int32.Parse(simEvent.Attribute("priority").Value),
-                                                            Int32.Parse(simEvent.Attribute("month").Value),
+                                                            simEvent.Attribute("month").Value,
                                                             simEvent.Attributes("day").Count() == 0 ? 0 : Int32.Parse(simEvent.Attribute("day").Value)
                                                             ));
                     break;
@@ -123,7 +123,7 @@ public static class EventManager
         List<SimulationEvent> eventsInMonth = new List<SimulationEvent>();
         foreach(SimulationEvent ev in m_knownEvents)
         {
-            if (ev.EventMonth == month && ev.EventDay == 0)
+            if (ev.EventMonth >= month && ev.EventMonthMax <= month && ev.EventDay == 0)
                 eventsInMonth.Add(ev);
         }
         return eventsInMonth;
@@ -158,7 +158,6 @@ public static class EventManager
     {
         manager.PlayerFamily.Grandpa.Money += 1000;
 
-        requirements.Child.Age += 100;
         return new Outcome((int)Enums.EventOutcome.SUCCESS, String.Format("grandpa_won_lottery: {0}", manager.PlayerFamily.Grandpa.Money));
     }
 
@@ -173,4 +172,27 @@ public static class EventManager
         }
         return new Outcome((int)Enums.EventOutcome.FAILURE, "BOO!");
     }
+    
+    //NAME: Grandkid's class does some fingerpainting
+   /*public static Outcome Event101(Datamanager manager, Requirement requirements)
+    {
+    	int successes = 0;
+    	List<string> outcome = new List<string>();
+    	Outcome returnObj = new Outcome();
+    	
+    	if(requirements.Child.Artistry >= 65 && requirements.Child.Popularity >= 60)
+    	{
+    		successes+=2;
+    	}
+    	else if(requirements.Child.Artistry >= 60)
+    	{
+    		successes++;
+    	}
+    	
+    	if(successes >= 2)
+    	{
+    		returnObj.OutcomeDescription = String.Format("Turns out { 0}") 
+    	}
+    }*/
+    
 }

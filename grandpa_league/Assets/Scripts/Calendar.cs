@@ -37,9 +37,8 @@ public class Calendar
     {
         for (var i = 1; i <= 12; i++)
         {
-            for (var j = 1; j <= 4; j++)
-                for (var k = 1; k <= 7; k++)
-                    this.m_days.Add(new Day(Constants.DAY_NAMES[k], i, k * j, this.m_currentYear));
+            for (var k = 1; k <= 28; k++)
+                this.m_days.Add(new Day(Constants.DAY_NAMES[k % 7], i, k, this.m_currentYear));
 
             foreach (SimulationEvent seasonalEvent in EventManager.GetEventsByMonth(i))
             {
@@ -84,7 +83,7 @@ public class Day
         foreach(SimulationEvent ev in randomEvents)
         {
             bool addEvent = Constants.RANDOM.Next(1, 100000) <= ev.Chance * 100000;
-            if (ev.EventMonth != 0 && ev.EventMonth == month && addEvent)
+            if (ev.EventMonth != 0 && ev.EventMonth <= month && ev.EventMonthMax >= month && addEvent)
                 this.m_events.Add(ev);
             else if (ev.EventMonth == 0 && addEvent)
                 this.m_events.Add(ev);

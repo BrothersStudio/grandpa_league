@@ -12,5 +12,5 @@
 
     public enum EventType { HIDDEN = 0, KNOWN = 1, RESERVED = 2 }
 
-    public enum EventOutcome { SUCCESS = 0, FAILURE = 1, FAIL_AGE = 2, FAIL_MONEY = 3 }
+    public enum EventOutcome { SUCCESS = 0, FAILURE = 1, PASS = 2, FAIL_AGE = 3, FAIL_MONEY = 4 }
 }

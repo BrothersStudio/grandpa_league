@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 public class Family
 {
@@ -19,6 +20,12 @@ public class Family
         this.m_children = CharacterManager.GetRandomChildren(Constants.INITIAL_CHILDREN);
         this.m_familyName = this.m_grandpa.Name.Split(' ')[1];      //TODO: FIX THIS HACK
     }
+
+	public string FamilyName
+	{
+		get { return this.m_familyName;  }
+		set { this.m_familyName = value; }
+	}
 
 	public int Chemistry
 	{
@@ -42,6 +49,32 @@ public class Family
     {
         get { return this.m_children; }
         set { this.m_children = value; }
+    }
+
+    public List<Character> GetAllCharacters()
+    {
+        List<Character> allChar = new List<Character>();
+        allChar.AddRange(m_children.Cast<Character>());
+        allChar.AddRange(m_parents.Cast<Character>());
+        allChar.Add((Character)m_grandpa);
+        return allChar;
+    }
+
+    public Child GetRandomEligibleChild(int minAge, int maxAge)
+    {
+        List<Child> eligible = new List<Child>();
+        foreach (Child ch in this.m_children)
+            if (ch.MeetsAgeRequirement(minAge, maxAge))
+                eligible.Add(ch);
+        if (eligible.Count == 0)
+            return null;
+        else
+            return eligible[Constants.RANDOM.Next(0, eligible.Count - 1)];
+    }
+
+    public Parent GetRandomParent()
+    {
+        return this.m_parents[Constants.RANDOM.Next(0, this.m_parents.Count - 1)];
     }
 
     public void ApplyStatUpgrades()
