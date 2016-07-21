@@ -27,7 +27,7 @@
   <character type="0" name="Paige" gender="1" age="5" cuteness="55" intelligence="15" artistry="55" athleticism="55" popularity="20" />
   <character type="0" name="Penny" gender="1" age="7" cuteness="60" intelligence="50" artistry="10" athleticism="70" popularity="65" />
   <character type="0" name="Roberto" gender="0" age="5" cuteness="40" intelligence="50" artistry="65" athleticism="35" popularity="10" />
-  <character type="0" name="Frankie" gender="0" age="4" cuteness="20" intelligence="20" artistry="20" athleticism="10" popularity="65" />
+  <character type="0" name="Frankie" gender="0" age="10" cuteness="20" intelligence="20" artistry="20" athleticism="10" popularity="95" />
   <character type="0" name="Janice" gender="1" age="8" cuteness="65" intelligence="70" artistry="5" athleticism="60" popularity="2" />
   <character type="0" name="Antonio" gender="0" age="5" cuteness="40" intelligence="" artistry="10" athleticism="60" popularity="45" />
   <character type="0" name="Kyle Jr" gender="0" age="4" cuteness="10" intelligence="15" artistry="75" athleticism="15" popularity="10" />
@@ -44,7 +44,7 @@
   <character type="1" name="William" gender="0" age="45" popularity="50" intelligence="75" love="5" /> 
   <character type="1" name="Rebecca" gender="1" age="39" popularity="60" intelligence="30" love="20" />
   <character type="1" name="Kyle" gender="0" age="22" popularity="75" intelligence="20" love="10" />
-  <character type="1" name="Laura" gender="1" age="34" popularity="60" intelligence="60" love="65" />
+  <character type="1" name="Laura" gender="1" age="34" popularity="35" intelligence="20" love="65" />
  
   <!-- GRANDPARENTS -->
   <character type="2" name="Captain McBreeches" age="88" wisdom="10" insanity="70" money="5000" />
