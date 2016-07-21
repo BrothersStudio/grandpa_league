@@ -174,7 +174,7 @@ public static class EventManager
     }
     
     //NAME: Grandkid's class does some fingerpainting
-   /* public static Outcome Event101(Datamanager manager, Requirement requirements)
+   /*public static Outcome Event101(Datamanager manager, Requirement requirements)
     {
     	int successes = 0;
     	List<string> outcome = new List<string>();
@@ -191,8 +191,8 @@ public static class EventManager
     	
     	if(successes >= 2)
     	{
-    		
-    	}*/
-    }
+    		returnObj.OutcomeDescription = String.Format("Turns out { 0}") 
+    	}
+    }*/
     
 }
