@@ -158,7 +158,6 @@ public static class EventManager
     {
         manager.PlayerFamily.Grandpa.Money += 1000;
 
-        requirements.Child.Age += 100;
         return new Outcome((int)Enums.EventOutcome.SUCCESS, String.Format("grandpa_won_lottery: {0}", manager.PlayerFamily.Grandpa.Money));
     }
 

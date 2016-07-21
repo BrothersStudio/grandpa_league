@@ -16,9 +16,18 @@ public class Main : MonoBehaviour {
 	public GameObject trading_panel;
 
     private static DataManager m_dataManager;
+    public GameObject user_input_panel;
+    bool panelUp = false;
+
+    public void Update()
+    {
+        while (panelUp)
+            break;
+    }
 
 	public void Awake()
 	{
+        user_input_panel.SetActive(false);
         m_dataManager = new DataManager(PlayerPrefs.GetString("name"));
 
         InitializeHighlight ();
@@ -94,25 +103,25 @@ public class Main : MonoBehaviour {
 
 
             //DISPLAY THE DESCRIPTION OF THE EVENT AND PROMPT USER FOR INPUT
-            string name = ev.EventName;
-            string description = ev.EventDescription;
+            //Use requirement object to generate the panel which will get the input from the user, display the name and discription (if necessary)
 
+            user_input_panel.GetComponentsInChildren<Button>()[0].onClick.AddListener(() =>
+            {
+                panelUp = false;
+            });
+            user_input_panel.SetActive(true);
+            panelUp = true;
 
-            //LOOP THROUGH ALL OF THE REQUIREMENTS FOR EVENT AND PROMPT USER FOR INPUT IF NEEDED
-            ev.Requirements.Accept = true;
-            ev.Requirements.Child = m_dataManager.PlayerFamily.Children[0];
 
             //EXECUTE THE EVENT
             Outcome eventOutcome = ev.RunEvent(m_dataManager);
-
+            Debug.Log("event completed");
             //CHECK THE OUTCOME
-            if (eventOutcome.Status == (int)Enums.EventOutcome.SUCCESS)
-            {
-                Debug.Log(eventOutcome.OutcomeDescription);
-                continue;
-                //OUTPUT STRING FOR EVENT HERE (TODO will be something like ev.GetString(eventOutCome);
-                //if it is a "soft" fail e.g. not enough money or child too young then start loop over
-            }
+            if (eventOutcome.Status == (int)Enums.EventOutcome.PASS)
+                break;
+
+            //Otherwise display the outcome panel with text eventOutcome.OutcomeDescription
+            //send mail to mail panel using eventOutcome.Mail
         }
 
         m_dataManager.Calendar.AdvanceDay();    //once all the event processing done we update the calendar day
