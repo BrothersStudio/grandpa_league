@@ -172,4 +172,27 @@ public static class EventManager
         }
         return new Outcome((int)Enums.EventOutcome.FAILURE, "BOO!");
     }
+    
+    //NAME: Grandkid's class does some fingerpainting
+   /* public static Outcome Event101(Datamanager manager, Requirement requirements)
+    {
+    	int successes = 0;
+    	List<string> outcome = new List<string>();
+    	Outcome returnObj = new Outcome();
+    	
+    	if(requirements.Child.Artistry >= 65 && requirements.Child.Popularity >= 60)
+    	{
+    		successes+=2;
+    	}
+    	else if(requirements.Child.Artistry >= 60)
+    	{
+    		successes++;
+    	}
+    	
+    	if(successes >= 2)
+    	{
+    		
+    	}*/
+    }
+    
 }
