@@ -10,50 +10,51 @@ public class LoadTradingPanel : MonoBehaviour {
 
 	public GameObject player_family_content_panel;
 	public GameObject enemy_families_content_panel;
+	public GameObject player_offer_content_panel;
+	public GameObject enemy_offer_content_panel;
 
-	private GameObject[] player_family_button_instance;
-	private GameObject[] enemy_family_button_instance;
+	private List<GameObject> player_family_button_list = new List<GameObject>();
+	private List<GameObject> enemy_family_button_list = new List<GameObject>();
+	private List<GameObject> enemy_family_subfamily_list = new List<GameObject>();
 
-	private GameObject[] enemy_family_subfamily_instance;
+	private List<GameObject> player_offer_list = new List<GameObject>();
+	private List<GameObject> enemy_offer_list = new List<GameObject>();
 
-	public void DisplayAllFamilies (Family PlayerFamily, List<Family> leagueFamilies) 
+	public void DisplayAllFamilies (Family PlayerFamily, List<Family> LeagueFamilies) 
 	{
 		DisplayPlayerFamily (PlayerFamily);
-		DisplayEnemyFamilies (leagueFamilies);
+		DisplayEnemyFamilies (LeagueFamilies);
 	}
 
 	public void DestroyPanels ()
 	{
 		// Player Family
-		for (int i = 0; i < player_family_button_instance.Length; i++)
+		foreach (GameObject button in player_family_button_list)
 		{
-			Destroy (player_family_button_instance [i]);
+			Destroy(button);
 		}
-		Array.Clear(player_family_button_instance, 0, player_family_button_instance.Length);
+		player_family_button_list.Clear();
 
-		// Enemy Families
-		for (int i = 0; i < enemy_family_button_instance.Length; i++)
+		// Enemy families
+		foreach (GameObject button in enemy_family_button_list)
 		{
-			Destroy (enemy_family_button_instance [i]);
+			Destroy(button);
 		}
-		Array.Clear(enemy_family_button_instance, 0, enemy_family_button_instance.Length);
+		enemy_family_button_list.Clear();
 
-		// Clear old enemy families subinstances if they exist
-		if (enemy_family_subfamily_instance != null)
+		// Enemy sub families
+		foreach (GameObject button in enemy_family_subfamily_list)
 		{
-			for (int i = 0; i < enemy_family_subfamily_instance.Length; i++)
-			{
-				Destroy (enemy_family_subfamily_instance [i]);
-			}
-			Array.Clear(enemy_family_subfamily_instance, 0, enemy_family_subfamily_instance.Length);
+			Destroy(button);
 		}
+		enemy_family_subfamily_list.Clear();
 	}
 
 	private void DisplayPlayerFamily (Family PlayerFamily)
 	{
 		int family_size = PlayerFamily.FamilySize - 1;
 
-		// Fit scroll panel to correct size
+		// Fit scroll panel to family size
 		float prefab_height = prefab_family_list_button.GetComponent<RectTransform> ().rect.height;
 		float parent_height = player_family_content_panel.GetComponent<RectTransform> ().rect.height;
 
@@ -62,162 +63,176 @@ public class LoadTradingPanel : MonoBehaviour {
 
 		player_family_content_panel.GetComponent<RectTransform>().offsetMin = new Vector2(current_lower_x, new_lower_y);
 
-		player_family_button_instance = new GameObject[family_size];
-
 		// Only display parents and children
-		int panel_ind = -1;
 		foreach (Parent parent_instance in PlayerFamily.Parents) 
 		{
-			panel_ind++;
 			Parent parent = parent_instance;
 
-			MakePanel (parent, panel_ind);
+			MakePanel (parent, player_family_button_list, player_family_content_panel);
 
 			// Add character display activation to button
-			player_family_button_instance[panel_ind].GetComponent<Button>().onClick.AddListener(() => 
+			int buttonInd = player_family_button_list.Count - 1;
+			player_family_button_list[buttonInd].GetComponent<Button>().onClick.AddListener(() => 
 				{
+					MakePanel (parent, player_offer_list, player_offer_content_panel);
 
+					int newButtonInd = player_offer_list.Count - 1;
+					player_offer_list[newButtonInd].GetComponent<Button>().onClick.AddListener(() => 
+						{
+							Destroy(player_offer_list[newButtonInd]);
+							player_offer_list.RemoveAt(newButtonInd);
+							player_family_button_list[buttonInd].SetActive(true);
+						});
+					player_family_button_list[buttonInd].SetActive(false);
 				});
 		}
 
 		foreach (Child child_instance in PlayerFamily.Children) 
 		{
-			panel_ind++;
 			Child child = child_instance;
 
-			MakePanel (child, panel_ind);
+			MakePanel (child, player_family_button_list, player_family_content_panel);
 
 			// Add character display activation to button
-			player_family_button_instance[panel_ind].GetComponent<Button>().onClick.AddListener(() => 
+			int buttonInd = player_family_button_list.Count - 1;
+			player_family_button_list[buttonInd].GetComponent<Button>().onClick.AddListener(() => 
 				{
+					MakePanel (child, player_offer_list, player_offer_content_panel);
 
+					int newButtonInd = player_offer_list.Count - 1;
+					player_offer_list[newButtonInd].GetComponent<Button>().onClick.AddListener(() => 
+						{
+							Destroy(player_offer_list[newButtonInd]);
+							player_offer_list.RemoveAt(newButtonInd);
+							player_family_button_list[buttonInd].SetActive(true);
+						});
+					player_family_button_list[buttonInd].SetActive(false);
 				});
 		}
 	}
 
 	private void DisplayEnemyFamilies (List<Family> leagueFamilies)
 	{
-		int max_members = 0;
-		foreach (Family family in leagueFamilies) 
-		{
-			max_members += family.FamilySize;
-		}
 
-		// Fit scroll panel to correct size
-		float prefab_height = prefab_family_list_button.GetComponent<RectTransform> ().rect.height;
-		float parent_height = enemy_families_content_panel.GetComponent<RectTransform> ().rect.height;
-
-		float current_lower_x = enemy_families_content_panel.GetComponent<RectTransform> ().offsetMin.x;
-		float new_lower_y = parent_height - (float)max_members * prefab_height;
-
-		enemy_families_content_panel.GetComponent<RectTransform>().offsetMin = new Vector2(current_lower_x, new_lower_y);
-
-		enemy_family_button_instance = new GameObject[leagueFamilies.Count];
-
-		int panel_ind = -1;
 		foreach (Family family_instance in leagueFamilies) 
 		{
-			panel_ind++;
-
 			// Need to reinstantiate this for button
-			int current_panel_ind = panel_ind;
+			int current_panel_ind = enemy_family_button_list.Count;
 			Family family = family_instance;
-			List<Family> theseFamilies = leagueFamilies;
 
-			MakeEnemyFamiliesPanel (family, current_panel_ind);
+			MakeFamilyPanel (family, enemy_family_button_list, enemy_families_content_panel);
 
 			// Add subfamily display activation to button
-			enemy_family_button_instance[current_panel_ind].GetComponent<Button>().onClick.AddListener(() => 
+			enemy_family_button_list[enemy_family_button_list.Count - 1].GetComponent<Button>().onClick.AddListener(() => 
 				{
+					int family_ind = enemy_family_button_list.Count - 1;
+
 					// Clear old enemy families subinstances if they exist
-					if (enemy_family_subfamily_instance != null)
+					foreach (GameObject button in enemy_family_subfamily_list)
 					{
-						for (int i = 0; i < enemy_family_subfamily_instance.Length; i++)
-						{
-							Destroy (enemy_family_subfamily_instance [i]);
-						}
-						Array.Clear(enemy_family_subfamily_instance, 0, enemy_family_subfamily_instance.Length);
+						Destroy (button);
+					}
+					enemy_family_subfamily_list.Clear();
+
+					foreach (Parent parent_instance in family.Parents)
+					{
+						Parent parent = parent_instance;
+
+						MakePanel (parent, enemy_family_subfamily_list, enemy_families_content_panel, family_ind);
+
+						int buttonInd = enemy_family_subfamily_list.Count - 1;
+						// Add character display activation to button
+						enemy_family_subfamily_list[buttonInd].GetComponent<Button>().onClick.AddListener(() => 
+							{
+								foreach (GameObject button in enemy_family_subfamily_list)
+								{
+									Destroy (button);
+								}
+								enemy_family_subfamily_list.Clear();
+
+								MakePanel (parent, enemy_offer_list, enemy_offer_content_panel);
+								int newButtonInd = enemy_offer_list.Count - 1;
+								enemy_offer_list[newButtonInd].GetComponent<Button>().onClick.AddListener(() => 
+									{
+										Destroy(enemy_offer_list[newButtonInd]);
+										enemy_offer_list.RemoveAt(newButtonInd);
+										enemy_family_subfamily_list[buttonInd].SetActive(true);
+									});
+								enemy_family_subfamily_list[buttonInd].SetActive(false);
+							});
 					}
 
-					enemy_family_subfamily_instance = new GameObject[family.FamilySize - 1];
-
-					int family_ind = -1;
-					foreach (Parent parent in family.Parents)
+					foreach (Child child_instance in family.Children)
 					{
-						family_ind++;
-						enemy_family_subfamily_instance[family_ind] = Instantiate(prefab_family_list_button) as GameObject;
-						enemy_family_subfamily_instance[family_ind].transform.SetParent(enemy_families_content_panel.transform, false);
+						Child child = child_instance;
 
-						// Move to correct location
-						float height = enemy_family_subfamily_instance[family_ind].GetComponent<RectTransform> ().rect.height;
-						float current_x = enemy_family_subfamily_instance[family_ind].GetComponent<RectTransform> ().anchoredPosition.x;
-						float current_y = enemy_family_subfamily_instance[family_ind].GetComponent<RectTransform> ().anchoredPosition.y;
-						enemy_family_subfamily_instance[family_ind].GetComponent<RectTransform> ().anchoredPosition = 
-							new Vector2 (current_x, current_y - (float)(family_ind + current_panel_ind + 1) * height);
+						MakePanel (child, enemy_family_subfamily_list, enemy_families_content_panel, family_ind);
 
-						// Set name
-						enemy_family_subfamily_instance[family_ind].GetComponentInChildren<Text>().text = parent.Name;
+						int buttonInd = enemy_family_subfamily_list.Count - 1;
+						// Add character display activation to button
+						enemy_family_subfamily_list[buttonInd].GetComponent<Button>().onClick.AddListener(() => 
+							{
+								MakePanel (child, enemy_offer_list, enemy_offer_content_panel);
+								int newButtonInd = enemy_offer_list.Count - 1;
+								enemy_offer_list[newButtonInd].GetComponent<Button>().onClick.AddListener(() => 
+									{
+										Destroy(enemy_offer_list[newButtonInd]);
+										enemy_offer_list.RemoveAt(newButtonInd);
+										enemy_family_subfamily_list[buttonInd].SetActive(true);
+									});
+								enemy_family_subfamily_list[buttonInd].SetActive(false);
+							});
 					}
 
-					foreach (Child child in family.Children)
+					// Move other family buttons down
+					float last_y = enemy_family_subfamily_list[enemy_family_subfamily_list.Count - 1].GetComponent<RectTransform> ().anchoredPosition.y;
+					for (int i = family_ind; i < leagueFamilies.Count; i++)
 					{
-						family_ind++;
-						enemy_family_subfamily_instance[family_ind] = Instantiate(prefab_family_list_button) as GameObject;
-						enemy_family_subfamily_instance[family_ind].transform.SetParent(enemy_families_content_panel.transform, false);
-
-						// Move to correct location
-						float height = enemy_family_subfamily_instance[family_ind].GetComponent<RectTransform> ().rect.height;
-						float current_x = enemy_family_subfamily_instance[family_ind].GetComponent<RectTransform> ().anchoredPosition.x;
-						float current_y = enemy_family_subfamily_instance[family_ind].GetComponent<RectTransform> ().anchoredPosition.y;
-						enemy_family_subfamily_instance[family_ind].GetComponent<RectTransform> ().anchoredPosition = 
-							new Vector2 (current_x, current_y - (float)(family_ind + current_panel_ind + 1) * height);
-
-						// Set name
-						enemy_family_subfamily_instance[family_ind].GetComponentInChildren<Text>().text = child.Name;
-					}
-
-					float last_y = enemy_family_subfamily_instance[family_ind].GetComponent<RectTransform> ().anchoredPosition.y;
-					for (int i = current_panel_ind + 1; i < theseFamilies.Count; i++)
-					{
-						float height = enemy_family_button_instance[i].GetComponent<RectTransform> ().rect.height;
-						float current_x = enemy_family_button_instance[i].GetComponent<RectTransform> ().anchoredPosition.x;
-						float current_y = enemy_family_button_instance[i].GetComponent<RectTransform> ().anchoredPosition.y;
-						enemy_family_button_instance[i].GetComponent<RectTransform> ().anchoredPosition = 
+						float height = enemy_family_button_list[i].GetComponent<RectTransform> ().rect.height;
+						float current_x = enemy_family_button_list[i].GetComponent<RectTransform> ().anchoredPosition.x;
+						float current_y = enemy_family_button_list[i].GetComponent<RectTransform> ().anchoredPosition.y;
+						enemy_family_button_list[i].GetComponent<RectTransform> ().anchoredPosition = 
 							new Vector2 (current_x, last_y - (float)(i - current_panel_ind) * height);
 					}
 				});
 		}
 	}
 
-	private void MakePanel<T>(T member, int panel_ind) where T : Character
+	private void MakePanel<T>(T member, List<GameObject> prefab_list, GameObject parent_panel, int offset = 0) where T : Character
 	{
-		player_family_button_instance[panel_ind] = Instantiate(prefab_family_list_button) as GameObject;
-		player_family_button_instance[panel_ind].transform.SetParent(player_family_content_panel.transform, false);
+		
+		GameObject new_button = Instantiate(prefab_family_list_button) as GameObject;
+		new_button.transform.SetParent(parent_panel.transform, false);
 
 		// Move to correct location
-		float height = player_family_button_instance[panel_ind].GetComponent<RectTransform> ().rect.height;
-		float current_x = player_family_button_instance[panel_ind].GetComponent<RectTransform> ().anchoredPosition.x;
-		float current_y = player_family_button_instance[panel_ind].GetComponent<RectTransform> ().anchoredPosition.y;
-		player_family_button_instance[panel_ind].GetComponent<RectTransform> ().anchoredPosition = 
-			new Vector2 (current_x, current_y - (float)panel_ind * height);
+		float height = new_button.GetComponent<RectTransform> ().rect.height;
+		float current_x = new_button.GetComponent<RectTransform> ().anchoredPosition.x;
+		float current_y = new_button.GetComponent<RectTransform> ().anchoredPosition.y;
+		new_button.GetComponent<RectTransform> ().anchoredPosition = 
+			new Vector2 (current_x, current_y - (float)(prefab_list.Count + offset) * height);
 
 		// Set name
-		player_family_button_instance[panel_ind].GetComponentInChildren<Text>().text = member.Name;
+		new_button.GetComponentInChildren<Text>().text = member.Name;
+
+		prefab_list.Add (new_button);
 	}
 
-	private void MakeEnemyFamiliesPanel(Family family, int panel_ind)
+	private void MakeFamilyPanel(Family family, List<GameObject> prefab_list, GameObject parent_panel)
 	{
-		enemy_family_button_instance[panel_ind] = Instantiate(prefab_family_list_button) as GameObject;
-		enemy_family_button_instance[panel_ind].transform.SetParent(enemy_families_content_panel.transform, false);
+
+		GameObject new_button = Instantiate(prefab_family_list_button) as GameObject;
+		new_button.transform.SetParent(parent_panel.transform, false);
 
 		// Move to correct location
-		float height = enemy_family_button_instance[panel_ind].GetComponent<RectTransform> ().rect.height;
-		float current_x = enemy_family_button_instance[panel_ind].GetComponent<RectTransform> ().anchoredPosition.x;
-		float current_y = enemy_family_button_instance[panel_ind].GetComponent<RectTransform> ().anchoredPosition.y;
-		enemy_family_button_instance[panel_ind].GetComponent<RectTransform> ().anchoredPosition = 
-			new Vector2 (current_x, current_y - (float)panel_ind * height);
+		float height = new_button.GetComponent<RectTransform> ().rect.height;
+		float current_x = new_button.GetComponent<RectTransform> ().anchoredPosition.x;
+		float current_y = new_button.GetComponent<RectTransform> ().anchoredPosition.y;
+		new_button.GetComponent<RectTransform> ().anchoredPosition = 
+			new Vector2 (current_x, current_y - (float)prefab_list.Count * height);
 
 		// Set name
-		enemy_family_button_instance[panel_ind].GetComponentInChildren<Text>().text = family.FamilyName;
+		new_button.GetComponentInChildren<Text>().text = family.FamilyName;
+
+		prefab_list.Add (new_button);
 	}
 }

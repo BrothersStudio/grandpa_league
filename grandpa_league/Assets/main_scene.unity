@@ -2651,6 +2651,8 @@ MonoBehaviour:
     type: 2}
   player_family_content_panel: {fileID: 801416602}
   enemy_families_content_panel: {fileID: 441199636}
+  player_offer_content_panel: {fileID: 1462703160}
+  enemy_offer_content_panel: {fileID: 1453086250}
 --- !u!1 &497280964
 GameObject:
   m_ObjectHideFlags: 0
@@ -3071,7 +3073,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3224,7 +3226,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &525890403
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8951,7 +8953,7 @@ GameObject:
   - 222: {fileID: 1453086253}
   - 114: {fileID: 1453086252}
   m_Layer: 5
-  m_Name: Your Family Content
+  m_Name: Their Offer Content
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9094,7 +9096,7 @@ GameObject:
   - 222: {fileID: 1462703163}
   - 114: {fileID: 1462703162}
   m_Layer: 5
-  m_Name: Your Family Content
+  m_Name: Your Offer Content
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11143,7 +11145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -12041,8 +12043,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: RemoveFamilyPanels
+      - m_Target: {fileID: 477448513}
+        m_MethodName: DestroyPanels
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
