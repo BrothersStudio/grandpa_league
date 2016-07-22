@@ -20,10 +20,13 @@ public class LoadTradingPanel : MonoBehaviour {
 	private List<GameObject> player_offer_list = new List<GameObject>();
 	private List<GameObject> enemy_offer_list = new List<GameObject>();
 
+	private List<Family> leagueFamilies;
+
 	public void DisplayAllFamilies (Family PlayerFamily, List<Family> LeagueFamilies) 
 	{
+		leagueFamilies = LeagueFamilies;
 		DisplayPlayerFamily (PlayerFamily);
-		DisplayEnemyFamilies (LeagueFamilies);
+		DisplayEnemyFamilies ();
 	}
 
 	public void DestroyPanels ()
@@ -70,21 +73,7 @@ public class LoadTradingPanel : MonoBehaviour {
 
 			MakePanel (parent, player_family_button_list, player_family_content_panel);
 
-			// Add character display activation to button
-			int buttonInd = player_family_button_list.Count - 1;
-			player_family_button_list[buttonInd].GetComponent<Button>().onClick.AddListener(() => 
-				{
-					MakePanel (parent, player_offer_list, player_offer_content_panel);
-
-					int newButtonInd = player_offer_list.Count - 1;
-					player_offer_list[newButtonInd].GetComponent<Button>().onClick.AddListener(() => 
-						{
-							Destroy(player_offer_list[newButtonInd]);
-							player_offer_list.RemoveAt(newButtonInd);
-							player_family_button_list[buttonInd].SetActive(true);
-						});
-					player_family_button_list[buttonInd].SetActive(false);
-				});
+			SetFamilyButton (player_family_button_list, player_offer_content_panel, player_family_content_panel, player_family_button_list.Count - 1);
 		}
 
 		foreach (Child child_instance in PlayerFamily.Children) 
@@ -93,106 +82,59 @@ public class LoadTradingPanel : MonoBehaviour {
 
 			MakePanel (child, player_family_button_list, player_family_content_panel);
 
-			// Add character display activation to button
-			int buttonInd = player_family_button_list.Count - 1;
-			player_family_button_list[buttonInd].GetComponent<Button>().onClick.AddListener(() => 
-				{
-					MakePanel (child, player_offer_list, player_offer_content_panel);
-
-					int newButtonInd = player_offer_list.Count - 1;
-					player_offer_list[newButtonInd].GetComponent<Button>().onClick.AddListener(() => 
-						{
-							Destroy(player_offer_list[newButtonInd]);
-							player_offer_list.RemoveAt(newButtonInd);
-							player_family_button_list[buttonInd].SetActive(true);
-						});
-					player_family_button_list[buttonInd].SetActive(false);
-				});
+			SetFamilyButton (player_family_button_list, player_offer_content_panel, player_family_content_panel, player_family_button_list.Count - 1);
 		}
 	}
 
-	private void DisplayEnemyFamilies (List<Family> leagueFamilies)
+	public void DisplayEnemyFamilies ()
 	{
+		// Enemy families
+		foreach (GameObject button in enemy_family_button_list)
+		{
+			Destroy(button);
+		}
+		enemy_family_button_list.Clear();
+
+		// Enemy sub families
+		foreach (GameObject button in enemy_family_subfamily_list)
+		{
+			Destroy(button);
+		}
+		enemy_family_subfamily_list.Clear();
 
 		foreach (Family family_instance in leagueFamilies) 
 		{
-			// Need to reinstantiate this for button
 			int current_panel_ind = enemy_family_button_list.Count;
 			Family family = family_instance;
 
-			MakeFamilyPanel (family, enemy_family_button_list, enemy_families_content_panel);
+			MakeFamiliesPanel (family, enemy_family_button_list, enemy_families_content_panel);
 
 			// Add subfamily display activation to button
 			enemy_family_button_list[enemy_family_button_list.Count - 1].GetComponent<Button>().onClick.AddListener(() => 
 				{
-					int family_ind = enemy_family_button_list.Count - 1;
-
-					// Clear old enemy families subinstances if they exist
-					foreach (GameObject button in enemy_family_subfamily_list)
+					// Enemy families
+					foreach (GameObject button in enemy_family_button_list)
 					{
-						Destroy (button);
+						Destroy(button);
 					}
-					enemy_family_subfamily_list.Clear();
+					enemy_family_button_list.Clear();
 
 					foreach (Parent parent_instance in family.Parents)
 					{
 						Parent parent = parent_instance;
 
-						MakePanel (parent, enemy_family_subfamily_list, enemy_families_content_panel, family_ind);
+						MakePanel (parent, enemy_family_subfamily_list, enemy_families_content_panel);
 
-						int buttonInd = enemy_family_subfamily_list.Count - 1;
-						// Add character display activation to button
-						enemy_family_subfamily_list[buttonInd].GetComponent<Button>().onClick.AddListener(() => 
-							{
-								foreach (GameObject button in enemy_family_subfamily_list)
-								{
-									Destroy (button);
-								}
-								enemy_family_subfamily_list.Clear();
-
-								MakePanel (parent, enemy_offer_list, enemy_offer_content_panel);
-								int newButtonInd = enemy_offer_list.Count - 1;
-								enemy_offer_list[newButtonInd].GetComponent<Button>().onClick.AddListener(() => 
-									{
-										Destroy(enemy_offer_list[newButtonInd]);
-										enemy_offer_list.RemoveAt(newButtonInd);
-										enemy_family_subfamily_list[buttonInd].SetActive(true);
-									});
-								enemy_family_subfamily_list[buttonInd].SetActive(false);
-							});
+						SetFamilyButton (enemy_family_subfamily_list, enemy_offer_content_panel, enemy_families_content_panel, enemy_family_subfamily_list.Count - 1);
 					}
 
 					foreach (Child child_instance in family.Children)
 					{
 						Child child = child_instance;
 
-						MakePanel (child, enemy_family_subfamily_list, enemy_families_content_panel, family_ind);
+						MakePanel (child, enemy_family_subfamily_list, enemy_families_content_panel);
 
-						int buttonInd = enemy_family_subfamily_list.Count - 1;
-						// Add character display activation to button
-						enemy_family_subfamily_list[buttonInd].GetComponent<Button>().onClick.AddListener(() => 
-							{
-								MakePanel (child, enemy_offer_list, enemy_offer_content_panel);
-								int newButtonInd = enemy_offer_list.Count - 1;
-								enemy_offer_list[newButtonInd].GetComponent<Button>().onClick.AddListener(() => 
-									{
-										Destroy(enemy_offer_list[newButtonInd]);
-										enemy_offer_list.RemoveAt(newButtonInd);
-										enemy_family_subfamily_list[buttonInd].SetActive(true);
-									});
-								enemy_family_subfamily_list[buttonInd].SetActive(false);
-							});
-					}
-
-					// Move other family buttons down
-					float last_y = enemy_family_subfamily_list[enemy_family_subfamily_list.Count - 1].GetComponent<RectTransform> ().anchoredPosition.y;
-					for (int i = family_ind; i < leagueFamilies.Count; i++)
-					{
-						float height = enemy_family_button_list[i].GetComponent<RectTransform> ().rect.height;
-						float current_x = enemy_family_button_list[i].GetComponent<RectTransform> ().anchoredPosition.x;
-						float current_y = enemy_family_button_list[i].GetComponent<RectTransform> ().anchoredPosition.y;
-						enemy_family_button_list[i].GetComponent<RectTransform> ().anchoredPosition = 
-							new Vector2 (current_x, last_y - (float)(i - current_panel_ind) * height);
+						SetFamilyButton (enemy_family_subfamily_list, enemy_offer_content_panel, enemy_families_content_panel, enemy_family_subfamily_list.Count - 1);
 					}
 				});
 		}
@@ -217,7 +159,7 @@ public class LoadTradingPanel : MonoBehaviour {
 		prefab_list.Add (new_button);
 	}
 
-	private void MakeFamilyPanel(Family family, List<GameObject> prefab_list, GameObject parent_panel)
+	private void MakeFamiliesPanel(Family family, List<GameObject> prefab_list, GameObject parent_panel)
 	{
 
 		GameObject new_button = Instantiate(prefab_family_list_button) as GameObject;
@@ -234,5 +176,20 @@ public class LoadTradingPanel : MonoBehaviour {
 		new_button.GetComponentInChildren<Text>().text = family.FamilyName;
 
 		prefab_list.Add (new_button);
+	}
+
+	private void SetFamilyButton(List<GameObject> button_list, GameObject offer_panel, GameObject family_panel, int buttonInd)
+	{
+		// Add character display activation to button
+		button_list[buttonInd].GetComponent<Button>().onClick.AddListener(() => 
+			{
+				button_list[buttonInd].transform.SetParent(offer_panel.transform, false);
+
+				button_list[buttonInd].GetComponent<Button>().onClick.AddListener(() => 
+					{
+						button_list[buttonInd].transform.SetParent(family_panel.transform, false);
+						SetFamilyButton(button_list, offer_panel, family_panel, buttonInd);
+					});
+			});
 	}
 }
