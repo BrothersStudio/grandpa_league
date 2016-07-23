@@ -300,7 +300,6 @@ public class Main : MonoBehaviour {
 
         MoneyInputField.GetComponent<InputField>().onValidateInput += delegate (string input, int charIndex, char addedChar) { return ValidateMoneyInput(input, addedChar); };
         CurrentMoneyText.GetComponent<Text>().text = "$ " +  m_dataManager.PlayerFamily.Grandpa.Money.ToString() + ".00";
-        CurrentMoneyText.SetActive(true);
 
         if (ev.Requirements.ReqAccept)
             RejectButton.SetActive(true);
@@ -308,10 +307,15 @@ public class Main : MonoBehaviour {
             RejectButton.SetActive(false);
 
         if (ev.Requirements.ReqMoney)
+        {
             MoneyInputField.SetActive(true);
+            CurrentMoneyText.SetActive(true);
+        }
         else
+        {
             MoneyInputField.SetActive(false);
-
+            CurrentMoneyText.SetActive(false);
+        }
         if (ev.Requirements.ReqChild && !ev.Requirements.RandomChild)
             SelectChildButton.SetActive(true);
         else
