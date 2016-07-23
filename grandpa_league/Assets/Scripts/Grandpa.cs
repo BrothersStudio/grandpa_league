@@ -2,10 +2,10 @@
 
 public class Grandpa : Character
 {
-    private int     m_insanity          = 0;
-    private int     m_wisdom            = 0;
-    private int     m_money             = 0;
-    private int     m_pride             = 0;
+    private double m_insanity          = 0;
+    private double m_wisdom            = 0;
+    private double m_money             = 0;
+    private double m_pride             = 0;
 
     private double  m_insanityGrowth    = 0;
     private double  m_wisdomGrowth      = 0;
@@ -29,10 +29,10 @@ public class Grandpa : Character
         this.m_name = name;
     }
 
-    public int Wisdom
+    public double Wisdom
     {
         get { return this.m_wisdom; }
-        set { this.m_wisdom = value; }
+        set { this.m_wisdom = value > 100 ? 100 : value; }
     }
 
     public double WisdomGrowth
@@ -41,10 +41,10 @@ public class Grandpa : Character
         set { this.m_wisdomGrowth = value; }
     }
 
-    public int Insanity
+    public double Insanity
     {
         get { return this.m_insanity; }
-        set { this.m_insanity = value; }
+        set { this.m_insanity = value > 100 ? 100 : value; }
     }
 
     public double InsanityGrowth
@@ -53,7 +53,7 @@ public class Grandpa : Character
         set { this.m_insanityGrowth = value; }
     }
 
-    public int Money
+    public double Money
     {
         get { return this.m_money; }
         set { this.m_money = value; }
@@ -65,7 +65,7 @@ public class Grandpa : Character
 		set { this.m_moneyGrowth = value; }
 	}
 
-    public int Pride
+    public double Pride
     {
         get { return this.m_pride; }
         set { this.m_pride = value; }

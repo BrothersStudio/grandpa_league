@@ -45,7 +45,26 @@ public class SimulationEvent
 
     public Outcome RunEvent(DataManager currentManager)
     {
-        return this.m_eventFunction(currentManager, this.m_requirements);      //TODO: need something like check the return value and return the right string for what happened
+        return this.m_eventFunction(currentManager, this.m_requirements);     
+    }
+
+    public void FormatEventDescription(DataManager currentManager)
+    {
+        try
+        {
+            if (this.m_eventDescription.Contains("{G}"))
+                this.m_eventDescription = this.m_eventDescription.Replace("{G}", currentManager.PlayerFamily.Grandpa.Name);
+            if (this.m_eventDescription.Contains("{EG}"))
+                this.m_eventDescription = this.m_eventDescription.Replace("{EG}", this.m_requirements.Grandpa.Name);
+            if (this.m_eventDescription.Contains("{C}"))
+                this.m_eventDescription = this.m_eventDescription.Replace("{C}", this.m_requirements.Child.Name);
+            if (this.m_eventDescription.Contains("{P}"))
+                this.m_eventDescription = this.m_eventDescription.Replace("{P}", this.m_requirements.Parent.Name);
+        }
+        catch(Exception e)
+        {
+            UnityEngine.Debug.Log(e.Message);
+        }
     }
 
     public int EventId

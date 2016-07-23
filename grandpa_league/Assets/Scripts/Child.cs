@@ -3,11 +3,11 @@ using System;
 
 public class Child : Character
 {
-    private     int     m_cuteness              = 0;
-    private     int     m_intelligence          = 0;
-    private     int     m_artistry              = 0;
-    private     int     m_athleticism           = 0;
-    private     int     m_popularity            = 0;
+    private     double   m_cuteness              = 0;
+    private     double   m_intelligence          = 0;
+    private     double   m_artistry              = 0;
+    private     double   m_athleticism           = 0;
+    private     double   m_popularity            = 0;
 
     private     double  m_cutenessGrowth        = 0;
     private     double  m_intelligenceGrowth    = 0;
@@ -15,7 +15,7 @@ public class Child : Character
     private     double  m_athleticismGrowth     = 0;
     private     double  m_popularityGrowth      = 0;
 
-    private     int     m_value                   = 0;
+    private     double  m_value                   = 0;
 
 	public Child(string name, int gender, int age, int cuteness, int intelligence, int artistry, int athleticism, int popularity)
     {
@@ -34,14 +34,18 @@ public class Child : Character
 		this.m_athleticismGrowth = this.m_athleticism / 300;
 		this.m_popularityGrowth = -1 * this.m_popularity / 300;
 
-        this.m_value = (this.m_cuteness + this.m_intelligence + this.m_artistry + this.m_athleticism + this.m_popularity) 
-            * (int)(this.m_cutenessGrowth + this.m_intelligenceGrowth + this.m_artistryGrowth + this.m_athleticismGrowth + this.m_popularityGrowth);
-}
+        this.UpdateValue();
+    }
+
+    public void UpdateValue()
+    {
+        this.m_value = (this.m_cuteness + this.m_intelligence + this.m_artistry + this.m_athleticism + this.m_popularity);
+    }
     
-    public int Cuteness
+    public double Cuteness
     {
         get { return this.m_cuteness;  }
-        set { this.m_cuteness = value; }
+        set { this.m_cuteness = value > 100 ? 100 : value; }
     }
 
     public double CutenessGrowth
@@ -50,22 +54,22 @@ public class Child : Character
         set { this.m_cutenessGrowth = value; }
     }
 
-    public int Intelligence
+    public double Intelligence
     {
         get { return this.m_intelligence; }
-        set { this.m_intelligence = value; }
+        set { this.m_intelligence = value > 100 ? 100 : value; }
     }
 
     public double IntelligenceGrowth
     {
         get { return this.m_intelligenceGrowth; }
-        set { this.m_intelligenceGrowth = value; }
+        set { this.m_intelligenceGrowth = value > 100 ? 100 : value; }
     }
 
-    public int Artistry
+    public double Artistry
     {
 		get { return this.m_artistry; }
-		set { this.m_artistry = value; }
+		set { this.m_artistry = value > 100 ? 100 : value; }
     }
 
     public double ArtistryGrowth
@@ -74,10 +78,10 @@ public class Child : Character
 		set { this.m_artistryGrowth = value; }
     }
 
-    public int Athleticism
+    public double Athleticism
     {
 		get { return this.m_athleticism; }
-		set { this.m_athleticism = value; }
+		set { this.m_athleticism = value > 100 ? 100 : value; }
     }
 
 	public double AthleticismGrowth
@@ -86,10 +90,10 @@ public class Child : Character
 		set { this.m_athleticismGrowth = value; }
     }
 
-    public int Popularity
+    public double Popularity
     {
         get { return this.m_popularity; }
-		set { this.m_popularity = value; }
+		set { this.m_popularity = value > 100 ? 100 : value; }
     }
 
     public double PopularityGrowth
@@ -98,9 +102,9 @@ public class Child : Character
 		set { this.m_popularityGrowth = value; }
     }
 
-    public int Value
+    public double Value
     {
-        get { return this.m_value; }
+        get { this.UpdateValue();  return this.m_value; }
         set { this.m_value = value; }
     }
 }

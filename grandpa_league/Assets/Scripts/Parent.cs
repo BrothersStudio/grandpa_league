@@ -3,15 +3,15 @@ using System;
 
 public class Parent : Character
 {
-    private int     m_intelligence          = 0;
-	private int     m_popularity            = 0;
-	private int     m_love                  = 0;
+    private double m_intelligence          = 0;
+	private double m_popularity            = 0;
+	private double m_love                  = 0;
 
     private double  m_intelligenceGrowth    = 0;
 	private double  m_popularityGrowth      = 0;
 	private double  m_loveGrowth            = 0;
 
-    private int     m_value                   = 0;
+    private double  m_value                   = 0;
 
 	public Parent(string name, int gender, int age, int intelligence, int popularity, int love)
     {
@@ -26,13 +26,18 @@ public class Parent : Character
 		this.m_popularityGrowth = (this.m_popularity / 300);
 		this.m_loveGrowth = (this.m_love / 300);
 
-        this.m_value = (this.m_intelligence + this.m_popularity + this.m_love) * (int)(1 + this.m_intelligenceGrowth + this.m_popularityGrowth + this.m_loveGrowth);
+        this.UpdateValue();
     }
 
-    public int Intelligence
+    public void UpdateValue()
+    {
+        this.m_value = (this.m_intelligence + this.m_popularity + this.m_love);
+    }
+
+    public double Intelligence
     {
         get { return this.m_intelligence; }
-        set { this.m_intelligence = value; }
+        set { this.m_intelligence = value > 100 ? 100 : value; }
     }
 
     public double IntelligenceGrowth
@@ -41,10 +46,10 @@ public class Parent : Character
 		set { this.m_intelligenceGrowth = value; }
     }
 		
-	public int Popularity
+	public double Popularity
 	{
 		get { return this.m_popularity; }
-		set { this.m_popularity = value; }
+		set { this.m_popularity = value > 100 ? 100 : value; }
 	}
 
 	public double PopularityGrowth
@@ -53,10 +58,10 @@ public class Parent : Character
 		set { this.m_popularityGrowth = value; }
 	}
 
-	public int Love
+	public double Love
 	{
 		get { return this.m_love; }
-		set { this.m_love = value; }
+		set { this.m_love = value > 100 ? 100 : value; }
 	}
 
 	public double LoveGrowth
@@ -65,7 +70,7 @@ public class Parent : Character
 		set { this.m_loveGrowth = value; }
 	}
 
-    public int Value
+    public double Value
     {
         get { return this.m_value; }
         set { this.m_value = value; }
