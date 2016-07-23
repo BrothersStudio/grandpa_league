@@ -350,7 +350,6 @@ public static class EventManager
 	public static Outcome Event1004(DataManager manager, Requirement requirements)
 	{
 		Outcome returnObj = new Outcome();
-		manager.PlayerFamily.Grandpa.Wisdom = 70;
 		if (manager.PlayerFamily.Grandpa.Wisdom > 50) 
 		{
 			manager.PlayerFamily.Grandpa.Wisdom += 5;
