@@ -194,5 +194,54 @@ public static class EventManager
             returnObj.OutcomeDescription = String.Format("Turns out { 0}");
     	}
     } */
-    
+
+	/*
+	public static Outcome Event1001(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+		if (requirements.Accept && manager.PlayerFamily.Grandpa.Money > requirements.Money) 
+		{
+			if (requirements.Money > 30000) 
+			{
+				manager.PlayerFamily.Grandpa.Money -= requirements.Money;
+				requirements.Parent.Popularity += 20; 
+
+				returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+				returnObj.OutcomeDescription = String.Format (
+					"Wow! That car is certainly going to turn heads. " +
+					"{0} sees that you really do care!", 
+					requirements.Parent.Name);
+			} 
+			else if (requirements.Money > 2000) 
+			{
+				manager.PlayerFamily.Grandpa.Money -= requirements.Money;
+				requirements.Parent.Love += 5; 
+
+				returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+				returnObj.OutcomeDescription = String.Format (
+					"It's the thought that counts, {0}...", 
+					requirements.Grandpa.Name);
+			}
+			else
+			{
+				requirements.Grandpa.Insanity += 5;
+
+				returnObj.Status = (int)Enums.EventOutcome.FAILURE;
+				returnObj.OutcomeDescription = String.Format (
+					"That's not nearly enough for a nice car... Are you okay, {0}?", 
+					requirements.Grandpa.Name);
+			}
+		} 
+		else 
+		{
+			requirements.Parent.Love += 5; 
+
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE;
+			returnObj.OutcomeDescription = String.Format (
+				"Didn't realize you were such a cheapskate, {0}. " +
+				"How will your family ever love you if you keep thinking like that? ", 
+				requirements.Grandpa.Name);
+		}
+		return returnObj;
+	}*/
 }
