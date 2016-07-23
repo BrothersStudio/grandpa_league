@@ -194,5 +194,66 @@ public static class EventManager
             returnObj.OutcomeDescription = String.Format("Turns out { 0}");
     	}
     } */
-    
+
+	
+	public static Outcome Event1001(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+		if (requirements.Accept) 
+		{
+			if (requirements.Money > 30000) 
+			{
+				manager.PlayerFamily.Grandpa.Money -= requirements.Money;
+				requirements.Parent.Popularity += 20; 
+                requirements.Grandpa.Pride += 30;
+
+				returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+				returnObj.OutcomeDescription = String.Format (
+					"Wow! That car is certainly going to turn heads. " +
+					"{0} sees that you really do care!\n" +
+					"{0}'s popularity way up!\n" +
+					"{1}'s pride way up!", 
+					requirements.Parent.Name, requirements.Grandpa.Name);
+			} 
+			else if (requirements.Money > 2000) 
+			{
+				manager.PlayerFamily.Grandpa.Money -= requirements.Money;
+				requirements.Parent.Love += 5; 
+                requirements.Grandpa.Pride += 5;
+
+				returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+				returnObj.OutcomeDescription = String.Format (
+					"It's the thought that counts, {0}...\n" +
+					"{0}'s pride up.\n" +
+					"{1}'s love up.", 
+					requirements.Grandpa.Name, requirements.Parent.Name);
+			}
+			else
+			{
+				requirements.Grandpa.Insanity += 5;
+                requirements.Grandpa.Pride -= 5;
+
+				returnObj.Status = (int)Enums.EventOutcome.FAILURE;
+				returnObj.OutcomeDescription = String.Format (
+					"That's not nearly enough for a nice car... Are you okay, {0}?\n" +
+					"{0}'s insanity up.\n" +
+					"{0}'s pride down.", 
+					requirements.Grandpa.Name);
+			}
+		} 
+		else 
+		{
+			requirements.Parent.Love -= 5; 
+            requirements.Grandpa.Pride -= 10;
+
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE;
+			returnObj.OutcomeDescription = String.Format (
+				"Didn't realize you were such a cheapskate, {0}. " +
+				"How will your family ever love you if you keep thinking like that?\n" +
+				"{0}'s pride down.\n" +
+				"{1}'s love down.", 
+				requirements.Grandpa.Name, requirements.Parent.Name);
+		}
+		return returnObj;
+	}
 }

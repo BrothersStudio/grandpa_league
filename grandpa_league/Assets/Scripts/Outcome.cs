@@ -1,12 +1,13 @@
 ﻿public class Outcome
 {
-    private     int     m_status            = -1;
-    private     string  m_outcomeString     = "";
+    private     int     m_status;
+    private     string  m_outcomeString;
     private     string  m_mail              = null;
 
-    public Outcome()
+    public Outcome(int status=-1, string outcome="")
     {
-		
+		this.m_status = status;
+		this.m_outcomeString = outcome;
     }
 
     public int Status
