@@ -218,6 +218,8 @@ public class Main : MonoBehaviour {
                     EventCanvas.GetComponent<CanvasGroup>().blocksRaycasts = true;
                     SelectChildButton.GetComponentInChildren<Text>().text = ch.Name;
                     SelectChildButton.GetComponentInChildren<Text>().color = new Color (255, 255, 255);
+                    if (!SelectParentButton.activeSelf || (SelectParentButton.activeSelf && selectedParent != null))
+                        AcceptButton.GetComponent<Button>().interactable = true;
                 });
                 float height = childButton.GetComponent<RectTransform>().rect.height;
                 float current_x = childButton.GetComponent<RectTransform>().anchoredPosition.x;
@@ -251,6 +253,8 @@ public class Main : MonoBehaviour {
                     EventCanvas.GetComponent<CanvasGroup>().blocksRaycasts = true;
                     SelectParentButton.GetComponentInChildren<Text>().text = par.Name;
                     SelectParentButton.GetComponentInChildren<Text>().color = new Color(255, 255, 255);
+                    if (!SelectChildButton.activeSelf || (SelectChildButton.activeSelf && selectedChild != null))
+                        AcceptButton.GetComponent<Button>().interactable = true;
                 });
                 float height = parentButton.GetComponent<RectTransform>().rect.height;
                 float current_x = parentButton.GetComponent<RectTransform>().anchoredPosition.x;
@@ -267,7 +271,7 @@ public class Main : MonoBehaviour {
         AcceptButton.GetComponent<Button>().onClick.AddListener(() =>
         {
             userInputting = false;
-            ev.Requirements.Money = Int32.Parse(MoneyInputField.GetComponent<InputField>().text);
+            ev.Requirements.Money = MoneyInputField.GetComponent<InputField>().text == "" ? 0 : Int32.Parse(MoneyInputField.GetComponent<InputField>().text);
             ev.Requirements.Child = selectedChild;
             ev.Requirements.Parent = selectedParent;
         });
@@ -301,6 +305,9 @@ public class Main : MonoBehaviour {
             SelectParentButton.SetActive(true);
         else
             SelectParentButton.SetActive(false);
+
+        if (SelectParentButton.activeSelf || SelectChildButton.activeSelf)
+            AcceptButton.GetComponent<Button>().interactable = false;
     }
     
     private char ValidateMoneyInput(string input, char addedChar)

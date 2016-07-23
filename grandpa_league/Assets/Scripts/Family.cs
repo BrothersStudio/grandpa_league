@@ -90,31 +90,19 @@ public class Family
 		foreach (Parent parent in this.m_parents)
         {
 			parent.Intelligence *= (1 + parent.IntelligenceGrowth);
-            //parent.Intelligence = parent.Intelligence > 100 ? 100 : parent.Intelligence;
-
             parent.Popularity *= (1 + parent.PopularityGrowth);
-            //parent.Popularity = parent.Popularity > 100 ? 100 : parent.Popularity;
-
             parent.Love *= (1 + parent.LoveGrowth);
-            //parent.Love = parent.Love > 100 ? 100 : parent.Love;
+            parent.UpdateValue();
         }
 
         foreach(Child child in this.m_children)
         {
             child.Intelligence *= (1 + child.IntelligenceGrowth);
-            //child.Intelligence = child.Intelligence > 100 ? 100 : child.Intelligence;
-
             child.Cuteness *= (1 + child.CutenessGrowth);
-            //child.Cuteness = child.Cuteness > 100 ? 100 : child.Cuteness;
-
             child.Artistry *= (1 + child.ArtistryGrowth);
-            //child.Artistry = child.Artistry > 100 ? 100 : child.Artistry;
-
             child.Athleticism *= (1 + child.AthleticismGrowth);
-            //child.Athleticism = child.Athleticism > 100 ? 100 : child.Athleticism;
-
             child.Popularity *= (1 + child.PopularityGrowth);
-            //child.Popularity = child.Popularity > 100 ? 100 : child.Popularity;
+            child.UpdateValue();
         }
     }
 
