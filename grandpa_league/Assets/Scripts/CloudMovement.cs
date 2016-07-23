@@ -17,8 +17,6 @@ public class CloudMovement : MonoBehaviour
     void FixedUpdate()
     {
         body2d.velocity = velocity;
-        print(startPos);
-        print(transform.position);
         if(transform.position.x >= (startPos.x + 120))
         {
             transform.position = startPos;
