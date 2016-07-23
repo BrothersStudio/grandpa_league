@@ -107,7 +107,7 @@ public class Main : MonoBehaviour {
                 }
                 if (!hasQual)
                 {
-                    Debug.Log(String.Format("No one has qual {0}, skipping event)", ev.Requirements.Qualification);
+                    Debug.Log(String.Format("No one has qual {0}, skipping event)", ev.Requirements.Qualification));
                     continue;      //immediately exit the event since no one has the qualificaiton STOP. THE FUNCTION. STOP HAVING IT BE RUN.
                 }
 
