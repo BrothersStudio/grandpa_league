@@ -24,10 +24,13 @@ public class LoadFamilyPanel : MonoBehaviour
 		float prefab_height = prefab_content_button.GetComponent<RectTransform> ().rect.height;
 		float parent_height = content_panel.GetComponent<RectTransform> ().rect.height;
 
-		float current_lower_x = content_panel.GetComponent<RectTransform> ().offsetMin.x;
-		float new_lower_y = parent_height - (float)family_size * prefab_height;
+		if (family_size * prefab_height > parent_height) 
+		{
+			float current_lower_x = content_panel.GetComponent<RectTransform> ().offsetMin.x;
+			float new_lower_y = parent_height - (float)family_size * prefab_height;
 
-		content_panel.GetComponent<RectTransform>().offsetMin = new Vector2(current_lower_x, new_lower_y);
+			content_panel.GetComponent<RectTransform> ().offsetMin = new Vector2 (current_lower_x, new_lower_y);
+		}
 
 		prefab_content_panel_instance = new GameObject[family_size];
 

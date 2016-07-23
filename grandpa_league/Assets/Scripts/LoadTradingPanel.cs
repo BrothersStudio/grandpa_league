@@ -72,10 +72,13 @@ public class LoadTradingPanel : MonoBehaviour {
 		float prefab_height = prefab_family_list_button.GetComponent<RectTransform> ().rect.height;
 		float parent_height = player_family_content_panel.GetComponent<RectTransform> ().rect.height;
 
-		float current_lower_x = player_family_content_panel.GetComponent<RectTransform> ().offsetMin.x;
-		float new_lower_y = parent_height - (float)family_size * prefab_height;
+		if (family_size * prefab_height > parent_height) 
+		{
+			float current_lower_x = player_family_content_panel.GetComponent<RectTransform> ().offsetMin.x;
+			float new_lower_y = parent_height - (float)family_size * prefab_height;
 
-		player_family_content_panel.GetComponent<RectTransform>().offsetMin = new Vector2(current_lower_x, new_lower_y);
+			player_family_content_panel.GetComponent<RectTransform> ().offsetMin = new Vector2 (current_lower_x, new_lower_y);
+		}
 
 		// Only display parents and children
 		foreach (Parent parent_instance in PlayerFamily.Parents) 
