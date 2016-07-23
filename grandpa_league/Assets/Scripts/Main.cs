@@ -169,7 +169,7 @@ public class Main : MonoBehaviour {
             Outcome eventOutcome = ev.RunEvent(m_dataManager);
 
             //CHECK THE OUTCOME
-            if (eventOutcome.Status != (int)Enums.EventOutcome.PASS)
+            if (eventOutcome.Status == (int)Enums.EventOutcome.PASS)
                 continue;
 
             if((ev.Priority == 1 || ev.Priority == 2))
