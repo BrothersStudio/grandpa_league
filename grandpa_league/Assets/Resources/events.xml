@@ -7,7 +7,7 @@
   <event type="0" id="1" name="test_event_hidden" description="This is a test, {0}" priority="1" month="1-2"
          chance="0.2" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00"/>  
   <event type="1" id="2" name="test_event_known" description="Select one {0} to do {1}!" priority="2" month="1" day="2" 
-         req_children="01" age="4-10" req_parent="00" req_grandpa="00" req_money="01" req_accept="01"/>
+         req_children="01" age="4-10" req_parent="01" req_grandpa="00" req_money="01" req_accept="01"/>
 
   <!-- HIDDEN EVENTS -->
   <!-- <event type="0" id="101" name="Fingerpainting 101" description="{0}'s kindergarten class had a day of finger painting during class today!" priority="1" chance="0.005" req_children="11" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" month="9-12" age="5-6" /> -->

@@ -16,14 +16,33 @@ public class Main : MonoBehaviour {
 	public GameObject trading_panel;
 
     private static DataManager m_dataManager;
-    public GameObject user_input_panel;
-    bool panelUp = false;
 
-    public void Update()
-    {
-        while (panelUp)
-            break;
-    }
+    /* user input panel objects */
+    public Canvas EventCanvas;
+    public GameObject EventOutcomePanel;
+    public GameObject OutcomeTextbox;
+    public GameObject OkButton;
+
+    public GameObject characterButtonPrefab;
+    public GameObject ChildSelectPanel;
+    public GameObject ParentSelectPanel;
+    public GameObject SelectionModalBlockingPanel;
+
+    public GameObject user_input_panel;
+    public GameObject AcceptButton;
+    public GameObject RejectButton;
+    public GameObject SelectParentButton;
+    public GameObject SelectChildButton;
+    public GameObject MoneyInputField;
+    public GameObject CurrentMoneyText;
+    public GameObject EventTitleText;
+    public GameObject EventDescriptionText;
+
+    public GameObject ModalBlockingPanel;
+    public Canvas MainCanvas;
+
+    bool userInputting = false;
+
 
 	public void Awake()
 	{
@@ -57,6 +76,11 @@ public class Main : MonoBehaviour {
 	}
 
     public void AdvanceDay()
+    {
+        StartCoroutine(SimulateDay());
+    }
+
+    public IEnumerator SimulateDay()
     {
         foreach (SimulationEvent ev in m_dataManager.Calendar.GetEventsForCurrentDay())
         {
@@ -105,20 +129,36 @@ public class Main : MonoBehaviour {
             //DISPLAY THE DESCRIPTION OF THE EVENT AND PROMPT USER FOR INPUT
             //Use requirement object to generate the panel which will get the input from the user, display the name and discription (if necessary)
 
-            user_input_panel.GetComponentsInChildren<Button>()[0].onClick.AddListener(() =>
+            if (ev.Requirements.HasInputRequirements())
             {
-                panelUp = false;
-            });
-            user_input_panel.SetActive(true);
-            panelUp = true;
+                CreateAndDisplayInputPanel(ev);
+                userInputting = true;
 
+                ModalBlockingPanel.SetActive(true);
+                MainCanvas.GetComponent<CanvasGroup>().blocksRaycasts = false;
+                yield return StartCoroutine(WaitForUserConfirm());
+                MainCanvas.GetComponent<CanvasGroup>().blocksRaycasts = true;
+                ModalBlockingPanel.SetActive(false);
+            }
 
             //EXECUTE THE EVENT
             Outcome eventOutcome = ev.RunEvent(m_dataManager);
-            Debug.Log("event completed");
+
             //CHECK THE OUTCOME
-            if (eventOutcome.Status == (int)Enums.EventOutcome.PASS)
-                break;
+            if(ev.Priority == 1 || ev.Priority == 2)
+            {
+                CreateAndDisplayResultPanel(eventOutcome);
+                userInputting = true;
+
+                ModalBlockingPanel.SetActive(true);
+                MainCanvas.GetComponent<CanvasGroup>().blocksRaycasts = false;
+                yield return StartCoroutine(WaitForUserConfirm());
+                MainCanvas.GetComponent<CanvasGroup>().blocksRaycasts = true;
+                ModalBlockingPanel.SetActive(false);
+            }
+            Debug.Log(String.Format("event {0} completed", ev.EventName));
+            
+
 
             //Otherwise display the outcome panel with text eventOutcome.OutcomeDescription
             //send mail to mail panel using eventOutcome.Mail
@@ -128,7 +168,154 @@ public class Main : MonoBehaviour {
 		AdvanceDayHighlight();
     }
 
-	public void DisplayContent(string type)
+    private void CreateAndDisplayResultPanel(Outcome eventOutcome)
+    {
+        EventOutcomePanel.SetActive(true);
+        OutcomeTextbox.GetComponent<Text>().text = eventOutcome.OutcomeDescription;
+        OkButton.GetComponent<Button>().onClick.AddListener(() =>
+        {
+                userInputting = false;
+        });
+    }
+
+    private void CreateAndDisplayInputPanel(SimulationEvent ev)
+    {
+        Child selectedChild = null;
+        Parent selectedParent = null;
+
+        user_input_panel.SetActive(true);
+        EventTitleText.GetComponent<Text>().text = ev.EventName;
+        EventDescriptionText.GetComponent<Text>().text = ev.EventDescription;
+
+        SelectChildButton.GetComponent<Button>().onClick.AddListener(() =>
+        {
+            ChildSelectPanel.SetActive(true);
+            SelectionModalBlockingPanel.SetActive(true);
+            EventCanvas.GetComponent<CanvasGroup>().blocksRaycasts = false;
+            int curChild = 0;
+            foreach (Child child in m_dataManager.PlayerFamily.Children)
+            {
+                Child ch = child;
+                GameObject childButton = Instantiate(characterButtonPrefab) as GameObject;
+                childButton.GetComponentInChildren<Text>().text= ch.Name;
+                childButton.transform.SetParent(ChildSelectPanel.transform, false);
+                childButton.GetComponent<Button>().onClick.AddListener(() =>
+                {
+                    selectedChild = ch;
+                    ChildSelectPanel.SetActive(false);
+                    SelectionModalBlockingPanel.SetActive(false);
+                    EventCanvas.GetComponent<CanvasGroup>().blocksRaycasts = true;
+                    SelectChildButton.GetComponentInChildren<Text>().text = ch.Name;
+                    SelectChildButton.GetComponentInChildren<Text>().color = new Color (255, 255, 255);
+                });
+                float height = childButton.GetComponent<RectTransform>().rect.height;
+                float current_x = childButton.GetComponent<RectTransform>().anchoredPosition.x;
+                childButton.GetComponent<RectTransform>().localScale = new Vector3(0.8f, 0.8f, 1);
+                float current_y = childButton.GetComponent<RectTransform>().anchoredPosition.y;
+                childButton.GetComponent<RectTransform>().anchoredPosition =
+                    new Vector2(current_x, (current_y - (float)curChild * height) - 80);
+                childButton.GetComponentInChildren<Text>().color = new Color(255, 255, 255);
+                childButton.GetComponent<Button>().image.color = new Color(100, 180, 100);
+                curChild++;
+            }
+        });
+
+        SelectParentButton.GetComponent<Button>().onClick.AddListener(() =>
+        {
+            ParentSelectPanel.SetActive(true);
+            SelectionModalBlockingPanel.SetActive(true);
+            EventCanvas.GetComponent<CanvasGroup>().blocksRaycasts = false;
+            int curParent = 0;
+            foreach (Parent parent in m_dataManager.PlayerFamily.Parents)
+            {
+                Parent par = parent;
+                GameObject parentButton = Instantiate(characterButtonPrefab) as GameObject;
+                parentButton.GetComponentInChildren<Text>().text = par.Name;
+                parentButton.transform.SetParent(ParentSelectPanel.transform, false);
+                parentButton.GetComponent<Button>().onClick.AddListener(() =>
+                {
+                    selectedParent = par;
+                    ParentSelectPanel.SetActive(false);
+                    SelectionModalBlockingPanel.SetActive(false);
+                    EventCanvas.GetComponent<CanvasGroup>().blocksRaycasts = true;
+                    SelectParentButton.GetComponentInChildren<Text>().text = par.Name;
+                    SelectParentButton.GetComponentInChildren<Text>().color = new Color(255, 255, 255);
+                });
+                float height = parentButton.GetComponent<RectTransform>().rect.height;
+                float current_x = parentButton.GetComponent<RectTransform>().anchoredPosition.x;
+                parentButton.GetComponent<RectTransform>().localScale = new Vector3(0.8f, 0.8f, 1);
+                float current_y = parentButton.GetComponent<RectTransform>().anchoredPosition.y;
+                parentButton.GetComponent<RectTransform>().anchoredPosition =
+                    new Vector2(current_x, (current_y - (float)curParent * height) - 80);
+                parentButton.GetComponentInChildren<Text>().color = new Color(255, 255, 255);
+                parentButton.GetComponent<Button>().image.color = new Color(100, 180, 100);
+                curParent++;
+            }
+        });
+
+        AcceptButton.GetComponent<Button>().onClick.AddListener(() =>
+        {
+            userInputting = false;
+            ev.Requirements.Money = Int32.Parse(MoneyInputField.GetComponent<InputField>().text);
+            ev.Requirements.Child = selectedChild;
+            ev.Requirements.Parent = selectedParent;
+        });
+
+        RejectButton.GetComponent<Button>().onClick.AddListener(() =>
+        {
+            userInputting = false;
+            ev.Requirements.Accept = false;
+        });
+
+        MoneyInputField.GetComponent<InputField>().onValidateInput += delegate (string input, int charIndex, char addedChar) { return ValidateMoneyInput(input, addedChar); };
+        CurrentMoneyText.GetComponent<Text>().text = "$ " +  m_dataManager.PlayerFamily.Grandpa.Money.ToString() + ".00";
+        CurrentMoneyText.SetActive(true);
+
+        if (ev.Requirements.ReqAccept)
+            RejectButton.SetActive(true);
+        else
+            RejectButton.SetActive(false);
+
+        if (ev.Requirements.ReqMoney)
+            MoneyInputField.SetActive(true);
+        else
+            MoneyInputField.SetActive(false);
+
+        if (ev.Requirements.ReqChild && !ev.Requirements.RandomChild)
+            SelectChildButton.SetActive(true);
+        else
+            SelectChildButton.SetActive(false);
+
+        if (ev.Requirements.ReqParent && !ev.Requirements.RandomParent)
+            SelectParentButton.SetActive(true);
+        else
+            SelectParentButton.SetActive(false);
+    }
+    
+    private char ValidateMoneyInput(string input, char addedChar)
+    {
+        int result;
+        int.TryParse(input + addedChar, out result);
+        if (result > m_dataManager.PlayerFamily.Grandpa.Money)
+        {
+            MoneyInputField.GetComponent<InputField>().textComponent.color = new Color(244, 0, 0);
+            return '\0';
+        }
+
+        MoneyInputField.GetComponent<InputField>().textComponent.color = new Color(233, 233, 233);
+        return addedChar;
+    }
+
+    private IEnumerator WaitForUserConfirm()
+    {
+        while (userInputting)
+        {
+            yield return null;
+        }
+    }
+
+
+    public void DisplayContent(string type)
 	{
 		if (type == "family") 
 		{

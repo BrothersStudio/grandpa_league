@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 
 public class Requirement
 {
@@ -47,10 +46,21 @@ public class Requirement
         }
     }
 
+    public bool HasInputRequirements()
+    {
+        return this.m_moneyNeeded | this.m_acceptRejectNeeded | (this.m_grandpaNeeded & !this.m_randomGrandpa) |
+                (this.m_childNeeded & !this.m_randomChild) | (this.m_parentNeeded & !this.m_randomParent);
+    }
+
     public Parent Parent
     {
         get { return this.m_parent; }
         set { this.m_parent = value; }
+    }
+
+    public bool ReqParent
+    {
+        get { return this.m_parentNeeded; }
     }
 
     public bool RandomParent
@@ -62,6 +72,11 @@ public class Requirement
     {
         get { return this.m_child; }
         set { this.m_child = value; }
+    }
+
+    public bool ReqChild
+    {
+        get { return this.m_childNeeded; }
     }
 
     public bool RandomChild
