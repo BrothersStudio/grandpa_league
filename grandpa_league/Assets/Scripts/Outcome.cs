@@ -4,10 +4,9 @@
     private     string  m_outcomeString     = "";
     private     string  m_mail              = null;
 
-    public Outcome(int status=-1, string outcomeDescription="")
+    public Outcome()
     {
-        this.m_status = status;
-        this.m_outcomeString = outcomeDescription;
+		
     }
 
     public int Status
