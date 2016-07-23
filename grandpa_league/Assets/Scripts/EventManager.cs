@@ -359,7 +359,7 @@ public static class EventManager
 
 			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
 			returnObj.OutcomeDescription = String.Format (
-				"Hey! You found a nice loophole. That'll increase your weekly income!\n\n" +
+				"Going through your social security payments, you find a nice loophole. That'll increase your weekly income! Thanks Obama! \n\n" +
 				"{0}'s wisdom up.\n" + 
 				"{0}'s insanity down.\n" + 
 				"{0}'s income up.\n",

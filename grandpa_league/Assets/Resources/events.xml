@@ -6,7 +6,7 @@
          chance="1" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00"/>
   <event type="0" id="1" name="test_event_hidden" description="This is a test, {0}" priority="1" month="1-2"
          chance="0" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00"/>  
-  <event type="1" id="2" name="test_event_known" description="Select one {C} to do the chore {G}!" priority="2" month="1" day="2" 
+  <event type="1" id="2" name="test_event_known" description="Select one {C} to do the chore {G}!" priority="2" month="12" day="0" 
          req_children="11" age="0-100" req_parent="01" req_grandpa="00" req_money="01" req_accept="01"/>
 
   <!-- HIDDEN EVENTS -->
@@ -14,11 +14,11 @@
 
   <event type="0" id="1001" name="Grandpa buys a car" description="{G} is tired of seeing {P} drive that old beater around. Wouldn't you like a nice, new car? Now, how much to spend...?" priority="1" chance="0.005" req_children="00" req_parent="11" req_grandpa="00" req_money="01" req_accept="01"/>
   <event type="0" id="1002" name="Grandpa sends family on vacation" description="{G} wants the family to have a nice, relaxing vacation. The more you spend, the better the vacation will be!" priority="1" chance="0.005" req_children="11" req_parent="11" req_grandpa="00" req_money="01" req_accept="01"/>
-  <event type="0" id="1004" name="Grandpa inspects his social security benefits" description="Grandpa is taking a hard look at his social security benefits... Wait, maybe there's a loophole here..." priority="1" chance="0.005" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00"/>
+  <event type="0" id="1004" name="Grandpa inspects his social security benefits" description="" priority="1" chance="0.005" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00"/>
   
   <!-- KNOWN EVENTS req_ of the form 1=true, 0=false, [RANDOM][REQUIRED]-->
   
   <event type="1" id="1003" name="Grandkid tries out for football team" description="The football team is trying out! I wonder who should go out?" priority="1" req_children="01" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" month="9" day="0" age="10-15"/>
-    <event type="1" id="1005" name="Grandkid makes honor roll" description="{C} has made the honor roll!" priority="1" req_children="11" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" month="9-12" day="0" age="7-17"/>
+  <event type="1" id="1005" name="Grandkid makes honor roll" description="{C} has made the honor roll!" priority="1" req_children="11" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" month="1" day="2" age="7-17"/>
   
 </events>
