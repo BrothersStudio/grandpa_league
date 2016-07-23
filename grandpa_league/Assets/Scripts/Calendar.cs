@@ -56,6 +56,14 @@ public class Calendar
         return currentDay;
     }
 
+    public void ScheduleEventInXDays(SimulationEvent simEvent, int days)
+    {
+        if (28 * (this.m_currentMonth - 1) + (this.m_currentDay - 1) + days >= 336)
+            return;
+
+        this.m_days[28 * (this.m_currentMonth - 1) + (this.m_currentDay - 1) + days].AddEvent(simEvent);
+    }
+
     public void ScheduleEventByDate(SimulationEvent simEvent, int day, int month)
     {
        this.m_days[28 * (month - 1) + (day - 1)].AddEvent(simEvent);

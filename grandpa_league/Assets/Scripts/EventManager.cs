@@ -153,16 +153,23 @@ public static class EventManager
         return new Outcome((int)Enums.EventOutcome.SUCCESS, "level_upgrade_applied");
     }
 
-    //NAME: GRANDPA WINS LOTTERY
+    //NAME: TRADE_ACCEPT_REJECT
     public static Outcome Event1(DataManager manager, Requirement requirements)
+    {
+        Outcome tradeOutcome = requirements.Trade.PerformTradeAction(manager);
+        return tradeOutcome;
+    }
+
+    //NAME: TEST EVENT 1
+    public static Outcome Event10(DataManager manager, Requirement requirements)
     {
         manager.PlayerFamily.Grandpa.Money += 1000;
 
         return new Outcome((int)Enums.EventOutcome.SUCCESS, String.Format("grandpa_won_lottery: {0}", manager.PlayerFamily.Grandpa.Money));
     }
 
-    //NAME: GRANDPA CHANGES HIS NAME
-    public static Outcome Event2(DataManager manager, Requirement requirements)
+    //NAME: TEST EVENT 2
+    public static Outcome Event11(DataManager manager, Requirement requirements)
     {
         if (requirements.Accept)
         {
@@ -386,7 +393,7 @@ public static class EventManager
 			returnObj.OutcomeDescription = String.Format (
 				"{0} has made the honor roll! Wow, nice job!\n\n" +
 				"{0}'s intelligence up.\n" + 
-				"{1}'s pride up.\n" + 
+				"{1}'s pride up.\n",
 				requirements.Child.Name, manager.PlayerFamily.Grandpa.Name);
 		}
 		else  
@@ -399,7 +406,7 @@ public static class EventManager
 			returnObj.OutcomeDescription = String.Format (
 				"{0} missed the honor roll... What a dummy...\n\n" +
 				"{0}'s intelligence down.\n" + 
-				"{1}'s pride down.\n" + 
+				"{1}'s pride down.\n",
 				requirements.Child.Name, manager.PlayerFamily.Grandpa.Name);
 		}
 		return returnObj;

@@ -17,6 +17,8 @@ public class Requirement
     private int m_minAge = 0;
     private int m_maxAge = 1000;
 
+    private Trade m_trade = null;
+
     //set by user's choices
     private Child m_child = null;
     private Parent m_parent = null;
@@ -131,5 +133,11 @@ public class Requirement
     public int MaxAge
     {
         get { return this.m_maxAge; }
+    }
+
+    public Trade Trade
+    {
+        get { return this.m_trade; }
+        set { this.m_trade = value; }
     }
 }

@@ -4,9 +4,9 @@
   <!-- RESERVED EVENTS -->
   <event type="2" id="0" name="weekly_stat_up" description="" priority="0"
          chance="1" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00"/>
-  <event type="0" id="1" name="test_event_hidden" description="This is a test, {0}" priority="1" month="1-2"
+  <event type="0" id="10" name="test_event_hidden" description="This is a test, {0}" priority="1" month="1-2"
          chance="0" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00"/>  
-  <event type="1" id="2" name="test_event_known" description="Select one {C} to do the chore {G}!" priority="2" month="12" day="0" 
+  <event type="1" id="11" name="test_event_known" description="Select one {C} to do the chore {G}!" priority="2" month="12" day="0" 
          req_children="11" age="0-100" req_parent="01" req_grandpa="00" req_money="01" req_accept="01"/>
 
   <!-- HIDDEN EVENTS -->

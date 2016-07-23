@@ -13,4 +13,6 @@
     public enum EventType { HIDDEN = 0, KNOWN = 1, RESERVED = 2 }
 
     public enum EventOutcome { SUCCESS = 0, FAILURE = 1, PASS = 2, FAIL_AGE = 3, FAIL_MONEY = 4 }
+
+    public enum SystemEvents { WEEKLY_STAT_UP = 0, TRADE_ACCEPT_REJECT = 1 }
 }
