@@ -106,7 +106,10 @@ public class Main : MonoBehaviour {
                     if (hasQual) break;
                 }
                 if (!hasQual)
-                    break;      //immediately exit the event since no one has the qualificaiton STOP. THE FUNCTION. STOP HAVING IT BE RUN.
+                {
+                    Debug.Log(String.Format("No one has qual {0}, skipping event)", ev.Requirements.Qualification);
+                    continue;      //immediately exit the event since no one has the qualificaiton STOP. THE FUNCTION. STOP HAVING IT BE RUN.
+                }
 
                 if (qualChar.GetType() == typeof(Child))
                     ev.Requirements.Child = (Child)qualChar;
@@ -121,11 +124,21 @@ public class Main : MonoBehaviour {
             if (ev.Requirements.RandomChild && ev.Requirements.Child == null)
             {
                 ev.Requirements.Child = m_dataManager.PlayerFamily.GetRandomEligibleChild(ev.Requirements.MinAge, ev.Requirements.MaxAge);
+                if (ev.Requirements.Child == null)
+                {
+                    Debug.Log("No eligible children found, skipping event");
+                    continue;
+                }
                 Debug.Log(String.Format("chose child:{0} for event", ev.Requirements.Child.Name));
             }
             if (ev.Requirements.RandomParent && ev.Requirements.Parent == null)
             {
                 ev.Requirements.Parent = m_dataManager.PlayerFamily.GetRandomParent();
+                if (ev.Requirements.Parent == null)
+                {
+                    Debug.Log("No Parent found, skipping event");
+                    continue;
+                }
                 Debug.Log(String.Format("chose parent:{0} for event", ev.Requirements.Parent.Name));
 
             }
@@ -156,7 +169,10 @@ public class Main : MonoBehaviour {
             Outcome eventOutcome = ev.RunEvent(m_dataManager);
 
             //CHECK THE OUTCOME
-            if((ev.Priority == 1 || ev.Priority == 2)  && eventOutcome.Status != (int)Enums.EventOutcome.PASS)
+            if (eventOutcome.Status != (int)Enums.EventOutcome.PASS)
+                continue;
+
+            if((ev.Priority == 1 || ev.Priority == 2))
             {
                 CreateAndDisplayResultPanel(eventOutcome);
                 userInputting = true;
