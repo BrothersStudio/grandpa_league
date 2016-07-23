@@ -5,4 +5,5 @@
   <qualification name="IS_SINGLE"           id="2" />
   <qualification name="ON_FOOTBALL_TEAM"    id="3" />
   <qualification name="ON_SOCCER_TEAM"      id="4" />
+  <qualification name="ILLEGAL_GEAR"        id="5" />
 </qualifications>
