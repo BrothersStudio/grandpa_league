@@ -244,16 +244,7 @@ public static class EventManager
 		} 
 		else 
 		{
-			requirements.Parent.Love -= 5; 
-			manager.PlayerFamily.Grandpa.Pride -= 10;
-
-			returnObj.Status = (int)Enums.EventOutcome.FAILURE;
-			returnObj.OutcomeDescription = String.Format (
-				"Didn't realize you were such a cheapskate, gramps. " +
-				"How will your family ever love you if you keep thinking like that?\n\n" +
-				"{0}'s pride down.\n" +
-				"{1}'s love down.", 
-				manager.PlayerFamily.Grandpa.Name, requirements.Parent.Name);
+			returnObj.Status = (int)Enums.EventOutcome.PASS;
 		}
 		return returnObj;
 	}
@@ -305,19 +296,7 @@ public static class EventManager
 		} 
 		else 
 		{
-			foreach (Parent parent in manager.PlayerFamily.Parents) 
-			{
-				parent.Love -= 5;
-			}
-			manager.PlayerFamily.Grandpa.Pride -= 10;
-
-			returnObj.Status = (int)Enums.EventOutcome.FAILURE;
-			returnObj.OutcomeDescription = String.Format (
-				"Didn't realize you were such a cheapskate, gramps. " +
-				"Now the children are going to be asking if we're poor. Thanks a lot.\n\n" +
-				"{0}'s pride down.\n" +
-				"All parents' love down.", 
-				manager.PlayerFamily.Grandpa.Name);
+			returnObj.Status = (int)Enums.EventOutcome.PASS;
 		}
 		return returnObj;
 	}
@@ -388,13 +367,40 @@ public static class EventManager
 		}
 		else  
 		{
-			manager.PlayerFamily.Grandpa.Insanity += 5;
+			returnObj.Status = (int)Enums.EventOutcome.PASS;
+		}
+		return returnObj;
+	}
+
+	// Grandkid makes honor roll
+	public static Outcome Event1005(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+		if (requirements.Child.Intelligence > 60) 
+		{
+			requirements.Child.Intelligence += 10;
+
+			manager.PlayerFamily.Grandpa.Pride += 10;
 
 			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
 			returnObj.OutcomeDescription = String.Format (
-				"Hm, maybe you were imagining things...\n\n" +
-				"{0}'s insanity up.\n",
-				manager.PlayerFamily.Grandpa.Name);
+				"{0} has made the honor roll! Wow, nice job!\n\n" +
+				"{0}'s intelligence up.\n" + 
+				"{1}'s pride up.\n" + 
+				requirements.Child.Name, manager.PlayerFamily.Grandpa.Name);
+		}
+		else  
+		{
+			requirements.Child.Intelligence -= 10;
+
+			manager.PlayerFamily.Grandpa.Pride -= 10;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+			returnObj.OutcomeDescription = String.Format (
+				"{0} missed the honor roll... What a dummy...\n\n" +
+				"{0}'s intelligence down.\n" + 
+				"{1}'s pride down.\n" + 
+				requirements.Child.Name, manager.PlayerFamily.Grandpa.Name);
 		}
 		return returnObj;
 	}
