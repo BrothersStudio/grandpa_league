@@ -194,5 +194,208 @@ public static class EventManager
             returnObj.OutcomeDescription = String.Format("Turns out { 0}");
     	}
     } */
-    
+
+	// Grandpa buys a car
+	public static Outcome Event1001(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+		if (requirements.Accept) 
+		{
+			if (requirements.Money > 30000) 
+			{
+				manager.PlayerFamily.Grandpa.Money -= requirements.Money;
+				requirements.Parent.Popularity += 20; 
+				manager.PlayerFamily.Grandpa.Pride += 30;
+
+				returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+				returnObj.OutcomeDescription = String.Format (
+					"Wow! That car is certainly going to turn heads. " +
+					"{0} sees that you really do care!\n\n" +
+					"{0}'s popularity way up!\n" +
+					"{1}'s pride way up!", 
+					requirements.Parent.Name, manager.PlayerFamily.Grandpa.Name);
+			} 
+			else if (requirements.Money > 2000) 
+			{
+				manager.PlayerFamily.Grandpa.Money -= requirements.Money;
+
+				requirements.Parent.Love += 5; 
+				manager.PlayerFamily.Grandpa.Pride += 5;
+
+				returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+				returnObj.OutcomeDescription = String.Format (
+					"It's the thought that counts, {0}...\n\n" +
+					"{0}'s pride up.\n" +
+					"{1}'s love up.", 
+					requirements.Grandpa.Name, requirements.Parent.Name);
+			}
+			else
+			{
+				manager.PlayerFamily.Grandpa.Insanity += 5;
+				manager.PlayerFamily.Grandpa.Pride -= 5;
+
+				returnObj.Status = (int)Enums.EventOutcome.FAILURE;
+				returnObj.OutcomeDescription = String.Format (
+					"That's not nearly enough for a nice car... Are you okay, {0}?\n\n" +
+					"{0}'s insanity up.\n" +
+					"{0}'s pride down.", 
+					manager.PlayerFamily.Grandpa.Name);
+			}
+		} 
+		else 
+		{
+			requirements.Parent.Love -= 5; 
+			manager.PlayerFamily.Grandpa.Pride -= 10;
+
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE;
+			returnObj.OutcomeDescription = String.Format (
+				"Didn't realize you were such a cheapskate, gramps. " +
+				"How will your family ever love you if you keep thinking like that?\n\n" +
+				"{0}'s pride down.\n" +
+				"{1}'s love down.", 
+				manager.PlayerFamily.Grandpa.Name, requirements.Parent.Name);
+		}
+		return returnObj;
+	}
+
+	// Grandpa sends family on vacation
+	public static Outcome Event1002(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+		if (requirements.Accept) 
+		{
+			if (requirements.Money > 5000) 
+			{
+				foreach (Parent parent in manager.PlayerFamily.Parents) 
+				{
+					parent.Love += 10;
+					parent.Popularity += 15;
+				}
+				foreach (Child child in manager.PlayerFamily.Children) 
+				{
+					child.Popularity += 10;
+					child.Athleticism += 5;
+				}
+				manager.PlayerFamily.Grandpa.Money -= requirements.Money;
+				manager.PlayerFamily.Grandpa.Pride += 20;
+
+				returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+				returnObj.OutcomeDescription = String.Format (
+					"Wow! That car is certainly going to turn heads. " +
+					"{0} sees that you really do care!\n\n" +
+					"{0}'s popularity way up!\n" +
+					"{1}'s pride way up!", 
+					requirements.Parent.Name, manager.PlayerFamily.Grandpa.Name);
+			} 
+			else
+			{
+				foreach (Parent parent in manager.PlayerFamily.Parents) 
+				{
+					parent.Love -= 5;
+				}
+				manager.PlayerFamily.Grandpa.Pride -= 5;
+
+				returnObj.Status = (int)Enums.EventOutcome.FAILURE;
+				returnObj.OutcomeDescription = String.Format (
+					"That's not nearly enough money for the vacation we had in mind...\n\n" +
+					"{0}'s pride down.\n" +
+					"All parents' love down.", 
+					manager.PlayerFamily.Grandpa.Name);
+			}
+		} 
+		else 
+		{
+			foreach (Parent parent in manager.PlayerFamily.Parents) 
+			{
+				parent.Love -= 5;
+			}
+			manager.PlayerFamily.Grandpa.Pride -= 10;
+
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE;
+			returnObj.OutcomeDescription = String.Format (
+				"Didn't realize you were such a cheapskate, gramps. " +
+				"Now the children are going to be asking if we're poor. Thanks a lot.\n\n" +
+				"{0}'s pride down.\n" +
+				"All parents' love down.", 
+				manager.PlayerFamily.Grandpa.Name);
+		}
+		return returnObj;
+	}
+
+	// Grandkid tries out for football team
+	public static Outcome Event1003(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+		if (requirements.Child.Athleticism > 50) 
+		{
+			requirements.Child.AddQualification (Qualification.GetQualificationByString ("ON_FOOTBALL_TEAM"));
+
+			requirements.Child.Athleticism += 10;
+			requirements.Child.AthleticismGrowth += 1.5;
+			requirements.Child.Popularity += 10;
+			requirements.Child.PopularityGrowth += 0.5;
+
+			requirements.Child.Artistry -= 5;
+
+			manager.PlayerFamily.Grandpa.Pride += 15;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+			returnObj.OutcomeDescription = String.Format (
+				"Great job, {0}! Now everyone will value you more as a person!\n\n" +
+				"{0}'s athleticism up.\n" + 
+				"{0}'s popularity up.\n" + 
+				"{0}'s artistry down.\n" + 
+				"{1}'s pride up.\n",
+				requirements.Child.Name, manager.PlayerFamily.Grandpa.Name);
+		}
+		else
+		{
+			requirements.Child.Athleticism -= 5;
+			requirements.Child.Popularity -= 5;
+			requirements.Child.PopularityGrowth -= 0.2;
+
+			manager.PlayerFamily.Grandpa.Pride -= 10;
+
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE;
+			returnObj.OutcomeDescription = String.Format (
+				"Well, you didn't get on the team. That's disappointing, {0}...\n\n" +
+				"{0}'s athleticism down.\n" + 
+				"{0}'s popularity down.\n" + 
+				"{1}'s pride down.\n",
+				requirements.Child.Name, manager.PlayerFamily.Grandpa.Name);
+		}
+		return returnObj;
+	}
+
+	// Grandpa inspects his social security benefits
+	public static Outcome Event1004(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+		if (manager.PlayerFamily.Grandpa.Wisdom > 50) 
+		{
+			manager.PlayerFamily.Grandpa.Wisdom += 5;
+			manager.PlayerFamily.Grandpa.Insanity -= 5;
+
+			manager.PlayerFamily.Grandpa.MoneyGrowth += 50;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+			returnObj.OutcomeDescription = String.Format (
+				"Hey! You found a nice loophole. That'll increase your weekly income!\n\n" +
+				"{0}'s wisdom up.\n" + 
+				"{0}'s insanity down.\n" + 
+				"{0}'s income up.\n",
+				manager.PlayerFamily.Grandpa.Name);
+		}
+		else  
+		{
+			manager.PlayerFamily.Grandpa.Insanity += 5;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+			returnObj.OutcomeDescription = String.Format (
+				"Hm, maybe you were imagining things...\n\n" +
+				"{0}'s insanity up.\n",
+				manager.PlayerFamily.Grandpa.Name);
+		}
+		return returnObj;
+	}
 }
