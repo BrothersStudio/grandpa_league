@@ -41,6 +41,11 @@ public class Main : MonoBehaviour {
     public GameObject ModalBlockingPanel;
     public Canvas MainCanvas;
 
+    public GameObject SettingsPanel;
+    public GameObject SaveButton;
+    public GameObject ResumeButton;
+    public GameObject QuitButton;
+
     bool userInputting = false;
 
 
@@ -353,6 +358,26 @@ public class Main : MonoBehaviour {
         }
     }
 
+    public void PopupSettingsMenu()
+    {
+        SettingsPanel.SetActive(true);
+        ModalBlockingPanel.SetActive(true);
+        MainCanvas.GetComponent<CanvasGroup>().blocksRaycasts = false;
+        SaveButton.GetComponent<Button>().onClick.AddListener(() =>
+        {
+            //save functionality
+        });
+        ResumeButton.GetComponent<Button>().onClick.AddListener(() =>
+        {
+            SettingsPanel.SetActive(false);
+            ModalBlockingPanel.SetActive(false);
+            MainCanvas.GetComponent<CanvasGroup>().blocksRaycasts = true;
+        });
+        QuitButton.GetComponent<Button>().onClick.AddListener(() =>
+        {
+            Application.Quit();
+        });
+    }
 
     public void DisplayContent(string type)
 	{
