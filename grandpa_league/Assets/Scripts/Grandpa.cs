@@ -21,6 +21,7 @@ public class Grandpa : Character
 
         this.m_insanityGrowth = -1 * (this.m_insanity / 300);
         this.m_wisdomGrowth = (this.m_wisdom / 300);
+		this.m_moneyGrowth = (this.m_money / 10);
 	}
 
     public Grandpa(string name)
