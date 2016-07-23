@@ -287,6 +287,7 @@ public class Main : MonoBehaviour {
         AcceptButton.GetComponent<Button>().onClick.AddListener(() =>
         {
             userInputting = false;
+            ev.Requirements.Accept = true;
             ev.Requirements.Money = MoneyInputField.GetComponent<InputField>().text == "" ? 0 : Int32.Parse(MoneyInputField.GetComponent<InputField>().text);
             ev.Requirements.Child = selectedChild;
             ev.Requirements.Parent = selectedParent;
