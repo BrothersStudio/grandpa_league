@@ -4,4 +4,5 @@
   <qualification name="IN_SCHOOL_BAND"      id="1" />
   <qualification name="IS_SINGLE"           id="2" />
   <qualification name="ON_FOOTBALL_TEAM"    id="3" />
+  <qualification name="ON_SOCCER_TEAM"      id="4" />
 </qualifications>
