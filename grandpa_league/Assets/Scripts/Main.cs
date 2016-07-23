@@ -86,9 +86,9 @@ public class Main : MonoBehaviour {
         {
             Debug.Assert(ev != null);
             var day = m_dataManager.Calendar.GetCurrentDay();
-            string debugString = String.Format("Currently running event \"{0}\", ID: {1}  on date {2}/{3}/{4}. Has qualification {5} and age requirement {6}-{7}.\n Requires Random: Parent? {8}, Child? {9}, Grandpa? {10} \n Requires: Money? {11}, Accept/Reject? {12} \n Also has minMonth {13} and maxMonth {14}. Priority {15}",
+            string debugString = String.Format("Currently running event \"{0}\", ID: {1}  on date {2}/{3}/{4}. Has qualification {5} and age requirement {6}-{7}.\n Requires Random: Parent? {8}, Child? {9}, Grandpa? {10} \n Requires: Money? {11}, Accept/Reject? {12}, Child? {16} Parent? {17} \n Also has minMonth {13} and maxMonth {14}. Priority {15}",
                                     ev.EventName, ev.EventId, day["month"], day["day"], day["year"], Qualification.GetQualificationString(ev.Requirements.Qualification), ev.Requirements.MinAge, ev.Requirements.MaxAge, ev.Requirements.RandomParent, ev.Requirements.RandomChild, ev.Requirements.RandomGrandpa,
-                                    ev.Requirements.ReqMoney, ev.Requirements.ReqAccept, ev.EventMonth, ev.EventMonthMax, ev.Priority);
+                                    ev.Requirements.ReqMoney, ev.Requirements.ReqAccept, ev.EventMonth, ev.EventMonthMax, ev.Priority, ev.Requirements.ReqChild, ev.Requirements.ReqParent);
             Debug.Log(debugString);
 
             if (ev.Requirements.Qualification != Qualification.GetQualificationByString("NONE"))
@@ -119,11 +119,21 @@ public class Main : MonoBehaviour {
 
             //now we will loop through and check if we need any random things..(without overwriting the random char we just possibly chose)
             if (ev.Requirements.RandomChild && ev.Requirements.Child == null)
+            {
                 ev.Requirements.Child = m_dataManager.PlayerFamily.GetRandomEligibleChild(ev.Requirements.MinAge, ev.Requirements.MaxAge);
+                Debug.Log(String.Format("chose child:{0} for event", ev.Requirements.Child.Name));
+            }
             if (ev.Requirements.RandomParent && ev.Requirements.Parent == null)
+            {
                 ev.Requirements.Parent = m_dataManager.PlayerFamily.GetRandomParent();
+                Debug.Log(String.Format("chose parent:{0} for event", ev.Requirements.Parent.Name));
+
+            }
             if (ev.Requirements.RandomGrandpa && ev.Requirements.Grandpa == null)
+            {
                 ev.Requirements.Grandpa = m_dataManager.LeagueFamilies[Constants.RANDOM.Next(0, m_dataManager.LeagueFamilies.Count)].Grandpa;
+                Debug.Log(String.Format("chose grandpa:{0} for event", ev.Requirements.Grandpa.Name));
+            }
 
 
             //DISPLAY THE DESCRIPTION OF THE EVENT AND PROMPT USER FOR INPUT
@@ -131,6 +141,7 @@ public class Main : MonoBehaviour {
 
             if (ev.Requirements.HasInputRequirements())
             {
+                ev.FormatEventDescription(m_dataManager);
                 CreateAndDisplayInputPanel(ev);
                 userInputting = true;
 
@@ -145,7 +156,7 @@ public class Main : MonoBehaviour {
             Outcome eventOutcome = ev.RunEvent(m_dataManager);
 
             //CHECK THE OUTCOME
-            if(ev.Priority == 1 || ev.Priority == 2)
+            if((ev.Priority == 1 || ev.Priority == 2)  && eventOutcome.Status != (int)Enums.EventOutcome.PASS)
             {
                 CreateAndDisplayResultPanel(eventOutcome);
                 userInputting = true;
