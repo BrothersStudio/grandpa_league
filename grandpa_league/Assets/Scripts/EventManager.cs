@@ -320,7 +320,7 @@ public static class EventManager
 
 			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
 			returnObj.OutcomeDescription = String.Format (
-				"Great job, {0}! Now everyone will value you more as a person!\n\n" +
+				"Great ball tossing, {0}! Now everyone will value you more as a person!\n\n" +
 				"{0}'s athleticism up.\n" + 
 				"{0}'s popularity up.\n" + 
 				"{0}'s artistry down.\n" + 
@@ -342,6 +342,87 @@ public static class EventManager
 				"{0}'s popularity down.\n" + 
 				"{1}'s pride down.\n",
 				requirements.Child.Name, manager.PlayerFamily.Grandpa.Name);
+		}
+		return returnObj;
+	}
+
+	// Grandkid is dating head cheerleader
+	public static Outcome Event1008(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+		if (requirements.Child.Popularity > 80 && requirements.Child.Athleticism > 50) 
+		{
+			requirements.Child.Popularity += 20;
+			requirements.Child.PopularityGrowth += 0.1;
+
+			manager.PlayerFamily.Grandpa.Pride += 150;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+			returnObj.OutcomeDescription = String.Format (
+				"Wow, {1} is so popular and talented at football that they are dating the head cheerleader!\n\n" +
+				"{1}'s popularity up.\n" + 
+				"{1}'s popularity growth up.\n" + 
+				"{0}'s pride up.\n",
+				manager.PlayerFamily.Grandpa.Name, requirements.Child.Name);
+		}
+		else  
+		{
+			returnObj.Status = (int)Enums.EventOutcome.PASS;
+		}
+		return returnObj;
+	}
+
+	// Grandkid critically injured
+	public static Outcome Event1009(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+		if (requirements.Child.Athleticism < 80) 
+		{
+			requirements.Child.RemoveQualification (Qualification.GetQualificationByString ("ON_FOOTBALL_TEAM"));
+
+			requirements.Child.Popularity += 10;
+			requirements.Child.Athleticism -= 30;
+			requirements.Child.AthleticismGrowth += 0.1;
+
+			manager.PlayerFamily.Grandpa.Pride -= 50;
+
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE;
+			returnObj.OutcomeDescription = String.Format (
+				"Oh God, seeing your leg fly right out of the socket during that game was brutal! I guess you're off the football team for the year.\n\n" +
+				"{1}'s popularity up.\n" +
+				"{1}'s athleticism way down.\n" +
+				"{0}'s pride down.\n",
+				manager.PlayerFamily.Grandpa.Name, requirements.Child.Name);
+		}
+		else  
+		{
+			returnObj.Status = (int)Enums.EventOutcome.PASS;
+		}
+		return returnObj;
+	}
+
+	// Grandkid great at practice
+	public static Outcome Event1010(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+		if (requirements.Child.Athleticism > 70) 
+		{
+			requirements.Child.Athleticism += 10;
+			requirements.Child.AthleticismGrowth += 0.1;
+
+			manager.PlayerFamily.Grandpa.Pride += 50;
+
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE;
+			returnObj.OutcomeDescription = String.Format (
+				"Holy cow, {1} is just kicking ass at practice. It's clear to everyone that they're a very skilled player!\n\n" +
+				"{1}'s athleticism up.\n" +
+				"{1}'s athleticism growth up.\n" +
+				"{0}'s pride up.\n",
+				manager.PlayerFamily.Grandpa.Name, requirements.Child.Name);
+		}
+		else  
+		{
+			returnObj.Status = (int)Enums.EventOutcome.PASS;
 		}
 		return returnObj;
 	}
@@ -414,7 +495,7 @@ public static class EventManager
 	public static Outcome Event1006(DataManager manager, Requirement requirements)
 	{
 		Outcome returnObj = new Outcome();
-		if (requirements.Child.Artistry > 90) 
+		if (requirements.Child.Artistry > 90 && requirements.Child.Popularity > 50) 
 		{
 			requirements.Child.Artistry += 10;
 			requirements.Child.ArtistryGrowth += 0.1;
@@ -469,6 +550,33 @@ public static class EventManager
 				"{0}'s popularity slightly down.\n" + 
 				"{1}'s pride down.\n",
 				requirements.Child.Name, manager.PlayerFamily.Grandpa.Name);
+		}
+		return returnObj;
+	}
+
+	// Grandpa finds buried gold
+	public static Outcome Event1007(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+		if (manager.PlayerFamily.Grandpa.Wisdom > 30 && manager.PlayerFamily.Grandpa.Insanity < 70) 
+		{
+			manager.PlayerFamily.Grandpa.Wisdom += 5;
+			manager.PlayerFamily.Grandpa.Insanity -= 5;
+
+			int found_amount = 1000 + Constants.RANDOM.Next (1000, 2000);
+			manager.PlayerFamily.Grandpa.Money += found_amount;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+			returnObj.OutcomeDescription = String.Format (
+				"Grandpa was looking through his old treasure maps and remembered ${1} worth of confederate gold he buried many years ago! How lucky!\n\n" +
+				"{0}'s wisdom up.\n" + 
+				"{0}'s insanity down.\n" + 
+				"{0}'s money up.\n",
+				manager.PlayerFamily.Grandpa.Name, found_amount);
+		}
+		else  
+		{
+			returnObj.Status = (int)Enums.EventOutcome.PASS;
 		}
 		return returnObj;
 	}
