@@ -11,15 +11,23 @@ public class LoadLeaguePanel : MonoBehaviour {
 	public GameObject league_placement_button_prefab;
 	public GameObject league_placement_score_prefab;
 
+	public GameObject family_panel;
+	public GameObject family_panel_content;
+
 	private List<GameObject> league_placement_button_prefab_list = new List<GameObject>();
 	private List<GameObject> league_placement_score_prefab_list = new List<GameObject>();
 
 	public void DisplayLeagueStandings(Family PlayerFamily, List<Family> LeagueFamilies)
 	{
-		LeagueFamilies.Add (PlayerFamily);
+		List<Family> theseFamilies = new List<Family>();
+		foreach (Family family in LeagueFamilies) 
+		{
+			theseFamilies.Add (family);
+		}
+		theseFamilies.Add (PlayerFamily);
 
 		List<double> grandpa_prides = new List<double>();
-		foreach (Family family in LeagueFamilies) 
+		foreach (Family family in theseFamilies) 
 		{
 			grandpa_prides.Add (family.Grandpa.Pride);
 		}
@@ -29,13 +37,16 @@ public class LoadLeaguePanel : MonoBehaviour {
 		int placement_number = 0;
 		foreach (double pride in grandpa_prides) 
 		{
-			foreach (Family family in LeagueFamilies) 
+			foreach (Family family in theseFamilies) 
 			{
 				if (pride == family.Grandpa.Pride) 
 				{
 					MakeFamilyButton (family, league_placement_button_prefab_list, league_panel, placement_number);
+
+					DisplayFamily (family, placement_number);
+
 					MakeScoreText (family, league_placement_score_prefab_list, league_panel, placement_number);
-					LeagueFamilies.Remove (family);
+					theseFamilies.Remove (family);
 					break;
 				}
 			}
@@ -83,6 +94,30 @@ public class LoadLeaguePanel : MonoBehaviour {
 		new_score.GetComponentInChildren<Text>().text = family.Grandpa.Pride.ToString();
 
 		prefab_list.Add (new_score);
+	}
+
+	private void DisplayFamily(Family family, int button_inds)
+	{
+		league_placement_button_prefab_list[button_inds].GetComponent<Button>().onClick.AddListener(() =>
+			{
+				family_panel.SetActive(true);
+				family_panel_content.GetComponent<LoadFamilyPanel> ().DisplayFamily (family);
+			});
+	}
+
+	public void DestroyPanels ()
+	{
+		foreach (GameObject button in league_placement_button_prefab_list) 
+		{
+			Destroy (button);
+		}
+		league_placement_button_prefab_list.Clear ();
+
+		foreach (GameObject button in league_placement_score_prefab_list) 
+		{
+			Destroy (button);
+		}
+		league_placement_score_prefab_list.Clear ();
 	}
 }
 

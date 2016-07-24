@@ -1746,9 +1746,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 294479211}
-  - {fileID: 1455270659}
   - {fileID: 477448510}
   - {fileID: 799494478}
+  - {fileID: 1455270659}
   - {fileID: 867924107}
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -2594,6 +2594,17 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 844725695}
         m_MethodName: PlayClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 799494481}
+        m_MethodName: DestroyPanels
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4141,7 +4152,7 @@ RectTransform:
   - {fileID: 1216277427}
   - {fileID: 280353300}
   m_Father: {fileID: 169983692}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -6528,7 +6539,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Current Family
+  m_Text: Family
 --- !u!222 &740555292
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7034,7 +7045,7 @@ RectTransform:
   - {fileID: 1041275381}
   - {fileID: 1647274652}
   m_Father: {fileID: 169983692}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0.000030517578, y: -0.000061035156}
@@ -7089,6 +7100,8 @@ MonoBehaviour:
     type: 2}
   league_placement_score_prefab: {fileID: 138846, guid: ab65b5741fdff6844ae4cd332000fd93,
     type: 2}
+  family_panel: {fileID: 1455270658}
+  family_panel_content: {fileID: 1810429897}
 --- !u!1 &801416602
 GameObject:
   m_ObjectHideFlags: 0
@@ -12129,7 +12142,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2055594405}
   m_HandleRect: {fileID: 2055594404}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -12416,7 +12429,7 @@ RectTransform:
   - {fileID: 2070454085}
   - {fileID: 971843631}
   m_Father: {fileID: 169983692}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0.0000076293945}
