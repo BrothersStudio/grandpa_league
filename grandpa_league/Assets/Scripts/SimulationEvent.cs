@@ -29,7 +29,10 @@ public class SimulationEvent
 
         var monthArr = month.Split('-');
         if (monthArr.Length == 1)
+        {
             this.m_eventMonth = Int32.Parse(month);
+            this.m_eventMaxMonth = this.m_eventMonth;
+        }
         else
         {
             this.m_eventMonth = Int32.Parse(monthArr[0]);
@@ -74,6 +77,7 @@ public class SimulationEvent
     public int EventMonth
     {
         get { return this.m_eventMonth; }
+        set { this.m_eventMonth = value;  }
     }
 
     public int Priority

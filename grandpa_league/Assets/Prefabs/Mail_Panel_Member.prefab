@@ -12,7 +12,7 @@ GameObject:
   - 114: {fileID: 11483222}
   - 114: {fileID: 11427696}
   m_Layer: 5
-  m_Name: Trading_Panel_Member
+  m_Name: Mail_Panel_Member
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -88,7 +88,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8088235, g: 0.8088235, b: 0.771, a: 1}
+  m_Color: {r: 0.85294116, g: 0.85294116, b: 0.816, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -183,7 +183,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0.25, y: -15}
-  m_SizeDelta: {x: -0.5, y: 30}
+  m_SizeDelta: {x: -0.5, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &100100000
 Prefab:

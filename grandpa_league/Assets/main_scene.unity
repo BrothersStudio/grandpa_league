@@ -96,7 +96,7 @@ GameObject:
   - 222: {fileID: 14871409}
   - 114: {fileID: 14871408}
   - 114: {fileID: 14871407}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Week 1 Thursday
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,8 +119,8 @@ RectTransform:
   m_RootOrder: 5
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 103, y: 66}
-  m_SizeDelta: {x: 85.5, y: 57}
+  m_AnchoredPosition: {x: 87, y: 76}
+  m_SizeDelta: {x: 62, y: 46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &14871407
 MonoBehaviour:
@@ -281,7 +281,7 @@ GameObject:
   - 222: {fileID: 29920266}
   - 114: {fileID: 29920265}
   - 114: {fileID: 29920264}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Week 4 Sunday
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -304,8 +304,8 @@ RectTransform:
   m_RootOrder: 22
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -291, y: -107}
-  m_SizeDelta: {x: 85.5, y: 57}
+  m_AnchoredPosition: {x: -197, y: -65}
+  m_SizeDelta: {x: 62, y: 46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &29920264
 MonoBehaviour:
@@ -392,7 +392,7 @@ GameObject:
   - 222: {fileID: 39307455}
   - 114: {fileID: 39307454}
   - 114: {fileID: 39307453}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Week 4 Tuesday
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -415,8 +415,8 @@ RectTransform:
   m_RootOrder: 24
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -93, y: -107}
-  m_SizeDelta: {x: 85.5, y: 57}
+  m_AnchoredPosition: {x: -55, y: -65}
+  m_SizeDelta: {x: 62, y: 46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &39307453
 MonoBehaviour:
@@ -577,7 +577,7 @@ GameObject:
   - 222: {fileID: 52205199}
   - 114: {fileID: 52205198}
   - 114: {fileID: 52205197}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Week 4 Friday
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -600,8 +600,8 @@ RectTransform:
   m_RootOrder: 27
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 201, y: -108}
-  m_SizeDelta: {x: 85.5, y: 57}
+  m_AnchoredPosition: {x: 156, y: -65}
+  m_SizeDelta: {x: 62, y: 46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &52205197
 MonoBehaviour:
@@ -677,80 +677,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 52205195}
---- !u!1 &65061007
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 224: {fileID: 65061008}
-  - 222: {fileID: 65061010}
-  - 114: {fileID: 65061009}
-  m_Layer: 5
-  m_Name: Text
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &65061008
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 65061007}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
-  m_Father: {fileID: 1638911829}
-  m_RootOrder: 0
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &65061009
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 65061007}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 25
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 2
-    m_MaxSize: 40
-    m_Alignment: 4
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: Cancel
---- !u!222 &65061010
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 65061007}
 --- !u!1 &80778077
 GameObject:
   m_ObjectHideFlags: 0
@@ -945,6 +871,7 @@ MonoBehaviour:
   family_panel: {fileID: 1810429897}
   trading_panel: {fileID: 477448509}
   league_panel: {fileID: 799494477}
+  mail_panel: {fileID: 315274212}
   EventCanvas: {fileID: 1957800532}
   EventOutcomePanel: {fileID: 1151178615}
   OutcomeTextbox: {fileID: 463889370}
@@ -953,6 +880,8 @@ MonoBehaviour:
     type: 2}
   ChildSelectPanel: {fileID: 946111081}
   ParentSelectPanel: {fileID: 651714835}
+  childBackButton: {fileID: 1988524413}
+  parentBackButton: {fileID: 816446540}
   SelectionModalBlockingPanel: {fileID: 1116634324}
   user_input_panel: {fileID: 525890402}
   AcceptButton: {fileID: 132105063}
@@ -993,7 +922,7 @@ GameObject:
   - 222: {fileID: 100306094}
   - 114: {fileID: 100306093}
   - 114: {fileID: 100306092}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: SettingsButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1013,11 +942,11 @@ RectTransform:
   m_Children:
   - {fileID: 673442526}
   m_Father: {fileID: 294479211}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 318.20013, y: -195.3}
-  m_SizeDelta: {x: 32, y: 30}
+  m_AnchoredPosition: {x: 238, y: -148}
+  m_SizeDelta: {x: 29, y: 29}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &100306092
 MonoBehaviour:
@@ -1114,7 +1043,7 @@ GameObject:
   - 224: {fileID: 108834000}
   - 222: {fileID: 108834002}
   - 114: {fileID: 108834001}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1485,7 +1414,7 @@ GameObject:
   - 222: {fileID: 134145455}
   - 114: {fileID: 134145454}
   - 114: {fileID: 134145453}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Week 1 Monday
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1508,8 +1437,8 @@ RectTransform:
   m_RootOrder: 2
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -192, y: 66}
-  m_SizeDelta: {x: 85.5, y: 57}
+  m_AnchoredPosition: {x: -126, y: 76}
+  m_SizeDelta: {x: 62, y: 46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &134145453
 MonoBehaviour:
@@ -1585,6 +1514,80 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 134145451}
+--- !u!1 &158121661
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 158121662}
+  - 222: {fileID: 158121664}
+  - 114: {fileID: 158121663}
+  m_Layer: 0
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &158121662
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 158121661}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 1396938881}
+  m_RootOrder: 0
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &158121663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 158121661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Close
+--- !u!222 &158121664
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 158121661}
 --- !u!1 &164488969
 GameObject:
   m_ObjectHideFlags: 0
@@ -1595,7 +1598,7 @@ GameObject:
   - 224: {fileID: 164488970}
   - 222: {fileID: 164488972}
   - 114: {fileID: 164488971}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Cuteness
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1671,7 +1674,7 @@ GameObject:
   - 114: {fileID: 169983690}
   - 114: {fileID: 169983689}
   - 225: {fileID: 169983693}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1749,7 +1752,6 @@ RectTransform:
   - {fileID: 1455270659}
   - {fileID: 477448510}
   - {fileID: 799494478}
-  - {fileID: 867924107}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_AnchorMin: {x: 0, y: 0}
@@ -1778,7 +1780,7 @@ GameObject:
   - 224: {fileID: 185939355}
   - 222: {fileID: 185939357}
   - 114: {fileID: 185939356}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Placeholder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1851,7 +1853,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 190710751}
   - 82: {fileID: 190710750}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: MusicPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1957,7 +1959,7 @@ GameObject:
   - 224: {fileID: 202383451}
   - 222: {fileID: 202383453}
   - 114: {fileID: 202383452}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Insanity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2032,7 +2034,7 @@ GameObject:
   - 222: {fileID: 223018708}
   - 114: {fileID: 223018707}
   - 114: {fileID: 223018706}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Week 2 Sunday
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2055,8 +2057,8 @@ RectTransform:
   m_RootOrder: 8
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -291, y: 9}
-  m_SizeDelta: {x: 85.5, y: 57}
+  m_AnchoredPosition: {x: -197, y: 29}
+  m_SizeDelta: {x: 62, y: 46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &223018706
 MonoBehaviour:
@@ -2142,7 +2144,7 @@ GameObject:
   - 224: {fileID: 238229693}
   - 222: {fileID: 238229695}
   - 114: {fileID: 238229694}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Intelligence
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2216,7 +2218,7 @@ GameObject:
   - 224: {fileID: 238505648}
   - 222: {fileID: 238505650}
   - 114: {fileID: 238505649}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Placeholder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2291,7 +2293,7 @@ GameObject:
   - 222: {fileID: 243454086}
   - 114: {fileID: 243454085}
   - 114: {fileID: 243454084}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Week 2 Monday
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2314,8 +2316,8 @@ RectTransform:
   m_RootOrder: 9
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -192, y: 9}
-  m_SizeDelta: {x: 85.5, y: 57}
+  m_AnchoredPosition: {x: -126, y: 29}
+  m_SizeDelta: {x: 62, y: 46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &243454084
 MonoBehaviour:
@@ -2403,7 +2405,7 @@ GameObject:
   - 114: {fileID: 245661080}
   - 114: {fileID: 245661079}
   - 114: {fileID: 245661078}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Scroll Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2423,11 +2425,11 @@ RectTransform:
   m_Children:
   - {fileID: 315274213}
   m_Father: {fileID: 867924107}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -13.250011, y: 39.749992}
-  m_SizeDelta: {x: -53.5, y: -103.5}
+  m_AnchoredPosition: {x: -10, y: 0}
+  m_SizeDelta: {x: -40, y: -11}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &245661078
 MonoBehaviour:
@@ -2516,7 +2518,7 @@ GameObject:
   - 222: {fileID: 272920027}
   - 114: {fileID: 272920026}
   - 114: {fileID: 272920025}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Close Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2648,7 +2650,7 @@ GameObject:
   - 224: {fileID: 273204331}
   - 222: {fileID: 273204333}
   - 114: {fileID: 273204332}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2723,7 +2725,7 @@ GameObject:
   - 222: {fileID: 280353303}
   - 114: {fileID: 280353302}
   - 114: {fileID: 280353301}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Families Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2978,7 +2980,7 @@ GameObject:
   - 222: {fileID: 293998767}
   - 114: {fileID: 293998766}
   - 114: {fileID: 293998765}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Week 2 Friday
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3001,8 +3003,8 @@ RectTransform:
   m_RootOrder: 13
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 201, y: 8}
-  m_SizeDelta: {x: 85.5, y: 57}
+  m_AnchoredPosition: {x: 156, y: 29}
+  m_SizeDelta: {x: 62, y: 46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &293998765
 MonoBehaviour:
@@ -3088,7 +3090,7 @@ GameObject:
   - 224: {fileID: 294479211}
   - 222: {fileID: 294479213}
   - 114: {fileID: 294479212}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Main Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3111,6 +3113,7 @@ RectTransform:
   - {fileID: 2009469715}
   - {fileID: 776623044}
   - {fileID: 1601415298}
+  - {fileID: 867924107}
   - {fileID: 1101947629}
   - {fileID: 100306091}
   - {fileID: 930089376}
@@ -3118,8 +3121,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -96, y: -35}
+  m_SizeDelta: {x: -193, y: -89}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &294479212
 MonoBehaviour:
@@ -3275,7 +3278,8 @@ GameObject:
   - 224: {fileID: 315274213}
   - 222: {fileID: 315274215}
   - 114: {fileID: 315274214}
-  m_Layer: 5
+  - 114: {fileID: 315274216}
+  m_Layer: 0
   m_Name: Scroll Panel Content
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3334,6 +3338,98 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 315274212}
+--- !u!114 &315274216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 315274212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f1a04d2b55cce4479a62272a00fd90a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mailPanel: {fileID: 867924106}
+  contentPanel: {fileID: 315274212}
+  mailButtonPrefab: {fileID: 143406, guid: a24febd1a0e47e74f98721390a37548c, type: 2}
+  mailTextPanel: {fileID: 823795432}
+  mailCloseButton: {fileID: 1396938880}
+  ModalBlockingPanel: {fileID: 930089375}
+  MainCanvas: {fileID: 169983691}
+--- !u!1 &315450779
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 315450780}
+  - 222: {fileID: 315450782}
+  - 114: {fileID: 315450781}
+  m_Layer: 0
+  m_Name: Date
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &315450780
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 315450779}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 823795433}
+  m_RootOrder: 0
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -211, y: 156}
+  m_SizeDelta: {x: 193, y: 25}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &315450781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 315450779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: Date
+--- !u!222 &315450782
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 315450779}
 --- !u!1 &324838669
 GameObject:
   m_ObjectHideFlags: 0
@@ -3419,7 +3515,7 @@ GameObject:
   - 222: {fileID: 334360020}
   - 114: {fileID: 334360019}
   - 114: {fileID: 334360018}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Week 2 Thursday
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3442,8 +3538,8 @@ RectTransform:
   m_RootOrder: 12
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 103, y: 9}
-  m_SizeDelta: {x: 85.5, y: 57}
+  m_AnchoredPosition: {x: 87, y: 29}
+  m_SizeDelta: {x: 62, y: 46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &334360018
 MonoBehaviour:
@@ -3530,7 +3626,7 @@ GameObject:
   - 222: {fileID: 361463786}
   - 114: {fileID: 361463785}
   - 114: {fileID: 361463784}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Week 4 Thursday
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3553,8 +3649,8 @@ RectTransform:
   m_RootOrder: 26
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 103, y: -107}
-  m_SizeDelta: {x: 85.5, y: 57}
+  m_AnchoredPosition: {x: 87, y: -65}
+  m_SizeDelta: {x: 62, y: 46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &361463784
 MonoBehaviour:
@@ -3773,7 +3869,7 @@ GameObject:
   - 224: {fileID: 441199637}
   - 222: {fileID: 441199639}
   - 114: {fileID: 441199638}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Enemy Family Content
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4108,7 +4204,7 @@ GameObject:
   - 222: {fileID: 477448512}
   - 114: {fileID: 477448511}
   - 114: {fileID: 477448513}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Trading Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4209,7 +4305,7 @@ GameObject:
   - 224: {fileID: 497280965}
   - 222: {fileID: 497280967}
   - 114: {fileID: 497280966}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4273,6 +4369,80 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 497280964}
+--- !u!1 &497322088
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 497322089}
+  - 222: {fileID: 497322091}
+  - 114: {fileID: 497322090}
+  m_Layer: 0
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &497322089
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 497322088}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 816446544}
+  m_RootOrder: 0
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &497322090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 497322088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: aaf73147a326bde41ab03ef27a8a63a1, type: 3}
+    m_FontSize: 16
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Back
+--- !u!222 &497322091
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 497322088}
 --- !u!1 &503039581
 GameObject:
   m_ObjectHideFlags: 0
@@ -4283,7 +4453,7 @@ GameObject:
   - 224: {fileID: 503039582}
   - 222: {fileID: 503039584}
   - 114: {fileID: 503039583}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4352,7 +4522,7 @@ GameObject:
   - 222: {fileID: 511488343}
   - 114: {fileID: 511488342}
   - 114: {fileID: 511488341}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Week 4 Monday
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4375,8 +4545,8 @@ RectTransform:
   m_RootOrder: 23
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -192, y: -107}
-  m_SizeDelta: {x: 85.5, y: 57}
+  m_AnchoredPosition: {x: -126, y: -65}
+  m_SizeDelta: {x: 62, y: 46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &511488341
 MonoBehaviour:
@@ -4462,7 +4632,7 @@ GameObject:
   - 224: {fileID: 512214151}
   - 222: {fileID: 512214153}
   - 114: {fileID: 512214152}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4538,7 +4708,7 @@ GameObject:
   - 114: {fileID: 516063491}
   - 114: {fileID: 516063490}
   - 114: {fileID: 516063489}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Enemy Families
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4651,7 +4821,7 @@ GameObject:
   - 222: {fileID: 524805129}
   - 114: {fileID: 524805128}
   - 114: {fileID: 524805127}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Scrollbar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4674,8 +4844,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 380, y: 39.749985}
-  m_SizeDelta: {x: 40, y: 346.5}
+  m_AnchoredPosition: {x: 183, y: 0.0013885}
+  m_SizeDelta: {x: 22, y: 441}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &524805127
 MonoBehaviour:
@@ -4715,8 +4885,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1707659020}
   m_HandleRect: {fileID: 1707659019}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.47892192
+  m_Value: 0.9999937
+  m_Size: 0.5490425
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4843,7 +5013,7 @@ GameObject:
   - 224: {fileID: 534882814}
   - 222: {fileID: 534882816}
   - 114: {fileID: 534882815}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4917,7 +5087,7 @@ GameObject:
   - 224: {fileID: 555871521}
   - 222: {fileID: 555871523}
   - 114: {fileID: 555871522}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Offer Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4991,7 +5161,7 @@ GameObject:
   - 224: {fileID: 562156406}
   - 222: {fileID: 562156408}
   - 114: {fileID: 562156407}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Popularity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5065,7 +5235,7 @@ GameObject:
   - 224: {fileID: 580417335}
   - 222: {fileID: 580417337}
   - 114: {fileID: 580417336}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5139,7 +5309,7 @@ GameObject:
   - 224: {fileID: 599286257}
   - 222: {fileID: 599286259}
   - 114: {fileID: 599286258}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5213,7 +5383,7 @@ GameObject:
   - 224: {fileID: 603290353}
   - 222: {fileID: 603290355}
   - 114: {fileID: 603290354}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5287,7 +5457,7 @@ GameObject:
   - 224: {fileID: 605203322}
   - 222: {fileID: 605203324}
   - 114: {fileID: 605203323}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5361,7 +5531,7 @@ GameObject:
   - 224: {fileID: 611821498}
   - 222: {fileID: 611821500}
   - 114: {fileID: 611821499}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5650,6 +5820,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1115451427}
+  - {fileID: 816446544}
   m_Father: {fileID: 1826629172}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
@@ -5700,7 +5871,7 @@ GameObject:
   - 224: {fileID: 652989812}
   - 222: {fileID: 652989814}
   - 114: {fileID: 652989813}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5774,7 +5945,7 @@ GameObject:
   - 224: {fileID: 656726030}
   - 222: {fileID: 656726032}
   - 114: {fileID: 656726031}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Age
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5848,7 +6019,7 @@ GameObject:
   - 224: {fileID: 673442526}
   - 222: {fileID: 673442528}
   - 114: {fileID: 673442527}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5870,8 +6041,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0.000043868837, y: -0.0008327961}
+  m_SizeDelta: {x: -0.00020218, y: 0.0018311}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &673442527
 MonoBehaviour:
@@ -5905,7 +6076,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: S
+  m_Text: '!'
 --- !u!222 &673442528
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5923,7 +6094,7 @@ GameObject:
   - 82: {fileID: 702909311}
   - 82: {fileID: 702909310}
   - 82: {fileID: 702909309}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: FxPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6176,7 +6347,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 224: {fileID: 712575622}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Sliding Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6213,7 +6384,7 @@ GameObject:
   - 222: {fileID: 715028802}
   - 114: {fileID: 715028801}
   - 114: {fileID: 715028800}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Week 4 Saturday
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6236,8 +6407,8 @@ RectTransform:
   m_RootOrder: 28
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 300, y: -108}
-  m_SizeDelta: {x: 85.5, y: 57}
+  m_AnchoredPosition: {x: 227, y: -65}
+  m_SizeDelta: {x: 62, y: 46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &715028800
 MonoBehaviour:
@@ -6323,7 +6494,7 @@ GameObject:
   - 224: {fileID: 732820013}
   - 222: {fileID: 732820015}
   - 114: {fileID: 732820014}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6397,7 +6568,7 @@ GameObject:
   - 224: {fileID: 740555290}
   - 222: {fileID: 740555292}
   - 114: {fileID: 740555291}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6531,7 +6702,7 @@ GameObject:
   - 222: {fileID: 768580683}
   - 114: {fileID: 768580682}
   - 114: {fileID: 768580681}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Week 4 Wednesday
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6554,8 +6725,8 @@ RectTransform:
   m_RootOrder: 25
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5, y: -107}
-  m_SizeDelta: {x: 85.5, y: 57}
+  m_AnchoredPosition: {x: 15, y: -65}
+  m_SizeDelta: {x: 62, y: 46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &768580681
 MonoBehaviour:
@@ -6642,7 +6813,7 @@ GameObject:
   - 222: {fileID: 776623047}
   - 114: {fileID: 776623046}
   - 114: {fileID: 776623045}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: League Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6665,7 +6836,7 @@ RectTransform:
   m_RootOrder: 3
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 82.53, y: 195.31}
+  m_AnchoredPosition: {x: 163, y: 160}
   m_SizeDelta: {x: 135.4, y: 50.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &776623045
@@ -6785,7 +6956,7 @@ GameObject:
   - 224: {fileID: 777614416}
   - 222: {fileID: 777614418}
   - 114: {fileID: 777614417}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6859,7 +7030,7 @@ GameObject:
   - 224: {fileID: 787536914}
   - 222: {fileID: 787536916}
   - 114: {fileID: 787536915}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Intelligence
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6934,7 +7105,7 @@ GameObject:
   - 222: {fileID: 799494480}
   - 114: {fileID: 799494479}
   - 114: {fileID: 799494481}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: League Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7021,7 +7192,7 @@ GameObject:
   - 224: {fileID: 801416606}
   - 222: {fileID: 801416605}
   - 114: {fileID: 801416604}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Your Family Content
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7089,7 +7260,7 @@ GameObject:
   - 224: {fileID: 803601305}
   - 222: {fileID: 803601307}
   - 114: {fileID: 803601306}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7157,7 +7328,7 @@ GameObject:
   - 224: {fileID: 815587114}
   - 222: {fileID: 815587116}
   - 114: {fileID: 815587115}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7203,7 +7374,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: aaf73147a326bde41ab03ef27a8a63a1, type: 3}
-    m_FontSize: 18
+    m_FontSize: 12
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -7221,6 +7392,212 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 815587113}
+--- !u!1 &816446540
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 816446544}
+  - 222: {fileID: 816446543}
+  - 114: {fileID: 816446542}
+  - 114: {fileID: 816446541}
+  m_Layer: 0
+  m_Name: BackButton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &816446541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 816446540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 816446542}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 525890402}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 844725695}
+        m_MethodName: PlayClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &816446542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 816446540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: d2851e8b394b091458f4652198592e84, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &816446543
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 816446540}
+--- !u!224 &816446544
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 816446540}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 3.999629}
+  m_LocalScale: {x: 1.1662499, y: 1.1662499, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 497322089}
+  m_Father: {fileID: 651714836}
+  m_RootOrder: 1
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -0.000030518, y: -149.875}
+  m_SizeDelta: {x: 79, y: 24}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &823795432
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 823795433}
+  - 222: {fileID: 823795435}
+  - 114: {fileID: 823795434}
+  m_Layer: 0
+  m_Name: MailTextPanel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &823795433
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 823795432}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 315450780}
+  - {fileID: 1569026356}
+  - {fileID: 837855463}
+  - {fileID: 1792615864}
+  - {fileID: 1396938881}
+  m_Father: {fileID: 1957800533}
+  m_RootOrder: 4
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -10, y: 10}
+  m_SizeDelta: {x: -158, y: -103}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &823795434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 823795432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &823795435
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 823795432}
 --- !u!1 &824903584
 GameObject:
   m_ObjectHideFlags: 0
@@ -7232,7 +7609,7 @@ GameObject:
   - 222: {fileID: 824903588}
   - 114: {fileID: 824903587}
   - 114: {fileID: 824903586}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Their Money
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7355,6 +7732,80 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 824903584}
+--- !u!1 &837855462
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 837855463}
+  - 222: {fileID: 837855465}
+  - 114: {fileID: 837855464}
+  m_Layer: 0
+  m_Name: Subject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &837855463
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 837855462}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 823795433}
+  m_RootOrder: 2
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -1, y: 109}
+  m_SizeDelta: {x: 613, y: 26}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &837855464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 837855462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'Subject: '
+--- !u!222 &837855465
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 837855462}
 --- !u!1 &844725688
 GameObject:
   m_ObjectHideFlags: 0
@@ -7369,7 +7820,7 @@ GameObject:
   - 81: {fileID: 844725690}
   - 114: {fileID: 844725694}
   - 114: {fileID: 844725695}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7383,7 +7834,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 844725688}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 466.5, y: 262.5, z: 10}
+  m_LocalPosition: {x: 468.97, y: 261.51, z: 99.51}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -7429,9 +7880,9 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
-  orthographic: 1
-  orthographic size: 5
+  field of view: 3.4
+  orthographic: 0
+  orthographic size: 4
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -7441,7 +7892,7 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 0
-  m_OcclusionCulling: 1
+  m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
   m_StereoMirrorMode: 0
@@ -7559,13 +8010,13 @@ GameObject:
   - 224: {fileID: 867924107}
   - 222: {fileID: 867924109}
   - 114: {fileID: 867924108}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Mail Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &867924107
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7578,14 +8029,13 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 524805126}
-  - {fileID: 1638911829}
   - {fileID: 245661077}
-  m_Father: {fileID: 169983692}
-  m_RootOrder: 4
+  m_Father: {fileID: 294479211}
+  m_RootOrder: 5
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 800, y: 450}
+  m_AnchoredPosition: {x: 388.9986, y: 14.000267}
+  m_SizeDelta: {x: 390, y: 470}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &867924108
 MonoBehaviour:
@@ -7631,7 +8081,7 @@ GameObject:
   - 222: {fileID: 872505801}
   - 114: {fileID: 872505800}
   - 114: {fileID: 872505799}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Week 3 Saturday
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7654,8 +8104,8 @@ RectTransform:
   m_RootOrder: 21
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 300, y: -50}
-  m_SizeDelta: {x: 85.5, y: 57}
+  m_AnchoredPosition: {x: 227, y: -19}
+  m_SizeDelta: {x: 62, y: 46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &872505799
 MonoBehaviour:
@@ -7741,7 +8191,7 @@ GameObject:
   - 224: {fileID: 887288675}
   - 222: {fileID: 887288677}
   - 114: {fileID: 887288676}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7813,7 +8263,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 224: {fileID: 889498535}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Sliding Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7917,7 +8367,7 @@ GameObject:
   - 224: {fileID: 893621425}
   - 222: {fileID: 893621427}
   - 114: {fileID: 893621426}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8139,7 +8589,7 @@ GameObject:
   - 224: {fileID: 930089376}
   - 222: {fileID: 930089378}
   - 114: {fileID: 930089377}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: ModalBlockingPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8158,11 +8608,11 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 294479211}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 101, y: 34}
+  m_SizeDelta: {x: 292, y: 143}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &930089377
 MonoBehaviour:
@@ -8207,7 +8657,7 @@ GameObject:
   - 224: {fileID: 941611603}
   - 222: {fileID: 941611605}
   - 114: {fileID: 941611604}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8300,6 +8750,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 903500885}
+  - {fileID: 1988524414}
   m_Father: {fileID: 1826629172}
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
@@ -8350,7 +8801,7 @@ GameObject:
   - 224: {fileID: 957601369}
   - 222: {fileID: 957601371}
   - 114: {fileID: 957601370}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8372,7 +8823,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -157.5, y: 296}
+  m_AnchoredPosition: {x: 0.0011902, y: 363}
   m_SizeDelta: {x: 315, y: 92}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &957601370
@@ -8407,9 +8858,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'BUTTS
-
-'
+  m_Text: 
 --- !u!222 &957601371
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8427,7 +8876,7 @@ GameObject:
   - 222: {fileID: 971843634}
   - 114: {fileID: 971843633}
   - 114: {fileID: 971843632}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Close Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8571,7 +9020,7 @@ GameObject:
   - 222: {fileID: 972074595}
   - 114: {fileID: 972074594}
   - 114: {fileID: 972074593}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Enemy Families Scrollbar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8686,7 +9135,7 @@ GameObject:
   - 224: {fileID: 979069254}
   - 222: {fileID: 979069256}
   - 114: {fileID: 979069255}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8760,7 +9209,7 @@ GameObject:
   - 224: {fileID: 995664789}
   - 222: {fileID: 995664791}
   - 114: {fileID: 995664790}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Parent Character Stat Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8834,7 +9283,7 @@ GameObject:
   - 224: {fileID: 1011234723}
   - 222: {fileID: 1011234725}
   - 114: {fileID: 1011234724}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Wisdom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8909,7 +9358,7 @@ GameObject:
   - 222: {fileID: 1015839165}
   - 114: {fileID: 1015839164}
   - 114: {fileID: 1015839163}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Week 1 Saturday
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8932,8 +9381,8 @@ RectTransform:
   m_RootOrder: 7
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 300, y: 65}
-  m_SizeDelta: {x: 85.5, y: 57}
+  m_AnchoredPosition: {x: 227, y: 75}
+  m_SizeDelta: {x: 62, y: 46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1015839163
 MonoBehaviour:
@@ -9094,7 +9543,7 @@ GameObject:
   - 222: {fileID: 1032649974}
   - 114: {fileID: 1032649973}
   - 114: {fileID: 1032649972}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Week 2 Tuesday
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9117,8 +9566,8 @@ RectTransform:
   m_RootOrder: 10
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -93, y: 9}
-  m_SizeDelta: {x: 85.5, y: 57}
+  m_AnchoredPosition: {x: -55, y: 29}
+  m_SizeDelta: {x: 62, y: 46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1032649972
 MonoBehaviour:
@@ -9204,7 +9653,7 @@ GameObject:
   - 224: {fileID: 1034340438}
   - 222: {fileID: 1034340440}
   - 114: {fileID: 1034340439}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9278,7 +9727,7 @@ GameObject:
   - 224: {fileID: 1038518546}
   - 222: {fileID: 1038518548}
   - 114: {fileID: 1038518547}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9352,7 +9801,7 @@ GameObject:
   - 224: {fileID: 1041275381}
   - 222: {fileID: 1041275383}
   - 114: {fileID: 1041275382}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Second place image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9420,7 +9869,7 @@ GameObject:
   - 224: {fileID: 1049110220}
   - 222: {fileID: 1049110222}
   - 114: {fileID: 1049110221}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Pride
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9494,7 +9943,7 @@ GameObject:
   - 224: {fileID: 1057342120}
   - 222: {fileID: 1057342122}
   - 114: {fileID: 1057342121}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Money
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9569,7 +10018,7 @@ GameObject:
   - 222: {fileID: 1063469157}
   - 114: {fileID: 1063469156}
   - 114: {fileID: 1063469155}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Your Money
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9777,7 +10226,7 @@ GameObject:
   - 222: {fileID: 1077902865}
   - 114: {fileID: 1077902864}
   - 114: {fileID: 1077902863}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Week 3 Wednesday
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9800,8 +10249,8 @@ RectTransform:
   m_RootOrder: 18
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5, y: -49}
-  m_SizeDelta: {x: 85.5, y: 57}
+  m_AnchoredPosition: {x: 15, y: -18}
+  m_SizeDelta: {x: 62, y: 46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1077902863
 MonoBehaviour:
@@ -9887,7 +10336,7 @@ GameObject:
   - 224: {fileID: 1080902539}
   - 222: {fileID: 1080902540}
   - 114: {fileID: 1080902541}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9955,7 +10404,7 @@ GameObject:
   - 224: {fileID: 1087505109}
   - 222: {fileID: 1087505111}
   - 114: {fileID: 1087505110}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10030,7 +10479,7 @@ GameObject:
   - 222: {fileID: 1101947632}
   - 114: {fileID: 1101947631}
   - 114: {fileID: 1101947630}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Advance Time Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10050,11 +10499,11 @@ RectTransform:
   m_Children:
   - {fileID: 815587114}
   m_Father: {fileID: 294479211}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -176.3}
-  m_SizeDelta: {x: 200, y: 68}
+  m_AnchoredPosition: {x: 5.9503, y: -140}
+  m_SizeDelta: {x: 129, y: 44}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1101947630
 MonoBehaviour:
@@ -10162,7 +10611,7 @@ GameObject:
   - 224: {fileID: 1106446962}
   - 222: {fileID: 1106446964}
   - 114: {fileID: 1106446963}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10378,7 +10827,7 @@ GameObject:
   - 224: {fileID: 1118242477}
   - 222: {fileID: 1118242478}
   - 114: {fileID: 1118242479}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10446,7 +10895,7 @@ GameObject:
   - 224: {fileID: 1124920956}
   - 222: {fileID: 1124920958}
   - 114: {fileID: 1124920957}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10520,7 +10969,7 @@ GameObject:
   - 224: {fileID: 1139134955}
   - 222: {fileID: 1139134957}
   - 114: {fileID: 1139134956}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Grandpa Character Stat Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10595,7 +11044,7 @@ GameObject:
   - 224: {fileID: 1150114117}
   - 222: {fileID: 1150114119}
   - 114: {fileID: 1150114118}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Athleticism
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10740,7 +11189,7 @@ GameObject:
   - 222: {fileID: 1151396160}
   - 114: {fileID: 1151396159}
   - 114: {fileID: 1151396158}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Week 1 Tuesday
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10763,8 +11212,8 @@ RectTransform:
   m_RootOrder: 3
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -93, y: 66}
-  m_SizeDelta: {x: 85.5, y: 57}
+  m_AnchoredPosition: {x: -55, y: 76}
+  m_SizeDelta: {x: 62, y: 46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1151396158
 MonoBehaviour:
@@ -10922,7 +11371,7 @@ GameObject:
   - 224: {fileID: 1216277427}
   - 222: {fileID: 1216277429}
   - 114: {fileID: 1216277428}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Money Text(2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10996,7 +11445,7 @@ GameObject:
   - 224: {fileID: 1241572163}
   - 222: {fileID: 1241572165}
   - 114: {fileID: 1241572164}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11070,7 +11519,7 @@ GameObject:
   - 224: {fileID: 1259086429}
   - 222: {fileID: 1259086431}
   - 114: {fileID: 1259086430}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Receive Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11144,7 +11593,7 @@ GameObject:
   - 224: {fileID: 1282271904}
   - 222: {fileID: 1282271906}
   - 114: {fileID: 1282271905}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11218,7 +11667,7 @@ GameObject:
   - 224: {fileID: 1283827906}
   - 222: {fileID: 1283827908}
   - 114: {fileID: 1283827907}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11290,7 +11739,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 224: {fileID: 1310450788}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Sliding Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11326,7 +11775,7 @@ GameObject:
   - 224: {fileID: 1321349856}
   - 222: {fileID: 1321349858}
   - 114: {fileID: 1321349857}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11400,7 +11849,7 @@ GameObject:
   - 224: {fileID: 1325017760}
   - 222: {fileID: 1325017762}
   - 114: {fileID: 1325017761}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11468,7 +11917,7 @@ GameObject:
   - 224: {fileID: 1331410494}
   - 222: {fileID: 1331410496}
   - 114: {fileID: 1331410495}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11542,7 +11991,7 @@ GameObject:
   - 224: {fileID: 1333801281}
   - 222: {fileID: 1333801283}
   - 114: {fileID: 1333801282}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11616,7 +12065,7 @@ GameObject:
   - 224: {fileID: 1334622031}
   - 222: {fileID: 1334622033}
   - 114: {fileID: 1334622032}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11690,7 +12139,7 @@ GameObject:
   - 224: {fileID: 1381443036}
   - 222: {fileID: 1381443038}
   - 114: {fileID: 1381443037}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11764,7 +12213,7 @@ GameObject:
   - 224: {fileID: 1384975992}
   - 222: {fileID: 1384975994}
   - 114: {fileID: 1384975993}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Age
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11838,7 +12287,7 @@ GameObject:
   - 224: {fileID: 1396844914}
   - 222: {fileID: 1396844916}
   - 114: {fileID: 1396844915}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Age
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11902,6 +12351,128 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1396844913}
+--- !u!1 &1396938880
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 1396938881}
+  - 222: {fileID: 1396938884}
+  - 114: {fileID: 1396938883}
+  - 114: {fileID: 1396938882}
+  m_Layer: 0
+  m_Name: CloseButton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1396938881
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1396938880}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 158121662}
+  m_Father: {fileID: 823795433}
+  m_RootOrder: 4
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 268.5, y: -154}
+  m_SizeDelta: {x: 74, y: 23}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1396938882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1396938880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1396938883}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 823795432}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &1396938883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1396938880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &1396938884
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1396938880}
 --- !u!1 &1401870755
 GameObject:
   m_ObjectHideFlags: 0
@@ -11912,7 +12483,7 @@ GameObject:
   - 224: {fileID: 1401870756}
   - 222: {fileID: 1401870758}
   - 114: {fileID: 1401870757}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11987,7 +12558,7 @@ GameObject:
   - 222: {fileID: 1417528313}
   - 114: {fileID: 1417528312}
   - 114: {fileID: 1417528311}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Family Scrollbar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12176,7 +12747,7 @@ GameObject:
   - 224: {fileID: 1424225929}
   - 222: {fileID: 1424225931}
   - 114: {fileID: 1424225930}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: First place image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12244,7 +12815,7 @@ GameObject:
   - 224: {fileID: 1453086251}
   - 222: {fileID: 1453086253}
   - 114: {fileID: 1453086252}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Their Offer Content
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12312,7 +12883,7 @@ GameObject:
   - 224: {fileID: 1455270659}
   - 222: {fileID: 1455270661}
   - 114: {fileID: 1455270660}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Family Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12387,7 +12958,7 @@ GameObject:
   - 224: {fileID: 1462703161}
   - 222: {fileID: 1462703163}
   - 114: {fileID: 1462703162}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Your Offer Content
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12455,7 +13026,7 @@ GameObject:
   - 224: {fileID: 1467736994}
   - 222: {fileID: 1467736996}
   - 114: {fileID: 1467736995}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12795,7 +13366,7 @@ GameObject:
   - 224: {fileID: 1551440444}
   - 222: {fileID: 1551440446}
   - 114: {fileID: 1551440445}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12870,7 +13441,7 @@ GameObject:
   - 222: {fileID: 1558738121}
   - 114: {fileID: 1558738120}
   - 114: {fileID: 1558738119}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Your Family Scrollbar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12987,7 +13558,7 @@ GameObject:
   - 114: {fileID: 1560565966}
   - 114: {fileID: 1560565965}
   - 114: {fileID: 1560565968}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Scroll Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13099,7 +13670,7 @@ GameObject:
   - 224: {fileID: 1564494793}
   - 222: {fileID: 1564494795}
   - 114: {fileID: 1564494794}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13163,6 +13734,80 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1564494792}
+--- !u!1 &1569026355
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 1569026356}
+  - 222: {fileID: 1569026358}
+  - 114: {fileID: 1569026357}
+  m_Layer: 0
+  m_Name: Sender
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1569026356
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1569026355}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 823795433}
+  m_RootOrder: 1
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -184, y: 133}
+  m_SizeDelta: {x: 246, y: 21}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1569026357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1569026355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: From
+--- !u!222 &1569026358
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1569026355}
 --- !u!1 &1601415297
 GameObject:
   m_ObjectHideFlags: 0
@@ -13174,7 +13819,7 @@ GameObject:
   - 222: {fileID: 1601415301}
   - 114: {fileID: 1601415300}
   - 114: {fileID: 1601415299}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Mail Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13197,7 +13842,7 @@ RectTransform:
   m_RootOrder: 4
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 237.5, y: 194.7}
+  m_AnchoredPosition: {x: 391, y: 224}
   m_SizeDelta: {x: 129.4, y: 50.321}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1601415299
@@ -13296,6 +13941,80 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1601415297}
+--- !u!1 &1607338613
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 1607338614}
+  - 222: {fileID: 1607338616}
+  - 114: {fileID: 1607338615}
+  m_Layer: 0
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1607338614
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1607338613}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 1988524414}
+  m_RootOrder: 0
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1607338615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1607338613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: aaf73147a326bde41ab03ef27a8a63a1, type: 3}
+    m_FontSize: 16
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Back
+--- !u!222 &1607338616
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1607338613}
 --- !u!1 &1610350746
 GameObject:
   m_ObjectHideFlags: 0
@@ -13306,7 +14025,7 @@ GameObject:
   - 224: {fileID: 1610350747}
   - 222: {fileID: 1610350749}
   - 114: {fileID: 1610350748}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13381,7 +14100,7 @@ GameObject:
   - 222: {fileID: 1624804037}
   - 114: {fileID: 1624804036}
   - 114: {fileID: 1624804035}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Family Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13404,7 +14123,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -243.97, y: 195.31}
+  m_AnchoredPosition: {x: -163, y: 160}
   m_SizeDelta: {x: 134, y: 50.921}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1624804035
@@ -13525,7 +14244,7 @@ GameObject:
   - 222: {fileID: 1632474447}
   - 114: {fileID: 1632474446}
   - 114: {fileID: 1632474445}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Week 2 Saturday
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13548,8 +14267,8 @@ RectTransform:
   m_RootOrder: 14
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 300, y: 8}
-  m_SizeDelta: {x: 85.5, y: 57}
+  m_AnchoredPosition: {x: 227, y: 29}
+  m_SizeDelta: {x: 62, y: 46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1632474445
 MonoBehaviour:
@@ -13636,7 +14355,7 @@ GameObject:
   - 222: {fileID: 1634746673}
   - 114: {fileID: 1634746672}
   - 114: {fileID: 1634746671}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Week 2 Wednesday
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13659,8 +14378,8 @@ RectTransform:
   m_RootOrder: 11
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5, y: 9}
-  m_SizeDelta: {x: 85.5, y: 57}
+  m_AnchoredPosition: {x: 15, y: 29}
+  m_SizeDelta: {x: 62, y: 46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1634746671
 MonoBehaviour:
@@ -13736,139 +14455,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1634746669}
---- !u!1 &1638911828
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 224: {fileID: 1638911829}
-  - 222: {fileID: 1638911832}
-  - 114: {fileID: 1638911831}
-  - 114: {fileID: 1638911830}
-  m_Layer: 5
-  m_Name: Cancel Button
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1638911829
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1638911828}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children:
-  - {fileID: 65061008}
-  m_Father: {fileID: 867924107}
-  m_RootOrder: 1
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 300, y: -200}
-  m_SizeDelta: {x: 200, y: 50}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1638911830
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1638911828}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1392445389, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 1638911831}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 867924106}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 844725695}
-        m_MethodName: PlayClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
---- !u!114 &1638911831
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1638911828}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
---- !u!222 &1638911832
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1638911828}
 --- !u!1 &1639088976
 GameObject:
   m_ObjectHideFlags: 0
@@ -13880,7 +14466,7 @@ GameObject:
   - 222: {fileID: 1639088980}
   - 114: {fileID: 1639088979}
   - 114: {fileID: 1639088978}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Week 1 Sunday
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13903,8 +14489,8 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -291, y: 66}
-  m_SizeDelta: {x: 85.5, y: 57}
+  m_AnchoredPosition: {x: -197, y: 76}
+  m_SizeDelta: {x: 62, y: 46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1639088978
 MonoBehaviour:
@@ -13990,7 +14576,7 @@ GameObject:
   - 224: {fileID: 1647274652}
   - 222: {fileID: 1647274654}
   - 114: {fileID: 1647274653}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Third place image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14058,7 +14644,7 @@ GameObject:
   - 224: {fileID: 1670858192}
   - 222: {fileID: 1670858194}
   - 114: {fileID: 1670858193}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Love
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14302,7 +14888,7 @@ GameObject:
   - 224: {fileID: 1707659019}
   - 222: {fileID: 1707659021}
   - 114: {fileID: 1707659020}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14322,8 +14908,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2046982537}
   m_RootOrder: 0
-  m_AnchorMin: {x: 0, y: 0.52107817}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -14370,7 +14956,7 @@ GameObject:
   - 224: {fileID: 1713278325}
   - 222: {fileID: 1713278327}
   - 114: {fileID: 1713278326}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Artistry
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14444,7 +15030,7 @@ GameObject:
   - 224: {fileID: 1720246405}
   - 222: {fileID: 1720246407}
   - 114: {fileID: 1720246406}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14518,7 +15104,7 @@ GameObject:
   - 224: {fileID: 1726870610}
   - 222: {fileID: 1726870612}
   - 114: {fileID: 1726870611}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14593,7 +15179,7 @@ GameObject:
   - 222: {fileID: 1728960691}
   - 114: {fileID: 1728960690}
   - 114: {fileID: 1728960689}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Week 3 Monday
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14616,8 +15202,8 @@ RectTransform:
   m_RootOrder: 16
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -192, y: -49}
-  m_SizeDelta: {x: 85.5, y: 57}
+  m_AnchoredPosition: {x: -126, y: -18}
+  m_SizeDelta: {x: 62, y: 46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1728960689
 MonoBehaviour:
@@ -14705,7 +15291,7 @@ GameObject:
   - 114: {fileID: 1749582354}
   - 114: {fileID: 1749582353}
   - 114: {fileID: 1749582352}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Your Offer Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14819,7 +15405,7 @@ GameObject:
   - 114: {fileID: 1750545992}
   - 114: {fileID: 1750545991}
   - 114: {fileID: 1750545990}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Your Family
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14931,7 +15517,7 @@ GameObject:
   - 224: {fileID: 1754062934}
   - 222: {fileID: 1754062936}
   - 114: {fileID: 1754062935}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15005,7 +15591,7 @@ GameObject:
   - 224: {fileID: 1758785618}
   - 222: {fileID: 1758785620}
   - 114: {fileID: 1758785619}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15079,7 +15665,7 @@ GameObject:
   - 224: {fileID: 1768378729}
   - 222: {fileID: 1768378731}
   - 114: {fileID: 1768378730}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15143,6 +15729,80 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1768378728}
+--- !u!1 &1792615863
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 1792615864}
+  - 222: {fileID: 1792615866}
+  - 114: {fileID: 1792615865}
+  m_Layer: 0
+  m_Name: MessageText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1792615864
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1792615863}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 823795433}
+  m_RootOrder: 3
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -1.0002747, y: -25}
+  m_SizeDelta: {x: 613, y: 222}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1792615865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1792615863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Message Text
+--- !u!222 &1792615866
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1792615863}
 --- !u!1 &1794767346
 GameObject:
   m_ObjectHideFlags: 0
@@ -15154,7 +15814,7 @@ GameObject:
   - 222: {fileID: 1794767350}
   - 114: {fileID: 1794767349}
   - 114: {fileID: 1794767348}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Accept Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15406,7 +16066,7 @@ GameObject:
   - 222: {fileID: 1810429900}
   - 114: {fileID: 1810429899}
   - 114: {fileID: 1810429901}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Scroll Panel Content
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15493,7 +16153,7 @@ GameObject:
   - 222: {fileID: 1816788068}
   - 114: {fileID: 1816788067}
   - 114: {fileID: 1816788066}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Week 1 Wednesday
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15516,8 +16176,8 @@ RectTransform:
   m_RootOrder: 4
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5, y: 66}
-  m_SizeDelta: {x: 85.5, y: 57}
+  m_AnchoredPosition: {x: 15, y: 76}
+  m_SizeDelta: {x: 62, y: 46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1816788066
 MonoBehaviour:
@@ -15772,7 +16432,7 @@ GameObject:
   - 222: {fileID: 1835493665}
   - 114: {fileID: 1835493664}
   - 114: {fileID: 1835493663}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Week 3 Thursday
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15795,8 +16455,8 @@ RectTransform:
   m_RootOrder: 19
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 103, y: -49}
-  m_SizeDelta: {x: 85.5, y: 57}
+  m_AnchoredPosition: {x: 87, y: -18}
+  m_SizeDelta: {x: 62, y: 46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1835493663
 MonoBehaviour:
@@ -15882,7 +16542,7 @@ GameObject:
   - 224: {fileID: 1838718262}
   - 222: {fileID: 1838718264}
   - 114: {fileID: 1838718263}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15957,7 +16617,7 @@ GameObject:
   - 222: {fileID: 1854158676}
   - 114: {fileID: 1854158675}
   - 114: {fileID: 1854158674}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Week 1 Friday
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15980,8 +16640,8 @@ RectTransform:
   m_RootOrder: 6
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 201, y: 65}
-  m_SizeDelta: {x: 85.5, y: 57}
+  m_AnchoredPosition: {x: 156, y: 75}
+  m_SizeDelta: {x: 62, y: 46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1854158674
 MonoBehaviour:
@@ -16200,7 +16860,7 @@ GameObject:
   - 224: {fileID: 1936490180}
   - 222: {fileID: 1936490182}
   - 114: {fileID: 1936490181}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Money Text(1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16275,7 +16935,7 @@ GameObject:
   - 222: {fileID: 1942906821}
   - 114: {fileID: 1942906820}
   - 114: {fileID: 1942906819}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Close Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16418,7 +17078,7 @@ GameObject:
   - 224: {fileID: 1943728638}
   - 222: {fileID: 1943728640}
   - 114: {fileID: 1943728639}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Proposed Offer Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16572,6 +17232,7 @@ RectTransform:
   - {fileID: 1151178616}
   - {fileID: 1116634325}
   - {fileID: 1190071801}
+  - {fileID: 823795433}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
@@ -16590,6 +17251,139 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!1 &1988524413
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 1988524414}
+  - 222: {fileID: 1988524417}
+  - 114: {fileID: 1988524416}
+  - 114: {fileID: 1988524415}
+  m_Layer: 0
+  m_Name: BackButton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1988524414
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1988524413}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 3.999629}
+  m_LocalScale: {x: 1.1662499, y: 1.1662499, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 1607338614}
+  m_Father: {fileID: 946111082}
+  m_RootOrder: 1
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -6, y: -147}
+  m_SizeDelta: {x: 79, y: 24}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1988524415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1988524413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1988524416}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 525890402}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 844725695}
+        m_MethodName: PlayClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &1988524416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1988524413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: d2851e8b394b091458f4652198592e84, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &1988524417
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1988524413}
 --- !u!1 &2001787769
 GameObject:
   m_ObjectHideFlags: 0
@@ -16712,7 +17506,7 @@ GameObject:
   - 222: {fileID: 2009469718}
   - 114: {fileID: 2009469717}
   - 114: {fileID: 2009469716}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Trading Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16735,7 +17529,7 @@ RectTransform:
   m_RootOrder: 2
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -79.91, y: 195.31}
+  m_AnchoredPosition: {x: 1, y: 160}
   m_SizeDelta: {x: 142.9, y: 50.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2009469716
@@ -16855,7 +17649,7 @@ GameObject:
   - 224: {fileID: 2013034681}
   - 222: {fileID: 2013034683}
   - 114: {fileID: 2013034682}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Month Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16901,7 +17695,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: aaf73147a326bde41ab03ef27a8a63a1, type: 3}
-    m_FontSize: 30
+    m_FontSize: 26
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -17004,7 +17798,7 @@ GameObject:
   - 222: {fileID: 2018237279}
   - 114: {fileID: 2018237278}
   - 114: {fileID: 2018237277}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Week 3 Friday
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17027,8 +17821,8 @@ RectTransform:
   m_RootOrder: 20
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 201, y: -50}
-  m_SizeDelta: {x: 85.5, y: 57}
+  m_AnchoredPosition: {x: 156, y: -19}
+  m_SizeDelta: {x: 62, y: 46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2018237277
 MonoBehaviour:
@@ -17114,7 +17908,7 @@ GameObject:
   - 224: {fileID: 2028055217}
   - 222: {fileID: 2028055219}
   - 114: {fileID: 2028055218}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Calendar Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17165,8 +17959,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000004053116}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -15, y: -25}
+  m_SizeDelta: {x: -30, y: -51}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2028055218
 MonoBehaviour:
@@ -17213,7 +18007,7 @@ GameObject:
   - 114: {fileID: 2029709624}
   - 114: {fileID: 2029709623}
   - 114: {fileID: 2029709622}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Their Offer Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17323,7 +18117,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 224: {fileID: 2046982537}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Sliding Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17359,7 +18153,7 @@ GameObject:
   - 224: {fileID: 2047722645}
   - 222: {fileID: 2047722647}
   - 114: {fileID: 2047722646}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Popularity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17433,7 +18227,7 @@ GameObject:
   - 224: {fileID: 2055594404}
   - 222: {fileID: 2055594406}
   - 114: {fileID: 2055594405}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17501,7 +18295,7 @@ GameObject:
   - 224: {fileID: 2070454085}
   - 222: {fileID: 2070454087}
   - 114: {fileID: 2070454086}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Child Character Stat Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17578,7 +18372,7 @@ GameObject:
   - 222: {fileID: 2083558702}
   - 114: {fileID: 2083558701}
   - 114: {fileID: 2083558700}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Week 3 Sunday
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17601,8 +18395,8 @@ RectTransform:
   m_RootOrder: 15
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -291, y: -49}
-  m_SizeDelta: {x: 85.5, y: 57}
+  m_AnchoredPosition: {x: -197, y: -18}
+  m_SizeDelta: {x: 62, y: 46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2083558700
 MonoBehaviour:
@@ -17689,7 +18483,7 @@ GameObject:
   - 222: {fileID: 2111064521}
   - 114: {fileID: 2111064520}
   - 114: {fileID: 2111064519}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Week 3 Tuesday
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17712,8 +18506,8 @@ RectTransform:
   m_RootOrder: 17
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -93, y: -49}
-  m_SizeDelta: {x: 85.5, y: 57}
+  m_AnchoredPosition: {x: -55, y: -18}
+  m_SizeDelta: {x: 62, y: 46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2111064519
 MonoBehaviour:

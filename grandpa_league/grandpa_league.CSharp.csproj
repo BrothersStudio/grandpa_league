@@ -78,7 +78,9 @@
     <Compile Include="Assets\Scripts\Grandpa.cs" />
     <Compile Include="Assets\Scripts\LoadFamilyPanel.cs" />
     <Compile Include="Assets\Scripts\LoadLeaguePanel.cs" />
+    <Compile Include="Assets\Scripts\LoadMailPanel.cs" />
     <Compile Include="Assets\Scripts\LoadTradingPanel.cs" />
+    <Compile Include="Assets\Scripts\Mail.cs" />
     <Compile Include="Assets\Scripts\Main.cs" />
     <Compile Include="Assets\Scripts\Outcome.cs" />
     <Compile Include="Assets\Scripts\Parent.cs" />

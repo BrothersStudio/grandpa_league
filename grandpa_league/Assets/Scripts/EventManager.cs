@@ -123,8 +123,14 @@ public static class EventManager
         List<SimulationEvent> eventsInMonth = new List<SimulationEvent>();
         foreach(SimulationEvent ev in m_knownEvents)
         {
-            if (ev.EventMonth >= month && ev.EventMonthMax <= month && ev.EventDay == 0)
-                eventsInMonth.Add(ev);
+            if (month >= ev.EventMonth && month <= ev.EventMonthMax && ev.EventDay == 0)
+            {
+                int rand = Constants.RANDOM.Next(ev.EventMonth, ev.EventMonthMax);          //choose a random number between the months the ev occurs e.g. 2-6
+                if (rand <= (ev.EventMonth + ev.EventMonthMax) / 2)                         //if rand <= 4, let add it for the current month
+                    eventsInMonth.Add(ev);
+                else
+                    ev.EventMonth++;                                                        //else move its month up by one. this way if EventMonth == EventMonthMax it will always be added
+            }
         }
         return eventsInMonth;
     }
