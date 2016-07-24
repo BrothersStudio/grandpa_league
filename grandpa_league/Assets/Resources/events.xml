@@ -21,7 +21,7 @@
   <event type="0" id="1010" name="Grandkid great at practice" description="" priority="1" chance="1" req_children="11" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" qualification="ON_FOOTBALL_TEAM"/>
   <event type="0" id="1011" name="Grandpa buys experimental football gear" description="There's this illegal, Cambodian football gear that's been treated with tiger grease. It costs $500 and would give {C} a big edge in indoor football..." priority="1" chance="0.02" req_children="11" req_parent="00" req_grandpa="00" req_money="00" req_accept="01" qualification="ON_FOOTBALL_TEAM"/>
   <event type="0" id="1012" name="Grandkid's illegal gear is discovered" description="Uh oh, {EG} tipped off a referee to {C}'s illegal, Cambodian football gear. The referee is demanding a $1000 bribe to keep quiet." priority="1" chance="0.005" req_children="11" req_parent="00" req_grandpa="11" req_money="01" req_accept="01" qualification="ILLEGAL_GEAR"/>  
-  <event type="0" id="1014" name="Grandkid sucks at football" description="" priority="1" chance="1" req_children="11" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" />  
+  <event type="0" id="1014" name="Grandkid sucks at football" description="" priority="1" chance="1" req_children="11" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" qualification="ON_FOOTBALL_TEAM" />  
   
   <!-- KNOWN EVENTS req_ of the form 1=true, 0=false, [RANDOM][REQUIRED]-->
   
