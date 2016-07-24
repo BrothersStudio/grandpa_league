@@ -439,7 +439,7 @@ public static class EventManager
 	public static Outcome Event1011(DataManager manager, Requirement requirements)
 	{
 		Outcome returnObj = new Outcome();
-		if (requirements.Money >= 500.0 && requirements.Accept) 
+		if (requirements.Accept && manager.PlayerFamily.Grandpa.Money >= 500) 
 		{
 			requirements.Child.Athleticism += 20;
 			requirements.Child.AthleticismGrowth += 0.1;
@@ -447,7 +447,7 @@ public static class EventManager
 			requirements.Child.AddQualification (Qualification.GetQualificationByString ("ILLEGAL_GEAR"));
 
 			manager.PlayerFamily.Grandpa.Pride += 100;
-			manager.PlayerFamily.Grandpa.Money -= requirements.Money;
+			manager.PlayerFamily.Grandpa.Money -= 500;
 
 			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
 			returnObj.OutcomeDescription = String.Format (
@@ -457,9 +457,10 @@ public static class EventManager
 				"{1}'s pride up.\n",
 				requirements.Child.Name, manager.PlayerFamily.Grandpa.Name);
 		}
-		else  
+		else if (requirements.Accept && manager.PlayerFamily.Grandpa.Money < 500) 
 		{
-			returnObj.Status = (int)Enums.EventOutcome.PASS;
+			returnObj.OutcomeDescription = String.Format (
+				"\"Hey, what are you trying to pull, pal? You don't have the cash...\"\n\n");
 		}
 		return returnObj;
 	}
@@ -497,6 +498,72 @@ public static class EventManager
 				"{1}'s pride way down!\n",
 				requirements.Child.Name, manager.PlayerFamily.Grandpa.Name);
 		}
+		return returnObj;
+	}
+
+	// Grandkid's football championship
+	public static Outcome Event1013(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+		if (requirements.Child.Athleticism >= 90) {
+			requirements.Child.Athleticism += 20;
+			requirements.Child.AthleticismGrowth += 0.2;
+
+			requirements.Child.Popularity += 20;
+			requirements.Child.PopularityGrowth += 0.1;
+
+			manager.PlayerFamily.Grandpa.Pride += 600;
+
+			requirements.Grandpa.Pride -= 200;
+			requirements.Grandpa.Insanity += 10;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+			returnObj.OutcomeDescription = String.Format (
+				"It's the most intense game of indoor football ever displayed! {0} scores every goal personally. " +
+				"The entire indoor stadium are on their feet except {2}. During the last goal, {2}'s son is taken off the field on a stretcher!" +
+				"But {0}'s team wins in the end. Of course.\n\n" +
+				"{0}'s athleticism way up.\n" +
+				"{0}'s athleticism growth way up.\n" +
+				"{0}'s popularity way up.\n" +
+				"{0}'s popularity growth way up.\n" +
+				"{1}'s pride way way way up!!\n",
+				requirements.Child.Name, manager.PlayerFamily.Grandpa.Name, requirements.Grandpa.Name);
+		} else if (requirements.Child.Athleticism >= 60) {
+			requirements.Child.Athleticism += 10;
+			requirements.Child.AthleticismGrowth += 0.05;
+
+			manager.PlayerFamily.Grandpa.Pride += 200;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+			returnObj.OutcomeDescription = String.Format (
+				"{2}'s son's team takes an early lead. {0} puts on a respectable display of resistance. They even put their elbow through" +
+				"Some poor kid's face! That's one for the highlight reel! Ultimately, {0} loses... But {1} is still proud! Maybe next year.\n\n" +
+				"{0}'s athleticism up.\n" +
+				"{0}'s athleticism growth up.\n" +
+				"{1}'s pride way up!\n",
+				requirements.Child.Name, manager.PlayerFamily.Grandpa.Name, requirements.Grandpa.Name);
+		} 
+		else 
+		{
+			requirements.Child.Athleticism -= 10;
+			requirements.Child.AthleticismGrowth -= 0.05;
+
+			requirements.Child.Popularity -= 10;
+
+			manager.PlayerFamily.Grandpa.Pride -= 100;
+
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE;
+			returnObj.OutcomeDescription = String.Format (
+				"Uhh, are you sure {0} was practicing all those times they said they were heading to practice? You really couldn't tell by their display " +
+				"on the field. Utterly embarassing. {1} had to slink out the back at the end of the first quarter. {2} will never let him forget it.\n\n" +
+				"{0}'s athleticism down.\n" +
+				"{0}'s athleticism growth down.\n" +
+				"{0}'s popularity down.\n" +
+				"{1}'s pride down.\n",
+				requirements.Child.Name, manager.PlayerFamily.Grandpa.Name, requirements.Grandpa.Name);
+		}
+		requirements.Child.RemoveQualification (Qualification.GetQualificationByString ("ILLEGAL_GEAR"));
+		requirements.Child.RemoveQualification (Qualification.GetQualificationByString ("ON_FOOTBALL_TEAM"));
 		return returnObj;
 	}
 
