@@ -41,6 +41,11 @@ public class Main : MonoBehaviour {
     public GameObject ModalBlockingPanel;
     public Canvas MainCanvas;
 
+    public GameObject SettingsPanel;
+    public GameObject SaveButton;
+    public GameObject ResumeButton;
+    public GameObject QuitButton;
+
     bool userInputting = false;
 
 
@@ -207,8 +212,8 @@ public class Main : MonoBehaviour {
 
     private void CreateAndDisplayInputPanel(SimulationEvent ev)
     {
-        Child selectedChild = null;
-        Parent selectedParent = null;
+        Child selectedChild = ev.Requirements.Child;
+        Parent selectedParent = ev.Requirements.Parent;
 
         user_input_panel.SetActive(true);
         EventTitleText.GetComponent<Text>().text = ev.EventName;
@@ -287,6 +292,7 @@ public class Main : MonoBehaviour {
         AcceptButton.GetComponent<Button>().onClick.AddListener(() =>
         {
             userInputting = false;
+            ev.Requirements.Accept = true;
             ev.Requirements.Money = MoneyInputField.GetComponent<InputField>().text == "" ? 0 : Int32.Parse(MoneyInputField.GetComponent<InputField>().text);
             ev.Requirements.Child = selectedChild;
             ev.Requirements.Parent = selectedParent;
@@ -300,7 +306,6 @@ public class Main : MonoBehaviour {
 
         MoneyInputField.GetComponent<InputField>().onValidateInput += delegate (string input, int charIndex, char addedChar) { return ValidateMoneyInput(input, addedChar); };
         CurrentMoneyText.GetComponent<Text>().text = "$ " +  m_dataManager.PlayerFamily.Grandpa.Money.ToString() + ".00";
-        CurrentMoneyText.SetActive(true);
 
         if (ev.Requirements.ReqAccept)
             RejectButton.SetActive(true);
@@ -308,10 +313,15 @@ public class Main : MonoBehaviour {
             RejectButton.SetActive(false);
 
         if (ev.Requirements.ReqMoney)
+        {
             MoneyInputField.SetActive(true);
+            CurrentMoneyText.SetActive(true);
+        }
         else
+        {
             MoneyInputField.SetActive(false);
-
+            CurrentMoneyText.SetActive(false);
+        }
         if (ev.Requirements.ReqChild && !ev.Requirements.RandomChild)
             SelectChildButton.SetActive(true);
         else
@@ -348,6 +358,26 @@ public class Main : MonoBehaviour {
         }
     }
 
+    public void PopupSettingsMenu()
+    {
+        SettingsPanel.SetActive(true);
+        ModalBlockingPanel.SetActive(true);
+        MainCanvas.GetComponent<CanvasGroup>().blocksRaycasts = false;
+        SaveButton.GetComponent<Button>().onClick.AddListener(() =>
+        {
+            //save functionality
+        });
+        ResumeButton.GetComponent<Button>().onClick.AddListener(() =>
+        {
+            SettingsPanel.SetActive(false);
+            ModalBlockingPanel.SetActive(false);
+            MainCanvas.GetComponent<CanvasGroup>().blocksRaycasts = true;
+        });
+        QuitButton.GetComponent<Button>().onClick.AddListener(() =>
+        {
+            Application.Quit();
+        });
+    }
 
     public void DisplayContent(string type)
 	{

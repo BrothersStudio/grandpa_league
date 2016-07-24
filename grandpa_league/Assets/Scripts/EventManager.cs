@@ -312,6 +312,7 @@ public static class EventManager
 	public static Outcome Event1003(DataManager manager, Requirement requirements)
 	{
 		Outcome returnObj = new Outcome();
+		requirements.Child.Athleticism = 51;
 		if (requirements.Child.Athleticism > 50) 
 		{
 			requirements.Child.AddQualification (Qualification.GetQualificationByString ("ON_FOOTBALL_TEAM"));
@@ -344,7 +345,7 @@ public static class EventManager
 
 			returnObj.Status = (int)Enums.EventOutcome.FAILURE;
 			returnObj.OutcomeDescription = String.Format (
-				"Well, you didn't get on the team. That's disappointing, {0}...\n\n" +
+				"Well, you didn't get on the indoor football team. That's disappointing, {0}...\n\n" +
 				"{0}'s athleticism down.\n" + 
 				"{0}'s popularity down.\n" + 
 				"{1}'s pride down.\n",
@@ -366,7 +367,7 @@ public static class EventManager
 
 			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
 			returnObj.OutcomeDescription = String.Format (
-				"Wow, {1} is so popular and talented at football that they are dating the head cheerleader!\n\n" +
+				"Wow, {1} is so popular and talented at indoor football that they are dating the head cheerleader!\n\n" +
 				"{1}'s popularity up.\n" + 
 				"{1}'s popularity growth up.\n" + 
 				"{0}'s pride up.\n",
@@ -395,7 +396,7 @@ public static class EventManager
 
 			returnObj.Status = (int)Enums.EventOutcome.FAILURE;
 			returnObj.OutcomeDescription = String.Format (
-				"Oh God, seeing your leg fly right out of the socket during that game was brutal! I guess you're off the football team for the year.\n\n" +
+				"Oh God, seeing your leg fly right out of the socket during that indoor football game was brutal! I guess you're off the indoor football team for the year.\n\n" +
 				"{1}'s popularity up.\n" +
 				"{1}'s athleticism way down.\n" +
 				"{0}'s pride down.\n",
@@ -419,9 +420,9 @@ public static class EventManager
 
 			manager.PlayerFamily.Grandpa.Pride += 50;
 
-			returnObj.Status = (int)Enums.EventOutcome.FAILURE;
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
 			returnObj.OutcomeDescription = String.Format (
-				"Holy cow, {1} is just kicking ass at practice. It's clear to everyone that they're a very skilled player!\n\n" +
+				"Holy cow, {1} is just kicking ass at indoor football practice. It's clear to everyone that they're a very skilled player!\n\n" +
 				"{1}'s athleticism up.\n" +
 				"{1}'s athleticism growth up.\n" +
 				"{0}'s pride up.\n",
@@ -430,6 +431,71 @@ public static class EventManager
 		else  
 		{
 			returnObj.Status = (int)Enums.EventOutcome.PASS;
+		}
+		return returnObj;
+	}
+
+	// Grandpa buys experimental football gear
+	public static Outcome Event1011(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+		if (requirements.Money >= 500.0 && requirements.Accept) 
+		{
+			requirements.Child.Athleticism += 20;
+			requirements.Child.AthleticismGrowth += 0.1;
+
+			requirements.Child.AddQualification (Qualification.GetQualificationByString ("ILLEGAL_GEAR"));
+
+			manager.PlayerFamily.Grandpa.Pride += 100;
+			manager.PlayerFamily.Grandpa.Money -= requirements.Money;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+			returnObj.OutcomeDescription = String.Format (
+				"Those Cambodians never disappoint! {0} is untouchable at practice now! I just hope no one finds out...\n\n" +
+				"{0}'s athleticism up.\n" +
+				"{0}'s athleticism growth up.\n" +
+				"{1}'s pride up.\n",
+				requirements.Child.Name, manager.PlayerFamily.Grandpa.Name);
+		}
+		else  
+		{
+			returnObj.Status = (int)Enums.EventOutcome.PASS;
+		}
+		return returnObj;
+	}
+
+	// Grandson's illegal gear discovered
+	public static Outcome Event1012(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+		if (requirements.Money >= 1000.0 && requirements.Accept) 
+		{
+			manager.PlayerFamily.Grandpa.Money -= requirements.Money;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+			returnObj.OutcomeDescription = String.Format (
+				"\"Nice doing business with you, gramps!\"\nDamn those Cambodians... Damn them straight to hell...");
+		}
+		else  
+		{
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE;
+
+			requirements.Child.RemoveQualification (Qualification.GetQualificationByString ("ILLEGAL_GEAR"));
+			requirements.Child.RemoveQualification (Qualification.GetQualificationByString ("ON_FOOTBALL_TEAM"));
+
+			requirements.Child.AthleticismGrowth -= 0.2;
+			requirements.Child.Athleticism -= 30;
+			requirements.Child.Popularity -= 30;
+
+			manager.PlayerFamily.Grandpa.Pride -= 200;
+
+			returnObj.OutcomeDescription = String.Format (
+				"You're gonna regret that pal! \"{0}, you're off the team!\"\nOh! My pride! It physically hurts!\n\n" +
+				"{0}'s athleticism way down!\n" +
+				"{0}'s athleticism growth way down!\n" +
+				"{0}'s popularity way down!\n" +
+				"{1}'s pride way down!\n",
+				requirements.Child.Name, manager.PlayerFamily.Grandpa.Name);
 		}
 		return returnObj;
 	}

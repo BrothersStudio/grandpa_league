@@ -18,7 +18,7 @@ public class Trade
     {
     }
 
-    public void ConfirmOffer(bool offered, List<Child> children, List<Parent> parent, int money, Family family)
+    public void SetOffer(bool offered, List<Child> children, List<Parent> parent, int money, Family family)
     {
         if (offered)
         {
@@ -34,6 +34,10 @@ public class Trade
             proposedChar.AddRange(children.Cast<Character>());
             proposedChar.AddRange(parent.Cast<Character>());
         }
+    }
+
+    public void ConfirmOffer()
+    {
         this.DetermineAcceptReject();
         this.RegisterEventResponse();
     }

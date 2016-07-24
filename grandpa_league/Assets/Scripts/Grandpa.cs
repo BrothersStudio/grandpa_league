@@ -4,7 +4,7 @@ public class Grandpa : Character
 {
     private double m_insanity          = 0;
     private double m_wisdom            = 0;
-    private double m_money             = 0;
+    private double m_money             = 501;
     private double m_pride             = 0;
 
     private double  m_insanityGrowth    = 0;
