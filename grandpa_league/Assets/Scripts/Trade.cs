@@ -74,12 +74,16 @@ public class Trade
         if(!this.accepted)
         {
             tradeOutcome.Status = (int)Enums.EventOutcome.FAILURE;
-            tradeOutcome.OutcomeDescription = String.Format("{0}\\n\nI would never make that trade to you for such a worthless offer!", proposedFamily.Grandpa.Name);
-            tradeOutcome.Mail = String.Format("Dear {0}\n, \tI hope you'll refrain from sending me such an unpleasant offer to me again. \n\nSincerely,\n{1}", offerFamily.Grandpa.Name, proposedFamily.Grandpa.Name);
+            tradeOutcome.OutcomeDescription = String.Format("{0}\n\nI would never make that trade to you for such a worthless offer!", proposedFamily.Grandpa.Name);
+            tradeOutcome.Mail = new Mail();
+            tradeOutcome.Mail.Subject = "RE: Trade offer";
+            tradeOutcome.Mail.Sender = proposedFamily.Grandpa.Name;
+            tradeOutcome.Mail.Date = dataManager.Calendar.GetCurrentDay();
+            tradeOutcome.Mail.Message = String.Format("Dear {0},\n\n \tI hope you'll refrain from sending me such an unpleasant offer to me again. \n\nSincerely,\n{1}", offerFamily.Grandpa.Name, proposedFamily.Grandpa.Name);
         }
         else
         {
-            if(this.OfferStillValid(out tradeOutcome))
+            if(this.OfferStillValid(out tradeOutcome, dataManager))
             {
                 string tradedList = "";
                 foreach(Character cur in offeredChar)
@@ -119,13 +123,17 @@ public class Trade
 
                 tradeOutcome.Status = (int)Enums.EventOutcome.SUCCESS;
                 tradeOutcome.OutcomeDescription = String.Format("{0} has accepted your trade offer and the trade has been successfully registered with the county magistrate!", this.proposedFamily.Grandpa.Name);
-                tradeOutcome.Mail = String.Format("Details of the completed offer are below:\n\nTraded: ${0}, {1} goodye!\n\nRecieved: ${2}, {3} enjoy your new home!", this.offeredMoney.ToString(), tradedList, this.proposedMoney.ToString(), recievedList);
+                tradeOutcome.Mail = new Mail();
+                tradeOutcome.Mail.Subject = "RE: Trade offer successfully processed";
+                tradeOutcome.Mail.Sender = "Office of the County Magistrate";
+                tradeOutcome.Mail.Date = dataManager.Calendar.GetCurrentDay();
+                tradeOutcome.Mail.Message = String.Format("Details of the completed offer are below:\n\nTraded: ${0}, {1}goodye!\n\nRecieved: ${2}, {3}enjoy your new home!", this.offeredMoney.ToString(), tradedList, this.proposedMoney.ToString(), recievedList);
             }
         }
         return tradeOutcome;
     }
 
-    private bool OfferStillValid(out Outcome tradeOutcome)
+    private bool OfferStillValid(out Outcome tradeOutcome, DataManager dataManager)
     {
         //first check that the offer can actually still be done (5 days later at this point)
         tradeOutcome = new Outcome();
@@ -133,7 +141,11 @@ public class Trade
         {
             tradeOutcome.Status = (int)Enums.EventOutcome.FAILURE;
             tradeOutcome.OutcomeDescription = String.Format("You don't have ${0} anymore, what are you trying to rip me off?", this.offeredMoney.ToString());
-            tradeOutcome.Mail = String.Format("Dear {0}\n, \tNow that I know you're a slimy bastard I'll be on the lookout next time. \n\nRegards,\n{1}", offerFamily.Grandpa.Name, proposedFamily.Grandpa.Name);
+            tradeOutcome.Mail = new Mail();
+            tradeOutcome.Mail.Subject = "RE: Trade offer invalidated";
+            tradeOutcome.Mail.Sender = proposedFamily.Grandpa.Name;
+            tradeOutcome.Mail.Date = dataManager.Calendar.GetCurrentDay();
+            tradeOutcome.Mail.Message = String.Format("Dear {0},\n\n \tOffering the money when you can't follow up? Now that I know you're a slimy bastard I'll be on the lookout next time. \n\nRegards,\n{1}", offerFamily.Grandpa.Name, proposedFamily.Grandpa.Name);
             return false;
         }
         else if (proposedFamily.Grandpa.Money < this.proposedMoney)
@@ -147,7 +159,11 @@ public class Trade
             {
                 tradeOutcome.Status = (int)Enums.EventOutcome.FAILURE;
                 tradeOutcome.OutcomeDescription = String.Format("Hey, you don't have {0} anymore, what are you trying to rip me off?", cur.Name);
-                tradeOutcome.Mail = String.Format("Dear {0}\n, \tI sincerely hope we never do buisness again. \n\nRegards,\n{1}", offerFamily.Grandpa.Name, proposedFamily.Grandpa.Name);
+                tradeOutcome.Mail = new Mail();
+                tradeOutcome.Mail.Subject = "RE: Trade offer invalidated";
+                tradeOutcome.Mail.Sender = proposedFamily.Grandpa.Name;
+                tradeOutcome.Mail.Date = dataManager.Calendar.GetCurrentDay();
+                tradeOutcome.Mail.Message = String.Format("Dear {0},\n\n \tI didn't want your dirty kids anyways. I sincerely hope we never do buisness again. \n\nRegards,\n{1}", offerFamily.Grandpa.Name, proposedFamily.Grandpa.Name);
                 return false;
             }
         }
@@ -157,7 +173,11 @@ public class Trade
             {
                 tradeOutcome.Status = (int)Enums.EventOutcome.FAILURE;
                 tradeOutcome.OutcomeDescription = String.Format("Looks like {0} has already been traded away, drats!", cur.Name);
-                tradeOutcome.Mail = String.Format("Dear {0}\n, \tYou snooze you loose, sucker! \n\nWarm Regards,\n{1}", offerFamily.Grandpa.Name, proposedFamily.Grandpa.Name);
+                tradeOutcome.Mail = new Mail();
+                tradeOutcome.Mail.Subject = "RE: Trade offer invalidated";
+                tradeOutcome.Mail.Sender = proposedFamily.Grandpa.Name;
+                tradeOutcome.Mail.Date = dataManager.Calendar.GetCurrentDay();
+                tradeOutcome.Mail.Message = String.Format("Dear {0},\n\n \tYou snooze you loose, sucker! I got a pretty penny while you were snoozing! \n\nWarm Regards,\n{1}", offerFamily.Grandpa.Name, proposedFamily.Grandpa.Name);
                 return false;
             }
         }

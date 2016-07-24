@@ -15,6 +15,7 @@ public class Main : MonoBehaviour {
 	public GameObject family_panel;
 	public GameObject trading_panel;
 	public GameObject league_panel;
+    public GameObject mail_panel;
 
     private static DataManager m_dataManager;
 
@@ -27,6 +28,8 @@ public class Main : MonoBehaviour {
     public GameObject characterButtonPrefab;
     public GameObject ChildSelectPanel;
     public GameObject ParentSelectPanel;
+    public GameObject childBackButton;
+    public GameObject parentBackButton;
     public GameObject SelectionModalBlockingPanel;
 
     public GameObject user_input_panel;
@@ -205,7 +208,11 @@ public class Main : MonoBehaviour {
             }
             Debug.Log(String.Format("event {0} completed", ev.EventName));
             
-
+            if(eventOutcome.Mail != null)
+            {
+                m_dataManager.PlayerFamily.Mailbox.Insert(0, eventOutcome.Mail);
+                this.DisplayContent("mail");
+            }
 
             //Otherwise display the outcome panel with text eventOutcome.OutcomeDescription
             //send mail to mail panel using eventOutcome.Mail
@@ -271,6 +278,12 @@ public class Main : MonoBehaviour {
                 childButton.GetComponent<Button>().image.color = new Color(100, 180, 100);
                 curChild++;
             }
+            childBackButton.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                ChildSelectPanel.SetActive(false);
+                SelectionModalBlockingPanel.SetActive(false);
+                EventCanvas.GetComponent<CanvasGroup>().blocksRaycasts = true;
+            });
         });
 
         SelectParentButton.GetComponent<Button>().onClick.AddListener(() =>
@@ -306,6 +319,12 @@ public class Main : MonoBehaviour {
                 parentButton.GetComponent<Button>().image.color = new Color(100, 180, 100);
                 curParent++;
             }
+            parentBackButton.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                ParentSelectPanel.SetActive(false);
+                SelectionModalBlockingPanel.SetActive(false);
+                EventCanvas.GetComponent<CanvasGroup>().blocksRaycasts = true;
+            });
         });
 
         AcceptButton.GetComponent<Button>().onClick.AddListener(() =>
@@ -412,6 +431,10 @@ public class Main : MonoBehaviour {
 		{
 			league_panel.GetComponent<LoadLeaguePanel> ().DisplayLeagueStandings (m_dataManager.PlayerFamily, m_dataManager.LeagueFamilies);
 		}
+        else if (type == "mail")
+        {
+            mail_panel.GetComponent<LoadMailPanel>().DisplayAllMail(m_dataManager.PlayerFamily.Mailbox);
+        }
 	}
 
 	private void InitializeHighlight()

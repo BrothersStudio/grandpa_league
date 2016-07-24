@@ -7,6 +7,7 @@ public class Family
     private     Grandpa       m_grandpa       = null;
 	private     List<Parent>  m_parents       = new List<Parent>();
     private     List<Child>   m_children      = new List<Child>();
+    private     List<Mail>    m_mailbox       = new List<Mail>();
 
 	private     int           m_chemistry     = 0;
 
@@ -19,36 +20,6 @@ public class Family
 		this.m_parents = CharacterManager.GetRandomParents(Constants.INITIAL_PARENTS);
         this.m_children = CharacterManager.GetRandomChildren(Constants.INITIAL_CHILDREN);
         this.m_familyName = this.m_grandpa.Name.Split(' ')[1];      //TODO: FIX THIS HACK
-    }
-
-	public string FamilyName
-	{
-		get { return this.m_familyName;  }
-		set { this.m_familyName = value; }
-	}
-
-	public int Chemistry
-	{
-		get { return this.m_chemistry;  }
-		set { this.m_chemistry = value; }
-	}
-
-    public Grandpa Grandpa
-    {
-        get { return this.m_grandpa; }
-        set { this.m_grandpa = value; }
-    }
-
-    public List<Parent> Parents
-    {
-        get { return this.m_parents; }
-        set { this.m_parents = value; }
-    }
-
-    public List<Child> Children
-    {
-        get { return this.m_children; }
-        set { this.m_children = value; }
     }
 
     public List<Character> GetAllCharacters()
@@ -110,4 +81,39 @@ public class Family
 	{
 		get {return this.m_parents.Count + this.m_children.Count + 1;}
 	}
+
+    public string FamilyName
+    {
+        get { return this.m_familyName; }
+        set { this.m_familyName = value; }
+    }
+
+    public int Chemistry
+    {
+        get { return this.m_chemistry; }
+        set { this.m_chemistry = value; }
+    }
+
+    public Grandpa Grandpa
+    {
+        get { return this.m_grandpa; }
+        set { this.m_grandpa = value; }
+    }
+
+    public List<Parent> Parents
+    {
+        get { return this.m_parents; }
+        set { this.m_parents = value; }
+    }
+
+    public List<Child> Children
+    {
+        get { return this.m_children; }
+        set { this.m_children = value; }
+    }
+
+    public List<Mail> Mailbox
+    {
+        get { return this.m_mailbox;  }
+    }
 }

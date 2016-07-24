@@ -2,7 +2,7 @@
 {
     private     int     m_status;
     private     string  m_outcomeString;
-    private     string  m_mail              = null;
+    private     Mail    m_mail              = null;
 
     public Outcome(int status=-1, string outcome="")
     {
@@ -22,7 +22,7 @@
         set { this.m_outcomeString = value; }
     }
 
-    public string Mail
+    public Mail Mail
     {
         get { return this.m_mail; }
         set { this.m_mail = value; }
