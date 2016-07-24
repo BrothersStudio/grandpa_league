@@ -27,6 +27,7 @@ public class LoadTradingPanel : MonoBehaviour {
 	public GameObject offer_money_field;
 	public GameObject receive_money_field;
 
+	private Family offer_family;
 	private List<Parent> offer_parents = new List<Parent> ();
 	private List<Child> offer_children = new List<Child> ();
 	private int offer_money = 0;
@@ -40,9 +41,54 @@ public class LoadTradingPanel : MonoBehaviour {
 
 	public void DisplayAllFamilies (Family PlayerFamily, List<Family> LeagueFamilies) 
 	{
+		offer_family = PlayerFamily;
 		leagueFamilies = LeagueFamilies;
+
 		DisplayPlayerFamily (PlayerFamily);
 		DisplayEnemyFamilies ();
+	}
+
+
+	public void SendOffer()
+	{
+		int.TryParse (offer_money_field.transform.Find ("Offer Text").GetComponent<Text> ().text, out offer_money);
+		int.TryParse (receive_money_field.transform.Find ("Receive Text").GetComponent<Text> ().text, out receive_money);
+
+		Debug.Log ("Trade offer sent:");
+		Debug.Log ("Your parents: ");
+		foreach (Parent parent in offer_parents) 
+		{
+			Debug.Log (parent.Name);
+		}
+		Debug.Log ("Your children: ");
+		foreach (Child child in offer_children) 
+		{
+			Debug.Log (child.Name);
+		}
+		Debug.Log ("With $" + offer_money);
+
+		Debug.Log ("\nOffered for: ");
+		Debug.Log ("Their parents: ");
+		foreach (Parent parent in receive_parents) 
+		{
+			Debug.Log (parent.Name);
+		}
+		Debug.Log ("Their children: ");
+		foreach (Child child in receive_children) 
+		{
+			Debug.Log (child.Name);
+		}
+		Debug.Log ("With $" + receive_money);
+
+		Trade thisTrade = new Trade ();
+
+		thisTrade.SetOffer (
+			offer_family, offer_children, offer_parents, offer_money,
+			receive_family, receive_children, receive_parents, receive_money);
+
+		thisTrade.ConfirmOffer ();
+
+		ClearOffers ();
 	}
 
 	public void DestroyPanels ()
@@ -169,6 +215,8 @@ public class LoadTradingPanel : MonoBehaviour {
 			// Add subfamily display activation to button
 			enemy_family_button_list[enemy_family_button_list.Count - 1].GetComponent<Button>().onClick.AddListener(() => 
 				{
+					receive_family = family;
+
 					// Enemy families
 					foreach (GameObject button in enemy_family_button_list)
 					{
@@ -209,40 +257,6 @@ public class LoadTradingPanel : MonoBehaviour {
 		}
 
 		receive_money_field.transform.Find ("Placeholder").GetComponent<Text> ().text = "No family selected";
-	}
-
-	public void SendOffer()
-	{
-		int.TryParse (offer_money_field.transform.Find ("Offer Text").GetComponent<Text> ().text, out offer_money);
-		int.TryParse (receive_money_field.transform.Find ("Receive Text").GetComponent<Text> ().text, out receive_money);
-
-		Debug.Log ("Trade offer sent:");
-		Debug.Log ("Your parents: ");
-		foreach (Parent parent in offer_parents) 
-		{
-			Debug.Log (parent.Name);
-		}
-		Debug.Log ("Your children: ");
-		foreach (Child child in offer_children) 
-		{
-			Debug.Log (child.Name);
-		}
-		Debug.Log ("With $" + offer_money);
-
-		Debug.Log ("\nOffered for: ");
-		Debug.Log ("Their parents: ");
-		foreach (Parent parent in receive_parents) 
-		{
-			Debug.Log (parent.Name);
-		}
-		Debug.Log ("Their children: ");
-		foreach (Child child in receive_children) 
-		{
-			Debug.Log (child.Name);
-		}
-		Debug.Log ("With $" + receive_money);
-
-		ClearOffers ();
 	}
 
 	private void MakePanel<T>(T member, List<GameObject> prefab_list, GameObject parent_panel, int button_inds, int offset = 0) where T : Character
