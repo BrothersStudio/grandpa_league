@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using UnityEngine;
+
 public class Trade
 {
     private Family offerFamily = null;
@@ -29,7 +30,7 @@ public class Trade
 		proposedFamily = proposed_family;
 		proposedChar.AddRange(proposed_children.Cast<Character>());
 		proposedChar.AddRange(proposed_parent.Cast<Character>());
-		proposedMoney = proposed_money;
+		proposedMoney = proposed_money;     
     }
 
     public void ConfirmOffer()
@@ -61,7 +62,7 @@ public class Trade
                 proposedValue += ((Child)cur).Value;
         }
         proposedValue *= 5.5;                           //give edge to AI
-        proposedValue += this.offeredMoney;
+        proposedValue += this.proposedMoney;
 
         if (offeredValue > proposedValue)
             this.accepted = true;
@@ -73,8 +74,8 @@ public class Trade
         if(!this.accepted)
         {
             tradeOutcome.Status = (int)Enums.EventOutcome.FAILURE;
-            tradeOutcome.OutcomeDescription = String.Format("I would never make that trade to you for such a worthless offer!");
-            tradeOutcome.OutcomeDescription = String.Format("Dear {0}\n, \tI hope you'll never send such an unpleasant offer to me again. \n\nSincerely,\n{1}", offerFamily.Grandpa.Name, proposedFamily.Grandpa.Name);
+            tradeOutcome.OutcomeDescription = String.Format("{0}\\n\nI would never make that trade to you for such a worthless offer!", proposedFamily.Grandpa.Name);
+            tradeOutcome.Mail = String.Format("Dear {0}\n, \tI hope you'll refrain from sending me such an unpleasant offer to me again. \n\nSincerely,\n{1}", offerFamily.Grandpa.Name, proposedFamily.Grandpa.Name);
         }
         else
         {
@@ -132,7 +133,7 @@ public class Trade
         {
             tradeOutcome.Status = (int)Enums.EventOutcome.FAILURE;
             tradeOutcome.OutcomeDescription = String.Format("You don't have ${0} anymore, what are you trying to rip me off?", this.offeredMoney.ToString());
-            tradeOutcome.OutcomeDescription = String.Format("Dear {0}\n, \tNow that I know you're a slimy bastard I'll be on the lookout next time. \n\nRegards,\n{1}", offerFamily.Grandpa.Name, proposedFamily.Grandpa.Name);
+            tradeOutcome.Mail = String.Format("Dear {0}\n, \tNow that I know you're a slimy bastard I'll be on the lookout next time. \n\nRegards,\n{1}", offerFamily.Grandpa.Name, proposedFamily.Grandpa.Name);
             return false;
         }
         else if (proposedFamily.Grandpa.Money < this.proposedMoney)
@@ -146,7 +147,7 @@ public class Trade
             {
                 tradeOutcome.Status = (int)Enums.EventOutcome.FAILURE;
                 tradeOutcome.OutcomeDescription = String.Format("Hey, you don't have {0} anymore, what are you trying to rip me off?", cur.Name);
-                tradeOutcome.OutcomeDescription = String.Format("Dear {0}\n, \tI sincerely hope we never do buisness again. \n\nRegards,\n{1}", offerFamily.Grandpa.Name, proposedFamily.Grandpa.Name);
+                tradeOutcome.Mail = String.Format("Dear {0}\n, \tI sincerely hope we never do buisness again. \n\nRegards,\n{1}", offerFamily.Grandpa.Name, proposedFamily.Grandpa.Name);
                 return false;
             }
         }
@@ -156,18 +157,20 @@ public class Trade
             {
                 tradeOutcome.Status = (int)Enums.EventOutcome.FAILURE;
                 tradeOutcome.OutcomeDescription = String.Format("Looks like {0} has already been traded away, drats!", cur.Name);
-                tradeOutcome.OutcomeDescription = String.Format("Dear {0}\n, \tYou snooze you loose, sucker! \n\nWarm Regards,\n{1}", offerFamily.Grandpa.Name, proposedFamily.Grandpa.Name);
+                tradeOutcome.Mail = String.Format("Dear {0}\n, \tYou snooze you loose, sucker! \n\nWarm Regards,\n{1}", offerFamily.Grandpa.Name, proposedFamily.Grandpa.Name);
                 return false;
             }
         }
         tradeOutcome.Status = (int)Enums.EventOutcome.SUCCESS;
-        return false;
+        return true;
     }
 
     private void RegisterEventResponse()
     {
         DataManager datamanager = Main.GetDataManager();
-        datamanager.Calendar.ScheduleEventInXDays(EventManager.GetSystemEventById((int)Enums.SystemEvents.TRADE_ACCEPT_REJECT), 5);
+        SimulationEvent newTrade = EventManager.GetSystemEventById((int)Enums.SystemEvents.TRADE_ACCEPT_REJECT);
+        newTrade.Requirements.Trade = this;
+        datamanager.Calendar.ScheduleEventInXDays(newTrade, 5);
     }
 }
 

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class LoadTradingPanel : MonoBehaviour {
@@ -39,7 +40,26 @@ public class LoadTradingPanel : MonoBehaviour {
 
 	private List<Family> leagueFamilies;
 
-	public void DisplayAllFamilies (Family PlayerFamily, List<Family> LeagueFamilies) 
+    public void Start()
+    {
+        offer_money_field.GetComponent<InputField>().onValidateInput += delegate (string input, int charIndex, char addedChar) { return ValidateMoneyInput(input, addedChar); };
+    }
+
+    private char ValidateMoneyInput(string input, char addedChar)
+    {
+        int result;
+        int.TryParse(input + addedChar, out result);
+        if (result > Main.GetDataManager().PlayerFamily.Grandpa.Money)
+        {
+            offer_money_field.GetComponent<InputField>().textComponent.color = new Color(244, 0, 0);
+            return '\0';
+        }
+
+        offer_money_field.GetComponent<InputField>().textComponent.color = new Color(233, 233, 233);
+        return addedChar;
+    }
+
+    public void DisplayAllFamilies (Family PlayerFamily, List<Family> LeagueFamilies) 
 	{
 		offer_family = PlayerFamily;
 		leagueFamilies = LeagueFamilies;
@@ -51,10 +71,18 @@ public class LoadTradingPanel : MonoBehaviour {
 
 	public void SendOffer()
 	{
-		int.TryParse (offer_money_field.transform.Find ("Offer Text").GetComponent<Text> ().text, out offer_money);
-		int.TryParse (receive_money_field.transform.Find ("Receive Text").GetComponent<Text> ().text, out receive_money);
+        if ((this.offer_children.Count == 0 && this.offer_parents.Count == 0) && (this.receive_children.Count == 0 && this.receive_parents.Count == 0) || this.receive_family == null)
+        {
+            Debug.Log("No children or parents found in offer for either side (empty offer) aborting...");
+            return;
+        }
 
-		Debug.Log ("Trade offer sent:");
+        //int.TryParse (offer_money_field.transform.Find ("Offer Text").GetComponent<Text> ().text, out offer_money);
+		//int.TryParse (receive_money_field.transform.Find ("Receive Text").GetComponent<Text> ().text, out receive_money);
+        receive_money = receive_money_field.GetComponent<InputField>().text == "" ? 0 : Int32.Parse(receive_money_field.GetComponent<InputField>().text);
+        offer_money = offer_money_field.GetComponent<InputField>().text == "" ? 0 : Int32.Parse(offer_money_field.GetComponent<InputField>().text);
+
+        Debug.Log ("Trade offer sent:");
 		Debug.Log ("Your parents: ");
 		foreach (Parent parent in offer_parents) 
 		{
@@ -166,7 +194,7 @@ public class LoadTradingPanel : MonoBehaviour {
 		{
 			Child child = child_instance;
 
-			children_in_player_panel++;
+            children_in_player_panel++;
 
 			MakePanel (child, player_family_child_button_list, player_family_content_panel, current_inds);
 
@@ -299,20 +327,20 @@ public class LoadTradingPanel : MonoBehaviour {
 
 	private void SetChildButton(Child child, List<GameObject> child_button_list, GameObject offer_panel, GameObject family_panel, int buttonInd, bool player)
 	{
-		// Add character display activation to button
-		child_button_list[buttonInd].GetComponent<Button>().onClick.RemoveAllListeners();
-		child_button_list[buttonInd].GetComponent<Button>().onClick.AddListener(() => 
+        // Add character display activation to button
+        child_button_list[buttonInd].GetComponent<Button>().onClick.RemoveAllListeners();
+        child_button_list[buttonInd].GetComponent<Button>().onClick.AddListener(() =>
 			{
-				child_button_list[buttonInd].transform.SetParent(offer_panel.transform, false);
+                child_button_list[buttonInd].transform.SetParent(offer_panel.transform, false);
 
 				if (player)
 				{
-					offer_children.Add(child);
+					this.offer_children.Add(child);
 					children_in_player_panel--;
 				}
 				else // enemy
 				{
-					receive_children.Add(child);
+					this.receive_children.Add(child);
 					children_in_enemy_panel--;
 				}
 
@@ -342,12 +370,12 @@ public class LoadTradingPanel : MonoBehaviour {
 					{
 						if (player)
 						{
-							offer_children.Remove(child);
+                            this.offer_children.Remove(child);
 							children_in_player_panel++;
 						}
 						else // enemy
 						{
-							receive_children.Remove(child);
+                            this.receive_children.Remove(child);
 							children_in_enemy_panel++;
 						}
 
@@ -375,14 +403,14 @@ public class LoadTradingPanel : MonoBehaviour {
 
 				if (player)
 				{
-					Debug.Log("Add player parent to offer");
-					offer_parents.Add(parent);
+					Debug.Log(String.Format("Add player parent {0} to offer", parent.Name));
+                    this.offer_parents.Add(parent);
 					parents_in_player_panel--;
 				}
 				else // enemy
 				{
 					Debug.Log("Add enemy parent to offer");
-					receive_parents.Add(parent);
+                    this.receive_parents.Add(parent);
 					parents_in_enemy_panel--;
 				}
 
@@ -413,13 +441,13 @@ public class LoadTradingPanel : MonoBehaviour {
 						if (player)
 						{
 							Debug.Log("Remove player parent from offer");
-							offer_parents.Remove(parent);
+                            this.offer_parents.Remove(parent);
 							parents_in_player_panel++;
 						}
 						else // enemy
 						{
 							Debug.Log("Remove enemy parent from offer");
-							receive_parents.Remove(parent);
+                            this.receive_parents.Remove(parent);
 							parents_in_enemy_panel++;
 						}
 
