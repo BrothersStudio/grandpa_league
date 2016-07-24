@@ -1,7 +1,7 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2015
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "grandpa_league.CSharp", "grandpa_league.CSharp.csproj", "{C511A7C2-CB0C-DCED-D7DA-8044D47143B8}"
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{23E93C7C-71D1-B508-235F-7B1DCC6B4425}") = "grandpa_league", "Assembly-CSharp.csproj", "{7A565309-CE1B-C312-8DDE-436E59ADB966}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,12 +9,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C511A7C2-CB0C-DCED-D7DA-8044D47143B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C511A7C2-CB0C-DCED-D7DA-8044D47143B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C511A7C2-CB0C-DCED-D7DA-8044D47143B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C511A7C2-CB0C-DCED-D7DA-8044D47143B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A565309-CE1B-C312-8DDE-436E59ADB966}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A565309-CE1B-C312-8DDE-436E59ADB966}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A565309-CE1B-C312-8DDE-436E59ADB966}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A565309-CE1B-C312-8DDE-436E59ADB966}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
 	EndGlobalSection
 EndGlobal
