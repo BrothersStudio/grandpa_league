@@ -12,8 +12,9 @@ public class Main : MonoBehaviour {
 	public Text month_title;
 	private int current_month = 1;
 
-	public GameObject family_content_panel;
+	public GameObject family_panel;
 	public GameObject trading_panel;
+	public GameObject league_panel;
 
     private static DataManager m_dataManager;
 
@@ -383,11 +384,15 @@ public class Main : MonoBehaviour {
 	{
 		if (type == "family") 
 		{
-			family_content_panel.GetComponent<LoadFamilyPanel> ().DisplayFamily (m_dataManager.PlayerFamily);
+			family_panel.GetComponent<LoadFamilyPanel> ().DisplayFamily (m_dataManager.PlayerFamily);
 		} 
 		else if (type == "trading") 
 		{
 			trading_panel.GetComponent<LoadTradingPanel> ().DisplayAllFamilies (m_dataManager.PlayerFamily, m_dataManager.LeagueFamilies);
+		}
+		else if (type == "league")
+		{
+			league_panel.GetComponent<LoadLeaguePanel> ().DisplayLeagueStandings (m_dataManager.PlayerFamily, m_dataManager.LeagueFamilies);
 		}
 	}
 
