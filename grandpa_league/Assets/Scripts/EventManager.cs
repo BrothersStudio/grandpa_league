@@ -883,4 +883,108 @@ public static class EventManager
 		
 		return returnObj;
 	}
+
+	// Parent gets in car accident 
+	public static Outcome Event1018(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+		if (manager.PlayerFamily.Parents.Count > 1) 
+		{
+			manager.PlayerFamily.Parents.Remove (requirements.Parent);
+
+			string other_parent = "";
+			foreach (Parent parent in manager.PlayerFamily.Parents) {
+				Debug.Log ("Remaining parent: " + parent.Name);
+				other_parent = parent.Name;
+				parent.Love += 20;
+				parent.LoveGrowth -= 0.05;
+				parent.Popularity += 20;
+				parent.AddQualification (Qualification.GetQualificationByString ("IS_SINGLE"));
+			}
+
+			manager.PlayerFamily.Grandpa.Pride -= 100;
+
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE;
+			returnObj.OutcomeDescription = String.Format (
+				"{0} was driving along the precarious cliffs on the edge of town to get the family a pizza and a really " +
+				"unfortunately timed gust of wind threw {1} car straight into a bottomless pit. Yo, that, like, totally sucks. " +
+				"Sorry.\n\n" +
+				"{0} has left the family!\n" +
+				"{2}'s love way up!\n" +
+				"{2}'s love growth down!\n" +
+				"{2}'s popularity way up!\n" +
+				"{3}'s pride down!\n",
+				requirements.Parent.Name, Convert.ToBoolean (requirements.Parent.Gender) ? "her" : "his", other_parent, 
+				manager.PlayerFamily.Grandpa.Name);
+		}
+		else 
+			returnObj.Status = (int)Enums.EventOutcome.PASS;
+		
+		return returnObj;
+	}
+
+	// Grandkid throws party
+	public static Outcome Event1019(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+		if ((requirements.Parent.Love >= 30 && requirements.Child.Popularity >= 70 && requirements.Accept) ||
+		    (requirements.Child.Popularity >= 40 && requirements.Money >= 200 && requirements.Accept)) {
+			requirements.Child.Popularity += 20;
+			requirements.Child.PopularityGrowth += 0.2;
+
+			requirements.Parent.Popularity += 20;
+			requirements.Parent.Love += 10;
+			requirements.Parent.PopularityGrowth += 0.1;
+
+			manager.PlayerFamily.Grandpa.Pride += 400;
+			manager.PlayerFamily.Grandpa.Insanity += 10;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+			returnObj.OutcomeDescription = String.Format (
+				"Holy shit. It's all kind of a blur, but that party was off the hook! Where did that elephant come from? I've never seen {0} dance like that. " +
+				"It's so cool that your {1} let us throw that! Can't believe Barack Obama showed up. I want to remember last night for the rest of my life. " +
+				"You're sooooo cool, {2}!\n\n" +
+				"{2}'s popularity way up!\n" +
+				"{2}'s popularity growth way up!\n" +
+				"{3}'s popularity way up!\n" +
+				"{3}'s popularity growth up!\n" +
+				"{0}'s pride way way up!!\n" +
+				"{0}'s insanity up.\n",
+				manager.PlayerFamily.Grandpa.Name, Convert.ToBoolean (requirements.Parent.Gender) ? "mom" : "dad", requirements.Child.Name, requirements.Parent.Name);
+		} 
+		else if (!requirements.Accept) 
+		{
+			requirements.Child.Popularity -= 5;
+			requirements.Child.PopularityGrowth -= 0.05;
+
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE;
+			returnObj.OutcomeDescription = String.Format (
+				"Lame! Don't you ever have any fun? You're wrong, it would have been a totally rad party... \nSniff... \n\n" +
+				"{0}'s popularity slightly down.\n" +
+				"{0}'s popularity growth slightly down.\n",
+				requirements.Child.Name);
+		} 
+		else 
+		{
+			requirements.Child.Popularity -= 20;
+			requirements.Child.PopularityGrowth -= 0.1;
+
+			manager.PlayerFamily.Grandpa.Wisdom -= 10;
+			manager.PlayerFamily.Grandpa.Insanity += 10;
+			manager.PlayerFamily.Grandpa.InsanityGrowth += 0.05;
+
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE;
+			returnObj.OutcomeDescription = String.Format (
+				"Well, that was the might awkward night of {0}'s life. Who let that kid throw a party? {1}'s totally a loser... And who brought " +
+				"that live tiger? Was that you, Grandpa?\n\n" +
+				"{0}'s popularity way down.\n" +
+				"{0}'s popularity growth way down.\n" +
+				"{2}'s wisdom down.\n" +
+				"{2}'s insanity up.\n" +
+				"{2}'s insanity growth up.\n",
+				requirements.Child.Name, Convert.ToBoolean (requirements.Child.Gender) ? "She" : "He", manager.PlayerFamily.Grandpa.Name);
+		}
+
+		return returnObj;
+	}
 }
