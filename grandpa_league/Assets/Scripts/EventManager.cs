@@ -977,13 +977,76 @@ public static class EventManager
 			returnObj.OutcomeDescription = String.Format (
 				"Well, that was the might awkward night of {0}'s life. Who let that kid throw a party? {1}'s totally a loser... And who brought " +
 				"that live tiger? Was that you, Grandpa?\n\n" +
-				"{0}'s popularity way down.\n" +
-				"{0}'s popularity growth way down.\n" +
+				"{0}'s popularity way down!\n" +
+				"{0}'s popularity growth way down!\n" +
 				"{2}'s wisdom down.\n" +
 				"{2}'s insanity up.\n" +
 				"{2}'s insanity growth up.\n",
 				requirements.Child.Name, Convert.ToBoolean (requirements.Child.Gender) ? "She" : "He", manager.PlayerFamily.Grandpa.Name);
 		}
+
+		return returnObj;
+	}
+
+	// Parent injured at construction site
+	public static Outcome Event1020(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+		if (requirements.Parent.Intelligence < 40)
+		{
+			requirements.Parent.Intelligence -= 10;
+			requirements.Parent.Popularity -= 10;
+
+			manager.PlayerFamily.Grandpa.Pride -= 50;
+
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE;
+			returnObj.OutcomeDescription = String.Format (
+				"{0} was walking through a construction site the other day and got hit by a girder! Why was {1} even walking through there? " +
+				"What a dummy. What a disgrace...\n\n" +
+				"{0}'s intelligence down.\n" +
+				"{0}'s popularity down!\n" +
+				"{2}'s pride down slightly.\n",
+				requirements.Parent.Name, Convert.ToBoolean (requirements.Parent.Gender) ? "she" : "he", 
+				manager.PlayerFamily.Grandpa.Name);
+		}
+		else 
+			returnObj.Status = (int)Enums.EventOutcome.PASS;
+
+		return returnObj;
+	}
+
+	// Grandkid gets into Harvard
+	public static Outcome Event1021(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+		if (requirements.Child.Intelligence > 90)
+		{
+			foreach (Child child in manager.PlayerFamily.Children) 
+			{
+				child.Intelligence += 10;
+				child.IntelligenceGrowth += 0.05;
+			}
+
+			foreach (Parent parent in manager.PlayerFamily.Parents) 
+			{
+				parent.Intelligence += 10;
+				parent.IntelligenceGrowth += 0.05;
+			}
+
+			manager.PlayerFamily.Grandpa.Pride += 200;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+			returnObj.OutcomeDescription = String.Format (
+				"Awesome! {0} just got into Harvard! {1} is going for Nautical Archaeology. It's been {2} passion for as long as you can remember. " +
+				"You feel your entire family get smarter just by being in contact with {2}!\n\n" +
+				"Entire family's intelligence up!!\n" +
+				"Entire family's intelligence growth up!!\n" +
+				"{3}'s pride way up!!\n",
+				requirements.Parent.Name, Convert.ToBoolean (requirements.Parent.Gender) ? "She" : "He", Convert.ToBoolean (requirements.Parent.Gender) ? "her" : "his",
+				manager.PlayerFamily.Grandpa.Name);
+		}
+		else 
+			returnObj.Status = (int)Enums.EventOutcome.PASS;
 
 		return returnObj;
 	}
