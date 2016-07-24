@@ -942,7 +942,7 @@ MonoBehaviour:
   - {fileID: 52205197}
   - {fileID: 715028800}
   month_title: {fileID: 2013034682}
-  family_panel: {fileID: 0}
+  family_panel: {fileID: 1810429897}
   trading_panel: {fileID: 477448509}
   league_panel: {fileID: 799494477}
   EventCanvas: {fileID: 1957800532}

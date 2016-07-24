@@ -163,7 +163,7 @@ public class LoadTradingPanel : MonoBehaviour {
 		parents_in_player_panel = 0;
 		children_in_player_panel = 0;
 
-		// Fit scroll panel to family size
+		// Fit scroll panel to family size if needed
 		float prefab_height = prefab_family_list_button.GetComponent<RectTransform> ().rect.height;
 		float parent_height = player_family_content_panel.GetComponent<RectTransform> ().rect.height;
 
@@ -189,7 +189,11 @@ public class LoadTradingPanel : MonoBehaviour {
 
 			current_inds++;
 		}
-
+		if (PlayerFamily.Parents.Count == 1) 
+		{
+			player_family_parent_button_list [player_family_parent_button_list.Count - 1].GetComponent<Button> ().interactable = false;
+		}
+			
 		foreach (Child child_instance in PlayerFamily.Children) 
 		{
 			Child child = child_instance;
@@ -202,8 +206,11 @@ public class LoadTradingPanel : MonoBehaviour {
 
 			current_inds++;
 		}
-
-		// Display money
+		if (PlayerFamily.Children.Count == 1) 
+		{
+			player_family_child_button_list [player_family_child_button_list.Count - 1].GetComponent<Button> ().interactable = false;
+		}
+			
 		offer_money_field.transform.Find ("Placeholder").GetComponent<Text> ().text = "Currently Held: $" + PlayerFamily.Grandpa.Money.ToString();
 	}
 
@@ -265,6 +272,10 @@ public class LoadTradingPanel : MonoBehaviour {
 
 						current_inds++;
 					}
+					if (family.Parents.Count == 1) 
+					{
+						enemy_family_subfamily_parent_list [enemy_family_subfamily_parent_list.Count - 1].GetComponent<Button> ().interactable = false;
+					}
 
 					foreach (Child child_instance in family.Children)
 					{
@@ -277,6 +288,10 @@ public class LoadTradingPanel : MonoBehaviour {
 						SetChildButton (child, enemy_family_subfamily_child_list, enemy_offer_content_panel, enemy_families_content_panel, enemy_family_subfamily_child_list.Count - 1, false);
 
 						current_inds++;
+					}
+					if (family.Children.Count == 1) 
+					{
+						enemy_family_subfamily_child_list [enemy_family_subfamily_child_list.Count - 1].GetComponent<Button> ().interactable = false;
 					}
 
 					// Display money
