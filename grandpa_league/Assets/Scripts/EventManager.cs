@@ -318,12 +318,11 @@ public static class EventManager
 	public static Outcome Event1003(DataManager manager, Requirement requirements)
 	{
 		Outcome returnObj = new Outcome();
-		requirements.Child.Athleticism = 51;
 		if (requirements.Child.Athleticism > 50) 
 		{
 			requirements.Child.AddQualification (Qualification.GetQualificationByString ("ON_FOOTBALL_TEAM"));
 
-			requirements.Child.Athleticism += 10;
+			requirements.Child.Athleticism -= 50;
 			requirements.Child.AthleticismGrowth += 0.1;
 			requirements.Child.Popularity += 10;
 			requirements.Child.PopularityGrowth += 0.1;
@@ -471,7 +470,7 @@ public static class EventManager
 		return returnObj;
 	}
 
-	// Grandson's illegal gear discovered
+	// Grandkid's illegal gear discovered
 	public static Outcome Event1012(DataManager manager, Requirement requirements)
 	{
 		Outcome returnObj = new Outcome();
@@ -570,6 +569,33 @@ public static class EventManager
 		}
 		requirements.Child.RemoveQualification (Qualification.GetQualificationByString ("ILLEGAL_GEAR"));
 		requirements.Child.RemoveQualification (Qualification.GetQualificationByString ("ON_FOOTBALL_TEAM"));
+		return returnObj;
+	}
+
+	// Grandkid sucks at football
+	public static Outcome Event1014(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+		if (requirements.Child.Athleticism < 40) 
+		{
+			requirements.Child.AthleticismGrowth -= 0.1;
+			requirements.Child.Popularity -= 10;
+
+			manager.PlayerFamily.Grandpa.Pride -= 100;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+			returnObj.OutcomeDescription = String.Format (
+				"Wow, there's no way to put this lightly so I'm just going to come out and say it. {0} is just completely awful at football. " +
+				"I'm not sure what happened. They got on the team okay. Now all the other kids laugh and throw balls at {1}.\n\n" +
+				"{0}'s athleticism growth down.\n" +
+				"{0}'s popularity down.\n" +
+				"{2}'s pride down.\n",
+				requirements.Child.Name, Convert.ToBoolean(requirements.Child.Gender) ? "him" : "her", manager.PlayerFamily.Grandpa.Name);
+		}
+		else  
+		{
+			returnObj.Status = (int)Enums.EventOutcome.PASS;
+		}
 		return returnObj;
 	}
 
