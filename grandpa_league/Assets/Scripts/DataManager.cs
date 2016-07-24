@@ -5,10 +5,11 @@ using UnityEngine;
 [Serializable]
 public class DataManager
 {
-    private PlayerInfo          m_currentInfo       = null;
-    private Calendar            m_currentCalendar   = null;
-    private List<Family>        m_league            = new List<Family>();
-    private Family              m_playerFamily      = null;
+    private PlayerInfo              m_currentInfo       = null;
+    private Calendar                m_currentCalendar   = null;
+    private List<Family>            m_league            = new List<Family>();
+    private Family                  m_playerFamily      = null;
+    private List<SimulationEvent>   m_blacklist         = new List<SimulationEvent>();
 
     public DataManager (string playerName)
     {
@@ -43,5 +44,11 @@ public class DataManager
     {
         get { return this.m_currentInfo; }
         set { this.m_currentInfo = value; }
+    }
+
+    public List<SimulationEvent> Blacklist
+    {
+        get { return this.m_blacklist; }
+        set { this.m_blacklist = value; }
     }
 }

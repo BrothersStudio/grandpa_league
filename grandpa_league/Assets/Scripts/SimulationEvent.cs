@@ -18,6 +18,7 @@ public class SimulationEvent
     private int m_eventMaxMonth = 12;
     private int m_eventDay = 0;
     private double m_chance = 0;
+    private Outcome m_outcome = null;
 
     public SimulationEvent(Requirement requirements, double chance, string eventName, string eventDescription, int eventId, int eventType, int priority, string month="0", int day=0)
     {
@@ -48,7 +49,8 @@ public class SimulationEvent
 
     public Outcome RunEvent(DataManager currentManager)
     {
-        return this.m_eventFunction(currentManager, this.m_requirements);     
+        this.m_outcome = this.m_eventFunction(currentManager, this.m_requirements);
+        return this.m_outcome;
     }
 
     public void FormatEventDescription(DataManager currentManager)

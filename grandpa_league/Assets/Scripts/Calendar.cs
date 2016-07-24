@@ -42,7 +42,7 @@ public class Calendar
 
             foreach (SimulationEvent seasonalEvent in EventManager.GetEventsByMonth(i))
             {
-                this.m_days[Constants.RANDOM.Next(1, 27) * i].AddEvent(seasonalEvent);
+                this.m_days[Constants.RANDOM.Next(1, 27) + (27 * (i-1))].AddEvent(seasonalEvent);
             }
         }
     }

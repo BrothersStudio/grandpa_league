@@ -127,7 +127,7 @@ public class Trade
                 tradeOutcome.Mail.Subject = "RE: Trade offer successfully processed";
                 tradeOutcome.Mail.Sender = "Office of the County Magistrate";
                 tradeOutcome.Mail.Date = dataManager.Calendar.GetCurrentDay();
-                tradeOutcome.Mail.Message = String.Format("Details of the completed offer are below:\n\nTraded: ${0}, {1}goodye!\n\nRecieved: ${2}, {3}enjoy your new home!", this.offeredMoney.ToString(), tradedList, this.proposedMoney.ToString(), recievedList);
+                tradeOutcome.Mail.Message = String.Format("Details of the completed offer are below:\n\nTraded: ${0}, {1}goodbye!\n\nRecieved: ${2}, {3}enjoy your new home!", this.offeredMoney.ToString(), tradedList, this.proposedMoney.ToString(), recievedList);
             }
         }
         return tradeOutcome;

@@ -100,6 +100,12 @@ public class Main : MonoBehaviour {
                                     ev.Requirements.ReqMoney, ev.Requirements.ReqAccept, ev.EventMonth, ev.EventMonthMax, ev.Priority, ev.Requirements.ReqChild, ev.Requirements.ReqParent);
             Debug.Log(debugString);
 
+            if(m_dataManager.Blacklist.Contains(ev))
+            {
+                Debug.Log(string.Format("Event {0} blacklisted... skipping", ev.EventName));
+                continue;
+            }
+
             if (ev.Requirements.Qualification != Qualification.GetQualificationByString("NONE"))
             { 
                 bool hasQual = false;
@@ -191,11 +197,21 @@ public class Main : MonoBehaviour {
             //EXECUTE THE EVENT
             Outcome eventOutcome = ev.RunEvent(m_dataManager);
 
+            //send mail to mail panel using eventOutcome.Mail
+            if (eventOutcome.Mail != null)
+            {
+                m_dataManager.PlayerFamily.Mailbox.Insert(0, eventOutcome.Mail);
+                this.DisplayContent("mail");
+            }
+
             //CHECK THE OUTCOME
             if (eventOutcome.Status == (int)Enums.EventOutcome.PASS)
                 continue;
+            else if (eventOutcome.Status == (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR || eventOutcome.Status == (int)Enums.EventOutcome.FAILURE_BLACKLIST_YEAR
+                     || eventOutcome.Status == (int)Enums.EventOutcome.SUCCESS_BLACKLIST_FOREVER || eventOutcome.Status == (int)Enums.EventOutcome.FAILURE_BLACKLIST_FOREVER)
+                m_dataManager.Blacklist.Add(ev);
 
-            if(ev.Priority != 0)
+            if (ev.Priority != 0)
             {
                 CreateAndDisplayResultPanel(eventOutcome);
                 userInputting = true;
@@ -207,15 +223,6 @@ public class Main : MonoBehaviour {
                 ModalBlockingPanel.SetActive(false);
             }
             Debug.Log(String.Format("event {0} completed", ev.EventName));
-            
-            if(eventOutcome.Mail != null)
-            {
-                m_dataManager.PlayerFamily.Mailbox.Insert(0, eventOutcome.Mail);
-                this.DisplayContent("mail");
-            }
-
-            //Otherwise display the outcome panel with text eventOutcome.OutcomeDescription
-            //send mail to mail panel using eventOutcome.Mail
         }
 
         m_dataManager.Calendar.AdvanceDay();    //once all the event processing done we update the calendar day
@@ -236,6 +243,11 @@ public class Main : MonoBehaviour {
     {
         Child selectedChild = ev.Requirements.Child;
         Parent selectedParent = ev.Requirements.Parent;
+        MoneyInputField.GetComponent<InputField>().text = "0";
+        SelectChildButton.GetComponentInChildren<Text>().text = "Select Child";
+        SelectChildButton.GetComponentInChildren<Text>().color = new Color(255, 0, 0);
+        SelectParentButton.GetComponentInChildren<Text>().text = "Select Parent";
+        SelectParentButton.GetComponentInChildren<Text>().color = new Color(255, 0, 0);
 
         user_input_panel.SetActive(true);
         EventTitleText.GetComponent<Text>().text = ev.EventName;
