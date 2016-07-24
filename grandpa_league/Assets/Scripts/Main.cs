@@ -212,8 +212,8 @@ public class Main : MonoBehaviour {
 
     private void CreateAndDisplayInputPanel(SimulationEvent ev)
     {
-        Child selectedChild = null;
-        Parent selectedParent = null;
+        Child selectedChild = ev.Requirements.Child;
+        Parent selectedParent = ev.Requirements.Parent;
 
         user_input_panel.SetActive(true);
         EventTitleText.GetComponent<Text>().text = ev.EventName;
