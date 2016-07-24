@@ -113,7 +113,7 @@ public class Main : MonoBehaviour {
                 }
                 if (!hasQual)
                 {
-                    Debug.Log(String.Format("No one has qual {0}, skipping event)", ev.Requirements.Qualification));
+                    Debug.Log(String.Format("No one has qual {0} AND meet age requirements, skipping event)", ev.Requirements.Qualification));
                     continue;      //immediately exit the event since no one has the qualificaiton STOP. THE FUNCTION. STOP HAVING IT BE RUN.
                 }
 
@@ -157,8 +157,7 @@ public class Main : MonoBehaviour {
 
             //DISPLAY THE DESCRIPTION OF THE EVENT AND PROMPT USER FOR INPUT
             //Use requirement object to generate the panel which will get the input from the user, display the name and discription (if necessary)
-
-            if (ev.Requirements.HasInputRequirements())
+            if (ev.Requirements.HasInputRequirements() || ev.Priority == 2)
             {
                 ev.FormatEventDescription(m_dataManager);
                 CreateAndDisplayInputPanel(ev);
@@ -178,7 +177,7 @@ public class Main : MonoBehaviour {
             if (eventOutcome.Status == (int)Enums.EventOutcome.PASS)
                 continue;
 
-            if((ev.Priority == 1 || ev.Priority == 2))
+            if(ev.Priority != 0)
             {
                 CreateAndDisplayResultPanel(eventOutcome);
                 userInputting = true;
