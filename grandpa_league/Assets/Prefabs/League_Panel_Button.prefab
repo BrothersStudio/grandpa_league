@@ -135,7 +135,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '1: First place'
+  m_Text: Text
 --- !u!222 &22200436
 CanvasRenderer:
   m_ObjectHideFlags: 1
