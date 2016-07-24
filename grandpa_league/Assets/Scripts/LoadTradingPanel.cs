@@ -347,6 +347,9 @@ public class LoadTradingPanel : MonoBehaviour {
         child_button_list[buttonInd].GetComponent<Button>().onClick.AddListener(() =>
 			{
                 child_button_list[buttonInd].transform.SetParent(offer_panel.transform, false);
+				Vector2 newOffsetMax = child_button_list[buttonInd].GetComponent<RectTransform>().offsetMax;
+				newOffsetMax[0] += 25;
+				child_button_list[buttonInd].GetComponent<RectTransform>().offsetMax = newOffsetMax;
 
 				if (player)
 				{
@@ -403,6 +406,9 @@ public class LoadTradingPanel : MonoBehaviour {
 						}
 
 						child_button_list[buttonInd].transform.SetParent(family_panel.transform, false);
+						Vector2 oldOffsetMax = child_button_list[buttonInd].GetComponent<RectTransform>().offsetMax;
+						oldOffsetMax[0] -= 25;
+						child_button_list[buttonInd].GetComponent<RectTransform>().offsetMax = oldOffsetMax;
 						SetChildButton(child, child_button_list, offer_panel, family_panel, buttonInd, player);
 					});
 			});
@@ -415,6 +421,9 @@ public class LoadTradingPanel : MonoBehaviour {
 		parent_button_list[buttonInd].GetComponent<Button>().onClick.AddListener(() => 
 			{
 				parent_button_list[buttonInd].transform.SetParent(offer_panel.transform, false);
+				Vector2 newOffsetMax = parent_button_list[buttonInd].GetComponent<RectTransform>().offsetMax;
+				newOffsetMax[0] += 25;
+				parent_button_list[buttonInd].GetComponent<RectTransform>().offsetMax = newOffsetMax;
 
 				if (player)
 				{
@@ -475,6 +484,9 @@ public class LoadTradingPanel : MonoBehaviour {
 						}
 
 						parent_button_list[buttonInd].transform.SetParent(family_panel.transform, false);
+						Vector2 oldOffsetMax = parent_button_list[buttonInd].GetComponent<RectTransform>().offsetMax;
+						oldOffsetMax[0] -= 25;
+						parent_button_list[buttonInd].GetComponent<RectTransform>().offsetMax = oldOffsetMax;
 						SetParentButton(parent, parent_button_list, offer_panel, family_panel, buttonInd, player);
 					});
 			});
