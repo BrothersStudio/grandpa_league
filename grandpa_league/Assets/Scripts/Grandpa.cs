@@ -11,10 +11,11 @@ public class Grandpa : Character
     private double  m_wisdomGrowth      = 0;
 	private double  m_moneyGrowth       = 0;
     
-	public Grandpa(string name, int age, int wisdom, int insanity, int money)
+	public Grandpa(string name, int age, int pride, int wisdom, int insanity, int money)
 	{
         this.m_name = name;
         this.m_age = age;
+		this.m_pride = pride;
         this.m_wisdom = wisdom;
         this.m_insanity = insanity;
 		this.m_money = money;

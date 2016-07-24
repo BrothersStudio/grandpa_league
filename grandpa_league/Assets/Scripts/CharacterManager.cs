@@ -45,6 +45,7 @@ public class CharacterManager
                 case (int)Enums.Character.GRANDPA:
                     m_grandparents.Add(new Grandpa(character.Attribute("name").Value,
                                                         Int32.Parse(character.Attribute("age").Value),
+														Int32.Parse(character.Attribute("pride").Value),
                                                         Int32.Parse(character.Attribute("wisdom").Value),
                                                         Int32.Parse(character.Attribute("insanity").Value),
                                                         Int32.Parse(character.Attribute("money").Value)
