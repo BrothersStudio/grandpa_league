@@ -18,22 +18,18 @@ public class Trade
     {
     }
 
-    public void SetOffer(bool offered, List<Child> children, List<Parent> parent, int money, Family family)
+	public void SetOffer(Family offer_family, List<Child> offer_children, List<Parent> offer_parent, int offer_money, 
+						 Family proposed_family, List<Child> proposed_children, List<Parent> proposed_parent, int proposed_money)
     {
-        if (offered)
-        {
-            offerFamily = family;
-            offeredMoney = money;
-            offeredChar.AddRange(children.Cast<Character>());
-            offeredChar.AddRange(parent.Cast<Character>());
-        }
-        else
-        {
-            proposedFamily = family;
-            proposedMoney = money;
-            proposedChar.AddRange(children.Cast<Character>());
-            proposedChar.AddRange(parent.Cast<Character>());
-        }
+		offerFamily = offer_family;
+		offeredChar.AddRange(offer_children.Cast<Character>());
+		offeredChar.AddRange(offer_parent.Cast<Character>());
+		offeredMoney = offer_money;
+       
+		proposedFamily = proposed_family;
+		proposedChar.AddRange(proposed_children.Cast<Character>());
+		proposedChar.AddRange(proposed_parent.Cast<Character>());
+		proposedMoney = proposed_money;
     }
 
     public void ConfirmOffer()
