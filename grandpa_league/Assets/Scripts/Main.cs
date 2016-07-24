@@ -113,7 +113,7 @@ public class Main : MonoBehaviour {
                 }
                 if (!hasQual)
                 {
-                    Debug.Log(String.Format("No one has qual {0} AND meet age requirements, skipping event)", ev.Requirements.Qualification));
+                    Debug.Log(String.Format("No one has qual {0} AND meet age requirements, skipping event", ev.Requirements.Qualification));
                     continue;      //immediately exit the event since no one has the qualificaiton STOP. THE FUNCTION. STOP HAVING IT BE RUN.
                 }
 
@@ -125,6 +125,22 @@ public class Main : MonoBehaviour {
                     ev.Requirements.Grandpa = (Grandpa)qualChar;
             }
             //at this point the function has checked the event qualification requirements and chosen the first qualifying member
+
+			// Check if ANY character has the required age
+			bool noneEligible = true;
+			foreach (Child child in m_dataManager.PlayerFamily.Children) 
+			{
+				if (child.Age >= ev.Requirements.MinAge && child.Age <= ev.Requirements.MaxAge) 
+				{
+					noneEligible = false;
+					break;
+				}
+			}
+			if (noneEligible) 
+			{
+				Debug.Log(String.Format("No child exists that matches age requirements, skipping event", ev.Requirements.Qualification));
+				continue;
+			}
 
             //now we will loop through and check if we need any random things..(without overwriting the random char we just possibly chose)
             if (ev.Requirements.RandomChild && ev.Requirements.Child == null)
@@ -153,7 +169,6 @@ public class Main : MonoBehaviour {
                 ev.Requirements.Grandpa = m_dataManager.LeagueFamilies[Constants.RANDOM.Next(0, m_dataManager.LeagueFamilies.Count)].Grandpa;
                 Debug.Log(String.Format("chose grandpa:{0} for event", ev.Requirements.Grandpa.Name));
             }
-
 
             //DISPLAY THE DESCRIPTION OF THE EVENT AND PROMPT USER FOR INPUT
             //Use requirement object to generate the panel which will get the input from the user, display the name and discription (if necessary)
@@ -227,7 +242,11 @@ public class Main : MonoBehaviour {
             int curChild = 0;
             foreach (Child child in m_dataManager.PlayerFamily.Children)
             {
-                Child ch = child;
+				Child ch = child;
+
+				if (ch.Age > ev.Requirements.MaxAge || ch.Age < ev.Requirements.MinAge)
+					continue;
+					
                 GameObject childButton = Instantiate(characterButtonPrefab) as GameObject;
                 childButton.GetComponentInChildren<Text>().text= ch.Name;
                 childButton.transform.SetParent(ChildSelectPanel.transform, false);
