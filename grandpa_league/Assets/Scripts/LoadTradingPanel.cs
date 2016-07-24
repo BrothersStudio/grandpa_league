@@ -242,7 +242,6 @@ public class LoadTradingPanel : MonoBehaviour {
 
 		foreach (Family family_instance in leagueFamilies) 
 		{
-			int current_panel_ind = enemy_family_button_list.Count;
 			Family family = family_instance;
 
 			MakeFamiliesPanel (family, enemy_family_button_list, enemy_families_content_panel);
