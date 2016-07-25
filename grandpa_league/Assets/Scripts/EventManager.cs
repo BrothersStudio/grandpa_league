@@ -1020,7 +1020,7 @@ public static class EventManager
 	public static Outcome Event1021(DataManager manager, Requirement requirements)
 	{
 		Outcome returnObj = new Outcome();
-		if (requirements.Child.Intelligence > 90)
+		if (requirements.Child.Intelligence > 90 && requirements.Child.Artistry > 50 && requirements.Child.Athleticism > 50)
 		{
 			foreach (Child child in manager.PlayerFamily.Children) 
 			{
@@ -1045,6 +1045,192 @@ public static class EventManager
 				"{3}'s pride way up!!\n",
 				requirements.Parent.Name, Convert.ToBoolean (requirements.Parent.Gender) ? "She" : "He", Convert.ToBoolean (requirements.Parent.Gender) ? "her" : "his",
 				manager.PlayerFamily.Grandpa.Name);
+		}
+		else 
+			returnObj.Status = (int)Enums.EventOutcome.PASS;
+
+		return returnObj;
+	}
+
+	// Grandpa buys family dog
+	public static Outcome Event1022(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+		if (manager.PlayerFamily.Grandpa.Insanity > 50)
+		{
+			requirements.Child.Intelligence -= 10;
+
+			manager.PlayerFamily.Grandpa.Wisdom -= 10; 
+
+			manager.PlayerFamily.Grandpa.Insanity += 10;
+			manager.PlayerFamily.Grandpa.InsanityGrowth += 0.02;
+
+			manager.PlayerFamily.Grandpa.Pride -= 50;
+
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE_BLACKLIST_YEAR;
+			returnObj.OutcomeDescription = String.Format (
+				"Grandpa brought home a doggy! We were all so happy until it started foaming at the mouth and bit {1} right in the face! " +
+				"Turns out Grandpa found it by the side of the road... Is Grandpa going to be okay, {2}?\n\n" +
+				"{0}'s wisdom down.\n" +
+				"{0}'s insanity up.\n" +
+				"{0}'s insanity growth up.\n" +
+				"{0}'s pride down slightly.\n" +
+				"{1}'s intelligence down.\n",
+				manager.PlayerFamily.Grandpa.Name, requirements.Child.Name, requirements.Parent.Name);
+		}
+		else 
+			returnObj.Status = (int)Enums.EventOutcome.PASS;
+
+		return returnObj;
+	}
+
+	// Grandpa lost at sea
+	public static Outcome Event1023(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+		if (manager.PlayerFamily.Grandpa.Insanity > 50)
+		{
+			manager.PlayerFamily.Grandpa.Wisdom -= 10; 
+
+			manager.PlayerFamily.Grandpa.Insanity += 10;
+			manager.PlayerFamily.Grandpa.InsanityGrowth += 0.02;
+
+			manager.PlayerFamily.Grandpa.Pride -= 50;
+
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE_BLACKLIST_YEAR;
+			returnObj.OutcomeDescription = String.Format (
+				"{1} just got off the phone with the coast guard. They finally found Grandpa. Turns out he wandered into a shipping container " +
+				"and got halfway around the world before someone noticed! I'm getting worried about him...\n\n" +
+				"{0}'s wisdom down.\n" +
+				"{0}'s insanity up.\n" +
+				"{0}'s insanity growth up.\n" +
+				"{0}'s pride down slightly.\n",
+				manager.PlayerFamily.Grandpa.Name, requirements.Parent.Name);
+		}
+		else 
+			returnObj.Status = (int)Enums.EventOutcome.PASS;
+
+		return returnObj;
+	}
+
+	// Grandpa gives life advice
+	public static Outcome Event1024(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+		int roll = Constants.RANDOM.Next (0, 1);
+		if (manager.PlayerFamily.Grandpa.Wisdom > 50 && roll == 0) 
+		{
+			// Adult
+			requirements.Parent.Intelligence += 10;
+			requirements.Parent.Love += 10;
+			requirements.Parent.Popularity += 10;
+
+			manager.PlayerFamily.Grandpa.Wisdom += 10; 
+
+			manager.PlayerFamily.Grandpa.Insanity -= 10;
+			manager.PlayerFamily.Grandpa.InsanityGrowth -= 0.05;
+
+			manager.PlayerFamily.Grandpa.Pride += 100;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+			returnObj.OutcomeDescription = String.Format (
+				"{1} was having a really rough day so Grandpa sat {2} down and gave {2} a life advice talk. {1} was completely reinvigorated and has a " +
+				"new lease on life! That's the power of Grandpa, bitch!\n\n" +
+				"{1} ALL STATS UP!!\n" +
+				"{0}'s wisdom up.\n" +
+				"{0}'s insanity down.\n" +
+				"{0}'s insanity growth down.\n" +
+				"{0}'s pride up.\n",
+				manager.PlayerFamily.Grandpa.Name, requirements.Parent.Name, Convert.ToBoolean (requirements.Parent.Gender) ? "her" : "him");
+		} 
+		else if (manager.PlayerFamily.Grandpa.Wisdom > 50 && roll == 1) 
+		{
+			// Child
+			requirements.Child.Intelligence += 10;
+			requirements.Child.Athleticism += 10;
+			requirements.Child.Popularity += 10;
+			requirements.Child.Artistry += 10;
+			requirements.Child.Cuteness += 10;
+
+			manager.PlayerFamily.Grandpa.Wisdom += 10; 
+
+			manager.PlayerFamily.Grandpa.Insanity -= 10;
+			manager.PlayerFamily.Grandpa.InsanityGrowth -= 0.05;
+
+			manager.PlayerFamily.Grandpa.Pride += 100;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+			returnObj.OutcomeDescription = String.Format (
+				"{1} was having a really rough day so Grandpa sat {2} down and gave {2} a life advice talk. {1} was completely reinvigorated and has a " +
+				"new lease on life! That's the power of Grandpa, bitch!\n\n" +
+				"{1} ALL STATS UP!!\n" +
+				"{0}'s wisdom up.\n" +
+				"{0}'s insanity down.\n" +
+				"{0}'s insanity growth down.\n" +
+				"{0}'s pride up.\n",
+				manager.PlayerFamily.Grandpa.Name, requirements.Child.Name, Convert.ToBoolean (requirements.Child.Gender) ? "her" : "him");
+		}
+		else
+			returnObj.Status = (int)Enums.EventOutcome.PASS;
+
+		return returnObj;
+	}
+
+	// Grandpa loses money
+	public static Outcome Event1025(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+		if (manager.PlayerFamily.Grandpa.Insanity > 70)
+		{
+			double money_lost = manager.PlayerFamily.Grandpa.Money / 2;
+			manager.PlayerFamily.Grandpa.Money -= money_lost;
+
+			manager.PlayerFamily.Grandpa.Wisdom -= 10; 
+			manager.PlayerFamily.Grandpa.WisdomGrowth -= 0.03;
+
+			manager.PlayerFamily.Grandpa.Insanity += 10;
+			manager.PlayerFamily.Grandpa.InsanityGrowth += 0.02;
+
+			manager.PlayerFamily.Grandpa.Pride -= 50;
+
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE_BLACKLIST_YEAR;
+			returnObj.OutcomeDescription = String.Format (
+				"Grandpa just lost ${1} on a ponzi scheme! He actually thought he could get rich quick selling plungers door to door. " +
+				"Grandpa seems like he's losing more of his independance every day...\n\n" +
+				"{0}'s wisdom down.\n" +
+				"{0}'s wisdom growth.\n" +
+				"{0}'s insanity up.\n" +
+				"{0}'s insanity growth up.\n" +
+				"{0}'s pride down slightly.\n" +
+				"{0} lost {1} dollars.\n",
+				manager.PlayerFamily.Grandpa.Name, money_lost.ToString());
+		}
+		else 
+			returnObj.Status = (int)Enums.EventOutcome.PASS;
+
+		return returnObj;
+	}
+
+	// Grandpa commits arson
+	public static Outcome Event1026(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+		if (manager.PlayerFamily.Grandpa.Insanity > 30)
+		{
+			manager.PlayerFamily.Grandpa.InsanityGrowth += 0.05;
+
+			manager.PlayerFamily.Grandpa.Pride += 50;
+
+			requirements.Grandpa.Pride -= 200;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR;
+			returnObj.OutcomeDescription = String.Format (
+				"Grandpa just burned down {1}'s garage! He was mumbling something about a league when I found him! I don't " +
+				"think the police know.\n\n" +
+				"{0}'s insanity growth up.\n" +
+				"{0}'s pride up slightly.\n" +
+				"{1} pride way down!\n",
+				manager.PlayerFamily.Grandpa.Name, requirements.Grandpa.Name);
 		}
 		else 
 			returnObj.Status = (int)Enums.EventOutcome.PASS;
