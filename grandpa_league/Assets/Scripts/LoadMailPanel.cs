@@ -19,7 +19,7 @@ public class LoadMailPanel : MonoBehaviour
     public GameObject ModalBlockingPanel;
     public Canvas MainCanvas;
 
-    public void Start()
+    public void Awake()
     {
         mailCloseButton.GetComponent<Button>().onClick.AddListener(() =>
         {
@@ -54,17 +54,26 @@ public class LoadMailPanel : MonoBehaviour
 
             MakePanel(mail, panelInd);
 
+            if(mail.Read)
+                prefabContentPanel[panelInd].GetComponent<Button>().image.color = new Color(179, 181, 121);
+            else
+                prefabContentPanel[panelInd].GetComponent<Button>().image.color = new Color(230, 235, 107);
+
+            Button thisButton = prefabContentPanel[panelInd].GetComponent<Button>();
             prefabContentPanel[panelInd].GetComponent<Button>().onClick.AddListener(() =>
-            {
+            {     
                 ModalBlockingPanel.SetActive(true);
                 MainCanvas.GetComponent<CanvasGroup>().blocksRaycasts = false;
                 mailTextPanel.SetActive(true);
+                mail.Read = true;
+                thisButton.image.color = new Color(179, 181, 121);
 
                 mailTextPanel.transform.Find("Date").GetComponent<Text>().text = "Date: " + mail.StringDate;
                 mailTextPanel.transform.Find("Sender").GetComponent<Text>().text = "From: " + mail.Sender;
                 mailTextPanel.transform.Find("Subject").GetComponent<Text>().text = "Subject: " + mail.Subject;
                 mailTextPanel.transform.Find("MessageText").GetComponent<Text>().text = mail.Message;
             });
+            panelInd++;
         }
     }
 

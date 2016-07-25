@@ -7,6 +7,7 @@ public class Mail
     private string m_sender = "";
     private Dictionary<string, int> m_date = null;
     private string m_stringDate = "";
+    private bool m_read = false;
 
     public Mail(string subject="", string message="", string sender="", Dictionary<string, int> date=null)
     {
@@ -65,5 +66,11 @@ public class Mail
     {
         get { return this.m_sender;  }
         set { this.m_sender = value; }
+    }
+
+    public bool Read
+    {
+        get { return this.m_read; }
+        set { this.m_read = value; }
     }
 }
