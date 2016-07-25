@@ -13,6 +13,7 @@ public class LoadMailPanel : MonoBehaviour
 
     public GameObject mailTextPanel;
     public GameObject mailCloseButton;
+    public GameObject mailDeleteButton;
 
     private GameObject[] prefabContentPanel;
 
@@ -72,6 +73,14 @@ public class LoadMailPanel : MonoBehaviour
                 mailTextPanel.transform.Find("Sender").GetComponent<Text>().text = "From: " + mail.Sender;
                 mailTextPanel.transform.Find("Subject").GetComponent<Text>().text = "Subject: " + mail.Subject;
                 mailTextPanel.transform.Find("MessageText").GetComponent<Text>().text = mail.Message;
+
+                mailDeleteButton.GetComponent<Button>().onClick.AddListener(() =>
+                {
+                    mailbox.Remove(mail);
+                    ModalBlockingPanel.SetActive(false);
+                    MainCanvas.GetComponent<CanvasGroup>().blocksRaycasts = true;
+                    this.DisplayAllMail(mailbox);
+                });
             });
             panelInd++;
         }
