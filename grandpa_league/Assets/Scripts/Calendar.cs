@@ -64,6 +64,18 @@ public class Calendar
         this.m_days[28 * (this.m_currentMonth - 1) + (this.m_currentDay - 1) + days].AddEvent(simEvent);
     }
 
+    public void UnscheduleEventById(int eventId)
+    {
+        foreach (Day day in this.m_days)
+        {
+            foreach (SimulationEvent ev in day.GetEvents())
+            {
+                if (ev.EventId == eventId)
+                    day.GetEvents().Remove(ev);                 //This may not work if it causes a crash call christopher
+            }
+        }
+    }
+
     public void ScheduleEventByDate(SimulationEvent simEvent, int day, int month)
     {
        this.m_days[28 * (month - 1) + (day - 1)].AddEvent(simEvent);

@@ -129,7 +129,7 @@ public static class EventManager
             if (month >= ev.EventMonth && month <= ev.EventMonthMax && ev.EventDay == 0)
             {
                 int rand = Constants.RANDOM.Next(ev.EventMonth, ev.EventMonthMax);          //choose a random number between the months the ev occurs e.g. 2-6
-                if (rand <= (ev.EventMonth + ev.EventMonthMax) / 2)                         //if rand <= 4, let add it for the current month
+                if (rand == (ev.EventMonth + ev.EventMonthMax) / 2)                         //if rand <= 4, let add it for the current month
                     eventsInMonth.Add(ev);
                 else
                     ev.EventMonth++;                                                        //else move its month up by one. this way if EventMonth == EventMonthMax it will always be added
@@ -1051,7 +1051,7 @@ public static class EventManager
 				"Entire family's intelligence up!!\n" +
 				"Entire family's intelligence growth up!!\n" +
 				"{3}'s pride way up!!\n",
-				requirements.Parent.Name, Convert.ToBoolean (requirements.Parent.Gender) ? "She" : "He", Convert.ToBoolean (requirements.Parent.Gender) ? "her" : "his",
+				requirements.Child.Name, Convert.ToBoolean (requirements.Child.Gender) ? "She" : "He", Convert.ToBoolean (requirements.Child.Gender) ? "her" : "his",
 				manager.PlayerFamily.Grandpa.Name);
 		}
 		else 
