@@ -18,7 +18,9 @@ public class DataManager
 
         this.m_playerFamily = new Family();
         this.m_playerFamily.Grandpa = new Grandpa(playerName);
-		this.m_playerFamily.Parents = CharacterManager.GetRandomParents(Constants.INITIAL_PARENTS);
+        this.PlayerFamily.Grandpa.Money = 1200;
+        this.PlayerFamily.Grandpa.MoneyGrowth = 200;
+        this.m_playerFamily.Parents = CharacterManager.GetRandomParents(Constants.INITIAL_PARENTS);
         this.m_playerFamily.Children = CharacterManager.GetRandomChildren(Constants.INITIAL_CHILDREN);
 
         for (int i = 1; i < Constants.NUM_FAMILIES; i++)

@@ -56,6 +56,7 @@ public class SimulationEvent
         catch (Exception e)
         {
             this.m_outcome = new Outcome();
+            this.m_outcome.Mail = new Mail();
             this.m_outcome.Mail.Message = string.Format("Oops,\n\n Sorry about that little hiccup. Your event crashed (we weren't expecting that to happen). If you see any developers around tell them this:\n\n{0}\n{1}\n{2}", e.Source, e.Message, e.StackTrace.Substring(0, 200));
         }
         return this.m_outcome;

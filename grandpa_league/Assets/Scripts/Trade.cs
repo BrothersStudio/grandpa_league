@@ -98,11 +98,11 @@ public class Trade
                         this.offerFamily.Children.Remove((Child)cur);
                         this.proposedFamily.Children.Add((Child)cur);
                     }
-                    this.proposedFamily.Grandpa.Money += this.offeredMoney;
-                    this.offerFamily.Grandpa.Money -= this.offeredMoney;
                     tradedList += cur.Name + ", ";
                 }
-
+                this.proposedFamily.Grandpa.Money += this.offeredMoney;
+                this.offerFamily.Grandpa.Money -= this.offeredMoney;
+                
                 string recievedList = "";
                 foreach (Character cur in proposedChar)
                 {
@@ -116,11 +116,11 @@ public class Trade
                         this.offerFamily.Children.Add((Child)cur);
                         this.proposedFamily.Children.Remove((Child)cur);
                     }
-                    this.proposedFamily.Grandpa.Money -= this.proposedMoney;
-                    this.offerFamily.Grandpa.Money += this.proposedMoney;
                     recievedList += cur.Name + ", ";
                 }
-
+                this.proposedFamily.Grandpa.Money -= this.proposedMoney;
+                this.offerFamily.Grandpa.Money += this.proposedMoney;
+                
                 tradeOutcome.Status = (int)Enums.EventOutcome.SUCCESS;
                 tradeOutcome.OutcomeDescription = String.Format("{0} has accepted your trade offer and the trade has been successfully registered with the county magistrate!", this.proposedFamily.Grandpa.Name);
                 tradeOutcome.Mail = new Mail();
