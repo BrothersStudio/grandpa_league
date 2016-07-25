@@ -103,14 +103,14 @@ public class Main : MonoBehaviour {
                                     ev.Requirements.ReqMoney, ev.Requirements.ReqAccept, ev.EventMonth, ev.EventMonthMax, ev.Priority, ev.Requirements.ReqChild, ev.Requirements.ReqParent);
             Debug.Log(debugString);
 
-            if(m_dataManager.Blacklist.Contains(ev.EventId))
+            if (m_dataManager.Blacklist.Contains(ev.EventId))
             {
                 Debug.Log(string.Format("Event {0} blacklisted... skipping", ev.EventName));
                 continue;
             }
 
             if (ev.Requirements.Qualification != Qualification.GetQualificationByString("NONE"))
-            { 
+            {
                 bool hasQual = false;
                 Character qualChar = null;
                 foreach (Character ch in m_dataManager.PlayerFamily.GetAllCharacters())
@@ -138,21 +138,21 @@ public class Main : MonoBehaviour {
             }
             //at this point the function has checked the event qualification requirements and chosen the first qualifying member
 
-			// Check if ANY character has the required age
-			bool noneEligible = true;
-			foreach (Child child in m_dataManager.PlayerFamily.Children) 
-			{
-				if (child.Age >= ev.Requirements.MinAge && child.Age <= ev.Requirements.MaxAge) 
-				{
-					noneEligible = false;
-					break;
-				}
-			}
-			if (noneEligible) 
-			{
-				Debug.Log(String.Format("No child exists that matches age requirements, skipping event", ev.Requirements.Qualification));
-				continue;
-			}
+            // Check if ANY character has the required age
+            bool noneEligible = true;
+            foreach (Child child in m_dataManager.PlayerFamily.Children)
+            {
+                if (child.Age >= ev.Requirements.MinAge && child.Age <= ev.Requirements.MaxAge)
+                {
+                    noneEligible = false;
+                    break;
+                }
+            }
+            if (noneEligible)
+            {
+                Debug.Log(String.Format("No child exists that matches age requirements, skipping event", ev.Requirements.Qualification));
+                continue;
+            }
 
             //now we will loop through and check if we need any random things..(without overwriting the random char we just possibly chose)
             if (ev.Requirements.RandomChild && ev.Requirements.Child == null)
@@ -208,7 +208,12 @@ public class Main : MonoBehaviour {
             }
 
             //CHECK THE OUTCOME
-            if (eventOutcome.Status == (int)Enums.EventOutcome.PASS)
+            if (eventOutcome.Status == (int)Enums.EventOutcome.PASS_BLACKLIST_FOREVER || eventOutcome.Status == (int)Enums.EventOutcome.PASS_BLACKLIST_YEAR)
+            { 
+                m_dataManager.Blacklist.Add(ev.EventId);
+                continue;
+            }
+            else if (eventOutcome.Status == (int)Enums.EventOutcome.PASS)
                 continue;
             else if (eventOutcome.Status == (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR || eventOutcome.Status == (int)Enums.EventOutcome.FAILURE_BLACKLIST_YEAR
                      || eventOutcome.Status == (int)Enums.EventOutcome.SUCCESS_BLACKLIST_FOREVER || eventOutcome.Status == (int)Enums.EventOutcome.FAILURE_BLACKLIST_FOREVER)
