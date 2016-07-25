@@ -9,7 +9,7 @@ public class DataManager
     private Calendar                m_currentCalendar   = null;
     private List<Family>            m_league            = new List<Family>();
     private Family                  m_playerFamily      = null;
-    private List<SimulationEvent>   m_blacklist         = new List<SimulationEvent>();
+    private List<int>               m_blacklist         = new List<int>();
 
     public DataManager (string playerName)
     {
@@ -18,7 +18,9 @@ public class DataManager
 
         this.m_playerFamily = new Family();
         this.m_playerFamily.Grandpa = new Grandpa(playerName);
-		this.m_playerFamily.Parents = CharacterManager.GetRandomParents(Constants.INITIAL_PARENTS);
+        this.PlayerFamily.Grandpa.Money = 1200;
+        this.PlayerFamily.Grandpa.MoneyGrowth = 200;
+        this.m_playerFamily.Parents = CharacterManager.GetRandomParents(Constants.INITIAL_PARENTS);
         this.m_playerFamily.Children = CharacterManager.GetRandomChildren(Constants.INITIAL_CHILDREN);
 
         for (int i = 1; i < Constants.NUM_FAMILIES; i++)
@@ -46,7 +48,7 @@ public class DataManager
         set { this.m_currentInfo = value; }
     }
 
-    public List<SimulationEvent> Blacklist
+    public List<int> Blacklist
     {
         get { return this.m_blacklist; }
         set { this.m_blacklist = value; }

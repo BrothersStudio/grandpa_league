@@ -107,6 +107,9 @@ public static class EventManager
         foreach (SimulationEvent ev in m_knownEvents)
             if (ev.EventId == id)
                 return ev;
+        foreach (SimulationEvent ev in m_reservedEvents)
+            if (ev.EventId == id)
+                return ev;
         return null;
     }
 

@@ -29,6 +29,44 @@ public class Parent : Character
         this.UpdateValue();
     }
 
+    public override void UpgradeRandomStat(double amt)
+    {
+        base.UpgradeRandomStat(amt);
+
+        int random = Constants.RANDOM.Next(0, 2);
+        switch (random)
+        {
+            case 0:
+                this.m_love += amt;
+                break;
+            case 1:
+                this.m_intelligence += amt;
+                break;
+            case 2:
+                this.m_popularity += amt;
+                break;
+        }
+    }
+
+    public override void UpgradeRandomStatGrowth(double amt)
+    {
+        base.UpgradeRandomStatGrowth(amt);
+
+        int random = Constants.RANDOM.Next(0, 2);
+        switch (random)
+        {
+            case 0:
+                this.m_loveGrowth += amt;
+                break;
+            case 1:
+                this.m_intelligenceGrowth += amt;
+                break;
+            case 2:
+                this.m_popularityGrowth += amt;
+                break;
+        }
+    }
+
     public void UpdateValue()
     {
         this.m_value = (this.m_intelligence + this.m_popularity + this.m_love);

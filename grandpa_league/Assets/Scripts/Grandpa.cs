@@ -20,10 +20,48 @@ public class Grandpa : Character
         this.m_insanity = insanity;
 		this.m_money = money;
 
-        this.m_insanityGrowth = -1 * (this.m_insanity / 300);
+        this.m_insanityGrowth = (this.m_insanity / 300);
         this.m_wisdomGrowth = (this.m_wisdom / 300);
 		this.m_moneyGrowth = (this.m_money / 10);
 	}
+
+    public override void UpgradeRandomStat(double amt)
+    {
+        base.UpgradeRandomStat(amt);
+
+        int random = Constants.RANDOM.Next(0, 2);
+        switch (random)
+        {
+            case 0:
+                this.m_wisdom += amt;
+                break;
+            case 1:
+                this.m_money += amt * 20;
+                break;
+            case 2:
+                this.m_insanity += amt;
+                break;
+        }
+    }
+
+    public override void UpgradeRandomStatGrowth(double amt)
+    {
+        base.UpgradeRandomStatGrowth(amt);
+
+        int random = Constants.RANDOM.Next(0, 2);
+        switch (random)
+        {
+            case 0:
+                this.m_insanityGrowth += amt;
+                break;
+            case 1:
+                this.m_wisdomGrowth += amt;
+                break;
+            case 2:
+                this.m_moneyGrowth += amt * 100;
+                break;
+        }
+    }
 
     public Grandpa(string name)
     {

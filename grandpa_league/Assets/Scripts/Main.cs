@@ -28,8 +28,10 @@ public class Main : MonoBehaviour {
     public GameObject characterButtonPrefab;
     public GameObject ChildSelectPanel;
     public GameObject ParentSelectPanel;
+    public GameObject GrandpaSelectPanel;
     public GameObject childBackButton;
     public GameObject parentBackButton;
+    public GameObject grandpaBackButton;
     public GameObject SelectionModalBlockingPanel;
 
     public GameObject user_input_panel;
@@ -37,6 +39,7 @@ public class Main : MonoBehaviour {
     public GameObject RejectButton;
     public GameObject SelectParentButton;
     public GameObject SelectChildButton;
+    public GameObject SelectGrandpaButton;
     public GameObject MoneyInputField;
     public GameObject CurrentMoneyText;
     public GameObject EventTitleText;
@@ -100,7 +103,7 @@ public class Main : MonoBehaviour {
                                     ev.Requirements.ReqMoney, ev.Requirements.ReqAccept, ev.EventMonth, ev.EventMonthMax, ev.Priority, ev.Requirements.ReqChild, ev.Requirements.ReqParent);
             Debug.Log(debugString);
 
-            if(m_dataManager.Blacklist.Contains(ev))
+            if(m_dataManager.Blacklist.Contains(ev.EventId))
             {
                 Debug.Log(string.Format("Event {0} blacklisted... skipping", ev.EventName));
                 continue;
@@ -209,7 +212,7 @@ public class Main : MonoBehaviour {
                 continue;
             else if (eventOutcome.Status == (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR || eventOutcome.Status == (int)Enums.EventOutcome.FAILURE_BLACKLIST_YEAR
                      || eventOutcome.Status == (int)Enums.EventOutcome.SUCCESS_BLACKLIST_FOREVER || eventOutcome.Status == (int)Enums.EventOutcome.FAILURE_BLACKLIST_FOREVER)
-                m_dataManager.Blacklist.Add(ev);
+                m_dataManager.Blacklist.Add(ev.EventId);
 
             if (ev.Priority != 0)
             {
@@ -225,7 +228,8 @@ public class Main : MonoBehaviour {
             Debug.Log(String.Format("event {0} completed", ev.EventName));
         }
 
-        m_dataManager.Calendar.AdvanceDay();    //once all the event processing done we update the calendar day
+        LeagueManager.SimulateDay(m_dataManager);   //move league standings around and stuff
+        m_dataManager.Calendar.AdvanceDay();        //once all the event processing done we update the calendar day
 		AdvanceDayHighlight();
     }
 
@@ -243,11 +247,15 @@ public class Main : MonoBehaviour {
     {
         Child selectedChild = ev.Requirements.Child;
         Parent selectedParent = ev.Requirements.Parent;
+        Grandpa selectedGrandpa = ev.Requirements.Grandpa;
+
         MoneyInputField.GetComponent<InputField>().text = "0";
         SelectChildButton.GetComponentInChildren<Text>().text = "Select Child";
         SelectChildButton.GetComponentInChildren<Text>().color = new Color(255, 0, 0);
         SelectParentButton.GetComponentInChildren<Text>().text = "Select Parent";
         SelectParentButton.GetComponentInChildren<Text>().color = new Color(255, 0, 0);
+        SelectGrandpaButton.GetComponentInChildren<Text>().text = "Select Grandpa";
+        SelectGrandpaButton.GetComponentInChildren<Text>().color = new Color(255, 0, 0);
 
         user_input_panel.SetActive(true);
         EventTitleText.GetComponent<Text>().text = ev.EventName;
@@ -277,7 +285,7 @@ public class Main : MonoBehaviour {
                     EventCanvas.GetComponent<CanvasGroup>().blocksRaycasts = true;
                     SelectChildButton.GetComponentInChildren<Text>().text = ch.Name;
                     SelectChildButton.GetComponentInChildren<Text>().color = new Color (255, 255, 255);
-                    if (!SelectParentButton.activeSelf || (SelectParentButton.activeSelf && selectedParent != null))
+                    if ((!SelectParentButton.activeSelf || (SelectParentButton.activeSelf && selectedParent != null)) && (!SelectGrandpaButton.activeSelf || (SelectGrandpaButton.activeSelf && selectedGrandpa != null)))
                         AcceptButton.GetComponent<Button>().interactable = true;
                 });
                 float height = childButton.GetComponent<RectTransform>().rect.height;
@@ -318,7 +326,7 @@ public class Main : MonoBehaviour {
                     EventCanvas.GetComponent<CanvasGroup>().blocksRaycasts = true;
                     SelectParentButton.GetComponentInChildren<Text>().text = par.Name;
                     SelectParentButton.GetComponentInChildren<Text>().color = new Color(255, 255, 255);
-                    if (!SelectChildButton.activeSelf || (SelectChildButton.activeSelf && selectedChild != null))
+                    if ((!SelectChildButton.activeSelf || (SelectChildButton.activeSelf && selectedChild != null)) && (!SelectGrandpaButton.activeSelf || (SelectGrandpaButton.activeSelf && selectedGrandpa != null)))
                         AcceptButton.GetComponent<Button>().interactable = true;
                 });
                 float height = parentButton.GetComponent<RectTransform>().rect.height;
@@ -339,6 +347,47 @@ public class Main : MonoBehaviour {
             });
         });
 
+        SelectGrandpaButton.GetComponent<Button>().onClick.AddListener(() =>
+        {
+            GrandpaSelectPanel.SetActive(true);
+            SelectionModalBlockingPanel.SetActive(true);
+            EventCanvas.GetComponent<CanvasGroup>().blocksRaycasts = false;
+            int curFamily = 0;
+            foreach (Family family in m_dataManager.LeagueFamilies)
+            {
+                Grandpa grandpa = family.Grandpa;
+                GameObject grandpaButton = Instantiate(characterButtonPrefab) as GameObject;
+                grandpaButton.GetComponentInChildren<Text>().text = grandpa.Name;
+                grandpaButton.transform.SetParent(GrandpaSelectPanel.transform, false);
+                grandpaButton.GetComponent<Button>().onClick.AddListener(() =>
+                {
+                    selectedGrandpa = grandpa;
+                    GrandpaSelectPanel.SetActive(false);
+                    SelectionModalBlockingPanel.SetActive(false);
+                    EventCanvas.GetComponent<CanvasGroup>().blocksRaycasts = true;
+                    SelectGrandpaButton.GetComponentInChildren<Text>().text = grandpa.Name;
+                    SelectGrandpaButton.GetComponentInChildren<Text>().color = new Color(255, 255, 255);
+                    if ((!SelectChildButton.activeSelf || (SelectChildButton.activeSelf && selectedChild != null)) && (!SelectParentButton.activeSelf || (SelectParentButton.activeSelf && selectedParent != null)))
+                        AcceptButton.GetComponent<Button>().interactable = true;
+                });
+                float height = grandpaButton.GetComponent<RectTransform>().rect.height;
+                float current_x = grandpaButton.GetComponent<RectTransform>().anchoredPosition.x;
+                grandpaButton.GetComponent<RectTransform>().localScale = new Vector3(0.8f, 0.8f, 1);
+                float current_y = grandpaButton.GetComponent<RectTransform>().anchoredPosition.y;
+                grandpaButton.GetComponent<RectTransform>().anchoredPosition =
+                    new Vector2(current_x, (current_y - (float)curFamily * height) - 80);
+                grandpaButton.GetComponentInChildren<Text>().color = new Color(255, 255, 255);
+                grandpaButton.GetComponent<Button>().image.color = new Color(100, 180, 100);
+                curFamily++;
+            }
+            parentBackButton.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                ParentSelectPanel.SetActive(false);
+                SelectionModalBlockingPanel.SetActive(false);
+                EventCanvas.GetComponent<CanvasGroup>().blocksRaycasts = true;
+            });
+        });
+
         AcceptButton.GetComponent<Button>().onClick.AddListener(() =>
         {
             userInputting = false;
@@ -346,6 +395,7 @@ public class Main : MonoBehaviour {
             ev.Requirements.Money = MoneyInputField.GetComponent<InputField>().text == "" ? 0 : Int32.Parse(MoneyInputField.GetComponent<InputField>().text);
             ev.Requirements.Child = selectedChild;
             ev.Requirements.Parent = selectedParent;
+            ev.Requirements.Grandpa = selectedGrandpa;
         });
 
         RejectButton.GetComponent<Button>().onClick.AddListener(() =>
@@ -382,7 +432,12 @@ public class Main : MonoBehaviour {
         else
             SelectParentButton.SetActive(false);
 
-        if (SelectParentButton.activeSelf || SelectChildButton.activeSelf)
+        if (ev.Requirements.ReqGrandpa && !ev.Requirements.RandomGrandpa)
+            SelectGrandpaButton.SetActive(true);
+        else
+            SelectGrandpaButton.SetActive(false);
+
+        if (SelectParentButton.activeSelf || SelectChildButton.activeSelf || SelectGrandpaButton.activeSelf)
             AcceptButton.GetComponent<Button>().interactable = false;
     }
     
