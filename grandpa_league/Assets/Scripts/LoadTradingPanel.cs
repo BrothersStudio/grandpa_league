@@ -183,7 +183,7 @@ public class LoadTradingPanel : MonoBehaviour {
 
 			parents_in_player_panel++;
 
-			MakePanel (parent, player_family_parent_button_list, player_family_content_panel, current_inds);
+			MakePanel (parent, player_family_parent_button_list, player_family_content_panel, current_inds, 1);
 
 			SetParentButton (parent, player_family_parent_button_list, player_offer_content_panel, player_family_content_panel, player_family_parent_button_list.Count - 1, true);
 
@@ -200,7 +200,7 @@ public class LoadTradingPanel : MonoBehaviour {
 
             children_in_player_panel++;
 
-			MakePanel (child, player_family_child_button_list, player_family_content_panel, current_inds);
+			MakePanel (child, player_family_child_button_list, player_family_content_panel, current_inds, 2);
 
 			SetChildButton (child, player_family_child_button_list, player_offer_content_panel, player_family_content_panel, player_family_child_button_list.Count - 1, true);
 
@@ -265,7 +265,7 @@ public class LoadTradingPanel : MonoBehaviour {
 
 						parents_in_enemy_panel++;
 
-						MakePanel (parent, enemy_family_subfamily_parent_list, enemy_families_content_panel, current_inds);
+						MakePanel (parent, enemy_family_subfamily_parent_list, enemy_families_content_panel, current_inds, 1);
 
 						SetParentButton (parent, enemy_family_subfamily_parent_list, enemy_offer_content_panel, enemy_families_content_panel, enemy_family_subfamily_parent_list.Count - 1, false);
 
@@ -282,7 +282,7 @@ public class LoadTradingPanel : MonoBehaviour {
 
 						children_in_enemy_panel++;
 
-						MakePanel (child, enemy_family_subfamily_child_list, enemy_families_content_panel, current_inds);
+						MakePanel (child, enemy_family_subfamily_child_list, enemy_families_content_panel, current_inds, 2);
 
 						SetChildButton (child, enemy_family_subfamily_child_list, enemy_offer_content_panel, enemy_families_content_panel, enemy_family_subfamily_child_list.Count - 1, false);
 
@@ -301,7 +301,7 @@ public class LoadTradingPanel : MonoBehaviour {
 		receive_money_field.transform.Find ("Placeholder").GetComponent<Text> ().text = "No family selected";
 	}
 
-	private void MakePanel<T>(T member, List<GameObject> prefab_list, GameObject parent_panel, int button_inds, int offset = 0) where T : Character
+	private void MakePanel<T>(T member, List<GameObject> prefab_list, GameObject parent_panel, int button_inds, int color) where T : Character
 	{
 		
 		GameObject new_button = Instantiate(prefab_family_list_button) as GameObject;
@@ -312,7 +312,25 @@ public class LoadTradingPanel : MonoBehaviour {
 		float current_x = new_button.GetComponent<RectTransform> ().anchoredPosition.x;
 		float current_y = new_button.GetComponent<RectTransform> ().anchoredPosition.y;
 		new_button.GetComponent<RectTransform> ().anchoredPosition = 
-			new Vector2 (current_x, current_y - (float)(button_inds + offset) * height);
+			new Vector2 (current_x, current_y - (float)(button_inds) * height);
+
+		// Set color
+		Color button_color = new Color ();
+		button_color.a = 1;
+		switch (color) 
+		{
+		case 1:
+			button_color.r = (float)(71.0/255.0);
+			button_color.g = (float)(170.0/255.0);
+			button_color.b = (float)(255.0/255.0);
+			break;
+		case 2:
+			button_color.r = (float)(64.0/255.0);
+			button_color.g = (float)(200.0/255.0);
+			button_color.b = (float)(30.0/255.0);
+			break;
+		}
+		new_button.GetComponent<Image> ().color = button_color;
 
 		// Set name
 		new_button.GetComponentInChildren<Text>().text = member.Name;
