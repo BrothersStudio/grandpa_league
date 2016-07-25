@@ -225,7 +225,7 @@ public static class EventManager
 
 				returnObj.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR;
 				returnObj.OutcomeDescription = String.Format (
-					"Wow! That car is certainly going to turn heads. " +
+					"Wow! That car is certainly going to turn heads. Thanks for the contribution, Grandpa!" +
 					"{0} sees that you really do care!\n\n" +
 					"{0}'s popularity way up!\n" +
 					"{1}'s pride way up!", 
@@ -240,7 +240,7 @@ public static class EventManager
 
 				returnObj.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR;
 				returnObj.OutcomeDescription = String.Format (
-					"It's the thought that counts, {0}...\n\n" +
+					"That's not going to buy a nice car, {0}. More like a total clunker. Maybe back in your day! I'll take it anyway!\n\n" +
 					"{0}'s pride up.\n" +
 					"{1}'s love up.", 
 					requirements.Grandpa.Name, requirements.Parent.Name);
@@ -932,7 +932,10 @@ public static class EventManager
 	{
 		Outcome returnObj = new Outcome();
 		if ((requirements.Parent.Love >= 30 && requirements.Child.Popularity >= 70 && requirements.Accept) ||
-		    (requirements.Child.Popularity >= 40 && requirements.Money >= 200 && requirements.Accept)) {
+		    (requirements.Child.Popularity >= 40 && requirements.Money >= 200 && requirements.Accept)) 
+		{
+
+
 			requirements.Child.Popularity += 20;
 			requirements.Child.PopularityGrowth += 0.2;
 
@@ -942,6 +945,7 @@ public static class EventManager
 
 			manager.PlayerFamily.Grandpa.Pride += 400;
 			manager.PlayerFamily.Grandpa.Insanity += 10;
+			manager.PlayerFamily.Grandpa.Money -= requirements.Money;
 
 			returnObj.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR;
 			returnObj.OutcomeDescription = String.Format (
@@ -976,10 +980,11 @@ public static class EventManager
 			manager.PlayerFamily.Grandpa.Wisdom -= 10;
 			manager.PlayerFamily.Grandpa.Insanity += 10;
 			manager.PlayerFamily.Grandpa.InsanityGrowth += 0.05;
+			manager.PlayerFamily.Grandpa.Money -= requirements.Money;
 
 			returnObj.Status = (int)Enums.EventOutcome.FAILURE_BLACKLIST_YEAR;
 			returnObj.OutcomeDescription = String.Format (
-				"Well, that was the might awkward night of {0}'s life. Who let that kid throw a party? {1}'s totally a loser... And who brought " +
+				"Well, that was the might awkward night of {0}'s life. No amount of money would have made that fun. Who let that kid throw a party? {1}'s totally a loser... And who brought " +
 				"that live tiger? Was that you, Grandpa?\n\n" +
 				"{0}'s popularity way down!\n" +
 				"{0}'s popularity growth way down!\n" +
