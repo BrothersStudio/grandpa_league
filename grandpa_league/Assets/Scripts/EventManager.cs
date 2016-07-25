@@ -1233,7 +1233,7 @@ public static class EventManager
 
 			returnObj.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR;
 			returnObj.OutcomeDescription = String.Format (
-				"Grandpa just burned down {1}'s garage! He was mumbling something about a league when I found him! I don't " +
+				"Grandpa just burned down {1}'s house! He was mumbling something about a league when I found him! I don't " +
 				"think the police know.\n\n" +
 				"{0}'s insanity growth up.\n" +
 				"{0}'s pride up slightly.\n" +

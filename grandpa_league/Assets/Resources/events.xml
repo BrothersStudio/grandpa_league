@@ -13,8 +13,8 @@
   <!-- <event type="0" id="101" name="Fingerpainting 101" description="{0}'s kindergarten class had a day of finger painting during class today!" priority="1" chance="0.005" req_children="11" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" month="9-12" age="5-6" /> -->
 
   <event type="0" id="1001" name="Grandpa buys a car" description="{G} is tired of seeing {P} drive that old beater around. Wouldn't you like a nice, new car? Now, how much to spend...?" priority="1" chance="0.005" req_children="00" req_parent="11" req_grandpa="00" req_money="01" req_accept="01"/>
-  <event type="0" id="1002" name="Grandpa sends family on vacation" description="{G} wants the family to have a nice, relaxing vacation. The more you spend, the better the vacation will be!" priority="1" chance="0.005" req_children="11" req_parent="11" req_grandpa="00" req_money="01" req_accept="01"/>
-  <event type="0" id="1004" name="Grandpa inspects his social security benefits" description="" priority="1" chance="0.005" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00"/>
+  <event type="0" id="1002" name="Grandpa's vacation" description="{G} wants the family to have a nice, relaxing vacation. The more you spend, the better the vacation will be!" priority="1" chance="0.005" req_children="11" req_parent="11" req_grandpa="00" req_money="01" req_accept="01"/>
+  <event type="0" id="1004" name="Grandpa's social security" description="" priority="1" chance="0.005" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00"/>
   <event type="0" id="1007" name="Grandpa finds buried gold" description="" priority="1" chance="0.005" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00"/>
   <event type="0" id="1008" name="Grandkid is dating head cheerleader" description="" priority="1" chance="0.05" req_children="11" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" qualification="ON_FOOTBALL_TEAM"/>
   <event type="0" id="1009" name="Grandkid is injured on the football team" description="" priority="1" chance="0.02" req_children="11" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" qualification="ON_FOOTBALL_TEAM"/>
@@ -31,7 +31,7 @@
   <event type="0" id="1023" name="Grandpa lost at sea" description="" priority="1" chance="0.003" req_children="00" req_parent="11" req_grandpa="00" req_money="00" req_accept="00" />  
   <event type="0" id="1024" name="Grandpa gives life advice" description="" priority="1" chance="0.005" req_children="11" req_parent="11" req_grandpa="00" req_money="00" req_accept="00" />  
   <event type="0" id="1025" name="Grandpa falls for pozi scheme" description="" priority="1" chance="0.0005" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" /> 
-  <event type="0" id="1026" name="Grandpa commits arson" description="Burn Burn Burn Burn Burn Burn Burn Burn Burn Burn Burn Burn Burn Burn Burn Burn Burn Burn Burn Burn Burn Burn Burn Burn Burn Burn Burn Burn Burn Burn Burn Burn Burn Burn Burn Burn Burn Burn Burn Burn Burn Burn" priority="1" chance="0.01" req_children="00" req_parent="00" req_grandpa="11" req_money="00" req_accept="00" /> 
+  <event type="0" id="1026" name="Grandpa commits arson" description="Burn burn burn burn burn burn burn burn burn burn burn burn burn burn burn burn burn burn burn burn burn burn burn burn burn burn burn burn burn burn burn burn burn burn burn burn burn burn burn burn burn burn" priority="1" chance="0.005" req_children="00" req_parent="00" req_grandpa="01" req_money="00" req_accept="00" /> 
   
   <!-- KNOWN EVENTS req_ of the form 1=true, 0=false, [RANDOM][REQUIRED]-->
   

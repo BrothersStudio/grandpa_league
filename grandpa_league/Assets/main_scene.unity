@@ -867,7 +867,9 @@ MonoBehaviour:
   - {fileID: 361463784}
   - {fileID: 52205197}
   - {fileID: 715028800}
+  current_day: 0
   month_title: {fileID: 2013034682}
+  current_month: 1
   family_panel: {fileID: 1810429897}
   trading_panel: {fileID: 477448509}
   league_panel: {fileID: 799494477}
@@ -901,6 +903,7 @@ MonoBehaviour:
   SaveButton: {fileID: 1707019127}
   ResumeButton: {fileID: 2001787769}
   QuitButton: {fileID: 299690296}
+  userInputting: 0
 --- !u!4 &87242171
 Transform:
   m_ObjectHideFlags: 0
@@ -3430,6 +3433,7 @@ MonoBehaviour:
   mailButtonPrefab: {fileID: 143406, guid: a24febd1a0e47e74f98721390a37548c, type: 2}
   mailTextPanel: {fileID: 823795432}
   mailCloseButton: {fileID: 1396938880}
+  prefabContentPanel: []
   ModalBlockingPanel: {fileID: 930089375}
   MainCanvas: {fileID: 169983691}
 --- !u!1 &315450779
@@ -4659,8 +4663,19 @@ MonoBehaviour:
   enemy_families_content_panel: {fileID: 441199636}
   player_offer_content_panel: {fileID: 1462703160}
   enemy_offer_content_panel: {fileID: 1453086250}
+  parents_in_player_panel: 0
+  parents_in_enemy_panel: 0
+  children_in_player_panel: 0
+  children_in_enemy_panel: 0
+  player_family_parent_button_list: []
+  player_family_child_button_list: []
+  enemy_family_button_list: []
+  enemy_family_subfamily_parent_list: []
+  enemy_family_subfamily_child_list: []
   offer_money_field: {fileID: 1063469153}
   receive_money_field: {fileID: 824903584}
+  offer_money: 0
+  receive_money: 0
 --- !u!1 &497280964
 GameObject:
   m_ObjectHideFlags: 0
@@ -5314,7 +5329,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &525890403
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7690,6 +7705,8 @@ MonoBehaviour:
     type: 2}
   family_panel: {fileID: 1455270658}
   family_panel_content: {fileID: 1810429897}
+  league_placement_button_prefab_list: []
+  league_placement_score_prefab_list: []
 --- !u!1 &801416602
 GameObject:
   m_ObjectHideFlags: 0
@@ -17212,6 +17229,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: {x: 2, y: 0}
   startPos: {x: 0, y: 0, z: 0}
+  body2d: {fileID: 0}
 --- !u!50 &1795536615
 Rigidbody2D:
   serializedVersion: 2
@@ -17370,6 +17388,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 15f3f97a3a9a386469a57c8b7cce4dc4, type: 3}
   - {fileID: 21300000, guid: 4219c9170b979844997bba7d9d9e6930, type: 3}
   - {fileID: 21300000, guid: 8471c60774c59d44a9af96ee8edfe4fb, type: 3}
+  prefab_content_panel_instance: []
 --- !u!1 &1816788064
 GameObject:
   m_ObjectHideFlags: 0
@@ -18389,7 +18408,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1957800530
 MonoBehaviour:
   m_ObjectHideFlags: 0
