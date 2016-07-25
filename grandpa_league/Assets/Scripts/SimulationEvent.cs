@@ -117,6 +117,11 @@ public class SimulationEvent
         get { return this.m_eventName; }
     }
 
+    public int EventType
+    {
+        get { return this.m_eventType; }
+    }
+
     public string EventDescription
     {
         get { return this.m_eventDescription; }
