@@ -32,6 +32,9 @@
   <event type="0" id="1024" name="Grandpa gives life advice" description="" priority="1" chance="0.005" req_children="11" req_parent="11" req_grandpa="00" req_money="00" req_accept="00" />  
   <event type="0" id="1025" name="Grandpa falls for pozi scheme" description="" priority="1" chance="0.0005" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" /> 
   <event type="0" id="1026" name="Grandpa commits arson" description="Burn burn burn burn burn burn burn burn burn burn burn burn burn burn burn burn burn burn burn burn burn burn burn burn burn burn burn burn burn burn burn burn burn burn burn burn burn burn burn burn burn burn" priority="1" chance="0.005" req_children="00" req_parent="00" req_grandpa="01" req_money="00" req_accept="00" /> 
+  <event type="0" id="1027" name="Grandpa kills a cat" description="The feline must pay." priority="1" chance="0.005" req_children="00" req_parent="00" req_grandpa="01" req_money="00" req_accept="00" /> 
+  <event type="0" id="1028" name="Grandpa is naked" description="" priority="1" chance="0.005" req_children="00" req_parent="11" req_grandpa="00" req_money="00" req_accept="00" />   
+  <event type="0" id="1029" name="Grandpa gets a doctor" description="Grandpa hasn't been feeling terribly well lately. A lot of sinister voices talking about a League. Fortunately, a doctor in town specializes in this sort of thing. For 50 dollars a week he can help you!" priority="1" chance="0.01" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="01" />   
   
   <!-- KNOWN EVENTS req_ of the form 1=true, 0=false, [RANDOM][REQUIRED]-->
   
