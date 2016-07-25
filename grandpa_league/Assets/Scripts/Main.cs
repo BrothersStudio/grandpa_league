@@ -228,7 +228,8 @@ public class Main : MonoBehaviour {
             Debug.Log(String.Format("event {0} completed", ev.EventName));
         }
 
-        m_dataManager.Calendar.AdvanceDay();    //once all the event processing done we update the calendar day
+        LeagueManager.SimulateDay(m_dataManager);   //move league standings around and stuff
+        m_dataManager.Calendar.AdvanceDay();        //once all the event processing done we update the calendar day
 		AdvanceDayHighlight();
     }
 

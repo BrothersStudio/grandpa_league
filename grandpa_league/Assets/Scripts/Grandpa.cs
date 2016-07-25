@@ -25,6 +25,12 @@ public class Grandpa : Character
 		this.m_moneyGrowth = (this.m_money / 10);
 	}
 
+    public override void UpgradeRandomStat()
+    {
+        base.UpgradeRandomStat();
+
+    }
+
     public Grandpa(string name)
     {
         this.m_name = name;
