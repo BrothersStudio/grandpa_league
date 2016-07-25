@@ -39,11 +39,13 @@ public class Main : MonoBehaviour {
     public GameObject RejectButton;
     public GameObject SelectParentButton;
     public GameObject SelectChildButton;
+    public GameObject AgeRequirementText;
     public GameObject SelectGrandpaButton;
     public GameObject MoneyInputField;
     public GameObject CurrentMoneyText;
     public GameObject EventTitleText;
     public GameObject EventDescriptionText;
+    public GameObject EventFamilyPanelButton;
 
     public GameObject ModalBlockingPanel;
     public Canvas MainCanvas;
@@ -428,9 +430,21 @@ public class Main : MonoBehaviour {
             CurrentMoneyText.SetActive(false);
         }
         if (ev.Requirements.ReqChild && !ev.Requirements.RandomChild)
+        {
             SelectChildButton.SetActive(true);
+            
+            if(ev.Requirements.MinAge > 0)
+            {
+                AgeRequirementText.SetActive(true);
+                AgeRequirementText.GetComponent<Text>().text = string.Format("Ages: {0}-{1}", ev.Requirements.MinAge, ev.Requirements.MaxAge);
+
+            }
+        }
         else
+        {
             SelectChildButton.SetActive(false);
+            AgeRequirementText.SetActive(false);
+        }
 
         if (ev.Requirements.ReqParent && !ev.Requirements.RandomParent)
             SelectParentButton.SetActive(true);
