@@ -26,7 +26,10 @@
   <event type="0" id="1017" name="Parent gets a divorce" description="" priority="1" chance="0.002" req_children="00" req_parent="11" req_grandpa="00" req_money="00" req_accept="00" />  
   <event type="0" id="1018" name="Parent gets in fatal car accident" description="" priority="1" chance="0.0005" req_children="00" req_parent="11" req_grandpa="00" req_money="00" req_accept="00" />  
   <event type="0" id="1020" name="Parent gets hurt at construction site" description="" priority="1" chance="0.005" req_children="00" req_parent="11" req_grandpa="00" req_money="00" req_accept="00" />  
-  <event type="0" id="1021" name="Grandkid gets into college" description="" priority="1" chance="0.005" req_children="00" req_parent="11" req_grandpa="00" req_money="00" req_accept="00" age="10-18" />  
+  <event type="0" id="1021" name="Grandkid gets into college" description="" priority="1" chance="0.005" req_children="00" req_parent="11" req_grandpa="00" req_money="00" req_accept="00" age="16-18" />  
+  <event type="0" id="1022" name="Grandpa buys family a rabid dog" description="" priority="1" chance="0.005" req_children="11" req_parent="11" req_grandpa="00" req_money="00" req_accept="00" />  
+  <event type="0" id="1023" name="Grandpa lost at sea" description="" priority="1" chance="0.003" req_children="00" req_parent="11" req_grandpa="00" req_money="00" req_accept="00" />  
+  <event type="0" id="1024" name="Grandpa gives life advice" description="" priority="1" chance="0.005" req_children="11" req_parent="11" req_grandpa="00" req_money="00" req_accept="00" />  
   
   <!-- KNOWN EVENTS req_ of the form 1=true, 0=false, [RANDOM][REQUIRED]-->
   
