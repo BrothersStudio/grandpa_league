@@ -48,5 +48,7 @@ public class Character
         this.m_qualifications.Remove(qualification);
     }
 
-    public virtual void UpgradeRandomStat() { }
+    public virtual void UpgradeRandomStat(double amt) { }
+    public virtual void UpgradeRandomStatGrowth(double amt) { }
+
 }

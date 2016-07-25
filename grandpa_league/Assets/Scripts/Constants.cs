@@ -47,6 +47,9 @@ static class Constants
         public const double MAJOR_STAT_INCREASE_AMOUNT = 10;
         public const double MINOR_STAT_INCREASE_AMOUNT = 5;
         public const double TINY_STAT_INCREASE_AMOUNT = 1;
+        public const double MAJOR_STAT_DECREASE_AMOUNT = 9;
+        public const double MINOR_STAT_DECREASE_AMOUNT = 4;
+        public const double TINY_STAT_DECREASE_AMOUNT = 2;
 
         public const double MAJOR_STAT_GROWTH_AMOUNT = 0.05;
         public const double MINOR_STAT_GROWTH_AMOUNT = 0.02;
