@@ -879,7 +879,7 @@ public static class EventManager
 				"{0}'s love up.\n" + 
 				"{1}'s love up.\n" + 
 				"{2}'s wisdom up.\n" + 
-				"{2}'s pride up.\n" + 
+				"{2}'s pride up.\n",
 				manager.PlayerFamily.Parents[0].Name, manager.PlayerFamily.Parents[1].Name, manager.PlayerFamily.Grandpa.Name);
 		}
 		else
