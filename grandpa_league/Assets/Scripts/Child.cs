@@ -37,6 +37,56 @@ public class Child : Character
         this.UpdateValue();
     }
 
+    public override void UpgradeRandomStat(double amt)
+    {
+        base.UpgradeRandomStat(amt);
+
+        int random = Constants.RANDOM.Next(0, 4);
+        switch (random)
+        {
+            case 0:
+                this.m_cuteness += amt;
+                break;
+            case 1:
+                this.m_intelligence += amt;
+                break;
+            case 2:
+                this.m_artistry += amt;
+                break;
+            case 3:
+                this.m_athleticism += amt;
+                break;
+            case 4:
+                this.m_popularity += amt;
+                break;
+        }
+    }
+
+    public override void UpgradeRandomStatGrowth(double amt)
+    {
+        base.UpgradeRandomStatGrowth(amt);
+
+        int random = Constants.RANDOM.Next(0, 4);
+        switch (random)
+        {
+            case 0:
+                this.m_cutenessGrowth += amt;
+                break;
+            case 1:
+                this.m_intelligenceGrowth += amt;
+                break;
+            case 2:
+                this.m_artistryGrowth += amt;
+                break;
+            case 3:
+                this.m_athleticismGrowth += amt;
+                break;
+            case 4:
+                this.m_popularityGrowth += amt;
+                break;
+        }
+    }
+
     public void UpdateValue()
     {
         this.m_value = (this.m_cuteness + this.m_intelligence + this.m_artistry + this.m_athleticism + this.m_popularity);

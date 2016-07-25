@@ -9,7 +9,7 @@ public class DataManager
     private Calendar                m_currentCalendar   = null;
     private List<Family>            m_league            = new List<Family>();
     private Family                  m_playerFamily      = null;
-    private List<SimulationEvent>   m_blacklist         = new List<SimulationEvent>();
+    private List<int>               m_blacklist         = new List<int>();
 
     public DataManager (string playerName)
     {
@@ -48,7 +48,7 @@ public class DataManager
         set { this.m_currentInfo = value; }
     }
 
-    public List<SimulationEvent> Blacklist
+    public List<int> Blacklist
     {
         get { return this.m_blacklist; }
         set { this.m_blacklist = value; }

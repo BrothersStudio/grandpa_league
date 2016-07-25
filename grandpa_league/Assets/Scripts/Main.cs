@@ -103,7 +103,7 @@ public class Main : MonoBehaviour {
                                     ev.Requirements.ReqMoney, ev.Requirements.ReqAccept, ev.EventMonth, ev.EventMonthMax, ev.Priority, ev.Requirements.ReqChild, ev.Requirements.ReqParent);
             Debug.Log(debugString);
 
-            if(m_dataManager.Blacklist.Contains(ev))
+            if(m_dataManager.Blacklist.Contains(ev.EventId))
             {
                 Debug.Log(string.Format("Event {0} blacklisted... skipping", ev.EventName));
                 continue;
@@ -212,7 +212,7 @@ public class Main : MonoBehaviour {
                 continue;
             else if (eventOutcome.Status == (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR || eventOutcome.Status == (int)Enums.EventOutcome.FAILURE_BLACKLIST_YEAR
                      || eventOutcome.Status == (int)Enums.EventOutcome.SUCCESS_BLACKLIST_FOREVER || eventOutcome.Status == (int)Enums.EventOutcome.FAILURE_BLACKLIST_FOREVER)
-                m_dataManager.Blacklist.Add(ev);
+                m_dataManager.Blacklist.Add(ev.EventId);
 
             if (ev.Priority != 0)
             {
