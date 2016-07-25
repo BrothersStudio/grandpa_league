@@ -1175,4 +1175,66 @@ public static class EventManager
 
 		return returnObj;
 	}
+
+	// Grandpa loses money
+	public static Outcome Event1025(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+		if (manager.PlayerFamily.Grandpa.Insanity > 70)
+		{
+			double money_lost = manager.PlayerFamily.Grandpa.Money / 2;
+			manager.PlayerFamily.Grandpa.Money -= money_lost;
+
+			manager.PlayerFamily.Grandpa.Wisdom -= 10; 
+			manager.PlayerFamily.Grandpa.WisdomGrowth -= 0.03;
+
+			manager.PlayerFamily.Grandpa.Insanity += 10;
+			manager.PlayerFamily.Grandpa.InsanityGrowth += 0.02;
+
+			manager.PlayerFamily.Grandpa.Pride -= 50;
+
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE_BLACKLIST_YEAR;
+			returnObj.OutcomeDescription = String.Format (
+				"Grandpa just lost ${1} on a ponzi scheme! He actually thought he could get rich quick selling plungers door to door. " +
+				"Grandpa seems like he's losing more of his independance every day...\n\n" +
+				"{0}'s wisdom down.\n" +
+				"{0}'s wisdom growth.\n" +
+				"{0}'s insanity up.\n" +
+				"{0}'s insanity growth up.\n" +
+				"{0}'s pride down slightly.\n" +
+				"{0} lost {1} dollars.\n",
+				manager.PlayerFamily.Grandpa.Name, money_lost.ToString());
+		}
+		else 
+			returnObj.Status = (int)Enums.EventOutcome.PASS;
+
+		return returnObj;
+	}
+
+	// Grandpa commits arson
+	public static Outcome Event1026(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+		if (manager.PlayerFamily.Grandpa.Insanity > 30)
+		{
+			manager.PlayerFamily.Grandpa.InsanityGrowth += 0.05;
+
+			manager.PlayerFamily.Grandpa.Pride += 50;
+
+			requirements.Grandpa.Pride -= 200;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR;
+			returnObj.OutcomeDescription = String.Format (
+				"Grandpa just burned down {1}'s garage! He was mumbling something about a league when I found him! I don't " +
+				"think the police know.\n\n" +
+				"{0}'s insanity growth up.\n" +
+				"{0}'s pride up slightly.\n" +
+				"{1} pride way down!\n",
+				manager.PlayerFamily.Grandpa.Name, requirements.Grandpa.Name);
+		}
+		else 
+			returnObj.Status = (int)Enums.EventOutcome.PASS;
+
+		return returnObj;
+	}
 }
