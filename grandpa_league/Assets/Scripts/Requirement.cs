@@ -92,6 +92,11 @@ public class Requirement
         set { this.m_grandpa = value; }
     }
 
+    public bool ReqGrandpa
+    {
+        get { return this.m_grandpaNeeded;  }
+    }
+
     public bool RandomGrandpa
     {
         get { return this.m_randomGrandpa; }
