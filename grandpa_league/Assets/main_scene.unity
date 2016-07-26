@@ -6049,8 +6049,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1707659020}
   m_HandleRect: {fileID: 1707659019}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.9999956
+  m_Value: 0.91071427
+  m_Size: 0.9999896
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6421,13 +6421,13 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: aaf73147a326bde41ab03ef27a8a63a1, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 0
     m_HorizontalOverflow: 0
@@ -9292,7 +9292,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000011444092, y: -52.900932}
+  m_AnchoredPosition: {x: 0.000011444092, y: -157.5}
   m_SizeDelta: {x: 118, y: 42}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &834264949
@@ -13994,8 +13994,8 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00011659, y: -10.201}
-  m_SizeDelta: {x: -20, y: -13}
+  m_AnchoredPosition: {x: -0.00005865097, y: -3.5}
+  m_SizeDelta: {x: -20.000116, y: -7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1259086430
 MonoBehaviour:
@@ -14023,7 +14023,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 0
     m_HorizontalOverflow: 0
@@ -16425,8 +16425,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 2.2, y: 17.7}
-  m_SizeDelta: {x: -45.7, y: -99.2}
+  m_AnchoredPosition: {x: -0.00092864, y: 4.7}
+  m_SizeDelta: {x: -44.8, y: -155.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1550522608
 MonoBehaviour:
@@ -16460,7 +16460,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Event Title
+  m_Text: 
 --- !u!222 &1550522609
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -20529,8 +20529,8 @@ RectTransform:
   m_RootOrder: 6
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.29951024, y: 0.00079727056}
-  m_SizeDelta: {x: 365.5, y: 191.2}
+  m_AnchoredPosition: {x: -0.29952, y: 10.861}
+  m_SizeDelta: {x: 365.5, y: 428.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1863059563
 MonoBehaviour:

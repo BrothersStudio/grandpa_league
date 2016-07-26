@@ -64,6 +64,7 @@ public class Main : MonoBehaviour {
 	{
         user_input_panel.SetActive(false);
         m_dataManager = new DataManager(PlayerPrefs.GetString("name"));
+        this.DisplayContent("mail");
 
 		InitializeHighlight ();
 	}
@@ -555,20 +556,38 @@ public class Main : MonoBehaviour {
 	private void HighlightKnownEvents(int month)
 	{
 		List<int> knownEvents = m_dataManager.Calendar.GetKnownEventDaysForMonth(month);
-		foreach (int known_event_day in knownEvents) 
+		foreach (int known_event_day_instance in knownEvents) 
 		{
+			int known_event_day = known_event_day_instance;
+
 			days [known_event_day].image.color = Color.green;
 			days [known_event_day].GetComponent<Button>().onClick.RemoveAllListeners();
 			days [known_event_day].GetComponent<Button>().onClick.AddListener(() =>
 			{
+				known_event_display_panel.transform.Find("Event Text").GetComponent<Text>().text = "";
 				known_event_display_panel.SetActive(true);
+
 				List<SimulationEvent> events_of_day = m_dataManager.Calendar.GetEventsForDay(known_event_day, month);
-				known_event_display_panel.transform.Find("Event Text").GetComponent<Text>().text = events_of_day[0].EventName;
+				int num_known_events = 0;
+				foreach (SimulationEvent this_event_instance in events_of_day)
+				{
+					SimulationEvent this_event = this_event_instance;
+
+					if (this_event.EventType == 1)
+					{
+						num_known_events++;
+						string event_string = this_event.EventName;
+						known_event_display_panel.transform.Find("Event Text").GetComponent<Text>().text += ("\n" + event_string);
+					}
+					if (num_known_events == 3)
+					{
+						break;
+					}
+				}
 			});
-			
 		}
 	}
-		
+
 	private void InitializeHighlight()
 	{     
 		days [current_day].image.color = Color.red;
