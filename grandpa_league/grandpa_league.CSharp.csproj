@@ -87,6 +87,7 @@
     <Compile Include="Assets\Scripts\Parent.cs" />
     <Compile Include="Assets\Scripts\PlayerInfo.cs" />
     <Compile Include="Assets\Scripts\Qualification.cs" />
+    <Compile Include="Assets\Scripts\QualificationToolTip.cs" />
     <Compile Include="Assets\Scripts\Requirement.cs" />
     <Compile Include="Assets\Scripts\SimulationEvent.cs" />
     <Compile Include="Assets\Scripts\SoundEffectPlayer.cs" />
@@ -97,10 +98,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Resources\characters.xml" />
-    <None Include="Assets\Resources\events.xml">
+    <None Include="Assets\Resources\events.xml" />
+    <None Include="Assets\Resources\qualifications.xml">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Assets\Resources\qualifications.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

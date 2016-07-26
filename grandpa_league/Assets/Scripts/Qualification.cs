@@ -9,6 +9,7 @@ using UnityEngine;
 static class Qualification
 {
     private static Dictionary<string, int> m_qualifications = new Dictionary<string, int>();
+    private static Dictionary<int, string> m_qualificationNames = new Dictionary<int, string>();
 
     static Qualification()
     {
@@ -20,7 +21,13 @@ static class Qualification
         foreach (XElement qual in allQualifications)
         {
             m_qualifications.Add(qual.Attribute("name").Value, Int32.Parse(qual.Attribute("id").Value));
+            m_qualificationNames.Add(Int32.Parse(qual.Attribute("id").Value), qual.Attribute("display_name").Value);
         }
+    }
+
+    public static string GetDisplayName(int qualNumber)
+    {
+        return m_qualificationNames[qualNumber];
     }
 
     public static int GetQualificationByString(string qualName)

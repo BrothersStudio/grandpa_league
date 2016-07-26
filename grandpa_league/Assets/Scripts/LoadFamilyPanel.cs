@@ -10,6 +10,9 @@ public class LoadFamilyPanel : MonoBehaviour
 	public GameObject content_panel;
 	public GameObject prefab_content_button;
 
+    public GameObject[] qualification_panel;
+    public Sprite[] qual_sprites;
+
 	public GameObject grandpa_stat_panel;
 	public GameObject parent_stat_panel;
 	public GameObject child_stat_panel;
@@ -49,7 +52,15 @@ public class LoadFamilyPanel : MonoBehaviour
 				parent_stat_panel.SetActive (false);
 				child_stat_panel.SetActive (false);
 
-				grandpa_stat_panel.transform.Find("Name").GetComponent<Text>().text = PlayerFamily.Grandpa.Name;
+                int num_quals = PlayerFamily.Grandpa.Qualifications.Count > 6 ? 6 : PlayerFamily.Grandpa.Qualifications.Count;
+                for (int i = 0; i < num_quals; i++)
+                {
+                    qualification_panel[i].GetComponent<Image>().sprite = GetSpriteForQual(PlayerFamily.Grandpa.Qualifications[i]);
+                    qualification_panel[i].GetComponent<Image>().color = new Color(0, 0, 0, 1);
+                    qualification_panel[i].GetComponent<QualificationToolTip>().SetToolTipText(Qualification.GetDisplayName(PlayerFamily.Grandpa.Qualifications[i]));
+                }
+
+                grandpa_stat_panel.transform.Find("Name").GetComponent<Text>().text = PlayerFamily.Grandpa.Name;
 				grandpa_stat_panel.transform.Find("Insanity Bar").GetComponent<Image>().sprite = ReturnSpriteForStat(PlayerFamily.Grandpa.Insanity, true);
 				grandpa_stat_panel.transform.Find("Wisdom Bar").GetComponent<Image>().sprite = ReturnSpriteForStat(PlayerFamily.Grandpa.Wisdom);
 				grandpa_stat_panel.transform.Find("Money").GetComponent<Text>().text = "Money:\n$" + PlayerFamily.Grandpa.Money;
@@ -72,7 +83,15 @@ public class LoadFamilyPanel : MonoBehaviour
 					parent_stat_panel.SetActive (true);
 					child_stat_panel.SetActive (false);
 
-					parent_stat_panel.transform.Find("Name").GetComponent<Text>().text = parent.Name + " " + family_name;
+                    int num_quals = parent.Qualifications.Count > 6 ? 6 : parent.Qualifications.Count;
+                    for (int i = 0; i < num_quals; i++)
+                    {
+                        qualification_panel[i].GetComponent<Image>().sprite = GetSpriteForQual(parent.Qualifications[i]);
+                        qualification_panel[i].GetComponent<Image>().color = new Color(0, 0, 0, 1);
+                        qualification_panel[i].GetComponent<QualificationToolTip>().SetToolTipText(Qualification.GetDisplayName(parent.Qualifications[i]));
+                    }
+
+                    parent_stat_panel.transform.Find("Name").GetComponent<Text>().text = parent.Name + " " + family_name;
 					parent_stat_panel.transform.Find("Age").GetComponent<Text>().text = "Age: " + parent.Age;
 					parent_stat_panel.transform.Find("Popularity Bar").GetComponent<Image>().sprite = ReturnSpriteForStat(parent.Popularity);
 					parent_stat_panel.transform.Find("Intelligence Bar").GetComponent<Image>().sprite = ReturnSpriteForStat(parent.Intelligence);
@@ -93,6 +112,14 @@ public class LoadFamilyPanel : MonoBehaviour
 					grandpa_stat_panel.SetActive (false);
 					parent_stat_panel.SetActive (false);
 					child_stat_panel.SetActive (true);
+
+                    int num_quals = child.Qualifications.Count > 6 ? 6 : child.Qualifications.Count;
+                    for (int i = 0; i < num_quals; i++)
+                    {
+                        qualification_panel[i].GetComponent<Image>().sprite = GetSpriteForQual(child.Qualifications[i]);
+                        qualification_panel[i].GetComponent<Image>().color = new Color(0, 0, 0, 1);
+                        qualification_panel[i].GetComponent<QualificationToolTip>().SetToolTipText(Qualification.GetDisplayName(child.Qualifications[i]));
+                    }
 
 					child_stat_panel.transform.Find("Name").GetComponent<Text>().text = child.Name + " " + family_name;
 					child_stat_panel.transform.Find("Age").GetComponent<Text>().text = "Age: " + child.Age;
@@ -166,6 +193,11 @@ public class LoadFamilyPanel : MonoBehaviour
 		prefab_content_panel_instance[panel_ind].GetComponentInChildren<Text>().text = member.Name;
 	}
 		
+    private Sprite GetSpriteForQual(int qual)
+    {
+        return qual_sprites[1];
+    }
+
 	private Sprite ReturnSpriteForStat(double stat, bool insanity = false)
 	{
 		if (stat > 100)
