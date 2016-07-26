@@ -67,6 +67,7 @@
      <Compile Include="Assets\Scripts\Parent.cs" />
      <Compile Include="Assets\Scripts\PlayerInfo.cs" />
      <Compile Include="Assets\Scripts\Qualification.cs" />
+     <Compile Include="Assets\Scripts\QualificationToolTip.cs" />
      <Compile Include="Assets\Scripts\Requirement.cs" />
      <Compile Include="Assets\Scripts\SimulationEvent.cs" />
      <Compile Include="Assets\Scripts\SoundEffectPlayer.cs" />

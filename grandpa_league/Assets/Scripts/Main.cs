@@ -8,10 +8,9 @@ public class Main : MonoBehaviour {
 
 	public Button[] days;
 	private int current_day = 0;
-	private int display_month;
-
-	public Text month_title;
 	private int current_month = 1;
+	private int display_month;
+	public Text month_title;
 
 	public GameObject family_panel;
 	public GameObject trading_panel;
@@ -22,6 +21,9 @@ public class Main : MonoBehaviour {
 
     /* user input panel objects */
     public Canvas EventCanvas;
+
+	public GameObject known_event_display_panel;
+
     public GameObject EventOutcomePanel;
     public GameObject OutcomeTextbox;
     public GameObject OkButton;
@@ -58,13 +60,12 @@ public class Main : MonoBehaviour {
 
     bool userInputting = false;
 
-
 	public void Awake()
 	{
         user_input_panel.SetActive(false);
         m_dataManager = new DataManager(PlayerPrefs.GetString("name"));
 
-        InitializeHighlight ();
+		InitializeHighlight ();
 	}
 
     public void AdvanceDay()
@@ -216,7 +217,6 @@ public class Main : MonoBehaviour {
         LeagueManager.SimulateDay(m_dataManager);   //move league standings around and stuff
         m_dataManager.Calendar.AdvanceDay();        //once all the event processing done we update the calendar day
 		AdvanceDayHighlight();
-		HighlightKnownEvents();
     }
 
     private void CreateAndDisplayResultPanel(Outcome eventOutcome)
@@ -552,9 +552,21 @@ public class Main : MonoBehaviour {
         }
 	}
 
-	private void HighlightKnownEvents()
+	private void HighlightKnownEvents(int month)
 	{
-
+		List<int> knownEvents = m_dataManager.Calendar.GetKnownEventDaysForMonth(month);
+		foreach (int known_event_day in knownEvents) 
+		{
+			days [known_event_day].image.color = Color.green;
+			days [known_event_day].GetComponent<Button>().onClick.RemoveAllListeners();
+			days [known_event_day].GetComponent<Button>().onClick.AddListener(() =>
+			{
+				known_event_display_panel.SetActive(true);
+				List<SimulationEvent> events_of_day = m_dataManager.Calendar.GetEventsForDay(known_event_day, month);
+				known_event_display_panel.transform.Find("Event Text").GetComponent<Text>().text = events_of_day[0].EventName;
+			});
+			
+		}
 	}
 		
 	private void InitializeHighlight()
@@ -562,10 +574,13 @@ public class Main : MonoBehaviour {
 		days [current_day].image.color = Color.red;
 
 		month_title.text = Constants.MONTH_NAMES[1];
+		HighlightKnownEvents(current_month);
 	}
 
 	public void AdvanceDayHighlight()
 	{
+		HighlightKnownEvents(current_month);
+
 		days [current_day].image.color = Color.white;
 		if (current_day == days.Length - 1) 
 		{
@@ -586,7 +601,11 @@ public class Main : MonoBehaviour {
 
 	public void ChangeDisplayMonth()
 	{
-
+		current_month++;
+		if (current_month > 12)
+		{
+			current_month = 1;
+		}
 	}
 
     public static DataManager GetDataManager()
