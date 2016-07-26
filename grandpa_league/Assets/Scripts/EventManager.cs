@@ -158,8 +158,14 @@ public static class EventManager
             leagueFam.ApplyStatUpgrades();
         }
 		manager.PlayerFamily.ApplyStatUpgrades();
-
-        return new Outcome((int)Enums.EventOutcome.SUCCESS, "level_upgrade_applied");
+        Outcome statOutcome = new Outcome();
+        statOutcome.Status = (int)Enums.EventOutcome.SUCCESS;
+        statOutcome.Mail = new Mail();
+        statOutcome.Mail.Date = manager.Calendar.GetCurrentDay();
+        statOutcome.Mail.Subject = "Your Social Security Check";
+        statOutcome.Mail.Sender = manager.PlayerFamily.Parents[0].Name;
+        statOutcome.Mail.Message = string.Format("Hey Dad,\n\n\tHere is your social security check for the month plus a little something extra I scraped up for you. The kids are doing just fine and are growing so fast! You'll barely even recognize them soon (between you and me, I'm worred {0} is already getting uglier like Mom did. Anyway have a good month!\n\nTotal Amount Applied to Account: ${1}.00\n\nLove,\n{2}",manager.PlayerFamily.Children[0] ,manager.PlayerFamily.Grandpa.MoneyGrowth, manager.PlayerFamily.Parents[0].Name);
+        return statOutcome;
     }
 
     //NAME: TRADE_ACCEPT_REJECT

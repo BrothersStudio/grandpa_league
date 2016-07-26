@@ -6237,7 +6237,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: League
+  m_Text: Community
 --- !u!222 &534882816
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -16458,7 +16458,7 @@ MonoBehaviour:
     m_AlignByGeometry: 1
     m_RichText: 1
     m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: 
 --- !u!222 &1550522609
@@ -18600,7 +18600,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Trading
+  m_Text: Adoption
 --- !u!222 &1726870612
 CanvasRenderer:
   m_ObjectHideFlags: 0

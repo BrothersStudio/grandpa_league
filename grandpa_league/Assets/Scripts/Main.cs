@@ -567,7 +567,7 @@ public class Main : MonoBehaviour {
 				known_event_display_panel.transform.Find("Event Text").GetComponent<Text>().text = "";
 				known_event_display_panel.SetActive(true);
 
-				List<SimulationEvent> events_of_day = m_dataManager.Calendar.GetEventsForDay(known_event_day, month);
+				List<SimulationEvent> events_of_day = m_dataManager.Calendar.GetEventsForDay(known_event_day+1, month);
 				int num_known_events = 0;
 				foreach (SimulationEvent this_event_instance in events_of_day)
 				{
@@ -598,8 +598,6 @@ public class Main : MonoBehaviour {
 
 	public void AdvanceDayHighlight()
 	{
-		HighlightKnownEvents(current_month);
-
 		days [current_day].image.color = Color.white;
 		if (current_day == days.Length - 1) 
 		{
@@ -610,15 +608,19 @@ public class Main : MonoBehaviour {
 				current_month = 1;
 			}
 			month_title.text = Constants.MONTH_NAMES[current_month];
-		}
+
+            for (int i = 0; i < 28; i++)
+                days[i].image.color = Color.white;
+        }
 		else
 		{
 			current_day++;
 		}
-		days [current_day].image.color = Color.red;
-	}
+        HighlightKnownEvents(current_month);
+        days [current_day].image.color = Color.red;
+    }
 
-	public void ChangeDisplayMonth()
+    public void ChangeDisplayMonth()
 	{
 		current_month++;
 		if (current_month > 12)
