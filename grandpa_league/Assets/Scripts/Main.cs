@@ -562,14 +562,29 @@ public class Main : MonoBehaviour {
 			days [known_event_day].GetComponent<Button>().onClick.RemoveAllListeners();
 			days [known_event_day].GetComponent<Button>().onClick.AddListener(() =>
 			{
+				known_event_display_panel.transform.Find("Event Text").GetComponent<Text>().text = "";
 				known_event_display_panel.SetActive(true);
+
 				List<SimulationEvent> events_of_day = m_dataManager.Calendar.GetEventsForDay(known_event_day, month);
-				known_event_display_panel.transform.Find("Event Text").GetComponent<Text>().text = events_of_day[0].EventName;
+				int num_known_events = 0;
+				foreach (SimulationEvent this_event in events_of_day)
+				{
+					string event_string = this_event.EventName;
+					if (this_event.EventType == 1)
+					{
+						num_known_events++;
+							Debug.Log(event_string);
+						known_event_display_panel.transform.Find("Event Text").GetComponent<Text>().text += ("\n" + event_string);
+					}
+					if (num_known_events == 3)
+					{
+						break;
+					}
+				}
 			});
-			
 		}
 	}
-		
+
 	private void InitializeHighlight()
 	{     
 		days [current_day].image.color = Color.red;
