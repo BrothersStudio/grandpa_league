@@ -129,7 +129,7 @@ public static class EventManager
             if (month >= ev.EventMonth && month <= ev.EventMonthMax && ev.EventDay == 0)
             {
                 int rand = Constants.RANDOM.Next(ev.EventMonth, ev.EventMonthMax);          //choose a random number between the months the ev occurs e.g. 2-6
-                if (rand <= (ev.EventMonth + ev.EventMonthMax) / 2)                         //if rand <= 4, let add it for the current month
+                if (rand == (ev.EventMonth + ev.EventMonthMax) / 2)                         //if rand <= 4, let add it for the current month
                     eventsInMonth.Add(ev);
                 else
                     ev.EventMonth++;                                                        //else move its month up by one. this way if EventMonth == EventMonthMax it will always be added
@@ -1051,7 +1051,7 @@ public static class EventManager
 				"Entire family's intelligence up!!\n" +
 				"Entire family's intelligence growth up!!\n" +
 				"{3}'s pride way up!!\n",
-				requirements.Parent.Name, Convert.ToBoolean (requirements.Parent.Gender) ? "She" : "He", Convert.ToBoolean (requirements.Parent.Gender) ? "her" : "his",
+				requirements.Child.Name, Convert.ToBoolean (requirements.Child.Gender) ? "She" : "He", Convert.ToBoolean (requirements.Child.Gender) ? "her" : "his",
 				manager.PlayerFamily.Grandpa.Name);
 		}
 		else 
@@ -1233,12 +1233,95 @@ public static class EventManager
 
 			returnObj.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR;
 			returnObj.OutcomeDescription = String.Format (
-				"Grandpa just burned down {1}'s garage! He was mumbling something about a league when I found him! I don't " +
+				"Grandpa just burned down {1}'s house! He was mumbling something about a league when I found him! I don't " +
 				"think the police know.\n\n" +
 				"{0}'s insanity growth up.\n" +
 				"{0}'s pride up slightly.\n" +
 				"{1} pride way down!\n",
 				manager.PlayerFamily.Grandpa.Name, requirements.Grandpa.Name);
+		}
+		else 
+			returnObj.Status = (int)Enums.EventOutcome.PASS;
+
+		return returnObj;
+	}
+
+	// Grandpa kills a cat
+	public static Outcome Event1027(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+		if (manager.PlayerFamily.Grandpa.Insanity > 30)
+		{
+			manager.PlayerFamily.Grandpa.InsanityGrowth += 0.05;
+
+			manager.PlayerFamily.Grandpa.Pride += 50;
+
+			requirements.Grandpa.Pride -= 200;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR;
+			returnObj.OutcomeDescription = String.Format (
+				"Looks like Grandpa strangled {1}'s cat. I found them fighting in our yard this morning. It was not a pretty " +
+				"sight, let me tell you. \n\n" +
+				"{0}'s insanity growth up.\n" +
+				"{0}'s pride up slightly.\n" +
+				"{1} pride way down!\n",
+				manager.PlayerFamily.Grandpa.Name, requirements.Grandpa.Name);
+		}
+		else 
+			returnObj.Status = (int)Enums.EventOutcome.PASS;
+
+		return returnObj;
+	}
+
+	// Grandpa is naked
+	public static Outcome Event1028(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+		if (manager.PlayerFamily.Grandpa.Insanity > 60)
+		{
+			manager.PlayerFamily.Grandpa.Insanity += 10;
+			manager.PlayerFamily.Grandpa.Wisdom -= 10;
+
+			manager.PlayerFamily.Grandpa.Pride -= 50;
+
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE_BLACKLIST_YEAR;
+			returnObj.OutcomeDescription = String.Format (
+				"{1} found Grandpa wandering main street at the crack of dawn, naked as the day he was born. He was staring into " +
+				"windows looking for what he called \"Battle Gear\". I have no idea what that means.\n\n" +
+				"{0}'s insanity up.\n" +
+				"{0}'s wisdom down.\n" +
+				"{0}'s pride down.\n",
+				manager.PlayerFamily.Grandpa.Name, requirements.Parent.Name);
+		}
+		else 
+			returnObj.Status = (int)Enums.EventOutcome.PASS;
+
+		return returnObj;
+	}
+
+	// Grandpa gets a doctor
+	public static Outcome Event1029(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+		if (requirements.Accept)
+		{
+			manager.PlayerFamily.Grandpa.Insanity -= 10;
+			manager.PlayerFamily.Grandpa.InsanityGrowth -= 0.1;
+			manager.PlayerFamily.Grandpa.Wisdom += 10;
+			manager.PlayerFamily.Grandpa.WisdomGrowth += 0.1;
+
+			manager.PlayerFamily.Grandpa.MoneyGrowth -= 50;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_FOREVER;
+			returnObj.OutcomeDescription = String.Format (
+				"Grandpa feels much better already! Those pesky voices are just fading into the background! There is no League. " +
+				"There is no League. There is no League.\n\n" +
+				"{0}'s insanity down.\n" +
+				"{0}'s insanity growth down.\n" +
+				"{0}'s wisdom up.\n" +
+				"{0}'s wisdom growth up.\n" +
+				"{0}'s income down.\n",
+				manager.PlayerFamily.Grandpa.Name);
 		}
 		else 
 			returnObj.Status = (int)Enums.EventOutcome.PASS;

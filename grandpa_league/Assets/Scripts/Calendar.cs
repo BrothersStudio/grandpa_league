@@ -33,6 +33,26 @@ public class Calendar
         return this.m_days[(this.m_currentDay - 1) + (28 * (this.m_currentMonth - 1))].GetEvents();
     }
 
+    public List<SimulationEvent> GetEventsForDay(int day, int month)
+    {
+        return this.m_days[(day - 1) + (28 * (month - 1))].GetEvents();
+    }
+
+    public List<int> GetKnownEventDaysForMonth(int month)
+    {
+        List<int> knownEventDays = new List<int>();
+        int monthIndex = (month - 1) * 28;
+        for (int i = monthIndex; i < monthIndex + 28; i++)
+        {
+            foreach(SimulationEvent ev in this.m_days[i].GetEvents())
+            {
+                if (ev.EventType == (int)Enums.EventType.KNOWN)
+                    knownEventDays.Add(i + 1);
+            }
+        }
+        return knownEventDays;
+    }
+
     private void GenerateCalendarForYear()
     {
         for (var i = 1; i <= 12; i++)
@@ -62,6 +82,18 @@ public class Calendar
             return;
 
         this.m_days[28 * (this.m_currentMonth - 1) + (this.m_currentDay - 1) + days].AddEvent(simEvent);
+    }
+
+    public void UnscheduleEventById(int eventId)
+    {
+        foreach (Day day in this.m_days)
+        {
+            foreach (SimulationEvent ev in day.GetEvents())
+            {
+                if (ev.EventId == eventId)
+                    day.GetEvents().Remove(ev);                 //This may not work if it causes a crash call christopher
+            }
+        }
     }
 
     public void ScheduleEventByDate(SimulationEvent simEvent, int day, int month)
