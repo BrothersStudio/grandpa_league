@@ -35,6 +35,13 @@ static class Constants
 			"December",
 		};
 
+    public struct Player
+    {
+        public const double INITIAL_MONEY = 1300;
+        public const double INITIAL_INCOME = 1300;
+        public const string DEFAULT_SURNAME = "Smith";
+    }
+
     public struct Character
     {
         public const double GROWTH_DIVIDER = 300;

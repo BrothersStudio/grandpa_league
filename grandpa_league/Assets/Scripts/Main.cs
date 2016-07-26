@@ -64,6 +64,7 @@ public class Main : MonoBehaviour {
 	{
         user_input_panel.SetActive(false);
         m_dataManager = new DataManager(PlayerPrefs.GetString("name"));
+        this.DisplayContent("mail");
 
 		InitializeHighlight ();
 	}
