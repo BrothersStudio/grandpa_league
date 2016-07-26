@@ -2,28 +2,26 @@
 
 public class Grandpa : Character
 {
-    private double m_insanity          = 0;
-    private double m_wisdom            = 0;
-    private double m_money             = 0;
-    private double m_pride             = 0;
-
-    private double  m_insanityGrowth    = 0;
-    private double  m_wisdomGrowth      = 0;
-	private double  m_moneyGrowth       = 0;
+    private Stat m_insanity          = new Stat();
+    private Stat m_wisdom            = new Stat();
+    private Stat m_money             = new Stat();
+    private Stat m_pride             = new Stat();
     
 	public Grandpa(string name, int age, int pride, int wisdom, int insanity, int money)
 	{
         this.m_name = name;
         this.m_age = age;
-		this.m_pride = pride;
-        this.m_wisdom = wisdom;
-        this.m_insanity = insanity;
-		this.m_money = money;
+        this.m_pride.MaxValue = Int32.MaxValue;
+		this.m_pride.Value = pride;
+        this.m_wisdom.Value = wisdom;
+        this.m_insanity.Value = insanity;
+		this.m_money.Value = money;
 
-        this.m_insanityGrowth = (this.m_insanity / 300);
-        this.m_wisdomGrowth = (this.m_wisdom / 300);
-		this.m_moneyGrowth = (this.m_money / 10);
-	}
+        this.m_insanity.GrowthRate = (insanity / Constants.Character.GROWTH_DIVIDER) > Constants.Character.MAX_INITIAL_GROWTH ? Constants.Character.MAX_INITIAL_GROWTH : (insanity / Constants.Character.GROWTH_DIVIDER);
+        this.m_wisdom.GrowthRate = (wisdom / Constants.Character.GROWTH_DIVIDER) > Constants.Character.MAX_INITIAL_GROWTH ? Constants.Character.MAX_INITIAL_GROWTH : (wisdom / Constants.Character.GROWTH_DIVIDER);
+        this.m_money.GrowthRate = Constants.Character.INITIAL_MONEY_GROWTH;
+
+    }
 
     public override void UpgradeRandomStat(double amt)
     {
@@ -33,13 +31,13 @@ public class Grandpa : Character
         switch (random)
         {
             case 0:
-                this.m_wisdom += amt;
+                this.m_wisdom.Value += amt;
                 break;
             case 1:
-                this.m_money += amt * 20;
+                this.m_money.Value += amt * 20;
                 break;
             case 2:
-                this.m_insanity += amt;
+                this.m_insanity.Value += amt;
                 break;
         }
     }
@@ -52,13 +50,13 @@ public class Grandpa : Character
         switch (random)
         {
             case 0:
-                this.m_insanityGrowth += amt;
+                this.m_insanity.GrowthRate += amt;
                 break;
             case 1:
-                this.m_wisdomGrowth += amt;
+                this.m_wisdom.GrowthRate += amt;
                 break;
             case 2:
-                this.m_moneyGrowth += amt * 100;
+                this.m_money.GrowthRate += amt * 100;
                 break;
         }
     }
@@ -70,43 +68,43 @@ public class Grandpa : Character
 
     public double Wisdom
     {
-        get { return this.m_wisdom; }
-        set { this.m_wisdom = value > 100 ? 100 : value; }
+        get { return this.m_wisdom.Value; }
+        set { this.m_wisdom.Value = value > 100 ? 100 : value; }
     }
 
     public double WisdomGrowth
     {
-        get { return this.m_wisdomGrowth; }
-        set { this.m_wisdomGrowth = value; }
+        get { return this.m_wisdom.GrowthRate; }
+        set { this.m_wisdom.GrowthRate = value; }
     }
 
     public double Insanity
     {
-        get { return this.m_insanity; }
-        set { this.m_insanity = value > 100 ? 100 : value; }
+        get { return this.m_insanity.Value; }
+        set { this.m_insanity.Value = value > 100 ? 100 : value; }
     }
 
     public double InsanityGrowth
     {
-        get { return this.m_insanityGrowth; }
-        set { this.m_insanityGrowth = value; }
+        get { return this.m_insanity.GrowthRate; }
+        set { this.m_insanity.GrowthRate = value; }
     }
 
     public double Money
     {
-        get { return this.m_money; }
-        set { this.m_money = value; }
+        get { return this.m_money.Value; }
+        set { this.m_money.Value = value; }
     }
 
 	public double MoneyGrowth
 	{
-		get { return this.m_moneyGrowth; }
-		set { this.m_moneyGrowth = value; }
+		get { return this.m_money.GrowthRate; }
+		set { this.m_money.GrowthRate = value; }
 	}
 
     public double Pride
     {
-        get { return this.m_pride; }
-        set { this.m_pride = value; }
+        get { return this.m_pride.Value; }
+        set { this.m_pride.Value = value; }
     }
 }

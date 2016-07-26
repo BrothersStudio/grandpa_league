@@ -35,6 +35,13 @@ static class Constants
 			"December",
 		};
 
+    public struct Character
+    {
+        public const double GROWTH_DIVIDER = 300;
+        public const double MAX_INITIAL_GROWTH = 0.05;
+        public const double INITIAL_MONEY_GROWTH = 400;
+    }
+
     public struct League
     {
         public const double MAJOR_STAT_INCREASE_CHANCE = 0.005;

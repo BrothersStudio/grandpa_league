@@ -3,13 +3,10 @@ using System;
 
 public class Parent : Character
 {
-    private double m_intelligence          = 0;
-	private double m_popularity            = 0;
-	private double m_love                  = 0;
+    private Stat m_intelligence          = new Stat();
+    private Stat m_popularity            = new Stat();
+	private Stat m_love                  = new Stat();
 
-    private double  m_intelligenceGrowth    = 0;
-	private double  m_popularityGrowth      = 0;
-	private double  m_loveGrowth            = 0;
 
     private double  m_value                   = 0;
 
@@ -18,13 +15,13 @@ public class Parent : Character
         this.m_name = name;
         this.m_gender = gender;
         this.m_age = age;
-        this.m_intelligence = intelligence;
-		this.m_popularity = popularity;
-		this.m_love = love;
+        this.m_intelligence.Value = intelligence;
+		this.m_popularity.Value = popularity;
+		this.m_love.Value = love;
 
-        this.m_intelligenceGrowth = (this.m_intelligence / 300);
-		this.m_popularityGrowth = (this.m_popularity / 300);
-		this.m_loveGrowth = (this.m_love / 300);
+        this.m_intelligence.GrowthRate = (intelligence / Constants.Character.GROWTH_DIVIDER) > Constants.Character.MAX_INITIAL_GROWTH ? Constants.Character.MAX_INITIAL_GROWTH : (intelligence / Constants.Character.GROWTH_DIVIDER);
+        this.m_popularity.GrowthRate = (-1 * popularity / Constants.Character.GROWTH_DIVIDER) > Constants.Character.MAX_INITIAL_GROWTH ? Constants.Character.MAX_INITIAL_GROWTH : (-1 * popularity / Constants.Character.GROWTH_DIVIDER);
+        this.m_love.GrowthRate = (popularity / Constants.Character.GROWTH_DIVIDER) > Constants.Character.MAX_INITIAL_GROWTH ? Constants.Character.MAX_INITIAL_GROWTH : (love / Constants.Character.GROWTH_DIVIDER);
 
         this.UpdateValue();
     }
@@ -37,13 +34,13 @@ public class Parent : Character
         switch (random)
         {
             case 0:
-                this.m_love += amt;
+                this.m_love.Value += amt;
                 break;
             case 1:
-                this.m_intelligence += amt;
+                this.m_intelligence.Value += amt;
                 break;
             case 2:
-                this.m_popularity += amt;
+                this.m_popularity.Value += amt;
                 break;
         }
     }
@@ -56,56 +53,56 @@ public class Parent : Character
         switch (random)
         {
             case 0:
-                this.m_loveGrowth += amt;
+                this.m_love.GrowthRate += amt;
                 break;
             case 1:
-                this.m_intelligenceGrowth += amt;
+                this.m_intelligence.GrowthRate += amt;
                 break;
             case 2:
-                this.m_popularityGrowth += amt;
+                this.m_popularity.GrowthRate += amt;
                 break;
         }
     }
 
     public void UpdateValue()
     {
-        this.m_value = (this.m_intelligence + this.m_popularity + this.m_love);
+        this.m_value = (this.m_intelligence.Value + this.m_popularity.Value + this.m_love.Value);
     }
 
     public double Intelligence
     {
-        get { return this.m_intelligence; }
-        set { this.m_intelligence = value > 100 ? 100 : value; }
+        get { return this.m_intelligence.Value; }
+        set { this.m_intelligence.Value = value > 100 ? 100 : value; }
     }
 
     public double IntelligenceGrowth
     {
-        get { return this.m_intelligenceGrowth; }
-		set { this.m_intelligenceGrowth = value; }
+        get { return this.m_intelligence.GrowthRate; }
+		set { this.m_intelligence.GrowthRate = value; }
     }
 		
 	public double Popularity
 	{
-		get { return this.m_popularity; }
-		set { this.m_popularity = value > 100 ? 100 : value; }
+		get { return this.m_popularity.Value; }
+		set { this.m_popularity.Value = value > 100 ? 100 : value; }
 	}
 
 	public double PopularityGrowth
 	{
-		get { return this.m_popularityGrowth; }
-		set { this.m_popularityGrowth = value; }
+		get { return this.m_popularity.GrowthRate; }
+		set { this.m_popularity.GrowthRate = value; }
 	}
 
 	public double Love
 	{
-		get { return this.m_love; }
-		set { this.m_love = value > 100 ? 100 : value; }
+		get { return this.m_love.Value; }
+		set { this.m_love.Value = value > 100 ? 100 : value; }
 	}
 
 	public double LoveGrowth
 	{
-		get { return this.m_loveGrowth; }
-		set { this.m_loveGrowth = value; }
+		get { return this.m_love.GrowthRate; }
+		set { this.m_love.GrowthRate = value; }
 	}
 
     public double Value

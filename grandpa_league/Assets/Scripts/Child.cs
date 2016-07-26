@@ -3,17 +3,11 @@ using System;
 
 public class Child : Character
 {
-    private     double   m_cuteness              = 0;
-    private     double   m_intelligence          = 0;
-    private     double   m_artistry              = 0;
-    private     double   m_athleticism           = 0;
-    private     double   m_popularity            = 0;
-
-    private     double  m_cutenessGrowth        = 0;
-    private     double  m_intelligenceGrowth    = 0;
-	private     double  m_artistryGrowth        = 0;
-    private     double  m_athleticismGrowth     = 0;
-    private     double  m_popularityGrowth      = 0;
+    private     Stat    m_cuteness              = new Stat();
+    private     Stat    m_intelligence          = new Stat();
+    private     Stat    m_artistry              = new Stat();
+    private     Stat    m_athleticism           = new Stat();
+    private     Stat    m_popularity            = new Stat();
 
     private     double  m_value                   = 0;
 
@@ -22,17 +16,17 @@ public class Child : Character
         this.m_name = name;
         this.m_gender = gender;
         this.m_age = age;
-        this.m_cuteness = cuteness;
-        this.m_intelligence = intelligence;
-		this.m_artistry = artistry;
-		this.m_athleticism = athleticism;
-		this.m_popularity = popularity;
+        this.m_cuteness.Value = cuteness;
+        this.m_intelligence.Value = intelligence;
+		this.m_artistry.Value = artistry;
+		this.m_athleticism.Value = athleticism;
+		this.m_popularity.Value = popularity;
 
-        this.m_cutenessGrowth = -1 * this.m_cuteness / 300;
-        this.m_intelligenceGrowth = this.m_intelligence / 300;
-		this.m_artistryGrowth = this.m_artistry / 300;
-		this.m_athleticismGrowth = this.m_athleticism / 300;
-		this.m_popularityGrowth = -1 * this.m_popularity / 300;
+        this.m_cuteness.GrowthRate = (-1 * cuteness / Constants.Character.GROWTH_DIVIDER) > Constants.Character.MAX_INITIAL_GROWTH ? Constants.Character.MAX_INITIAL_GROWTH : (cuteness / Constants.Character.GROWTH_DIVIDER);
+        this.m_intelligence.GrowthRate = (intelligence / Constants.Character.GROWTH_DIVIDER) > Constants.Character.MAX_INITIAL_GROWTH ? Constants.Character.MAX_INITIAL_GROWTH : (intelligence / Constants.Character.GROWTH_DIVIDER);
+        this.m_artistry.GrowthRate = (artistry / Constants.Character.GROWTH_DIVIDER) > Constants.Character.MAX_INITIAL_GROWTH ? Constants.Character.MAX_INITIAL_GROWTH : (artistry / Constants.Character.GROWTH_DIVIDER);
+        this.m_athleticism.GrowthRate = (athleticism / Constants.Character.GROWTH_DIVIDER) > Constants.Character.MAX_INITIAL_GROWTH ? Constants.Character.MAX_INITIAL_GROWTH : (athleticism / Constants.Character.GROWTH_DIVIDER);
+        this.m_popularity.GrowthRate = (-1 * popularity / Constants.Character.GROWTH_DIVIDER) > Constants.Character.MAX_INITIAL_GROWTH ? Constants.Character.MAX_INITIAL_GROWTH : (-1 * popularity / Constants.Character.GROWTH_DIVIDER);
 
         this.UpdateValue();
     }
@@ -45,19 +39,19 @@ public class Child : Character
         switch (random)
         {
             case 0:
-                this.m_cuteness += amt;
+                this.m_cuteness.Value += amt;
                 break;
             case 1:
-                this.m_intelligence += amt;
+                this.m_intelligence.Value += amt;
                 break;
             case 2:
-                this.m_artistry += amt;
+                this.m_artistry.Value += amt;
                 break;
             case 3:
-                this.m_athleticism += amt;
+                this.m_athleticism.Value += amt;
                 break;
             case 4:
-                this.m_popularity += amt;
+                this.m_popularity.Value += amt;
                 break;
         }
     }
@@ -70,86 +64,86 @@ public class Child : Character
         switch (random)
         {
             case 0:
-                this.m_cutenessGrowth += amt;
+                this.m_cuteness.GrowthRate += amt;
                 break;
             case 1:
-                this.m_intelligenceGrowth += amt;
+                this.m_intelligence.GrowthRate += amt;
                 break;
             case 2:
-                this.m_artistryGrowth += amt;
+                this.m_artistry.GrowthRate += amt;
                 break;
             case 3:
-                this.m_athleticismGrowth += amt;
+                this.m_athleticism.GrowthRate += amt;
                 break;
             case 4:
-                this.m_popularityGrowth += amt;
+                this.m_popularity.GrowthRate += amt;
                 break;
         }
     }
 
     public void UpdateValue()
     {
-        this.m_value = (this.m_cuteness + this.m_intelligence + this.m_artistry + this.m_athleticism + this.m_popularity);
+        this.m_value = (this.m_cuteness.Value + this.m_intelligence.Value + this.m_artistry.Value + this.m_athleticism.Value + this.m_popularity.Value);
     }
     
     public double Cuteness
     {
-        get { return this.m_cuteness;  }
-        set { this.m_cuteness = value > 100 ? 100 : value; }
+        get { return this.m_cuteness.Value;  }
+        set { this.m_cuteness.Value = value > 100 ? 100 : value; }
     }
 
     public double CutenessGrowth
     {
-        get { return this.m_cutenessGrowth; }
-        set { this.m_cutenessGrowth = value; }
+        get { return this.m_cuteness.GrowthRate; }
+        set { this.m_cuteness.GrowthRate = value; }
     }
 
     public double Intelligence
     {
-        get { return this.m_intelligence; }
-        set { this.m_intelligence = value > 100 ? 100 : value; }
+        get { return this.m_intelligence.Value; }
+        set { this.m_intelligence.Value = value > 100 ? 100 : value; }
     }
 
     public double IntelligenceGrowth
     {
-        get { return this.m_intelligenceGrowth; }
-        set { this.m_intelligenceGrowth = value > 100 ? 100 : value; }
+        get { return this.m_intelligence.GrowthRate; }
+        set { this.m_intelligence.GrowthRate = value > 100 ? 100 : value; }
     }
 
     public double Artistry
     {
-		get { return this.m_artistry; }
-		set { this.m_artistry = value > 100 ? 100 : value; }
+		get { return this.m_artistry.Value; }
+		set { this.m_artistry.Value = value > 100 ? 100 : value; }
     }
 
     public double ArtistryGrowth
     {
-		get { return this.m_artistryGrowth; }
-		set { this.m_artistryGrowth = value; }
+		get { return this.m_artistry.GrowthRate; }
+		set { this.m_artistry.GrowthRate = value; }
     }
 
     public double Athleticism
     {
-		get { return this.m_athleticism; }
-		set { this.m_athleticism = value > 100 ? 100 : value; }
+		get { return this.m_athleticism.Value; }
+		set { this.m_athleticism.Value = value > 100 ? 100 : value; }
     }
 
 	public double AthleticismGrowth
     {
-        get { return this.m_athleticismGrowth; }
-		set { this.m_athleticismGrowth = value; }
+        get { return this.m_athleticism.GrowthRate; }
+		set { this.m_athleticism.GrowthRate = value; }
     }
 
     public double Popularity
     {
-        get { return this.m_popularity; }
-		set { this.m_popularity = value > 100 ? 100 : value; }
+        get { return this.m_popularity.Value; }
+		set { this.m_popularity.Value = value > 100 ? 100 : value; }
     }
 
     public double PopularityGrowth
     {
-		get { return this.m_popularityGrowth; }
-		set { this.m_popularityGrowth = value; }
+		get { return this.m_popularity.GrowthRate; }
+		set { this.m_popularity.GrowthRate = value; }
     }
 
     public double Value
