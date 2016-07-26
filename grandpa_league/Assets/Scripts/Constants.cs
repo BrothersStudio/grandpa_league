@@ -40,6 +40,19 @@ static class Constants
         public const double GROWTH_DIVIDER = 300;
         public const double MAX_INITIAL_GROWTH = 0.05;
         public const double INITIAL_MONEY_GROWTH = 400;
+
+        public const double MAJOR_STAT_CHANGE_AMOUNT = 5;
+        public const double MINOR_STAT_CHANGE_AMOUNT = 2.5;
+        public const double TINY_STAT_CHANGE_AMOUNT = 1;
+
+        public const double MAJOR_STAT_GROWTH_AMOUNT = 0.025;
+        public const double MINOR_STAT_GROWTH_AMOUNT = 0.01;
+        public const double TINY_STAT_GROWTH_AMOUNT = 0.0005;
+
+        public const double MAJOR_PRIDE_CHANGE_AMOUNT = 500;
+        public const double STANDARD_PRIDE_CHANGE_AMOUNT = 100;
+        public const double MINOR_PRIDE_GROWTH_AMOUNT = 50;
+
     }
 
     public struct League
