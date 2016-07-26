@@ -228,8 +228,8 @@ public static class EventManager
 					"Wow! That car is certainly going to turn heads. Thanks for the contribution, Grandpa!" +
 					"{0} sees that you really do care!\n\n" +
 					"{0}'s popularity way up!\n" +
-					"{1}'s pride way up!", 
-					requirements.Parent.Name, manager.PlayerFamily.Grandpa.Name);
+					"Grandpa's pride way up!", 
+					requirements.Parent.Name);
 			} 
 			else if (requirements.Money >= 2000) 
 			{
@@ -240,10 +240,10 @@ public static class EventManager
 
 				returnObj.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR;
 				returnObj.OutcomeDescription = String.Format (
-					"That's not going to buy a nice car, {0}. More like a total clunker. Maybe back in your day! I'll take it anyway!\n\n" +
-					"{0}'s pride up.\n" +
-					"{1}'s love up.", 
-					requirements.Grandpa.Name, requirements.Parent.Name);
+					"That's not going to buy a nice car, Grandpa. More like a total clunker. Maybe back in your day! I'll take it anyway!\n\n" +
+					"{0}'s love up.\n" +
+					"Grandpa's pride up.",
+					requirements.Parent.Name);
 			}
 			else
 			{
@@ -252,10 +252,9 @@ public static class EventManager
 
 				returnObj.Status = (int)Enums.EventOutcome.FAILURE_BLACKLIST_YEAR;
 				returnObj.OutcomeDescription = String.Format (
-					"That's not nearly enough for a nice car... Are you okay, {0}?\n\n" +
-					"{0}'s insanity up.\n" +
-					"{0}'s pride down.", 
-					manager.PlayerFamily.Grandpa.Name);
+					"That's not nearly enough for a nice car... Are you okay, Grandpa?\n\n" +
+					"Grandpa's insanity up.\n" +
+					"Grandpa's pride down.");
 			}
 		} 
 		else 
@@ -290,8 +289,8 @@ public static class EventManager
 					"Wow! That car is certainly going to turn heads. " +
 					"{0} sees that you really do care!\n\n" +
 					"{0}'s popularity way up!\n" +
-					"{1}'s pride way up!", 
-					requirements.Parent.Name, manager.PlayerFamily.Grandpa.Name);
+					"Grandpa's pride way up!", 
+					requirements.Parent.Name);
 			} 
 			else
 			{
@@ -304,9 +303,8 @@ public static class EventManager
 				returnObj.Status = (int)Enums.EventOutcome.FAILURE_BLACKLIST_YEAR;
 				returnObj.OutcomeDescription = String.Format (
 					"That's not nearly enough money for the vacation we had in mind...\n\n" +
-					"{0}'s pride down.\n" +
-					"All parents' love down.", 
-					manager.PlayerFamily.Grandpa.Name);
+					"All parents' love down.\n" +
+					"Grandpa's pride down.");
 			}
 		} 
 		else 
@@ -338,8 +336,8 @@ public static class EventManager
 				"{0}'s athleticism up.\n" + 
 				"{0}'s popularity up.\n" + 
 				"{0}'s artistry down.\n" + 
-				"{1}'s pride up.\n",
-				requirements.Child.Name, manager.PlayerFamily.Grandpa.Name);
+				"Grandpa's pride up.",
+				requirements.Child.Name);
 		}
 		else
 		{
@@ -354,8 +352,8 @@ public static class EventManager
 				"Well, you didn't get on the indoor football team. That's disappointing, {0}...\n\n" +
 				"{0}'s athleticism down.\n" + 
 				"{0}'s popularity down.\n" + 
-				"{1}'s pride down.\n",
-				requirements.Child.Name, manager.PlayerFamily.Grandpa.Name);
+				"Grandpa's pride down.",
+				requirements.Child.Name);
 		}
 		return returnObj;
 	}
@@ -373,11 +371,11 @@ public static class EventManager
 
 			returnObj.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR;
 			returnObj.OutcomeDescription = String.Format (
-				"Wow, {1} is so popular and talented at indoor football that they are dating the head cheerleader!\n\n" +
-				"{1}'s popularity up.\n" + 
-				"{1}'s popularity growth up.\n" + 
-				"{0}'s pride up.\n",
-				manager.PlayerFamily.Grandpa.Name, requirements.Child.Name);
+				"Wow, {0} is so popular and talented at indoor football that they are dating the head cheerleader!\n\n" +
+				"{0}'s popularity up.\n" + 
+				"{0}'s popularity growth up.\n" + 
+				"Grandpa's pride up.",
+				requirements.Child.Name);
 		}
 		else  
 			returnObj.Status = (int)Enums.EventOutcome.PASS;
@@ -402,10 +400,10 @@ public static class EventManager
 			returnObj.Status = (int)Enums.EventOutcome.FAILURE_BLACKLIST_YEAR;
 			returnObj.OutcomeDescription = String.Format (
 				"Oh God, seeing your leg fly right out of the socket during that indoor football game was brutal! I guess you're off the indoor football team for the year.\n\n" +
-				"{1}'s popularity up.\n" +
-				"{1}'s athleticism way down.\n" +
-				"{0}'s pride down.\n",
-				manager.PlayerFamily.Grandpa.Name, requirements.Child.Name);
+				"{0}'s popularity up.\n" +
+				"{0}'s athleticism way down.\n" +
+				"Grandpa's pride down.",
+				requirements.Child.Name);
 		}
 		else  
 			returnObj.Status = (int)Enums.EventOutcome.PASS;
@@ -426,11 +424,11 @@ public static class EventManager
 
 			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
 			returnObj.OutcomeDescription = String.Format (
-				"Holy cow, {1} is just kicking ass at indoor football practice. It's clear to everyone that they're a very skilled player!\n\n" +
-				"{1}'s athleticism up.\n" +
-				"{1}'s athleticism growth up.\n" +
-				"{0}'s pride up.\n",
-				manager.PlayerFamily.Grandpa.Name, requirements.Child.Name);
+				"Holy cow, {0} is just kicking ass at indoor football practice. It's clear to everyone that they're a very skilled player!\n\n" +
+				"{0}'s athleticism up.\n" +
+				"{0}'s athleticism growth up.\n" +
+				"Grandpa's pride up.\n",
+				requirements.Child.Name);
 		}
 		else  
 			returnObj.Status = (int)Enums.EventOutcome.PASS;
@@ -457,14 +455,14 @@ public static class EventManager
 				"Those Cambodians never disappoint! {0} is untouchable at practice now! I just hope no one finds out...\n\n" +
 				"{0}'s athleticism up.\n" +
 				"{0}'s athleticism growth up.\n" +
-				"{1}'s pride up.\n",
-				requirements.Child.Name, manager.PlayerFamily.Grandpa.Name);
+				"Grandpa's pride up.",
+				requirements.Child.Name);
 		}
 		else if (requirements.Accept && manager.PlayerFamily.Grandpa.Money < 500) 
 		{
 			returnObj.Status = (int)Enums.EventOutcome.FAILURE_BLACKLIST_YEAR;
 			returnObj.OutcomeDescription = String.Format (
-				"\"Hey, what are you trying to pull, pal? You don't have the cash...\"\n\n");
+				"\"Hey, what are you trying to pull, gramps? You don't have the cash...\"\n\n");
 		}
 		else
 			returnObj.Status = (int)Enums.EventOutcome.PASS_BLACKLIST_YEAR;
@@ -502,8 +500,8 @@ public static class EventManager
 				"{0}'s athleticism way down!\n" +
 				"{0}'s athleticism growth way down!\n" +
 				"{0}'s popularity way down!\n" +
-				"{1}'s pride way down!\n",
-				requirements.Child.Name, manager.PlayerFamily.Grandpa.Name);
+				"Grandpa's pride way down!\n",
+				requirements.Child.Name);
 		}
 		return returnObj;
 	}
@@ -527,14 +525,14 @@ public static class EventManager
 			returnObj.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR;
 			returnObj.OutcomeDescription = String.Format (
 				"It's the most intense game of indoor football ever displayed! {0} scores every goal personally. " +
-				"The entire indoor stadium are on their feet except {2}. During the last goal, {2}'s son is taken off the field on a stretcher!" +
+				"The entire indoor stadium are on their feet except {1}. During the last goal, {1}'s son is taken off the field on a stretcher!" +
 				"But {0}'s team wins in the end. Of course.\n\n" +
 				"{0}'s athleticism way up.\n" +
 				"{0}'s athleticism growth way up.\n" +
 				"{0}'s popularity way up.\n" +
 				"{0}'s popularity growth way up.\n" +
-				"{1}'s pride way way way up!!\n",
-				requirements.Child.Name, manager.PlayerFamily.Grandpa.Name, requirements.Grandpa.Name);
+				"Grandpa's pride way way way up!!\n",
+				requirements.Child.Name, requirements.Grandpa.Name);
 		} 
 		else if (requirements.Child.Athleticism >= 60) 
 		{
@@ -545,12 +543,12 @@ public static class EventManager
 
 			returnObj.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR;
 			returnObj.OutcomeDescription = String.Format (
-				"{2}'s son's team takes an early lead. {0} puts on a respectable display of resistance. They even put their elbow through" +
-				"Some poor kid's face! That's one for the highlight reel! Ultimately, {0} loses... But {1} is still proud! Maybe next year.\n\n" +
+				"{1}'s son's team takes an early lead. {0} puts on a respectable display of resistance. They even put their elbow through" +
+				"Some poor kid's face! That's one for the highlight reel! Ultimately, {0} loses... But Grandpa is still proud! Maybe next year.\n\n" +
 				"{0}'s athleticism up.\n" +
 				"{0}'s athleticism growth up.\n" +
-				"{1}'s pride way up!\n",
-				requirements.Child.Name, manager.PlayerFamily.Grandpa.Name, requirements.Grandpa.Name);
+				"Grandpa's pride way up!\n",
+				requirements.Child.Name, requirements.Grandpa.Name);
 		} 
 		else 
 		{
@@ -564,12 +562,12 @@ public static class EventManager
 			returnObj.Status = (int)Enums.EventOutcome.FAILURE_BLACKLIST_YEAR;
 			returnObj.OutcomeDescription = String.Format (
 				"Uhh, are you sure {0} was practicing all those times they said they were heading to practice? You really couldn't tell by their display " +
-				"on the field. Utterly embarassing. {1} had to slink out the back at the end of the first quarter. {2} will never let him forget it.\n\n" +
+				"on the field. Utterly embarassing. Grandpa had to slink out the back at the end of the first quarter. {1} will never let him forget it.\n\n" +
 				"{0}'s athleticism down.\n" +
 				"{0}'s athleticism growth down.\n" +
 				"{0}'s popularity down.\n" +
-				"{1}'s pride down.\n",
-				requirements.Child.Name, manager.PlayerFamily.Grandpa.Name, requirements.Grandpa.Name);
+				"Grandpa's pride down.\n",
+				requirements.Child.Name, requirements.Grandpa.Name);
 		}
 		requirements.Child.RemoveQualification (Qualification.GetQualificationByString ("ILLEGAL_GEAR"));
 		requirements.Child.RemoveQualification (Qualification.GetQualificationByString ("ON_FOOTBALL_TEAM"));
@@ -593,8 +591,8 @@ public static class EventManager
 				"I'm not sure what happened. They got on the team okay. Now all the other kids laugh and throw balls at {1}.\n\n" +
 				"{0}'s athleticism growth down.\n" +
 				"{0}'s popularity down.\n" +
-				"{2}'s pride down.\n",
-				requirements.Child.Name, Convert.ToBoolean(requirements.Child.Gender) ? "her" : "him", manager.PlayerFamily.Grandpa.Name);
+				"Grandpa's pride down.\n",
+				requirements.Child.Name, Convert.ToBoolean(requirements.Child.Gender) ? "her" : "him");
 		}
 		else  
 			returnObj.Status = (int)Enums.EventOutcome.PASS;
@@ -615,11 +613,10 @@ public static class EventManager
 
 			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
 			returnObj.OutcomeDescription = String.Format (
-				"Going through your social security payments, you find a nice loophole. That'll increase your weekly income! Thanks Obama! \n\n" +
-				"{0}'s wisdom up.\n" + 
-				"{0}'s insanity down.\n" + 
-				"{0}'s income up.\n",
-				manager.PlayerFamily.Grandpa.Name);
+				"Going through your social security payments, you find a nice loophole. That'll increase your weekly income! Thanks Obama!\n\n" +
+				"Grandpa's wisdom up.\n" + 
+				"Grandpa's insanity down.\n" + 
+				"Grandpa's income up by 100 per week!\n");
 		}
 		else  
 			returnObj.Status = (int)Enums.EventOutcome.PASS;
@@ -646,8 +643,8 @@ public static class EventManager
 				"{0} has made the honor roll! Wow, nice job!\n\n" +
 				"{0}'s intelligence up.\n" + 
 				"All parents' love up.\n" + 
-				"{1}'s pride up.\n",
-				requirements.Child.Name, manager.PlayerFamily.Grandpa.Name);
+				"Grandpa's pride up.\n",
+				requirements.Child.Name);
 		}
 		else  
 		{
@@ -659,8 +656,8 @@ public static class EventManager
 			returnObj.OutcomeDescription = String.Format (
 				"{0} missed the honor roll... What a dummy...\n\n" +
 				"{0}'s intelligence down.\n" + 
-				"{1}'s pride down.\n",
-				requirements.Child.Name, manager.PlayerFamily.Grandpa.Name);
+				"Grandpa's pride down.\n",
+				requirements.Child.Name);
 		}
 		return returnObj;
 	}
@@ -688,15 +685,15 @@ public static class EventManager
 
 			returnObj.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR;
 			returnObj.OutcomeDescription = String.Format (
-				"{0} got the lead role in the play! As well as several other roles! {2} performance left everyone " +
+				"{0} got the lead role in the play! As well as several other roles! {1} performance left everyone " +
 				"in tears and it instantly began raining outside. They say drama will never be the same.\n\n" +
 				"{0}'s artistry up.\n" + 
 				"{0}'s artistry growth way up.\n" + 
 				"{0}'s popularity up.\n" + 
 				"{0}'s popularity growth up.\n" + 
 				"All parents' love up.\n" + 
-				"{1}'s pride way up.\n",
-				requirements.Child.Name, manager.PlayerFamily.Grandpa.Name, Convert.ToBoolean(requirements.Child.Name) ? "Her" : "His");
+				"Grandpa's pride way up.\n",
+				requirements.Child.Name, Convert.ToBoolean(requirements.Child.Name) ? "Her" : "His");
 		}
 		else if (requirements.Child.Artistry >= 40 || requirements.Child.Popularity >= 60) 
 		{
@@ -713,8 +710,8 @@ public static class EventManager
 				"{0} got a minor role in the play!\n\n" +
 				"{0}'s artistry up.\n" + 
 				"{0}'s artistry growth up.\n" + 
-				"{1}'s pride up.\n",
-				requirements.Child.Name, manager.PlayerFamily.Grandpa.Name);
+				"Grandpa's pride up.\n",
+				requirements.Child.Name);
 		}
 		else 
 		{
@@ -729,8 +726,8 @@ public static class EventManager
 				" a bit.\n\n" +
 				"{0}'s artistry slightly up.\n" +
 				"{0}'s popularity slightly down.\n" + 
-				"{1}'s pride down.\n",
-				requirements.Child.Name, manager.PlayerFamily.Grandpa.Name);
+				"Grandpa's pride down.\n",
+				requirements.Child.Name);
 		}
 		return returnObj;
 	}
@@ -749,12 +746,12 @@ public static class EventManager
 
 			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
 			returnObj.OutcomeDescription = String.Format (
-				"{0} shows up to play practice late practically every time and never seems to know {2} lines. " +
+				"{0} shows up to play practice late practically every time and never seems to know {1} lines. " +
 				"People are starting to talk...\n\n" +
 				"{0}'s artistry slightly down.\n" + 
 				"{0}'s artistry growth slightly down.\n" + 
-				"{1}'s pride slightly down.\n",
-				requirements.Child.Name, manager.PlayerFamily.Grandpa.Name, Convert.ToBoolean(requirements.Child.Name) ? "her" : "his");
+				"Grandpa's pride slightly down.\n",
+				requirements.Child.Name, Convert.ToBoolean(requirements.Child.Name) ? "her" : "his");
 		}
 		else 
 			returnObj.Status = (int)Enums.EventOutcome.PASS;
@@ -782,8 +779,8 @@ public static class EventManager
 				"as rats is on the way to reality.\n\n" +
 				"{0}'s artistry way up!\n" + 
 				"{0}'s artistry growth up.\n" + 
-				"{1}'s pride way up!\n",
-				requirements.Child.Name, manager.PlayerFamily.Grandpa.Name);
+				"Grandpa's pride way up!\n",
+				requirements.Child.Name);
 		}
 		else 
 		{
@@ -800,8 +797,8 @@ public static class EventManager
 				"live this down at school for being a part of it.\n\n" +
 				"{0}'s popularity down!\n" + 
 				"{0}'s popularity growth down.\n" + 
-				"{1}'s pride down.\n",
-				requirements.Child.Name, manager.PlayerFamily.Grandpa.Name);
+				"Grandpa's pride down.\n",
+				requirements.Child.Name);
 		}
 		return returnObj;
 	}
@@ -820,11 +817,11 @@ public static class EventManager
 
 			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
 			returnObj.OutcomeDescription = String.Format (
-				"Grandpa was looking through his old treasure maps and remembered ${1} worth of confederate gold he buried many years ago! How lucky!\n\n" +
-				"{0}'s wisdom up.\n" + 
-				"{0}'s insanity down.\n" + 
-				"{0}'s money up.\n",
-				manager.PlayerFamily.Grandpa.Name, found_amount);
+				"Grandpa was looking through his old treasure maps and remembered ${0} worth of confederate gold he buried many years ago! How lucky!\n\n" +
+				"Grandpa's wisdom up.\n" + 
+				"Grandpa's insanity down.\n" + 
+				"Grandpa's money up.\n",
+				found_amount);
 		}
 		else  
 			returnObj.Status = (int)Enums.EventOutcome.PASS;
@@ -854,13 +851,13 @@ public static class EventManager
 			returnObj.Status = (int)Enums.EventOutcome.FAILURE;
 			returnObj.OutcomeDescription = String.Format (
 				"{0} has had it! What has this family done for {1} anyway?! {0} could have been an astronaut " +
-				"or a plumber or a runway model but no... {4} gave it all up... For what?! {0} wants a divorce!! " +
+				"or a plumber or a runway model but no... {3} gave it all up... For what?! {0} wants a divorce!! " +
 				"{2} and the kids are inconsolable.\n\n" +
 				"{0} has left the family!\n" + 
 				"{2}'s love way way down!\n" + 
-				"{3}'s pride way down!\n",
+				"Grandpa's pride way down!\n",
 				requirements.Parent.Name, Convert.ToBoolean(requirements.Parent.Gender) ? "her" : "him", other_parent, 
-				manager.PlayerFamily.Grandpa.Name, Convert.ToBoolean(requirements.Parent.Gender) ? "She" : "He");
+				Convert.ToBoolean(requirements.Parent.Gender) ? "She" : "He");
 		}
 		else if (manager.PlayerFamily.Parents.Count > 1)
 		{
@@ -878,9 +875,9 @@ public static class EventManager
 				"up all those years ago despite their protestations!\n\n" +
 				"{0}'s love up.\n" + 
 				"{1}'s love up.\n" + 
-				"{2}'s wisdom up.\n" + 
-				"{2}'s pride up.\n",
-				manager.PlayerFamily.Parents[0].Name, manager.PlayerFamily.Parents[1].Name, manager.PlayerFamily.Grandpa.Name);
+				"Grandpa's wisdom up.\n" + 
+				"Grandpa's pride up.\n",
+				manager.PlayerFamily.Parents[0].Name, manager.PlayerFamily.Parents[1].Name);
 		}
 		else
 			returnObj.Status = (int)Enums.EventOutcome.PASS;
@@ -917,9 +914,8 @@ public static class EventManager
 				"{2}'s love way up!\n" +
 				"{2}'s love growth down!\n" +
 				"{2}'s popularity way up!\n" +
-				"{3}'s pride down!\n",
-				requirements.Parent.Name, Convert.ToBoolean (requirements.Parent.Gender) ? "her" : "his", other_parent, 
-				manager.PlayerFamily.Grandpa.Name);
+				"Grandpa's pride down!\n",
+				requirements.Parent.Name, Convert.ToBoolean (requirements.Parent.Gender) ? "her" : "his", other_parent);
 		}
 		else 
 			returnObj.Status = (int)Enums.EventOutcome.PASS;
@@ -949,15 +945,15 @@ public static class EventManager
 
 			returnObj.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR;
 			returnObj.OutcomeDescription = String.Format (
-				"Holy shit. It's all kind of a blur, but that party was off the hook! Where did that elephant come from? I've never seen {0} dance like that. " +
+				"Holy shit. It's all kind of a blur, but that party was off the hook! Where did that elephant come from? I've never seen Grandpa dance like that. " +
 				"It's so cool that your {1} let us throw that! Can't believe Barack Obama showed up. I want to remember last night for the rest of my life. " +
 				"You're sooooo cool, {2}!\n\n" +
 				"{2}'s popularity way up!\n" +
 				"{2}'s popularity growth way up!\n" +
 				"{3}'s popularity way up!\n" +
 				"{3}'s popularity growth up!\n" +
-				"{0}'s pride way way up!!\n" +
-				"{0}'s insanity up.\n",
+				"Grandpa's pride way way up!!\n" +
+				"Grandpa's insanity up.\n",
 				manager.PlayerFamily.Grandpa.Name, Convert.ToBoolean (requirements.Parent.Gender) ? "mom" : "dad", requirements.Child.Name, requirements.Parent.Name);
 		} 
 		else if (!requirements.Accept) 
@@ -988,10 +984,10 @@ public static class EventManager
 				"that live tiger? Was that you, Grandpa?\n\n" +
 				"{0}'s popularity way down!\n" +
 				"{0}'s popularity growth way down!\n" +
-				"{2}'s wisdom down.\n" +
-				"{2}'s insanity up.\n" +
-				"{2}'s insanity growth up.\n",
-				requirements.Child.Name, Convert.ToBoolean (requirements.Child.Gender) ? "She" : "He", manager.PlayerFamily.Grandpa.Name);
+				"Grandpa's wisdom down.\n" +
+				"Grandpa's insanity up.\n" +
+				"Grandpa's insanity growth up.\n",
+				requirements.Child.Name, Convert.ToBoolean (requirements.Child.Gender) ? "She" : "He");
 		}
 
 		return returnObj;
@@ -1014,9 +1010,8 @@ public static class EventManager
 				"What a dummy. What a disgrace...\n\n" +
 				"{0}'s intelligence down.\n" +
 				"{0}'s popularity down!\n" +
-				"{2}'s pride down slightly.\n",
-				requirements.Parent.Name, Convert.ToBoolean (requirements.Parent.Gender) ? "she" : "he", 
-				manager.PlayerFamily.Grandpa.Name);
+				"Grandpa's pride down slightly.\n",
+				requirements.Parent.Name, Convert.ToBoolean (requirements.Parent.Gender) ? "she" : "he");
 		}
 		else 
 			returnObj.Status = (int)Enums.EventOutcome.PASS;
@@ -1050,9 +1045,8 @@ public static class EventManager
 				"You feel your entire family get smarter just by being in contact with {2}!\n\n" +
 				"Entire family's intelligence up!!\n" +
 				"Entire family's intelligence growth up!!\n" +
-				"{3}'s pride way up!!\n",
-				requirements.Child.Name, Convert.ToBoolean (requirements.Child.Gender) ? "She" : "He", Convert.ToBoolean (requirements.Child.Gender) ? "her" : "his",
-				manager.PlayerFamily.Grandpa.Name);
+				"Grandpa's pride way up!!\n",
+				requirements.Child.Name, Convert.ToBoolean (requirements.Child.Gender) ? "She" : "He", Convert.ToBoolean (requirements.Child.Gender) ? "her" : "his");
 		}
 		else 
 			returnObj.Status = (int)Enums.EventOutcome.PASS;
@@ -1079,10 +1073,10 @@ public static class EventManager
 			returnObj.OutcomeDescription = String.Format (
 				"Grandpa brought home a doggy! We were all so happy until it started foaming at the mouth and bit {1} right in the face! " +
 				"Turns out Grandpa found it by the side of the road... Is Grandpa going to be okay, {2}?\n\n" +
-				"{0}'s wisdom down.\n" +
-				"{0}'s insanity up.\n" +
-				"{0}'s insanity growth up.\n" +
-				"{0}'s pride down slightly.\n" +
+				"Grandpa's wisdom down.\n" +
+				"Grandpa's insanity up.\n" +
+				"Grandpa's insanity growth up.\n" +
+				"Grandpa's pride down slightly.\n" +
 				"{1}'s intelligence down.\n",
 				manager.PlayerFamily.Grandpa.Name, requirements.Child.Name, requirements.Parent.Name);
 		}
@@ -1109,10 +1103,10 @@ public static class EventManager
 			returnObj.OutcomeDescription = String.Format (
 				"{1} just got off the phone with the coast guard. They finally found Grandpa. Turns out he wandered into a shipping container " +
 				"and got halfway around the world before someone noticed! I'm getting worried about him...\n\n" +
-				"{0}'s wisdom down.\n" +
-				"{0}'s insanity up.\n" +
-				"{0}'s insanity growth up.\n" +
-				"{0}'s pride down slightly.\n",
+				"Grandpa's wisdom down.\n" +
+				"Grandpa's insanity up.\n" +
+				"Grandpa's insanity growth up.\n" +
+				"Grandpa's pride down slightly.\n",
 				manager.PlayerFamily.Grandpa.Name, requirements.Parent.Name);
 		}
 		else 
@@ -1145,10 +1139,10 @@ public static class EventManager
 				"{1} was having a really rough day so Grandpa sat {2} down and gave {2} a life advice talk. {1} was completely reinvigorated and has a " +
 				"new lease on life! That's the power of Grandpa, bitch!\n\n" +
 				"{1} ALL STATS UP!!\n" +
-				"{0}'s wisdom up.\n" +
-				"{0}'s insanity down.\n" +
-				"{0}'s insanity growth down.\n" +
-				"{0}'s pride up.\n",
+				"Grandpa's wisdom up.\n" +
+				"Grandpa's insanity down.\n" +
+				"Grandpa's insanity growth down.\n" +
+				"Grandpa's pride up.\n",
 				manager.PlayerFamily.Grandpa.Name, requirements.Parent.Name, Convert.ToBoolean (requirements.Parent.Gender) ? "her" : "him");
 		} 
 		else if (manager.PlayerFamily.Grandpa.Wisdom > 50 && roll == 1) 
@@ -1172,10 +1166,10 @@ public static class EventManager
 				"{1} was having a really rough day so Grandpa sat {2} down and gave {2} a life advice talk. {1} was completely reinvigorated and has a " +
 				"new lease on life! That's the power of Grandpa, bitch!\n\n" +
 				"{1} ALL STATS UP!!\n" +
-				"{0}'s wisdom up.\n" +
-				"{0}'s insanity down.\n" +
-				"{0}'s insanity growth down.\n" +
-				"{0}'s pride up.\n",
+				"Grandpa's wisdom up.\n" +
+				"Grandpa's insanity down.\n" +
+				"Grandpa's insanity growth down.\n" +
+				"Grandpa's pride up.\n",
 				manager.PlayerFamily.Grandpa.Name, requirements.Child.Name, Convert.ToBoolean (requirements.Child.Gender) ? "her" : "him");
 		}
 		else
@@ -1205,13 +1199,28 @@ public static class EventManager
 			returnObj.OutcomeDescription = String.Format (
 				"Grandpa just lost ${1} on a ponzi scheme! He actually thought he could get rich quick selling plungers door to door. " +
 				"Grandpa seems like he's losing more of his independance every day...\n\n" +
-				"{0}'s wisdom down.\n" +
-				"{0}'s wisdom growth.\n" +
-				"{0}'s insanity up.\n" +
-				"{0}'s insanity growth up.\n" +
-				"{0}'s pride down slightly.\n" +
-				"{0} lost {1} dollars.\n",
+				"Grandpa's wisdom down.\n" +
+				"Grandpa's wisdom growth.\n" +
+				"Grandpa's insanity up.\n" +
+				"Grandpa's insanity growth up.\n" +
+				"Grandpa's pride down slightly.\n" +
+				"Grandpa lost {1} dollars.\n",
 				manager.PlayerFamily.Grandpa.Name, money_lost.ToString());
+		}
+		else 
+			returnObj.Status = (int)Enums.EventOutcome.PASS;
+
+		return returnObj;
+	}
+
+	// CHECK: Grandpa commits arson
+	public static Outcome Event1030(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+		if (manager.PlayerFamily.Grandpa.Insanity > 30)
+		{
+			manager.Calendar.ScheduleEventInXDays(EventManager.GetEventById(1026), 1);
+			returnObj.Status = (int)Enums.EventOutcome.PASS_BLACKLIST_YEAR;
 		}
 		else 
 			returnObj.Status = (int)Enums.EventOutcome.PASS;
@@ -1223,25 +1232,20 @@ public static class EventManager
 	public static Outcome Event1026(DataManager manager, Requirement requirements)
 	{
 		Outcome returnObj = new Outcome();
-		if (manager.PlayerFamily.Grandpa.Insanity > 30)
-		{
-			manager.PlayerFamily.Grandpa.InsanityGrowth += 0.05;
+		manager.PlayerFamily.Grandpa.InsanityGrowth += 0.05;
 
-			manager.PlayerFamily.Grandpa.Pride += 50;
+		manager.PlayerFamily.Grandpa.Pride += 50;
 
-			requirements.Grandpa.Pride -= 200;
+		requirements.Grandpa.Pride -= 200;
 
-			returnObj.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR;
-			returnObj.OutcomeDescription = String.Format (
-				"Grandpa just burned down {1}'s house! He was mumbling something about a league when I found him! I don't " +
-				"think the police know.\n\n" +
-				"{0}'s insanity growth up.\n" +
-				"{0}'s pride up slightly.\n" +
-				"{1} pride way down!\n",
-				manager.PlayerFamily.Grandpa.Name, requirements.Grandpa.Name);
-		}
-		else 
-			returnObj.Status = (int)Enums.EventOutcome.PASS;
+		returnObj.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR;
+		returnObj.OutcomeDescription = String.Format (
+			"Grandpa just burned down {1}'s house! He was mumbling something about a league when I found him! I don't " +
+			"think the police know.\n\n" +
+			"Grandpa's insanity growth up.\n" +
+			"Grandpa's pride up slightly.\n" +
+			"{1} pride way down!\n",
+			manager.PlayerFamily.Grandpa.Name, requirements.Grandpa.Name);
 
 		return returnObj;
 	}
@@ -1262,8 +1266,8 @@ public static class EventManager
 			returnObj.OutcomeDescription = String.Format (
 				"Looks like Grandpa strangled {1}'s cat. I found them fighting in our yard this morning. It was not a pretty " +
 				"sight, let me tell you. \n\n" +
-				"{0}'s insanity growth up.\n" +
-				"{0}'s pride up slightly.\n" +
+				"Grandpa's insanity growth up.\n" +
+				"Grandpa's pride up slightly.\n" +
 				"{1} pride way down!\n",
 				manager.PlayerFamily.Grandpa.Name, requirements.Grandpa.Name);
 		}
@@ -1288,9 +1292,9 @@ public static class EventManager
 			returnObj.OutcomeDescription = String.Format (
 				"{1} found Grandpa wandering main street at the crack of dawn, naked as the day he was born. He was staring into " +
 				"windows looking for what he called \"Battle Gear\". I have no idea what that means.\n\n" +
-				"{0}'s insanity up.\n" +
-				"{0}'s wisdom down.\n" +
-				"{0}'s pride down.\n",
+				"Grandpa's insanity up.\n" +
+				"Grandpa's wisdom down.\n" +
+				"Grandpa's pride down.\n",
 				manager.PlayerFamily.Grandpa.Name, requirements.Parent.Name);
 		}
 		else 
@@ -1316,12 +1320,11 @@ public static class EventManager
 			returnObj.OutcomeDescription = String.Format (
 				"Grandpa feels much better already! Those pesky voices are just fading into the background! There is no League. " +
 				"There is no League. There is no League.\n\n" +
-				"{0}'s insanity down.\n" +
-				"{0}'s insanity growth down.\n" +
-				"{0}'s wisdom up.\n" +
-				"{0}'s wisdom growth up.\n" +
-				"{0}'s income down.\n",
-				manager.PlayerFamily.Grandpa.Name);
+				"Grandpa's insanity down.\n" +
+				"Grandpa's insanity growth down.\n" +
+				"Grandpa's wisdom up.\n" +
+				"Grandpa's wisdom growth up.\n" +
+				"Grandpa's income down.\n");
 		}
 		else 
 			returnObj.Status = (int)Enums.EventOutcome.PASS;
