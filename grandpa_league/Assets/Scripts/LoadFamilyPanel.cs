@@ -52,12 +52,19 @@ public class LoadFamilyPanel : MonoBehaviour
 				parent_stat_panel.SetActive (false);
 				child_stat_panel.SetActive (false);
 
+                for (int i = 0; i < qualification_panel.Length; i++)
+                {
+                    qualification_panel[i].GetComponent<Image>().sprite = null;
+                    qualification_panel[i].GetComponent<Image>().color = new Color(0, 0, 0, 0);
+                    qualification_panel[i].GetComponent<Collider2D>().enabled = false;
+                }
                 int num_quals = PlayerFamily.Grandpa.Qualifications.Count > 6 ? 6 : PlayerFamily.Grandpa.Qualifications.Count;
                 for (int i = 0; i < num_quals; i++)
                 {
                     qualification_panel[i].GetComponent<Image>().sprite = GetSpriteForQual(PlayerFamily.Grandpa.Qualifications[i]);
                     qualification_panel[i].GetComponent<Image>().color = new Color(0, 0, 0, 1);
                     qualification_panel[i].GetComponent<QualificationToolTip>().SetToolTipText(Qualification.GetDisplayName(PlayerFamily.Grandpa.Qualifications[i]));
+                    qualification_panel[i].GetComponent<Collider2D>().enabled = true;
                 }
 
                 grandpa_stat_panel.transform.Find("Name").GetComponent<Text>().text = PlayerFamily.Grandpa.Name;
@@ -84,12 +91,19 @@ public class LoadFamilyPanel : MonoBehaviour
 					parent_stat_panel.SetActive (true);
 					child_stat_panel.SetActive (false);
 
+                    for (int i = 0; i < qualification_panel.Length; i++)
+                    {
+                        qualification_panel[i].GetComponent<Image>().sprite = null;
+                        qualification_panel[i].GetComponent<Image>().color = new Color(0, 0, 0, 0);
+                        qualification_panel[i].GetComponent<Collider2D>().enabled = false;
+                    }
                     int num_quals = parent.Qualifications.Count > 6 ? 6 : parent.Qualifications.Count;
                     for (int i = 0; i < num_quals; i++)
                     {
                         qualification_panel[i].GetComponent<Image>().sprite = GetSpriteForQual(parent.Qualifications[i]);
                         qualification_panel[i].GetComponent<Image>().color = new Color(0, 0, 0, 1);
                         qualification_panel[i].GetComponent<QualificationToolTip>().SetToolTipText(Qualification.GetDisplayName(parent.Qualifications[i]));
+                        qualification_panel[i].GetComponent<Collider2D>().enabled = true;
                     }
 
                     parent_stat_panel.transform.Find("Name").GetComponent<Text>().text = parent.Name + " " + family_name;
@@ -114,12 +128,19 @@ public class LoadFamilyPanel : MonoBehaviour
 					parent_stat_panel.SetActive (false);
 					child_stat_panel.SetActive (true);
 
+                    for (int i = 0; i < qualification_panel.Length; i++)
+                    {
+                        qualification_panel[i].GetComponent<Image>().sprite = null;
+                        qualification_panel[i].GetComponent<Image>().color = new Color(0, 0, 0, 0);
+                        qualification_panel[i].GetComponent<Collider2D>().enabled = false;
+                    }
                     int num_quals = child.Qualifications.Count > 6 ? 6 : child.Qualifications.Count;
                     for (int i = 0; i < num_quals; i++)
                     {
                         qualification_panel[i].GetComponent<Image>().sprite = GetSpriteForQual(child.Qualifications[i]);
                         qualification_panel[i].GetComponent<Image>().color = new Color(0, 0, 0, 1);
                         qualification_panel[i].GetComponent<QualificationToolTip>().SetToolTipText(Qualification.GetDisplayName(child.Qualifications[i]));
+                        qualification_panel[i].GetComponent<Collider2D>().enabled = true;
                     }
 
 					child_stat_panel.transform.Find("Name").GetComponent<Text>().text = child.Name + " " + family_name;
@@ -131,6 +152,7 @@ public class LoadFamilyPanel : MonoBehaviour
 					child_stat_panel.transform.Find("Popularity Bar").GetComponent<Image>().sprite = ReturnSpriteForStat(child.Popularity);
 				});
 		}
+
 	}
 		
 	public void RemoveFamilyPanels ()
