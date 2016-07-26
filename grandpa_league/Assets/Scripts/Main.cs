@@ -8,6 +8,7 @@ public class Main : MonoBehaviour {
 
 	public Button[] days;
 	private int current_day = 0;
+	private int display_month;
 
 	public Text month_title;
 	private int current_month = 1;
@@ -64,29 +65,6 @@ public class Main : MonoBehaviour {
         m_dataManager = new DataManager(PlayerPrefs.GetString("name"));
 
         InitializeHighlight ();
-        List<Child> currentPlayersChildren = m_dataManager.PlayerFamily.Children;
-        Grandpa currentPlayersGrandpa = m_dataManager.PlayerFamily.Grandpa;
-        List<Family> currentLeagueFamilies = m_dataManager.LeagueFamilies; 
-	}
-
-	public void AdvanceDayHighlight()
-	{
-		days [current_day].image.color = Color.white;
-		if (current_day == days.Length - 1) 
-		{
-			current_day = 0;
-			current_month++;
-			if (current_month > 12)
-			{
-				current_month = 1;
-			}
-			month_title.text = Constants.MONTH_NAMES[current_month];
-		}
-		else
-		{
-			current_day++;
-		}
-		days [current_day].image.color = Color.red;
 	}
 
     public void AdvanceDay()
@@ -238,6 +216,7 @@ public class Main : MonoBehaviour {
         LeagueManager.SimulateDay(m_dataManager);   //move league standings around and stuff
         m_dataManager.Calendar.AdvanceDay();        //once all the event processing done we update the calendar day
 		AdvanceDayHighlight();
+		HighlightKnownEvents();
     }
 
     private void CreateAndDisplayResultPanel(Outcome eventOutcome)
@@ -268,6 +247,10 @@ public class Main : MonoBehaviour {
         EventTitleText.GetComponent<Text>().text = ev.EventName;
         EventDescriptionText.GetComponent<Text>().text = ev.EventDescription;
 
+		List<GameObject> child_buttons = new List<GameObject>();
+		List<GameObject> parent_buttons = new List<GameObject>();
+		List<GameObject> grandpa_buttons = new List<GameObject>();
+
         SelectChildButton.GetComponent<Button>().onClick.AddListener(() =>
         {
             ChildSelectPanel.SetActive(true);
@@ -294,6 +277,12 @@ public class Main : MonoBehaviour {
                     SelectChildButton.GetComponentInChildren<Text>().color = new Color (255, 255, 255);
                     if ((!SelectParentButton.activeSelf || (SelectParentButton.activeSelf && selectedParent != null)) && (!SelectGrandpaButton.activeSelf || (SelectGrandpaButton.activeSelf && selectedGrandpa != null)))
                         AcceptButton.GetComponent<Button>().interactable = true;
+
+					foreach (GameObject button in child_buttons)
+					{
+						Destroy(button);
+					}
+					child_buttons.Clear();
                 });
                 float height = childButton.GetComponent<RectTransform>().rect.height;
                 float current_x = childButton.GetComponent<RectTransform>().anchoredPosition.x;
@@ -303,13 +292,23 @@ public class Main : MonoBehaviour {
                     new Vector2(current_x, (current_y - (float)curChild * height) - 80);
                 childButton.GetComponentInChildren<Text>().color = new Color(255, 255, 255);
                 childButton.GetComponent<Button>().image.color = new Color(100, 180, 100);
+
+				child_buttons.Add(childButton);
+
                 curChild++;
             }
+
             childBackButton.GetComponent<Button>().onClick.AddListener(() =>
             {
                 ChildSelectPanel.SetActive(false);
                 SelectionModalBlockingPanel.SetActive(false);
                 EventCanvas.GetComponent<CanvasGroup>().blocksRaycasts = true;
+
+				foreach (GameObject button in child_buttons)
+				{
+					Destroy(button);
+				}
+				child_buttons.Clear();
             });
         });
 
@@ -335,6 +334,12 @@ public class Main : MonoBehaviour {
                     SelectParentButton.GetComponentInChildren<Text>().color = new Color(255, 255, 255);
                     if ((!SelectChildButton.activeSelf || (SelectChildButton.activeSelf && selectedChild != null)) && (!SelectGrandpaButton.activeSelf || (SelectGrandpaButton.activeSelf && selectedGrandpa != null)))
                         AcceptButton.GetComponent<Button>().interactable = true;
+
+					foreach (GameObject button in parent_buttons)
+					{
+						Destroy(button);
+					}
+					parent_buttons.Clear();
                 });
                 float height = parentButton.GetComponent<RectTransform>().rect.height;
                 float current_x = parentButton.GetComponent<RectTransform>().anchoredPosition.x;
@@ -344,6 +349,9 @@ public class Main : MonoBehaviour {
                     new Vector2(current_x, (current_y - (float)curParent * height) - 80);
                 parentButton.GetComponentInChildren<Text>().color = new Color(255, 255, 255);
                 parentButton.GetComponent<Button>().image.color = new Color(100, 180, 100);
+
+				parent_buttons.Add(parentButton);
+
                 curParent++;
             }
             parentBackButton.GetComponent<Button>().onClick.AddListener(() =>
@@ -351,6 +359,12 @@ public class Main : MonoBehaviour {
                 ParentSelectPanel.SetActive(false);
                 SelectionModalBlockingPanel.SetActive(false);
                 EventCanvas.GetComponent<CanvasGroup>().blocksRaycasts = true;
+
+				foreach (GameObject button in parent_buttons)
+				{
+					Destroy(button);
+				}
+				parent_buttons.Clear();
             });
         });
 
@@ -376,6 +390,12 @@ public class Main : MonoBehaviour {
                     SelectGrandpaButton.GetComponentInChildren<Text>().color = new Color(255, 255, 255);
                     if ((!SelectChildButton.activeSelf || (SelectChildButton.activeSelf && selectedChild != null)) && (!SelectParentButton.activeSelf || (SelectParentButton.activeSelf && selectedParent != null)))
                         AcceptButton.GetComponent<Button>().interactable = true;
+
+					foreach (GameObject button in grandpa_buttons)
+					{
+						Destroy(button);
+					}
+					grandpa_buttons.Clear();
                 });
                 float height = grandpaButton.GetComponent<RectTransform>().rect.height;
                 float current_x = grandpaButton.GetComponent<RectTransform>().anchoredPosition.x;
@@ -385,6 +405,9 @@ public class Main : MonoBehaviour {
                     new Vector2(current_x, (current_y - (float)curFamily * height) - 80);
                 grandpaButton.GetComponentInChildren<Text>().color = new Color(255, 255, 255);
                 grandpaButton.GetComponent<Button>().image.color = new Color(100, 180, 100);
+
+				grandpa_buttons.Add(grandpaButton);
+
                 curFamily++;
             }
             parentBackButton.GetComponent<Button>().onClick.AddListener(() =>
@@ -392,6 +415,12 @@ public class Main : MonoBehaviour {
                 ParentSelectPanel.SetActive(false);
                 SelectionModalBlockingPanel.SetActive(false);
                 EventCanvas.GetComponent<CanvasGroup>().blocksRaycasts = true;
+
+				foreach (GameObject button in grandpa_buttons)
+				{
+					Destroy(button);
+				}
+				grandpa_buttons.Clear();
             });
         });
 
@@ -523,11 +552,41 @@ public class Main : MonoBehaviour {
         }
 	}
 
+	private void HighlightKnownEvents()
+	{
+
+	}
+		
 	private void InitializeHighlight()
 	{     
 		days [current_day].image.color = Color.red;
 
 		month_title.text = Constants.MONTH_NAMES[1];
+	}
+
+	public void AdvanceDayHighlight()
+	{
+		days [current_day].image.color = Color.white;
+		if (current_day == days.Length - 1) 
+		{
+			current_day = 0;
+			current_month++;
+			if (current_month > 12)
+			{
+				current_month = 1;
+			}
+			month_title.text = Constants.MONTH_NAMES[current_month];
+		}
+		else
+		{
+			current_day++;
+		}
+		days [current_day].image.color = Color.red;
+	}
+
+	public void ChangeDisplayMonth()
+	{
+
 	}
 
     public static DataManager GetDataManager()
