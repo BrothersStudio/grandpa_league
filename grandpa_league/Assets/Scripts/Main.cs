@@ -556,8 +556,10 @@ public class Main : MonoBehaviour {
 	private void HighlightKnownEvents(int month)
 	{
 		List<int> knownEvents = m_dataManager.Calendar.GetKnownEventDaysForMonth(month);
-		foreach (int known_event_day in knownEvents) 
+		foreach (int known_event_day_instance in knownEvents) 
 		{
+			int known_event_day = known_event_day_instance;
+
 			days [known_event_day].image.color = Color.green;
 			days [known_event_day].GetComponent<Button>().onClick.RemoveAllListeners();
 			days [known_event_day].GetComponent<Button>().onClick.AddListener(() =>
@@ -567,13 +569,14 @@ public class Main : MonoBehaviour {
 
 				List<SimulationEvent> events_of_day = m_dataManager.Calendar.GetEventsForDay(known_event_day, month);
 				int num_known_events = 0;
-				foreach (SimulationEvent this_event in events_of_day)
+				foreach (SimulationEvent this_event_instance in events_of_day)
 				{
-					string event_string = this_event.EventName;
+					SimulationEvent this_event = this_event_instance;
+
 					if (this_event.EventType == 1)
 					{
 						num_known_events++;
-							Debug.Log(event_string);
+						string event_string = this_event.EventName;
 						known_event_display_panel.transform.Find("Event Text").GetComponent<Text>().text += ("\n" + event_string);
 					}
 					if (num_known_events == 3)
