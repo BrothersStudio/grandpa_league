@@ -71,7 +71,6 @@ public class LoadFamilyPanel : MonoBehaviour
 				grandpa_stat_panel.transform.Find("Insanity Bar").GetComponent<Image>().sprite = ReturnSpriteForStat(PlayerFamily.Grandpa.Insanity, true);
 				grandpa_stat_panel.transform.Find("Wisdom Bar").GetComponent<Image>().sprite = ReturnSpriteForStat(PlayerFamily.Grandpa.Wisdom);
 				grandpa_stat_panel.transform.Find("Money").GetComponent<Text>().text = "Money:\n$" + PlayerFamily.Grandpa.Money;
-				grandpa_stat_panel.transform.Find("Income").GetComponent<Text>().text = "Income:\n$" + PlayerFamily.Grandpa.MoneyGrowth;
 				grandpa_stat_panel.transform.Find("Pride").GetComponent<Text>().text = "Pride:\n" + PlayerFamily.Grandpa.Pride;
 			});
 
@@ -174,7 +173,6 @@ public class LoadFamilyPanel : MonoBehaviour
 		grandpa_stat_panel.transform.Find("Insanity Bar").GetComponent<Image>().sprite = ReturnSpriteForStat(PlayerFamily.Grandpa.Insanity, true);
 		grandpa_stat_panel.transform.Find("Wisdom Bar").GetComponent<Image>().sprite = ReturnSpriteForStat(PlayerFamily.Grandpa.Wisdom);
 		grandpa_stat_panel.transform.Find("Money").GetComponent<Text>().text = "Money:\n$" + PlayerFamily.Grandpa.Money;
-		//grandpa_stat_panel.transform.Find("Income").GetComponent<Text>().text = "Income:\n$" + PlayerFamily.Grandpa.MoneyGrowth + " per week.";
 		grandpa_stat_panel.transform.Find("Pride").GetComponent<Text>().text = "Pride:\n" + PlayerFamily.Grandpa.Pride;
 	}
 
