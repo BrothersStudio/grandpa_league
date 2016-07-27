@@ -196,14 +196,13 @@ public class Main : MonoBehaviour {
                 ModalBlockingPanel.SetActive(true);
                 MainCanvas.GetComponent<CanvasGroup>().blocksRaycasts = false;
                 yield return StartCoroutine(WaitForUserConfirm());
+                userInputting = false;
                 MainCanvas.GetComponent<CanvasGroup>().blocksRaycasts = true;
                 ModalBlockingPanel.SetActive(false);
             }
 
             //EXECUTE THE EVENT
             Outcome eventOutcome = ev.RunEvent(m_dataManager);
-            //StopAllCoroutines();
-            //yield return new WaitForSeconds(1);
 
             //send mail to mail panel using eventOutcome.Mail
             if (eventOutcome.Mail != null)
@@ -547,6 +546,7 @@ public class Main : MonoBehaviour {
         {
             yield return null;
         }
+        yield break;
     }
 
     public void PopupSettingsMenu()
