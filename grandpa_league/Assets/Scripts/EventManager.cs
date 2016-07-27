@@ -6,12 +6,12 @@ using System.Reflection;
 using System.IO;
 using UnityEngine;
 
-[Serializable]
 public static class EventManager
 {
     private static List<SimulationEvent> m_knownEvents = new List<SimulationEvent>();
     private static List<SimulationEvent> m_hiddenEvents = new List<SimulationEvent>();
     private static List<SimulationEvent> m_reservedEvents = new List<SimulationEvent>();
+    private static List<Ability> m_abilities = new List<Ability>();
 
     static EventManager()
     {
@@ -71,6 +71,18 @@ public static class EventManager
                                                             (int)Enums.EventType.RESERVED,
                                                             Int32.Parse(simEvent.Attribute("priority").Value)
                                                             ));
+                    break;
+                case (int)Enums.EventType.ABILITY:
+                    m_abilities.Add(new Ability(simEvent.Attribute("ability_name").Value,
+                                                simEvent.Attribute("ability_description").Value,
+                                                Int32.Parse(simEvent.Attribute("cooldown").Value),
+                                                simEvent.Attribute("picture").Value,
+                                                new SimulationEvent(eventRequirements, 0,
+                                                                    simEvent.Attribute("name").Value,
+                                                                    simEvent.Attribute("description").Value,
+                                                                    Int32.Parse(simEvent.Attribute("id").Value), (int)Enums.EventType.ABILITY, 2)
+                                               ));
+
                     break;
                 default:
                     break;

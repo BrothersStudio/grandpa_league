@@ -1,12 +1,15 @@
 using System;
+using System.Collections.Generic;
 
 [Serializable]
 public class Grandpa : Character
 {
-    private Stat m_insanity          = new Stat();
-    private Stat m_wisdom            = new Stat();
-    private Stat m_money             = new Stat();
-    private Stat m_pride             = new Stat();
+    private Stat            m_insanity          = new Stat();
+    private Stat            m_wisdom            = new Stat();
+    private Stat            m_money             = new Stat();
+    private Stat            m_pride             = new Stat();
+
+    private List<Ability>   m_abilities         = new List<Ability>();
     
 	public Grandpa(string name, int age, int pride, int wisdom, int insanity, int money, string spriteName)
 	{
@@ -68,7 +71,7 @@ public class Grandpa : Character
         this.m_name = name;
     }
 
-    public double Wisdom
+    public double Wisdom                                            //DEPRECATED
     {
         get { return this.m_wisdom.Value; }
         set { this.m_wisdom.Value = value > 100 ? 100 : value; }
@@ -80,7 +83,7 @@ public class Grandpa : Character
         set { this.m_wisdom.GrowthRate = value; }
     }
 
-    public double Insanity
+    public double Insanity                                            //DEPRECATED
     {
         get { return this.m_insanity.Value; }
         set { this.m_insanity.Value = value > 100 ? 100 : value; }
@@ -92,7 +95,7 @@ public class Grandpa : Character
         set { this.m_insanity.GrowthRate = value; }
     }
 
-    public double Money
+    public double Money                                            //DEPRECATED
     {
         get { return this.m_money.Value; }
         set { this.m_money.Value = value; }
@@ -104,9 +107,15 @@ public class Grandpa : Character
 		set { this.m_money.GrowthRate = value; }
 	}
 
-    public double Pride
+    public double Pride                                            //DEPRECATED
     {
         get { return this.m_pride.Value; }
         set { this.m_pride.Value = value; }
+    }
+
+    public List<Ability> Abilities
+    {
+        get { return this.m_abilities; }
+        set { this.m_abilities = value; }
     }
 }

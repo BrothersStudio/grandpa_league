@@ -287,8 +287,6 @@ public class LoadFamilyPanel : MonoBehaviour
             parent_stat_panel.transform.Find("Intelligence").GetComponent<Text>().color = Color.yellow;
             parent_stat_panel.transform.Find("Love").GetComponent<Text>().color = Color.white;
             parent_stat_panel.transform.Find("Popularity").GetComponent<Text>().color = Color.white;
-
-            Debug.Log(parent.Name +  "Intelligence Focus Set");
         });
 
         parent_stat_panel.transform.Find("PopularityFocusButton").GetComponent<Button>().onClick.AddListener(() =>
@@ -300,8 +298,6 @@ public class LoadFamilyPanel : MonoBehaviour
             parent_stat_panel.transform.Find("Intelligence").GetComponent<Text>().color = Color.white;
             parent_stat_panel.transform.Find("Love").GetComponent<Text>().color = Color.white;
             parent_stat_panel.transform.Find("Popularity").GetComponent<Text>().color = Color.yellow;
-
-            Debug.Log(parent.Name + "Popularity Focus Set");
         });
 
         parent_stat_panel.transform.Find("LoveFocusButton").GetComponent<Button>().onClick.AddListener(() =>
@@ -313,8 +309,6 @@ public class LoadFamilyPanel : MonoBehaviour
             parent_stat_panel.transform.Find("Intelligence").GetComponent<Text>().color = Color.white;
             parent_stat_panel.transform.Find("Love").GetComponent<Text>().color = Color.yellow;
             parent_stat_panel.transform.Find("Popularity").GetComponent<Text>().color = Color.white;
-
-            Debug.Log(parent.Name +  "Love Focus Set");
         });
     }
 
