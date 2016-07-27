@@ -1,14 +1,16 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
+using System;
 
+[Serializable]
 public class Family
 {
-    private     string        m_familyName    = "";
-    private     Grandpa       m_grandpa       = null;
-	private     List<Parent>  m_parents       = new List<Parent>();
-    private     List<Child>   m_children      = new List<Child>();
-    private     List<Mail>    m_mailbox       = new List<Mail>();
-
+    private     string          m_familyName    = "";
+    private     List<Grandpa>   m_grandpa       = new List<Grandpa>();
+	private     List<Parent>    m_parents       = new List<Parent>();
+    private     List<Child>     m_children      = new List<Child>();
+    private     List<Mail>      m_mailbox       = new List<Mail>();
+       
 	private     int           m_chemistry     = 0;
 
     public Family(bool random=false)
@@ -16,10 +18,10 @@ public class Family
         if (!random)
             return;
 
-        this.m_grandpa = CharacterManager.GetRandomGrandpa();
+        this.m_grandpa.Add(CharacterManager.GetRandomGrandpa());
 		this.m_parents = CharacterManager.GetRandomParents(Constants.INITIAL_PARENTS);
         this.m_children = CharacterManager.GetRandomChildren(Constants.INITIAL_CHILDREN);
-        this.m_familyName = this.m_grandpa.Name.Split(' ')[1];      //TODO: FIX THIS HACK
+        this.m_familyName = this.m_grandpa[0].Name.Split(' ')[1];      //TODO: FIX THIS HACK
     }
 
     public List<Character> GetAllCharacters()
@@ -27,7 +29,7 @@ public class Family
         List<Character> allChar = new List<Character>();
         allChar.AddRange(m_children.Cast<Character>());
         allChar.AddRange(m_parents.Cast<Character>());
-        allChar.Add((Character)m_grandpa);
+        allChar.AddRange(m_grandpa.Cast<Character>());
         return allChar;
     }
 
@@ -50,13 +52,13 @@ public class Family
 
     public void ApplyStatUpgrades()
     {
-        this.m_grandpa.Insanity *= (1 + this.m_grandpa.InsanityGrowth);
+        this.m_grandpa[0].Insanity *= (1 + this.m_grandpa[0].InsanityGrowth);
         //this.m_grandpa.Insanity = this.m_grandpa.Insanity > 100 ? 100 : this.m_grandpa.Insanity;
 
-        this.m_grandpa.Wisdom *= (1 + this.m_grandpa.WisdomGrowth);
+        this.m_grandpa[0].Wisdom *= (1 + this.m_grandpa[0].WisdomGrowth);
         //this.m_grandpa.Wisdom = this.m_grandpa.Wisdom > 100 ? 100 : this.m_grandpa.Wisdom;
 
-        this.m_grandpa.Money += (this.m_grandpa.MoneyGrowth);
+        this.m_grandpa[0].Money += (this.m_grandpa[0].MoneyGrowth);
 
 		foreach (Parent parent in this.m_parents)
         {
@@ -95,6 +97,12 @@ public class Family
     }
 
     public Grandpa Grandpa
+    {
+        get { return this.m_grandpa[0]; }
+        set { this.m_grandpa[0] = value; }
+    }
+
+    public List<Grandpa> GrandpaList
     {
         get { return this.m_grandpa; }
         set { this.m_grandpa = value; }

@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System;
 
+[Serializable]
 public class Calendar
 {
     private int m_currentMonth = 1;
@@ -102,6 +104,7 @@ public class Calendar
     }
 }
 
+[Serializable]
 public class Day
 {
     private int m_year = 0;

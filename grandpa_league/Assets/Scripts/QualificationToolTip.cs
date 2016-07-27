@@ -1,4 +1,4 @@
-﻿#pragma warning disable 0649
+#pragma warning disable 0649
 
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,6 +11,7 @@ class QualificationToolTip : MonoBehaviour
     void OnMouseEnter()
     {
         ToolTipPanel.SetActive(true);
+        ToolTipPanel.transform.Find("ToolTipText").GetComponent<Text>().text = ToolTipText;
     }
 
     void OnMouseExit()

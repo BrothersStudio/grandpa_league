@@ -1,4 +1,4 @@
-﻿static class Enums
+static class Enums
 {
     public enum Gender {MALE = 0, FEMALE = 1 }
 
@@ -10,9 +10,11 @@
 
     public enum Priority { LOW = 0, MED = 1, HIGH = 2 }
 
-    public enum EventType { HIDDEN = 0, KNOWN = 1, RESERVED = 2 }
+    public enum EventType { HIDDEN = 0, KNOWN = 1, RESERVED = 2, ABILITY = 3 }
 
     public enum EventOutcome { SUCCESS = 0, FAILURE = 1, PASS = 2, SUCCESS_BLACKLIST_YEAR = 3, FAILURE_BLACKLIST_YEAR = 4, SUCCESS_BLACKLIST_FOREVER = 5, FAILURE_BLACKLIST_FOREVER = 6, PASS_BLACKLIST_YEAR = 7, PASS_BLACKLIST_FOREVER = 8 }
 
     public enum SystemEvents { WEEKLY_STAT_UP = 0, TRADE_ACCEPT_REJECT = 1 }
+
+    public enum Difficulty { VERY_EASY = 0, EASY = 1, STANDARD = 2, HARD = 3, VERY_HARD = 4}
 }

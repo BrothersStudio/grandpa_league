@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -137,7 +137,7 @@ public class LoadFamilyPanel : MonoBehaviour
                     for (int i = 0; i < num_quals; i++)
                     {
                         qualification_panel[i].GetComponent<Image>().sprite = GetSpriteForQual(child.Qualifications[i]);
-                        qualification_panel[i].GetComponent<Image>().color = new Color(0, 0, 0, 1);
+                        qualification_panel[i].GetComponent<Image>().color = new Color(Constants.RANDOM.Next(1,255)/255, Constants.RANDOM.Next(1, 255) / 255, Constants.RANDOM.Next(1, 255) / 255, 1);
                         qualification_panel[i].GetComponent<QualificationToolTip>().SetToolTipText(Qualification.GetDisplayName(child.Qualifications[i]));
                         qualification_panel[i].GetComponent<Collider2D>().enabled = true;
                     }

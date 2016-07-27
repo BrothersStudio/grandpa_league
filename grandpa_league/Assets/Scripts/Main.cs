@@ -1,15 +1,16 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 public class Main : MonoBehaviour {
 
 	public Button[] days;
 	private int current_day = 0;
 	private int current_month = 1;
-	private int display_month;
 	public Text month_title;
 
 	public GameObject family_panel;
@@ -63,7 +64,27 @@ public class Main : MonoBehaviour {
 	public void Awake()
 	{
         user_input_panel.SetActive(false);
-        m_dataManager = new DataManager(PlayerPrefs.GetString("name"));
+
+        if (PlayerPrefs.GetString("load") == "load")
+        {
+            try
+            {
+                this.Load();
+                Dictionary<string, int> currentDate = m_dataManager.Calendar.GetCurrentDay();
+                this.current_month = currentDate["month"];
+                this.current_day = currentDate["day"] - 1;
+            }
+            catch (Exception e)
+            {
+                Debug.Log(e.Message);
+            }
+            PlayerPrefs.DeleteKey("load");
+        }
+        else
+        {
+            m_dataManager = new DataManager(PlayerPrefs.GetString("name"));
+            PlayerPrefs.DeleteKey("name");
+        }
         this.DisplayContent("mail");
 
 		InitializeHighlight ();
@@ -76,8 +97,9 @@ public class Main : MonoBehaviour {
 
     public IEnumerator SimulateDay()
     {
-        foreach (SimulationEvent ev in m_dataManager.Calendar.GetEventsForCurrentDay())
+        foreach (SimulationEvent curEvent in m_dataManager.Calendar.GetEventsForCurrentDay())
         {
+            SimulationEvent ev = curEvent;
             Debug.Assert(ev != null);
             var day = m_dataManager.Calendar.GetCurrentDay();
             string debugString = String.Format("Currently running event \"{0}\", ID: {1}  on date {2}/{3}/{4}. Has qualification {5} and age requirement {6}-{7}.\n Requires Random: Parent? {8}, Child? {9}, Grandpa? {10} \n Requires: Money? {11}, Accept/Reject? {12}, Child? {16} Parent? {17} \n Also has minMonth {13} and maxMonth {14}. Priority {15}",
@@ -175,7 +197,8 @@ public class Main : MonoBehaviour {
 
                 ModalBlockingPanel.SetActive(true);
                 MainCanvas.GetComponent<CanvasGroup>().blocksRaycasts = false;
-                yield return StartCoroutine(WaitForUserConfirm());
+                yield return StartCoroutine("WaitForUserConfirm");
+                userInputting = false;
                 MainCanvas.GetComponent<CanvasGroup>().blocksRaycasts = true;
                 ModalBlockingPanel.SetActive(false);
             }
@@ -209,11 +232,12 @@ public class Main : MonoBehaviour {
 
                 ModalBlockingPanel.SetActive(true);
                 MainCanvas.GetComponent<CanvasGroup>().blocksRaycasts = false;
-                yield return StartCoroutine(WaitForUserConfirm());
+                yield return StartCoroutine("WaitForUserConfirm");
                 MainCanvas.GetComponent<CanvasGroup>().blocksRaycasts = true;
                 ModalBlockingPanel.SetActive(false);
             }
             Debug.Log(String.Format("event {0} completed", ev.EventName));
+            StopCoroutine("WaitForUserConfirm");
         }
 
         LeagueManager.SimulateDay(m_dataManager);   //move league standings around and stuff
@@ -231,10 +255,9 @@ public class Main : MonoBehaviour {
                 userInputting = false;
         });
     }
-
+		
 	private void CreateAndDisplayInputPanel(SimulationEvent ev)
     {
-
         Child selectedChild = ev.Requirements.Child;
         Parent selectedParent = ev.Requirements.Parent;
         Grandpa selectedGrandpa = ev.Requirements.Grandpa;
@@ -528,6 +551,7 @@ public class Main : MonoBehaviour {
         {
             yield return null;
         }
+        yield break;
     }
 
     public void PopupSettingsMenu()
@@ -538,7 +562,7 @@ public class Main : MonoBehaviour {
 		SaveButton.GetComponent<Button> ().onClick.RemoveAllListeners ();
         SaveButton.GetComponent<Button>().onClick.AddListener(() =>
         {
-            //save functionality
+            this.Save();
         });
 		ResumeButton.GetComponent<Button> ().onClick.RemoveAllListeners ();
         ResumeButton.GetComponent<Button>().onClick.AddListener(() =>
@@ -613,7 +637,7 @@ public class Main : MonoBehaviour {
 	{     
 		days [current_day].image.color = Color.red;
 
-		month_title.text = Constants.MONTH_NAMES[1];
+		month_title.text = Constants.MONTH_NAMES[this.current_month];
 		HighlightKnownEvents(current_month);
 	}
 
@@ -639,6 +663,28 @@ public class Main : MonoBehaviour {
 		}
         HighlightKnownEvents(current_month);
         days [current_day].image.color = Color.red;
+    }
+
+    public void Save()
+    {
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream myFile = File.Open(Application.persistentDataPath + "/manager.gpa", FileMode.OpenOrCreate);
+
+        bf.Serialize(myFile, m_dataManager);
+        myFile.Close();
+    }
+
+    public void Load()
+    {
+        if(File.Exists(Application.persistentDataPath + "/manager.gpa"))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream myFile = File.Open(Application.persistentDataPath + "/manager.gpa", FileMode.Open);
+            DataManager loadedManager = (DataManager)bf.Deserialize(myFile);
+            myFile.Close();
+
+            m_dataManager = loadedManager;
+        }
     }
 
     public void ChangeDisplayMonth()
