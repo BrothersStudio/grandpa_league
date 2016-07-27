@@ -40,6 +40,10 @@ static class Constants
         public const double INITIAL_MONEY = 1300;
         public const double INITIAL_INCOME = 1300;
         public const string DEFAULT_SURNAME = "Smith";
+        public const double INITIAL_WISDOM = 30;
+        public const double INITIAL_WISDOM_GROWTH = 0.03;
+        public const double INITIAL_INSANITY = 10;
+        public const double INITIAL_INSANITY_GROWTH = 0.01;
     }
 
     public struct Character

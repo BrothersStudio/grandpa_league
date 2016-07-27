@@ -1,4 +1,7 @@
-﻿public class PlayerInfo
+﻿using System;
+
+[Serializable]
+public class PlayerInfo
 {
     private     string      m_name = "";
 

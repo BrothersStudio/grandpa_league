@@ -1,5 +1,6 @@
 ﻿using System;
 
+[Serializable]
 public class Requirement
 {
     //set by what is read in from events.xml

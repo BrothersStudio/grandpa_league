@@ -1,5 +1,6 @@
 ﻿using System;
 
+[Serializable]
 public class Grandpa : Character
 {
     private Stat m_insanity          = new Stat();

@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 using System;
 using System.IO;
 
+[Serializable]
 public class CharacterManager
 {
     private static List<Child> m_children = new List<Child>();
@@ -91,5 +92,20 @@ public class CharacterManager
         Grandpa returnVal = m_grandparents[randomInt];
         m_grandparents.RemoveAt(randomInt);
         return returnVal;
+    }
+
+    public static List<Child> GetRemainingChildren()
+    {
+        return m_children;
+    }
+
+    public static List<Parent> GetRemainingParents()
+    {
+        return m_parents;
+    }
+
+    public static List<Grandpa> GetRemainingGrandpas()
+    {
+        return m_grandparents;
     }
 }

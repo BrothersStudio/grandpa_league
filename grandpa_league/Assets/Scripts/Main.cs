@@ -1,15 +1,16 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 public class Main : MonoBehaviour {
 
 	public Button[] days;
 	private int current_day = 0;
 	private int current_month = 1;
-	private int display_month;
 	public Text month_title;
 
 	public GameObject family_panel;
@@ -63,7 +64,27 @@ public class Main : MonoBehaviour {
 	public void Awake()
 	{
         user_input_panel.SetActive(false);
-        m_dataManager = new DataManager(PlayerPrefs.GetString("name"));
+
+        if (PlayerPrefs.GetString("load") == "load")
+        {
+            try
+            {
+                this.Load();
+                Dictionary<string, int> currentDate = m_dataManager.Calendar.GetCurrentDay();
+                this.current_month = currentDate["month"];
+                this.current_day = currentDate["day"] - 1;
+            }
+            catch (Exception e)
+            {
+                Debug.Log(e.Message);
+            }
+            PlayerPrefs.DeleteKey("load");
+        }
+        else
+        {
+            m_dataManager = new DataManager(PlayerPrefs.GetString("name"));
+            PlayerPrefs.DeleteKey("name");
+        }
         this.DisplayContent("mail");
 
 		InitializeHighlight ();
@@ -519,7 +540,7 @@ public class Main : MonoBehaviour {
         MainCanvas.GetComponent<CanvasGroup>().blocksRaycasts = false;
         SaveButton.GetComponent<Button>().onClick.AddListener(() =>
         {
-            //save functionality
+            this.Save();
         });
         ResumeButton.GetComponent<Button>().onClick.AddListener(() =>
         {
@@ -592,7 +613,7 @@ public class Main : MonoBehaviour {
 	{     
 		days [current_day].image.color = Color.red;
 
-		month_title.text = Constants.MONTH_NAMES[1];
+		month_title.text = Constants.MONTH_NAMES[this.current_month];
 		HighlightKnownEvents(current_month);
 	}
 
@@ -618,6 +639,28 @@ public class Main : MonoBehaviour {
 		}
         HighlightKnownEvents(current_month);
         days [current_day].image.color = Color.red;
+    }
+
+    public void Save()
+    {
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream myFile = File.Open(Application.persistentDataPath + "/manager.gpa", FileMode.OpenOrCreate);
+
+        bf.Serialize(myFile, m_dataManager);
+        myFile.Close();
+    }
+
+    public void Load()
+    {
+        if(File.Exists(Application.persistentDataPath + "/manager.gpa"))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream myFile = File.Open(Application.persistentDataPath + "/manager.gpa", FileMode.Open);
+            DataManager loadedManager = (DataManager)bf.Deserialize(myFile);
+            myFile.Close();
+
+            m_dataManager = loadedManager;
+        }
     }
 
     public void ChangeDisplayMonth()

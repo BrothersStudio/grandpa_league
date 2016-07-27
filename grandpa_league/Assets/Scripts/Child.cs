@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System;
 
+[Serializable]
 public class Child : Character
 {
     private     Stat    m_cuteness              = new Stat();

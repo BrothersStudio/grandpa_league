@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System;
 
+[Serializable]
 public class Parent : Character
 {
     private Stat m_intelligence          = new Stat();
