@@ -1334,6 +1334,35 @@ public static class EventManager
 				"Grandpa's income down.\n");
 		}
 		else 
+			returnObj.Status = (int)Enums.EventOutcome.PASS_BLACKLIST_YEAR;
+
+		return returnObj;
+	}
+
+	// Grandpa joins a cult
+	public static Outcome Event1031(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+		if (manager.PlayerFamily.Grandpa.Insanity > 40)
+		{
+			manager.PlayerFamily.Grandpa.Insanity += 10;
+			manager.PlayerFamily.Grandpa.Wisdom -= 10;
+
+			manager.PlayerFamily.Grandpa.MoneyGrowth -= 10;
+
+			manager.PlayerFamily.Grandpa.Pride -= 50;
+
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE_BLACKLIST_FOREVER;
+			returnObj.OutcomeDescription = String.Format (
+				"Grandpa just brought over a bunch of pamphlets for The Church of the Tin Can. Seems like he's joined a cult. " +
+				"He's paying them 10 dollars a month into their Collection Can.\n\n" +
+				"Grandpa's insanity up.\n" +
+				"Grandpa's wisdom down.\n" +
+				"Grandpa's income down slightly.\n" +
+				"Grandpa's pride down.\n",
+				manager.PlayerFamily.Grandpa.Name, requirements.Parent.Name);
+		}
+		else 
 			returnObj.Status = (int)Enums.EventOutcome.PASS;
 
 		return returnObj;
