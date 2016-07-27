@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System;
 
 [Serializable]
@@ -11,7 +11,7 @@ public class Parent : Character
 
     private double  m_value                   = 0;
 
-	public Parent(string name, int gender, int age, int intelligence, int popularity, int love)
+	public Parent(string name, int gender, int age, int intelligence, int popularity, int love, string spriteName)
     {
         this.m_name = name;
         this.m_gender = gender;
@@ -23,6 +23,8 @@ public class Parent : Character
         this.m_intelligence.GrowthRate = (intelligence / Constants.Character.GROWTH_DIVIDER) > Constants.Character.MAX_INITIAL_GROWTH ? Constants.Character.MAX_INITIAL_GROWTH : (intelligence / Constants.Character.GROWTH_DIVIDER);
         this.m_popularity.GrowthRate = (-1 * popularity / Constants.Character.GROWTH_DIVIDER) > Constants.Character.MAX_INITIAL_GROWTH ? Constants.Character.MAX_INITIAL_GROWTH : (-1 * popularity / Constants.Character.GROWTH_DIVIDER);
         this.m_love.GrowthRate = (popularity / Constants.Character.GROWTH_DIVIDER) > Constants.Character.MAX_INITIAL_GROWTH ? Constants.Character.MAX_INITIAL_GROWTH : (love / Constants.Character.GROWTH_DIVIDER);
+
+        this.m_spriteName = spriteName;
 
         this.UpdateValue();
     }

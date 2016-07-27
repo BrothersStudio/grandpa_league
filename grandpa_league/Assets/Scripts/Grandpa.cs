@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 [Serializable]
 public class Grandpa : Character
@@ -8,7 +8,7 @@ public class Grandpa : Character
     private Stat m_money             = new Stat();
     private Stat m_pride             = new Stat();
     
-	public Grandpa(string name, int age, int pride, int wisdom, int insanity, int money)
+	public Grandpa(string name, int age, int pride, int wisdom, int insanity, int money, string spriteName)
 	{
         this.m_name = name;
         this.m_age = age;
@@ -22,6 +22,7 @@ public class Grandpa : Character
         this.m_wisdom.GrowthRate = (wisdom / Constants.Character.GROWTH_DIVIDER) > Constants.Character.MAX_INITIAL_GROWTH ? Constants.Character.MAX_INITIAL_GROWTH : (wisdom / Constants.Character.GROWTH_DIVIDER);
         this.m_money.GrowthRate = Constants.Character.INITIAL_MONEY_GROWTH;
 
+        this.m_spriteName = spriteName;
     }
 
     public override void UpgradeRandomStat(double amt)
