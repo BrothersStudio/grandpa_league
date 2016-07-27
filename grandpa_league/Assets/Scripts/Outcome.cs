@@ -1,4 +1,7 @@
-﻿public class Outcome
+﻿using System;
+
+[Serializable]
+public class Outcome
 {
     private     int     m_status;
     private     string  m_outcomeString;

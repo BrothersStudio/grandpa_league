@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +9,7 @@ public class DataManager
     private Calendar                m_currentCalendar   = null;
     private List<Family>            m_league            = new List<Family>();
     private Family                  m_playerFamily      = null;
+    private Family                  m_orphanage         = new Family();
     private List<int>               m_blacklist         = new List<int>();
 
     public DataManager (string playerName)
@@ -17,9 +18,13 @@ public class DataManager
         this.m_currentCalendar = new Calendar();
 
         this.m_playerFamily = new Family();
-        this.m_playerFamily.Grandpa = new Grandpa(playerName);
+        this.m_playerFamily.GrandpaList.Add(new Grandpa(playerName));
         this.m_playerFamily.Grandpa.Money = Constants.Player.INITIAL_MONEY;
         this.m_playerFamily.Grandpa.MoneyGrowth = Constants.Player.INITIAL_INCOME;
+        this.m_playerFamily.Grandpa.Wisdom = Constants.Player.INITIAL_WISDOM;
+        this.m_playerFamily.Grandpa.WisdomGrowth = Constants.Player.INITIAL_WISDOM_GROWTH;
+        this.m_playerFamily.Grandpa.Insanity = Constants.Player.INITIAL_INSANITY;
+        this.m_playerFamily.Grandpa.InsanityGrowth = Constants.Player.INITIAL_INSANITY_GROWTH;
         this.m_playerFamily.Parents = CharacterManager.GetRandomParents(Constants.INITIAL_PARENTS);
         this.m_playerFamily.Children = CharacterManager.GetRandomChildren(Constants.INITIAL_CHILDREN);
 
@@ -31,6 +36,21 @@ public class DataManager
 
         for (int i = 1; i < Constants.NUM_FAMILIES; i++)
             this.m_league.Add(new Family(true));
+
+        foreach(Child child in CharacterManager.GetRemainingChildren())
+        {
+            this.m_orphanage.Children.Add(child);
+        }
+
+        foreach (Parent parent in CharacterManager.GetRemainingParents())
+        {
+            this.m_orphanage.Parents.Add(parent);
+        }
+
+        foreach (Grandpa grandpa in CharacterManager.GetRemainingGrandpas())
+        {
+            this.m_orphanage.GrandpaList.Add(grandpa);
+        }
 
         this.m_playerFamily.Mailbox.Add(this.GetInitialMail());
     }

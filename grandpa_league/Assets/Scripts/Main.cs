@@ -1,15 +1,16 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 public class Main : MonoBehaviour {
 
 	public Button[] days;
 	private int current_day = 0;
 	private int current_month = 1;
-	private int display_month;
 	public Text month_title;
 
 	public GameObject family_panel;
@@ -63,7 +64,27 @@ public class Main : MonoBehaviour {
 	public void Awake()
 	{
         user_input_panel.SetActive(false);
-        m_dataManager = new DataManager(PlayerPrefs.GetString("name"));
+
+        if (PlayerPrefs.GetString("load") == "load")
+        {
+            try
+            {
+                this.Load();
+                Dictionary<string, int> currentDate = m_dataManager.Calendar.GetCurrentDay();
+                this.current_month = currentDate["month"];
+                this.current_day = currentDate["day"] - 1;
+            }
+            catch (Exception e)
+            {
+                Debug.Log(e.Message);
+            }
+            PlayerPrefs.DeleteKey("load");
+        }
+        else
+        {
+            m_dataManager = new DataManager(PlayerPrefs.GetString("name"));
+            PlayerPrefs.DeleteKey("name");
+        }
         this.DisplayContent("mail");
 
 		InitializeHighlight ();
@@ -76,8 +97,9 @@ public class Main : MonoBehaviour {
 
     public IEnumerator SimulateDay()
     {
-        foreach (SimulationEvent ev in m_dataManager.Calendar.GetEventsForCurrentDay())
+        foreach (SimulationEvent curEvent in m_dataManager.Calendar.GetEventsForCurrentDay())
         {
+            SimulationEvent ev = curEvent;
             Debug.Assert(ev != null);
             var day = m_dataManager.Calendar.GetCurrentDay();
             string debugString = String.Format("Currently running event \"{0}\", ID: {1}  on date {2}/{3}/{4}. Has qualification {5} and age requirement {6}-{7}.\n Requires Random: Parent? {8}, Child? {9}, Grandpa? {10} \n Requires: Money? {11}, Accept/Reject? {12}, Child? {16} Parent? {17} \n Also has minMonth {13} and maxMonth {14}. Priority {15}",
@@ -169,12 +191,14 @@ public class Main : MonoBehaviour {
             if (ev.Requirements.HasInputRequirements() || ev.Priority == 2)
             {
                 ev.FormatEventDescription(m_dataManager);
-                CreateAndDisplayInputPanel(ev);
+
+				CreateAndDisplayInputPanel(ev);
                 userInputting = true;
 
                 ModalBlockingPanel.SetActive(true);
                 MainCanvas.GetComponent<CanvasGroup>().blocksRaycasts = false;
-                yield return StartCoroutine(WaitForUserConfirm());
+                yield return StartCoroutine("WaitForUserConfirm");
+                userInputting = false;
                 MainCanvas.GetComponent<CanvasGroup>().blocksRaycasts = true;
                 ModalBlockingPanel.SetActive(false);
             }
@@ -208,11 +232,12 @@ public class Main : MonoBehaviour {
 
                 ModalBlockingPanel.SetActive(true);
                 MainCanvas.GetComponent<CanvasGroup>().blocksRaycasts = false;
-                yield return StartCoroutine(WaitForUserConfirm());
+                yield return StartCoroutine("WaitForUserConfirm");
                 MainCanvas.GetComponent<CanvasGroup>().blocksRaycasts = true;
                 ModalBlockingPanel.SetActive(false);
             }
             Debug.Log(String.Format("event {0} completed", ev.EventName));
+            StopCoroutine("WaitForUserConfirm");
         }
 
         LeagueManager.SimulateDay(m_dataManager);   //move league standings around and stuff
@@ -224,13 +249,14 @@ public class Main : MonoBehaviour {
     {
         EventOutcomePanel.SetActive(true);
         OutcomeTextbox.GetComponent<Text>().text = eventOutcome.OutcomeDescription;
+		OkButton.GetComponent<Button> ().onClick.RemoveAllListeners ();
         OkButton.GetComponent<Button>().onClick.AddListener(() =>
         {
                 userInputting = false;
         });
     }
-
-    private void CreateAndDisplayInputPanel(SimulationEvent ev)
+		
+	private void CreateAndDisplayInputPanel(SimulationEvent ev)
     {
         Child selectedChild = ev.Requirements.Child;
         Parent selectedParent = ev.Requirements.Parent;
@@ -252,8 +278,10 @@ public class Main : MonoBehaviour {
 		List<GameObject> parent_buttons = new List<GameObject>();
 		List<GameObject> grandpa_buttons = new List<GameObject>();
 
+		SelectChildButton.GetComponent<Button>().onClick.RemoveAllListeners();
         SelectChildButton.GetComponent<Button>().onClick.AddListener(() =>
         {
+
             ChildSelectPanel.SetActive(true);
             SelectionModalBlockingPanel.SetActive(true);
             EventCanvas.GetComponent<CanvasGroup>().blocksRaycasts = false;
@@ -262,21 +290,14 @@ public class Main : MonoBehaviour {
             {
 				Child ch = child;
 
-					Debug.Log("Checking " + ch.Name);
-
-					Debug.Log("Age range is " + ev.Requirements.MinAge + " to " + ev.Requirements.MaxAge);
-					Debug.Log(ch.Name + "'s age is " + ch.Age);
-
 				if (ch.Age > ev.Requirements.MaxAge || ch.Age < ev.Requirements.MinAge)
-					{
-						Debug.Log(ch.Name + " doesn't fit in the age range! skipping..."); 
 					continue;
-					}
-
-					Debug.Log("Opting to create button for " + ch.Name);
+					
                 GameObject childButton = Instantiate(characterButtonPrefab) as GameObject;
                 childButton.GetComponentInChildren<Text>().text= ch.Name;
                 childButton.transform.SetParent(ChildSelectPanel.transform, false);
+
+				childButton.GetComponent<Button>().onClick.RemoveAllListeners();
                 childButton.GetComponent<Button>().onClick.AddListener(() =>
                 {
                     selectedChild = ch;
@@ -288,10 +309,8 @@ public class Main : MonoBehaviour {
                     if ((!SelectParentButton.activeSelf || (SelectParentButton.activeSelf && selectedParent != null)) && (!SelectGrandpaButton.activeSelf || (SelectGrandpaButton.activeSelf && selectedGrandpa != null)))
                         AcceptButton.GetComponent<Button>().interactable = true;
 
-							Debug.Log("I had " + child_buttons.Count + " buttons");
 					foreach (GameObject button in child_buttons)
 					{
-								Debug.Log("Destroying button...");
 						Destroy(button);
 					}
 					child_buttons.Clear();
@@ -309,23 +328,23 @@ public class Main : MonoBehaviour {
 
                 curChild++;
             }
-
+			
+			childBackButton.GetComponent<Button>().onClick.RemoveAllListeners();
             childBackButton.GetComponent<Button>().onClick.AddListener(() =>
             {
                 ChildSelectPanel.SetActive(false);
                 SelectionModalBlockingPanel.SetActive(false);
                 EventCanvas.GetComponent<CanvasGroup>().blocksRaycasts = true;
 
-						Debug.Log("I had " + child_buttons.Count + " buttons");
 				foreach (GameObject button in child_buttons)
 				{
-							Debug.Log("Destroying button...");
 					Destroy(button);
 				}
 				child_buttons.Clear();
             });
         });
 
+		SelectParentButton.GetComponent<Button>().onClick.RemoveAllListeners();
         SelectParentButton.GetComponent<Button>().onClick.AddListener(() =>
         {
             ParentSelectPanel.SetActive(true);
@@ -338,6 +357,8 @@ public class Main : MonoBehaviour {
                 GameObject parentButton = Instantiate(characterButtonPrefab) as GameObject;
                 parentButton.GetComponentInChildren<Text>().text = par.Name;
                 parentButton.transform.SetParent(ParentSelectPanel.transform, false);
+
+				parentButton.GetComponent<Button>().onClick.RemoveAllListeners();
                 parentButton.GetComponent<Button>().onClick.AddListener(() =>
                 {
                     selectedParent = par;
@@ -368,6 +389,7 @@ public class Main : MonoBehaviour {
 
                 curParent++;
             }
+			parentBackButton.GetComponent<Button>().onClick.RemoveAllListeners();
             parentBackButton.GetComponent<Button>().onClick.AddListener(() =>
             {
                 ParentSelectPanel.SetActive(false);
@@ -382,6 +404,7 @@ public class Main : MonoBehaviour {
             });
         });
 
+		SelectGrandpaButton.GetComponent<Button>().onClick.RemoveAllListeners();
         SelectGrandpaButton.GetComponent<Button>().onClick.AddListener(() =>
         {
             GrandpaSelectPanel.SetActive(true);
@@ -394,6 +417,8 @@ public class Main : MonoBehaviour {
                 GameObject grandpaButton = Instantiate(characterButtonPrefab) as GameObject;
                 grandpaButton.GetComponentInChildren<Text>().text = grandpa.Name;
                 grandpaButton.transform.SetParent(GrandpaSelectPanel.transform, false);
+
+				grandpaButton.GetComponent<Button>().onClick.RemoveAllListeners();
                 grandpaButton.GetComponent<Button>().onClick.AddListener(() =>
                 {
                     selectedGrandpa = grandpa;
@@ -424,7 +449,8 @@ public class Main : MonoBehaviour {
 
                 curFamily++;
             }
-            parentBackButton.GetComponent<Button>().onClick.AddListener(() =>
+			grandpaBackButton.GetComponent<Button>().onClick.RemoveAllListeners();
+            grandpaBackButton.GetComponent<Button>().onClick.AddListener(() =>
             {
                 ParentSelectPanel.SetActive(false);
                 SelectionModalBlockingPanel.SetActive(false);
@@ -438,6 +464,7 @@ public class Main : MonoBehaviour {
             });
         });
 
+		AcceptButton.GetComponent<Button>().onClick.RemoveAllListeners();
         AcceptButton.GetComponent<Button>().onClick.AddListener(() =>
         {
             userInputting = false;
@@ -448,6 +475,7 @@ public class Main : MonoBehaviour {
             ev.Requirements.Grandpa = selectedGrandpa;
         });
 
+		RejectButton.GetComponent<Button>().onClick.RemoveAllListeners();
         RejectButton.GetComponent<Button>().onClick.AddListener(() =>
         {
             userInputting = false;
@@ -523,6 +551,7 @@ public class Main : MonoBehaviour {
         {
             yield return null;
         }
+        yield break;
     }
 
     public void PopupSettingsMenu()
@@ -530,16 +559,19 @@ public class Main : MonoBehaviour {
         SettingsPanel.SetActive(true);
         ModalBlockingPanel.SetActive(true);
         MainCanvas.GetComponent<CanvasGroup>().blocksRaycasts = false;
+		SaveButton.GetComponent<Button> ().onClick.RemoveAllListeners ();
         SaveButton.GetComponent<Button>().onClick.AddListener(() =>
         {
-            //save functionality
+            this.Save();
         });
+		ResumeButton.GetComponent<Button> ().onClick.RemoveAllListeners ();
         ResumeButton.GetComponent<Button>().onClick.AddListener(() =>
         {
             SettingsPanel.SetActive(false);
             ModalBlockingPanel.SetActive(false);
             MainCanvas.GetComponent<CanvasGroup>().blocksRaycasts = true;
         });
+		QuitButton.GetComponent<Button> ().onClick.RemoveAllListeners ();
         QuitButton.GetComponent<Button>().onClick.AddListener(() =>
         {
             Application.Quit();
@@ -605,7 +637,7 @@ public class Main : MonoBehaviour {
 	{     
 		days [current_day].image.color = Color.red;
 
-		month_title.text = Constants.MONTH_NAMES[1];
+		month_title.text = Constants.MONTH_NAMES[this.current_month];
 		HighlightKnownEvents(current_month);
 	}
 
@@ -631,6 +663,28 @@ public class Main : MonoBehaviour {
 		}
         HighlightKnownEvents(current_month);
         days [current_day].image.color = Color.red;
+    }
+
+    public void Save()
+    {
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream myFile = File.Open(Application.persistentDataPath + "/manager.gpa", FileMode.OpenOrCreate);
+
+        bf.Serialize(myFile, m_dataManager);
+        myFile.Close();
+    }
+
+    public void Load()
+    {
+        if(File.Exists(Application.persistentDataPath + "/manager.gpa"))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream myFile = File.Open(Application.persistentDataPath + "/manager.gpa", FileMode.Open);
+            DataManager loadedManager = (DataManager)bf.Deserialize(myFile);
+            myFile.Close();
+
+            m_dataManager = loadedManager;
+        }
     }
 
     public void ChangeDisplayMonth()

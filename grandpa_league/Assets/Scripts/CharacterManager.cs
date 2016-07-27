@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 using System;
 using System.IO;
 
+[Serializable]
 public class CharacterManager
 {
     private static List<Child> m_children = new List<Child>();
@@ -30,7 +31,8 @@ public class CharacterManager
                                                     Int32.Parse(character.Attribute("intelligence").Value),
                                                     Int32.Parse(character.Attribute("artistry").Value),
                                                     Int32.Parse(character.Attribute("athleticism").Value),
-                                                    Int32.Parse(character.Attribute("popularity").Value)
+                                                    Int32.Parse(character.Attribute("popularity").Value),
+                                                    character.Attribute("sprite_name").Value
                                                     ));
                     break;
                 case (int)Enums.Character.PARENT:
@@ -39,7 +41,8 @@ public class CharacterManager
                                                     Int32.Parse(character.Attribute("age").Value),
                                                     Int32.Parse(character.Attribute("intelligence").Value),
                                                     Int32.Parse(character.Attribute("popularity").Value),
-                                                    Int32.Parse(character.Attribute("love").Value)
+                                                    Int32.Parse(character.Attribute("love").Value),
+                                                    character.Attribute("sprite_name").Value
                                                     ));
                     break;
                 case (int)Enums.Character.GRANDPA:
@@ -48,7 +51,8 @@ public class CharacterManager
 														Int32.Parse(character.Attribute("pride").Value),
                                                         Int32.Parse(character.Attribute("wisdom").Value),
                                                         Int32.Parse(character.Attribute("insanity").Value),
-                                                        Int32.Parse(character.Attribute("money").Value)
+                                                        Int32.Parse(character.Attribute("money").Value),
+                                                        character.Attribute("sprite_name").Value
                                                     ));
                     break;
                 default:
@@ -91,5 +95,20 @@ public class CharacterManager
         Grandpa returnVal = m_grandparents[randomInt];
         m_grandparents.RemoveAt(randomInt);
         return returnVal;
+    }
+
+    public static List<Child> GetRemainingChildren()
+    {
+        return m_children;
+    }
+
+    public static List<Parent> GetRemainingParents()
+    {
+        return m_parents;
+    }
+
+    public static List<Grandpa> GetRemainingGrandpas()
+    {
+        return m_grandparents;
     }
 }

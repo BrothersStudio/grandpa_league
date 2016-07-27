@@ -1,4 +1,7 @@
-﻿public class Stat
+﻿using System;
+
+[Serializable]
+public class Stat
 {
     private double m_value = 0;
     private double m_minValue = 0;
