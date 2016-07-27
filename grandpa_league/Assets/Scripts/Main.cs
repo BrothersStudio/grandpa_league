@@ -97,8 +97,9 @@ public class Main : MonoBehaviour {
 
     public IEnumerator SimulateDay()
     {
-        foreach (SimulationEvent ev in m_dataManager.Calendar.GetEventsForCurrentDay())
+        foreach (SimulationEvent curEvent in m_dataManager.Calendar.GetEventsForCurrentDay())
         {
+            SimulationEvent ev = curEvent;
             Debug.Assert(ev != null);
             var day = m_dataManager.Calendar.GetCurrentDay();
             string debugString = String.Format("Currently running event \"{0}\", ID: {1}  on date {2}/{3}/{4}. Has qualification {5} and age requirement {6}-{7}.\n Requires Random: Parent? {8}, Child? {9}, Grandpa? {10} \n Requires: Money? {11}, Accept/Reject? {12}, Child? {16} Parent? {17} \n Also has minMonth {13} and maxMonth {14}. Priority {15}",
@@ -195,7 +196,7 @@ public class Main : MonoBehaviour {
 
                 ModalBlockingPanel.SetActive(true);
                 MainCanvas.GetComponent<CanvasGroup>().blocksRaycasts = false;
-                yield return StartCoroutine(WaitForUserConfirm());
+                yield return StartCoroutine("WaitForUserConfirm");
                 userInputting = false;
                 MainCanvas.GetComponent<CanvasGroup>().blocksRaycasts = true;
                 ModalBlockingPanel.SetActive(false);
@@ -230,11 +231,12 @@ public class Main : MonoBehaviour {
 
                 ModalBlockingPanel.SetActive(true);
                 MainCanvas.GetComponent<CanvasGroup>().blocksRaycasts = false;
-                yield return StartCoroutine(WaitForUserConfirm());
+                yield return StartCoroutine("WaitForUserConfirm");
                 MainCanvas.GetComponent<CanvasGroup>().blocksRaycasts = true;
                 ModalBlockingPanel.SetActive(false);
             }
             Debug.Log(String.Format("event {0} completed", ev.EventName));
+            StopCoroutine("WaitForUserConfirm");
         }
 
         LeagueManager.SimulateDay(m_dataManager);   //move league standings around and stuff

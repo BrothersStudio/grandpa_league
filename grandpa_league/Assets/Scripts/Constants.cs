@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+
 
 static class Constants
 {
@@ -7,6 +8,36 @@ static class Constants
     public const int INITIAL_CHILDREN = 3;
     public const int RANDOM_FACTOR = 10;
 	public static Random RANDOM = new Random();
+
+    public static bool Roll(int cuteness, int inStat, int difficulty)
+    {
+        double cutenessIncrease = cuteness / 10;
+        double successChance = 0;
+        switch (difficulty)
+        {
+            case (int)Enums.Difficulty.VERY_HARD:
+                successChance = (Math.Pow(9.6, -3) * Math.Pow(inStat, 2)) - (0.46 * inStat) + Math.Pow(1.776, -15);
+                break;
+            case (int)Enums.Difficulty.HARD:
+                successChance = (Math.Pow(9.2, -3) * Math.Pow(inStat, 2)) - (0.18 * inStat) + 1;
+                break;
+            case (int)Enums.Difficulty.STANDARD:
+                successChance = (0.8 * inStat) + 10;
+                break;
+            case (int)Enums.Difficulty.EASY:
+                successChance = (Math.Pow(-5, -3) * Math.Pow(inStat, 2)) + (1.25 * inStat) + 20;
+                break;
+            case (int)Enums.Difficulty.VERY_EASY:
+                successChance = (Math.Pow(-8.2, -3) * Math.Pow(inStat, 2)) + (1.51 * inStat) + 30;
+                break;
+        }
+
+        successChance += cutenessIncrease;
+        int randomInt = RANDOM.Next(0, 100);
+        if (successChance < randomInt)
+            return true;
+        return false;
+    }
 
     public static string[] DAY_NAMES = 
 		{
@@ -63,7 +94,6 @@ static class Constants
         public const double MAJOR_PRIDE_CHANGE_AMOUNT = 500;
         public const double STANDARD_PRIDE_CHANGE_AMOUNT = 100;
         public const double MINOR_PRIDE_CHANGE_AMOUNT = 50;
-
     }
 
     public struct League
