@@ -169,7 +169,8 @@ public class Main : MonoBehaviour {
             if (ev.Requirements.HasInputRequirements() || ev.Priority == 2)
             {
                 ev.FormatEventDescription(m_dataManager);
-                CreateAndDisplayInputPanel(ev);
+
+				CreateAndDisplayInputPanel(ev);
                 userInputting = true;
 
                 ModalBlockingPanel.SetActive(true);
@@ -224,14 +225,16 @@ public class Main : MonoBehaviour {
     {
         EventOutcomePanel.SetActive(true);
         OutcomeTextbox.GetComponent<Text>().text = eventOutcome.OutcomeDescription;
+		OkButton.GetComponent<Button> ().onClick.RemoveAllListeners ();
         OkButton.GetComponent<Button>().onClick.AddListener(() =>
         {
                 userInputting = false;
         });
     }
 
-    private void CreateAndDisplayInputPanel(SimulationEvent ev)
+	private void CreateAndDisplayInputPanel(SimulationEvent ev)
     {
+
         Child selectedChild = ev.Requirements.Child;
         Parent selectedParent = ev.Requirements.Parent;
         Grandpa selectedGrandpa = ev.Requirements.Grandpa;
@@ -252,8 +255,10 @@ public class Main : MonoBehaviour {
 		List<GameObject> parent_buttons = new List<GameObject>();
 		List<GameObject> grandpa_buttons = new List<GameObject>();
 
+		SelectChildButton.GetComponent<Button>().onClick.RemoveAllListeners();
         SelectChildButton.GetComponent<Button>().onClick.AddListener(() =>
         {
+
             ChildSelectPanel.SetActive(true);
             SelectionModalBlockingPanel.SetActive(true);
             EventCanvas.GetComponent<CanvasGroup>().blocksRaycasts = false;
@@ -262,21 +267,14 @@ public class Main : MonoBehaviour {
             {
 				Child ch = child;
 
-					Debug.Log("Checking " + ch.Name);
-
-					Debug.Log("Age range is " + ev.Requirements.MinAge + " to " + ev.Requirements.MaxAge);
-					Debug.Log(ch.Name + "'s age is " + ch.Age);
-
 				if (ch.Age > ev.Requirements.MaxAge || ch.Age < ev.Requirements.MinAge)
-					{
-						Debug.Log(ch.Name + " doesn't fit in the age range! skipping..."); 
 					continue;
-					}
-
-					Debug.Log("Opting to create button for " + ch.Name);
+					
                 GameObject childButton = Instantiate(characterButtonPrefab) as GameObject;
                 childButton.GetComponentInChildren<Text>().text= ch.Name;
                 childButton.transform.SetParent(ChildSelectPanel.transform, false);
+
+				childButton.GetComponent<Button>().onClick.RemoveAllListeners();
                 childButton.GetComponent<Button>().onClick.AddListener(() =>
                 {
                     selectedChild = ch;
@@ -288,10 +286,8 @@ public class Main : MonoBehaviour {
                     if ((!SelectParentButton.activeSelf || (SelectParentButton.activeSelf && selectedParent != null)) && (!SelectGrandpaButton.activeSelf || (SelectGrandpaButton.activeSelf && selectedGrandpa != null)))
                         AcceptButton.GetComponent<Button>().interactable = true;
 
-							Debug.Log("I had " + child_buttons.Count + " buttons");
 					foreach (GameObject button in child_buttons)
 					{
-								Debug.Log("Destroying button...");
 						Destroy(button);
 					}
 					child_buttons.Clear();
@@ -309,23 +305,23 @@ public class Main : MonoBehaviour {
 
                 curChild++;
             }
-
+			
+			childBackButton.GetComponent<Button>().onClick.RemoveAllListeners();
             childBackButton.GetComponent<Button>().onClick.AddListener(() =>
             {
                 ChildSelectPanel.SetActive(false);
                 SelectionModalBlockingPanel.SetActive(false);
                 EventCanvas.GetComponent<CanvasGroup>().blocksRaycasts = true;
 
-						Debug.Log("I had " + child_buttons.Count + " buttons");
 				foreach (GameObject button in child_buttons)
 				{
-							Debug.Log("Destroying button...");
 					Destroy(button);
 				}
 				child_buttons.Clear();
             });
         });
 
+		SelectParentButton.GetComponent<Button>().onClick.RemoveAllListeners();
         SelectParentButton.GetComponent<Button>().onClick.AddListener(() =>
         {
             ParentSelectPanel.SetActive(true);
@@ -338,6 +334,8 @@ public class Main : MonoBehaviour {
                 GameObject parentButton = Instantiate(characterButtonPrefab) as GameObject;
                 parentButton.GetComponentInChildren<Text>().text = par.Name;
                 parentButton.transform.SetParent(ParentSelectPanel.transform, false);
+
+				parentButton.GetComponent<Button>().onClick.RemoveAllListeners();
                 parentButton.GetComponent<Button>().onClick.AddListener(() =>
                 {
                     selectedParent = par;
@@ -368,6 +366,7 @@ public class Main : MonoBehaviour {
 
                 curParent++;
             }
+			parentBackButton.GetComponent<Button>().onClick.RemoveAllListeners();
             parentBackButton.GetComponent<Button>().onClick.AddListener(() =>
             {
                 ParentSelectPanel.SetActive(false);
@@ -382,6 +381,7 @@ public class Main : MonoBehaviour {
             });
         });
 
+		SelectGrandpaButton.GetComponent<Button>().onClick.RemoveAllListeners();
         SelectGrandpaButton.GetComponent<Button>().onClick.AddListener(() =>
         {
             GrandpaSelectPanel.SetActive(true);
@@ -394,6 +394,8 @@ public class Main : MonoBehaviour {
                 GameObject grandpaButton = Instantiate(characterButtonPrefab) as GameObject;
                 grandpaButton.GetComponentInChildren<Text>().text = grandpa.Name;
                 grandpaButton.transform.SetParent(GrandpaSelectPanel.transform, false);
+
+				grandpaButton.GetComponent<Button>().onClick.RemoveAllListeners();
                 grandpaButton.GetComponent<Button>().onClick.AddListener(() =>
                 {
                     selectedGrandpa = grandpa;
@@ -424,7 +426,8 @@ public class Main : MonoBehaviour {
 
                 curFamily++;
             }
-            parentBackButton.GetComponent<Button>().onClick.AddListener(() =>
+			grandpaBackButton.GetComponent<Button>().onClick.RemoveAllListeners();
+            grandpaBackButton.GetComponent<Button>().onClick.AddListener(() =>
             {
                 ParentSelectPanel.SetActive(false);
                 SelectionModalBlockingPanel.SetActive(false);
@@ -438,6 +441,7 @@ public class Main : MonoBehaviour {
             });
         });
 
+		AcceptButton.GetComponent<Button>().onClick.RemoveAllListeners();
         AcceptButton.GetComponent<Button>().onClick.AddListener(() =>
         {
             userInputting = false;
@@ -448,6 +452,7 @@ public class Main : MonoBehaviour {
             ev.Requirements.Grandpa = selectedGrandpa;
         });
 
+		RejectButton.GetComponent<Button>().onClick.RemoveAllListeners();
         RejectButton.GetComponent<Button>().onClick.AddListener(() =>
         {
             userInputting = false;
@@ -530,16 +535,19 @@ public class Main : MonoBehaviour {
         SettingsPanel.SetActive(true);
         ModalBlockingPanel.SetActive(true);
         MainCanvas.GetComponent<CanvasGroup>().blocksRaycasts = false;
+		SaveButton.GetComponent<Button> ().onClick.RemoveAllListeners ();
         SaveButton.GetComponent<Button>().onClick.AddListener(() =>
         {
             //save functionality
         });
+		ResumeButton.GetComponent<Button> ().onClick.RemoveAllListeners ();
         ResumeButton.GetComponent<Button>().onClick.AddListener(() =>
         {
             SettingsPanel.SetActive(false);
             ModalBlockingPanel.SetActive(false);
             MainCanvas.GetComponent<CanvasGroup>().blocksRaycasts = true;
         });
+		QuitButton.GetComponent<Button> ().onClick.RemoveAllListeners ();
         QuitButton.GetComponent<Button>().onClick.AddListener(() =>
         {
             Application.Quit();
