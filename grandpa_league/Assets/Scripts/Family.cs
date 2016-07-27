@@ -21,7 +21,12 @@ public class Family
         this.m_grandpa.Add(CharacterManager.GetRandomGrandpa());
 		this.m_parents = CharacterManager.GetRandomParents(Constants.INITIAL_PARENTS);
         this.m_children = CharacterManager.GetRandomChildren(Constants.INITIAL_CHILDREN);
-        this.m_familyName = this.m_grandpa[0].Name.Split(' ')[1];      //TODO: FIX THIS HACK
+
+        string[] splitName = this.m_grandpa[0].Name.Split(' ');
+        if (splitName.Length >= 2)
+            this.m_familyName = splitName[splitName.Length - 1];
+        else
+            this.m_familyName = Constants.Player.DEFAULT_SURNAME;
     }
 
     public List<Character> GetAllCharacters()
@@ -53,10 +58,8 @@ public class Family
     public void ApplyStatUpgrades()
     {
         this.m_grandpa[0].Insanity *= (1 + this.m_grandpa[0].InsanityGrowth);
-        //this.m_grandpa.Insanity = this.m_grandpa.Insanity > 100 ? 100 : this.m_grandpa.Insanity;
 
         this.m_grandpa[0].Wisdom *= (1 + this.m_grandpa[0].WisdomGrowth);
-        //this.m_grandpa.Wisdom = this.m_grandpa.Wisdom > 100 ? 100 : this.m_grandpa.Wisdom;
 
         this.m_grandpa[0].Money += (this.m_grandpa[0].MoneyGrowth);
 
