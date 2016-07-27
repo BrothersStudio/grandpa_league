@@ -262,9 +262,18 @@ public class Main : MonoBehaviour {
             {
 				Child ch = child;
 
+					Debug.Log("Checking " + ch.Name);
+
+					Debug.Log("Age range is " + ev.Requirements.MinAge + " to " + ev.Requirements.MaxAge);
+					Debug.Log(ch.Name + "'s age is " + ch.Age);
+
 				if (ch.Age > ev.Requirements.MaxAge || ch.Age < ev.Requirements.MinAge)
+					{
+						Debug.Log(ch.Name + " doesn't fit in the age range! skipping..."); 
 					continue;
-					
+					}
+
+					Debug.Log("Opting to create button for " + ch.Name);
                 GameObject childButton = Instantiate(characterButtonPrefab) as GameObject;
                 childButton.GetComponentInChildren<Text>().text= ch.Name;
                 childButton.transform.SetParent(ChildSelectPanel.transform, false);
@@ -279,8 +288,10 @@ public class Main : MonoBehaviour {
                     if ((!SelectParentButton.activeSelf || (SelectParentButton.activeSelf && selectedParent != null)) && (!SelectGrandpaButton.activeSelf || (SelectGrandpaButton.activeSelf && selectedGrandpa != null)))
                         AcceptButton.GetComponent<Button>().interactable = true;
 
+							Debug.Log("I had " + child_buttons.Count + " buttons");
 					foreach (GameObject button in child_buttons)
 					{
+								Debug.Log("Destroying button...");
 						Destroy(button);
 					}
 					child_buttons.Clear();
@@ -305,8 +316,10 @@ public class Main : MonoBehaviour {
                 SelectionModalBlockingPanel.SetActive(false);
                 EventCanvas.GetComponent<CanvasGroup>().blocksRaycasts = true;
 
+						Debug.Log("I had " + child_buttons.Count + " buttons");
 				foreach (GameObject button in child_buttons)
 				{
+							Debug.Log("Destroying button...");
 					Destroy(button);
 				}
 				child_buttons.Clear();
@@ -567,7 +580,7 @@ public class Main : MonoBehaviour {
 				known_event_display_panel.transform.Find("Event Text").GetComponent<Text>().text = "";
 				known_event_display_panel.SetActive(true);
 
-				List<SimulationEvent> events_of_day = m_dataManager.Calendar.GetEventsForDay(known_event_day, month);
+				List<SimulationEvent> events_of_day = m_dataManager.Calendar.GetEventsForDay(known_event_day+1, month);
 				int num_known_events = 0;
 				foreach (SimulationEvent this_event_instance in events_of_day)
 				{
@@ -598,8 +611,6 @@ public class Main : MonoBehaviour {
 
 	public void AdvanceDayHighlight()
 	{
-		HighlightKnownEvents(current_month);
-
 		days [current_day].image.color = Color.white;
 		if (current_day == days.Length - 1) 
 		{
@@ -610,15 +621,19 @@ public class Main : MonoBehaviour {
 				current_month = 1;
 			}
 			month_title.text = Constants.MONTH_NAMES[current_month];
-		}
+
+            for (int i = 0; i < 28; i++)
+                days[i].image.color = Color.white;
+        }
 		else
 		{
 			current_day++;
 		}
-		days [current_day].image.color = Color.red;
-	}
+        HighlightKnownEvents(current_month);
+        days [current_day].image.color = Color.red;
+    }
 
-	public void ChangeDisplayMonth()
+    public void ChangeDisplayMonth()
 	{
 		current_month++;
 		if (current_month > 12)

@@ -158,8 +158,14 @@ public static class EventManager
             leagueFam.ApplyStatUpgrades();
         }
 		manager.PlayerFamily.ApplyStatUpgrades();
-
-        return new Outcome((int)Enums.EventOutcome.SUCCESS, "level_upgrade_applied");
+        Outcome statOutcome = new Outcome();
+        statOutcome.Status = (int)Enums.EventOutcome.SUCCESS;
+        statOutcome.Mail = new Mail();
+        statOutcome.Mail.Date = manager.Calendar.GetCurrentDay();
+        statOutcome.Mail.Subject = "Your Social Security Check";
+        statOutcome.Mail.Sender = manager.PlayerFamily.Parents[0].Name;
+        statOutcome.Mail.Message = string.Format("Hey Dad,\n\n\tHere is your social security check for the month plus a little something extra I scraped up for you. The kids are doing just fine and are growing so fast! You'll barely even recognize them soon (between you and me, I'm worred {0} is already getting uglier like Mom did. Anyway have a good month!\n\nTotal Amount Applied to Account: ${1}.00\n\nLove,\n{2}",manager.PlayerFamily.Children[0] ,manager.PlayerFamily.Grandpa.MoneyGrowth, manager.PlayerFamily.Parents[0].Name);
+        return statOutcome;
     }
 
     //NAME: TRADE_ACCEPT_REJECT
@@ -1325,6 +1331,35 @@ public static class EventManager
 				"Grandpa's wisdom up.\n" +
 				"Grandpa's wisdom growth up.\n" +
 				"Grandpa's income down.\n");
+		}
+		else 
+			returnObj.Status = (int)Enums.EventOutcome.PASS_BLACKLIST_YEAR;
+
+		return returnObj;
+	}
+
+	// Grandpa joins a cult
+	public static Outcome Event1031(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+		if (manager.PlayerFamily.Grandpa.Insanity > 40)
+		{
+			manager.PlayerFamily.Grandpa.Insanity += 10;
+			manager.PlayerFamily.Grandpa.Wisdom -= 10;
+
+			manager.PlayerFamily.Grandpa.MoneyGrowth -= 10;
+
+			manager.PlayerFamily.Grandpa.Pride -= 50;
+
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE_BLACKLIST_FOREVER;
+			returnObj.OutcomeDescription = String.Format (
+				"Grandpa just brought over a bunch of pamphlets for The Church of the Tin Can. Seems like he's joined a cult. " +
+				"He's paying them 10 dollars a month into their Collection Can.\n\n" +
+				"Grandpa's insanity up.\n" +
+				"Grandpa's wisdom down.\n" +
+				"Grandpa's income down slightly.\n" +
+				"Grandpa's pride down.\n",
+				manager.PlayerFamily.Grandpa.Name, requirements.Parent.Name);
 		}
 		else 
 			returnObj.Status = (int)Enums.EventOutcome.PASS;

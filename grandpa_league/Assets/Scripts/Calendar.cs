@@ -47,7 +47,7 @@ public class Calendar
             foreach(SimulationEvent ev in this.m_days[i].GetEvents())
             {
                 if (ev.EventType == (int)Enums.EventType.KNOWN)
-                    knownEventDays.Add(i + 1);
+                    knownEventDays.Add((i - (month - 1) * 28));
             }
         }
         return knownEventDays;
@@ -134,7 +134,7 @@ public class Day
             this.m_events.Add(knownEvent);
         }
 
-        if(this.m_dayName == "Sunday")
+        if(this.m_day == 28)
         {
             this.m_events.Add(EventManager.GetSystemEventById(0));
         }
