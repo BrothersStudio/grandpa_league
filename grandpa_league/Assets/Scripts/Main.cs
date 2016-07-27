@@ -262,9 +262,18 @@ public class Main : MonoBehaviour {
             {
 				Child ch = child;
 
+					Debug.Log("Checking " + ch.Name);
+
+					Debug.Log("Age range is " + ev.Requirements.MinAge + " to " + ev.Requirements.MaxAge);
+					Debug.Log(ch.Name + "'s age is " + ch.Age);
+
 				if (ch.Age > ev.Requirements.MaxAge || ch.Age < ev.Requirements.MinAge)
+					{
+						Debug.Log(ch.Name + " doesn't fit in the age range! skipping..."); 
 					continue;
-					
+					}
+
+					Debug.Log("Opting to create button for " + ch.Name);
                 GameObject childButton = Instantiate(characterButtonPrefab) as GameObject;
                 childButton.GetComponentInChildren<Text>().text= ch.Name;
                 childButton.transform.SetParent(ChildSelectPanel.transform, false);
@@ -279,8 +288,10 @@ public class Main : MonoBehaviour {
                     if ((!SelectParentButton.activeSelf || (SelectParentButton.activeSelf && selectedParent != null)) && (!SelectGrandpaButton.activeSelf || (SelectGrandpaButton.activeSelf && selectedGrandpa != null)))
                         AcceptButton.GetComponent<Button>().interactable = true;
 
+							Debug.Log("I had " + child_buttons.Count + " buttons");
 					foreach (GameObject button in child_buttons)
 					{
+								Debug.Log("Destroying button...");
 						Destroy(button);
 					}
 					child_buttons.Clear();
@@ -305,8 +316,10 @@ public class Main : MonoBehaviour {
                 SelectionModalBlockingPanel.SetActive(false);
                 EventCanvas.GetComponent<CanvasGroup>().blocksRaycasts = true;
 
+						Debug.Log("I had " + child_buttons.Count + " buttons");
 				foreach (GameObject button in child_buttons)
 				{
+							Debug.Log("Destroying button...");
 					Destroy(button);
 				}
 				child_buttons.Clear();
