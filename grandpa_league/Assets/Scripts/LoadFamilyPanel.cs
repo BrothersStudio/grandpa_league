@@ -86,7 +86,11 @@ public class LoadFamilyPanel : MonoBehaviour
 			// Add character display activation to button
 			prefab_content_panel_instance[panel_ind].GetComponent<Button>().onClick.AddListener(() => 
 				{
-					grandpa_stat_panel.SetActive (false);
+                    parent_stat_panel.transform.Find("PopularityFocusButton").GetComponent<Button>().onClick.RemoveAllListeners();
+                    parent_stat_panel.transform.Find("IntelligenceFocusButton").GetComponent<Button>().onClick.RemoveAllListeners();
+                    parent_stat_panel.transform.Find("LoveFocusButton").GetComponent<Button>().onClick.RemoveAllListeners();
+
+                    grandpa_stat_panel.SetActive (false);
 					parent_stat_panel.SetActive (true);
 					child_stat_panel.SetActive (false);
 
@@ -110,7 +114,9 @@ public class LoadFamilyPanel : MonoBehaviour
 					parent_stat_panel.transform.Find("Popularity Bar").GetComponent<Image>().sprite = ReturnSpriteForStat(parent.Popularity);
 					parent_stat_panel.transform.Find("Intelligence Bar").GetComponent<Image>().sprite = ReturnSpriteForStat(parent.Intelligence);
 					parent_stat_panel.transform.Find("Love Bar").GetComponent<Image>().sprite = ReturnSpriteForStat(parent.Love);
-				});
+
+                    AddParentFocusButtons(parent);
+                });
 		}
 
 		foreach (Child child_instance in PlayerFamily.Children) 
@@ -123,7 +129,14 @@ public class LoadFamilyPanel : MonoBehaviour
 			// Add character display activation to button
 			prefab_content_panel_instance[panel_ind].GetComponent<Button>().onClick.AddListener(() => 
 				{
-					grandpa_stat_panel.SetActive (false);
+                    child_stat_panel.transform.Find("PopularityFocusButton").GetComponent<Button>().onClick.RemoveAllListeners();
+                    child_stat_panel.transform.Find("IntelligenceFocusButton").GetComponent<Button>().onClick.RemoveAllListeners();
+                    child_stat_panel.transform.Find("CutenessFocusButton").GetComponent<Button>().onClick.RemoveAllListeners();
+                    child_stat_panel.transform.Find("AthleticismFocusButton").GetComponent<Button>().onClick.RemoveAllListeners();
+                    child_stat_panel.transform.Find("ArtistryFocusButton").GetComponent<Button>().onClick.RemoveAllListeners();
+
+
+                    grandpa_stat_panel.SetActive (false);
 					parent_stat_panel.SetActive (false);
 					child_stat_panel.SetActive (true);
 
@@ -149,6 +162,8 @@ public class LoadFamilyPanel : MonoBehaviour
 					child_stat_panel.transform.Find("Artistry Bar").GetComponent<Image>().sprite = ReturnSpriteForStat(child.Artistry);
 					child_stat_panel.transform.Find("Athleticism Bar").GetComponent<Image>().sprite = ReturnSpriteForStat(child.Athleticism);
 					child_stat_panel.transform.Find("Popularity Bar").GetComponent<Image>().sprite = ReturnSpriteForStat(child.Popularity);
+
+                    AddChildFocusButtons(child);
 				});
 		}
 
@@ -232,4 +247,205 @@ public class LoadFamilyPanel : MonoBehaviour
 		else
 			return stat_sprites [(int)Math.Round (stat / 10)];
 	}
+
+    private void AddParentFocusButtons(Parent par)
+    {
+        Parent parent = par;
+
+        if (parent.IntelligenceStat.GrowthBonus)
+        {
+            parent_stat_panel.transform.Find("Intelligence").GetComponent<Text>().color = Color.yellow;
+            parent_stat_panel.transform.Find("Love").GetComponent<Text>().color = Color.white;
+            parent_stat_panel.transform.Find("Popularity").GetComponent<Text>().color = Color.white;
+        }
+        else if (parent.PopularityStat.GrowthBonus)
+        {
+            parent_stat_panel.transform.Find("Intelligence").GetComponent<Text>().color = Color.white;
+            parent_stat_panel.transform.Find("Love").GetComponent<Text>().color = Color.white;
+            parent_stat_panel.transform.Find("Popularity").GetComponent<Text>().color = Color.yellow;
+        }
+        else if (parent.LoveStat.GrowthBonus)
+        {
+            parent_stat_panel.transform.Find("Intelligence").GetComponent<Text>().color = Color.white;
+            parent_stat_panel.transform.Find("Love").GetComponent<Text>().color = Color.yellow;
+            parent_stat_panel.transform.Find("Popularity").GetComponent<Text>().color = Color.white;
+        }
+        else
+        {
+            parent_stat_panel.transform.Find("Intelligence").GetComponent<Text>().color = Color.white;
+            parent_stat_panel.transform.Find("Love").GetComponent<Text>().color = Color.white;
+            parent_stat_panel.transform.Find("Popularity").GetComponent<Text>().color = Color.white;
+        }
+
+
+        parent_stat_panel.transform.Find("IntelligenceFocusButton").GetComponent<Button>().onClick.AddListener(() =>
+        {
+            parent.IntelligenceStat.GrowthBonus = true;
+            parent.PopularityStat.GrowthBonus = false;
+            parent.LoveStat.GrowthBonus = false;
+
+            parent_stat_panel.transform.Find("Intelligence").GetComponent<Text>().color = Color.yellow;
+            parent_stat_panel.transform.Find("Love").GetComponent<Text>().color = Color.white;
+            parent_stat_panel.transform.Find("Popularity").GetComponent<Text>().color = Color.white;
+
+            Debug.Log(parent.Name +  "Intelligence Focus Set");
+        });
+
+        parent_stat_panel.transform.Find("PopularityFocusButton").GetComponent<Button>().onClick.AddListener(() =>
+        {
+            parent.IntelligenceStat.GrowthBonus = false;
+            parent.PopularityStat.GrowthBonus = true;
+            parent.LoveStat.GrowthBonus = false;
+
+            parent_stat_panel.transform.Find("Intelligence").GetComponent<Text>().color = Color.white;
+            parent_stat_panel.transform.Find("Love").GetComponent<Text>().color = Color.white;
+            parent_stat_panel.transform.Find("Popularity").GetComponent<Text>().color = Color.yellow;
+
+            Debug.Log(parent.Name + "Popularity Focus Set");
+        });
+
+        parent_stat_panel.transform.Find("LoveFocusButton").GetComponent<Button>().onClick.AddListener(() =>
+        {
+            parent.IntelligenceStat.GrowthBonus = false;
+            parent.PopularityStat.GrowthBonus = false;
+            parent.LoveStat.GrowthBonus = true;
+
+            parent_stat_panel.transform.Find("Intelligence").GetComponent<Text>().color = Color.white;
+            parent_stat_panel.transform.Find("Love").GetComponent<Text>().color = Color.yellow;
+            parent_stat_panel.transform.Find("Popularity").GetComponent<Text>().color = Color.white;
+
+            Debug.Log(parent.Name +  "Love Focus Set");
+        });
+    }
+
+    private void AddChildFocusButtons(Child ch)
+    {
+        Child child = ch;
+
+        if (child.IntelligenceStat.GrowthBonus)
+        {
+            child_stat_panel.transform.Find("Intelligence").GetComponent<Text>().color = Color.yellow;
+            child_stat_panel.transform.Find("Popularity").GetComponent<Text>().color = Color.white;
+            child_stat_panel.transform.Find("Cuteness").GetComponent<Text>().color = Color.white;
+            child_stat_panel.transform.Find("Artistry").GetComponent<Text>().color = Color.white;
+            child_stat_panel.transform.Find("Athleticism").GetComponent<Text>().color = Color.white;
+        }
+        else if (child.PopularityStat.GrowthBonus)
+        {
+            child_stat_panel.transform.Find("Intelligence").GetComponent<Text>().color = Color.white;
+            child_stat_panel.transform.Find("Popularity").GetComponent<Text>().color = Color.yellow;
+            child_stat_panel.transform.Find("Cuteness").GetComponent<Text>().color = Color.white;
+            child_stat_panel.transform.Find("Artistry").GetComponent<Text>().color = Color.white;
+            child_stat_panel.transform.Find("Athleticism").GetComponent<Text>().color = Color.white;
+        }
+        else if (child.CutenessStat.GrowthBonus)
+        {
+            child_stat_panel.transform.Find("Intelligence").GetComponent<Text>().color = Color.white;
+            child_stat_panel.transform.Find("Popularity").GetComponent<Text>().color = Color.white;
+            child_stat_panel.transform.Find("Cuteness").GetComponent<Text>().color = Color.yellow;
+            child_stat_panel.transform.Find("Artistry").GetComponent<Text>().color = Color.white;
+            child_stat_panel.transform.Find("Athleticism").GetComponent<Text>().color = Color.white;
+        }
+        else if (child.ArtistryStat.GrowthBonus)
+        {
+            child_stat_panel.transform.Find("Intelligence").GetComponent<Text>().color = Color.white;
+            child_stat_panel.transform.Find("Popularity").GetComponent<Text>().color = Color.white;
+            child_stat_panel.transform.Find("Cuteness").GetComponent<Text>().color = Color.white;
+            child_stat_panel.transform.Find("Artistry").GetComponent<Text>().color = Color.yellow;
+            child_stat_panel.transform.Find("Athleticism").GetComponent<Text>().color = Color.white;
+        }
+        else if (child.AthleticismStat.GrowthBonus)
+        {
+            child_stat_panel.transform.Find("Intelligence").GetComponent<Text>().color = Color.white;
+            child_stat_panel.transform.Find("Popularity").GetComponent<Text>().color = Color.white;
+            child_stat_panel.transform.Find("Cuteness").GetComponent<Text>().color = Color.white;
+            child_stat_panel.transform.Find("Artistry").GetComponent<Text>().color = Color.white;
+            child_stat_panel.transform.Find("Athleticism").GetComponent<Text>().color = Color.yellow;
+        }
+        else
+        {
+            child_stat_panel.transform.Find("Intelligence").GetComponent<Text>().color = Color.white;
+            child_stat_panel.transform.Find("Popularity").GetComponent<Text>().color = Color.white;
+            child_stat_panel.transform.Find("Cuteness").GetComponent<Text>().color = Color.white;
+            child_stat_panel.transform.Find("Artistry").GetComponent<Text>().color = Color.white;
+            child_stat_panel.transform.Find("Athleticism").GetComponent<Text>().color = Color.white;
+        }
+
+
+        child_stat_panel.transform.Find("IntelligenceFocusButton").GetComponent<Button>().onClick.AddListener(() =>
+        {
+            child.IntelligenceStat.GrowthBonus = true;
+            child.PopularityStat.GrowthBonus = false;
+            child.CutenessStat.GrowthBonus = false;
+            child.ArtistryStat.GrowthBonus = false;
+            child.AthleticismStat.GrowthBonus = false;
+
+
+            child_stat_panel.transform.Find("Intelligence").GetComponent<Text>().color = Color.yellow;
+            child_stat_panel.transform.Find("Popularity").GetComponent<Text>().color = Color.white;
+            child_stat_panel.transform.Find("Cuteness").GetComponent<Text>().color = Color.white;
+            child_stat_panel.transform.Find("Artistry").GetComponent<Text>().color = Color.white;
+            child_stat_panel.transform.Find("Athleticism").GetComponent<Text>().color = Color.white;
+        });
+
+        child_stat_panel.transform.Find("PopularityFocusButton").GetComponent<Button>().onClick.AddListener(() =>
+        {
+            child.IntelligenceStat.GrowthBonus = false;
+            child.PopularityStat.GrowthBonus = true;
+            child.CutenessStat.GrowthBonus = false;
+            child.ArtistryStat.GrowthBonus = false;
+            child.AthleticismStat.GrowthBonus = false;
+
+            child_stat_panel.transform.Find("Intelligence").GetComponent<Text>().color = Color.white;
+            child_stat_panel.transform.Find("Popularity").GetComponent<Text>().color = Color.yellow;
+            child_stat_panel.transform.Find("Cuteness").GetComponent<Text>().color = Color.white;
+            child_stat_panel.transform.Find("Artistry").GetComponent<Text>().color = Color.white;
+            child_stat_panel.transform.Find("Athleticism").GetComponent<Text>().color = Color.white;
+        });
+
+        child_stat_panel.transform.Find("CutenessFocusButton").GetComponent<Button>().onClick.AddListener(() =>
+        {
+            child.IntelligenceStat.GrowthBonus = false;
+            child.PopularityStat.GrowthBonus = false;
+            child.CutenessStat.GrowthBonus = true;
+            child.ArtistryStat.GrowthBonus = false;
+            child.AthleticismStat.GrowthBonus = false;
+
+            child_stat_panel.transform.Find("Intelligence").GetComponent<Text>().color = Color.white;
+            child_stat_panel.transform.Find("Popularity").GetComponent<Text>().color = Color.white;
+            child_stat_panel.transform.Find("Cuteness").GetComponent<Text>().color = Color.yellow;
+            child_stat_panel.transform.Find("Artistry").GetComponent<Text>().color = Color.white;
+            child_stat_panel.transform.Find("Athleticism").GetComponent<Text>().color = Color.white;
+        });
+
+        child_stat_panel.transform.Find("ArtistryFocusButton").GetComponent<Button>().onClick.AddListener(() =>
+        {
+            child.IntelligenceStat.GrowthBonus = false;
+            child.PopularityStat.GrowthBonus = false;
+            child.CutenessStat.GrowthBonus = false;
+            child.ArtistryStat.GrowthBonus = true;
+            child.AthleticismStat.GrowthBonus = false;
+
+            child_stat_panel.transform.Find("Intelligence").GetComponent<Text>().color = Color.white;
+            child_stat_panel.transform.Find("Popularity").GetComponent<Text>().color = Color.white;
+            child_stat_panel.transform.Find("Cuteness").GetComponent<Text>().color = Color.white;
+            child_stat_panel.transform.Find("Artistry").GetComponent<Text>().color = Color.yellow;
+            child_stat_panel.transform.Find("Athleticism").GetComponent<Text>().color = Color.white;
+        });
+
+        child_stat_panel.transform.Find("AthleticismFocusButton").GetComponent<Button>().onClick.AddListener(() =>
+        {
+            child.IntelligenceStat.GrowthBonus = false;
+            child.PopularityStat.GrowthBonus = false;
+            child.CutenessStat.GrowthBonus = false;
+            child.ArtistryStat.GrowthBonus = false;
+            child.AthleticismStat.GrowthBonus = true;
+
+            child_stat_panel.transform.Find("Intelligence").GetComponent<Text>().color = Color.white;
+            child_stat_panel.transform.Find("Popularity").GetComponent<Text>().color = Color.white;
+            child_stat_panel.transform.Find("Cuteness").GetComponent<Text>().color = Color.white;
+            child_stat_panel.transform.Find("Artistry").GetComponent<Text>().color = Color.white;
+            child_stat_panel.transform.Find("Athleticism").GetComponent<Text>().color = Color.yellow;
+        });
+    }
 }

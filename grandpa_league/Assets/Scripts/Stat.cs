@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 [Serializable]
 public class Stat
@@ -10,7 +10,7 @@ public class Stat
     private double m_growthRate = 0.0;
 
     private bool m_growthBonus = false;
-    private double m_growthBonusAmount = 0.0;
+    private double m_growthBonusAmount = Constants.Character.GROWTH_BONUS_AMOUNT;
 
     private bool m_valueBonus = false;
     private double m_valueBonusAmount = 0.0;

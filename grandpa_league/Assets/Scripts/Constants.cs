@@ -94,6 +94,8 @@ static class Constants
         public const double MAJOR_PRIDE_CHANGE_AMOUNT = 500;
         public const double STANDARD_PRIDE_CHANGE_AMOUNT = 100;
         public const double MINOR_PRIDE_CHANGE_AMOUNT = 50;
+
+        public const double GROWTH_BONUS_AMOUNT = 0.02;
     }
 
     public struct League

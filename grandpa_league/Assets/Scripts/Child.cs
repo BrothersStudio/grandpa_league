@@ -29,6 +29,7 @@ public class Child : Character
         this.m_athleticism.GrowthRate = (athleticism / Constants.Character.GROWTH_DIVIDER) > Constants.Character.MAX_INITIAL_GROWTH ? Constants.Character.MAX_INITIAL_GROWTH : (athleticism / Constants.Character.GROWTH_DIVIDER);
         this.m_popularity.GrowthRate = (-1 * popularity / Constants.Character.GROWTH_DIVIDER) > Constants.Character.MAX_INITIAL_GROWTH ? Constants.Character.MAX_INITIAL_GROWTH : (-1 * popularity / Constants.Character.GROWTH_DIVIDER);
 
+        this.m_cuteness.GrowthBonus = true;         //TODO: Randomly select a stat to growth bonus
         this.m_spriteName = spriteName;
 
         this.UpdateValue();
@@ -95,6 +96,13 @@ public class Child : Character
         set { this.m_cuteness.Value = value > 100 ? 100 : value; }
     }
 
+    public Stat CutenessStat
+    {
+        get { return this.m_cuteness; }
+        set { this.m_cuteness = value; }
+    }
+
+
     public double CutenessGrowth
     {
         get { return this.m_cuteness.GrowthRate; }
@@ -106,6 +114,13 @@ public class Child : Character
         get { return this.m_intelligence.Value; }
         set { this.m_intelligence.Value = value > 100 ? 100 : value; }
     }
+
+    public Stat IntelligenceStat
+    {
+        get { return this.m_intelligence; }
+        set { this.m_intelligence = value; }
+    }
+
 
     public double IntelligenceGrowth
     {
@@ -119,6 +134,13 @@ public class Child : Character
 		set { this.m_artistry.Value = value > 100 ? 100 : value; }
     }
 
+    public Stat ArtistryStat
+    {
+        get { return this.m_artistry; }
+        set { this.m_artistry = value; }
+    }
+
+
     public double ArtistryGrowth
     {
 		get { return this.m_artistry.GrowthRate; }
@@ -131,7 +153,14 @@ public class Child : Character
 		set { this.m_athleticism.Value = value > 100 ? 100 : value; }
     }
 
-	public double AthleticismGrowth
+    public Stat AthleticismStat
+    {
+        get { return this.m_athleticism; }
+        set { this.m_athleticism = value; }
+    }
+
+
+    public double AthleticismGrowth
     {
         get { return this.m_athleticism.GrowthRate; }
 		set { this.m_athleticism.GrowthRate = value; }
@@ -142,6 +171,13 @@ public class Child : Character
         get { return this.m_popularity.Value; }
 		set { this.m_popularity.Value = value > 100 ? 100 : value; }
     }
+
+    public Stat PopularityStat
+    {
+        get { return this.m_popularity; }
+        set { this.m_popularity = value; }
+    }
+
 
     public double PopularityGrowth
     {

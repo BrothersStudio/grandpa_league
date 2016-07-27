@@ -24,6 +24,7 @@ public class Parent : Character
         this.m_popularity.GrowthRate = (-1 * popularity / Constants.Character.GROWTH_DIVIDER) > Constants.Character.MAX_INITIAL_GROWTH ? Constants.Character.MAX_INITIAL_GROWTH : (-1 * popularity / Constants.Character.GROWTH_DIVIDER);
         this.m_love.GrowthRate = (popularity / Constants.Character.GROWTH_DIVIDER) > Constants.Character.MAX_INITIAL_GROWTH ? Constants.Character.MAX_INITIAL_GROWTH : (love / Constants.Character.GROWTH_DIVIDER);
 
+        this.m_popularity.GrowthBonus = true;         //TODO: Randomly select a stat to growth bonus
         this.m_spriteName = spriteName;
 
         this.UpdateValue();
@@ -78,6 +79,12 @@ public class Parent : Character
         set { this.m_intelligence.Value = value > 100 ? 100 : value; }
     }
 
+    public Stat IntelligenceStat
+    {
+        get { return this.m_intelligence; }
+        set { this.m_intelligence = value; }
+    }
+
     public double IntelligenceGrowth
     {
         get { return this.m_intelligence.GrowthRate; }
@@ -90,7 +97,13 @@ public class Parent : Character
 		set { this.m_popularity.Value = value > 100 ? 100 : value; }
 	}
 
-	public double PopularityGrowth
+    public Stat PopularityStat
+    {
+        get { return this.m_popularity; }
+        set { this.m_popularity = value; }
+    }
+
+    public double PopularityGrowth
 	{
 		get { return this.m_popularity.GrowthRate; }
 		set { this.m_popularity.GrowthRate = value; }
@@ -102,7 +115,13 @@ public class Parent : Character
 		set { this.m_love.Value = value > 100 ? 100 : value; }
 	}
 
-	public double LoveGrowth
+    public Stat LoveStat
+    {
+        get { return this.m_love; }
+        set { this.m_love = value; }
+    }
+
+    public double LoveGrowth
 	{
 		get { return this.m_love.GrowthRate; }
 		set { this.m_love.GrowthRate = value; }
