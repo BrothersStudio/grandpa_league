@@ -202,6 +202,8 @@ public class Main : MonoBehaviour {
 
             //EXECUTE THE EVENT
             Outcome eventOutcome = ev.RunEvent(m_dataManager);
+            //StopAllCoroutines();
+            //yield return new WaitForSeconds(1);
 
             //send mail to mail panel using eventOutcome.Mail
             if (eventOutcome.Mail != null)
@@ -251,8 +253,9 @@ public class Main : MonoBehaviour {
         });
     }
 
-    private void CreateAndDisplayInputPanel(SimulationEvent ev)
+    private void CreateAndDisplayInputPanel(SimulationEvent inEvent)
     {
+        SimulationEvent ev = inEvent;
         Child selectedChild = ev.Requirements.Child;
         Parent selectedParent = ev.Requirements.Parent;
         Grandpa selectedGrandpa = ev.Requirements.Grandpa;

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 [Serializable]
@@ -61,7 +61,7 @@ public class SimulationEvent
             this.m_outcome.Mail = new Mail();
             this.m_outcome.Mail.Subject = "Re: oops!";
             this.m_outcome.Mail.Sender = "Three Brothers Studio Chris";
-            this.m_outcome.Mail.Message = string.Format("Oops,\n\n Sorry about that little hiccup. Your event crashed (we weren't expecting that to happen). If you see any developers around tell them this:\n\n{0}\n{1}\n{2}", e.Source, e.Message, e.StackTrace.Substring(0, 350));
+            this.m_outcome.Mail.Message = string.Format("Oops,\n\n Sorry about that little hiccup. Your event crashed (we weren't expecting that to happen). If you see any developers around tell them this:\n\n{0}\n{1}\n{2}", e.Source, e.Message, e.StackTrace.Substring(0, 250));
         }
         return this.m_outcome;
     }
