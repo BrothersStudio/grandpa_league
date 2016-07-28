@@ -1416,11 +1416,11 @@ public static class EventManager
 
 			manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
 
-			returnObj.Status = (int)Enums.EventOutcome.FAILURE_BLACKLIST_FOREVER;
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR;
 			returnObj.OutcomeDescription = String.Format (
 				"Grandpa is one smooth operator. He whispers into {0}'s ear the secret word that only grandpas know which will make any {1}'s " +
 				"knees weak. It's a critical hit! {0} has a date to the Valentine's Day dance!\n\n" +
-				"{0}'s popularity way up!" +
+				"{0}'s popularity way up!\n" +
 				"Grandpa's wisdom up.\n" +
 				"Grandpa's pride up.",
 				requirements.Child.Name, Convert.ToBoolean(requirements.Child.Gender) ? "fella" : "lady");
@@ -1434,7 +1434,7 @@ public static class EventManager
 
 			manager.PlayerFamily.Grandpa.Pride -= Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
 
-			returnObj.Status = (int)Enums.EventOutcome.FAILURE_BLACKLIST_FOREVER;
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE_BLACKLIST_YEAR;
 			returnObj.OutcomeDescription = String.Format (
 				"Grandpa, you're nuts!! I never should have listened to you! I knew I shouldn't have put a hornet's nest in {1} locker! " +
 				"Hornet's don't even make honey! How was that an acceptable sentiment?! Can you stop drooling and listen to me?\n\n" +
@@ -1452,13 +1452,73 @@ public static class EventManager
 
 			manager.PlayerFamily.Grandpa.Pride -= Constants.Character.MINOR_PRIDE_CHANGE_AMOUNT;
 
-			returnObj.Status = (int)Enums.EventOutcome.FAILURE_BLACKLIST_FOREVER;
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE_BLACKLIST_YEAR;
 			returnObj.OutcomeDescription = String.Format (
 				"Oof, rejected. Thanks anyway, Grandpa. I thought that Columbian shrew mating dance you taught me was spot on. It could have gone worse, I guess.\n\n" +
 				"{0}'s popularity down slightly.\n" +
 				"Grandpa's insanity up slightly.\n" +
 				"Grandpa's pride down slightly.",
 				requirements.Child.Name);
+		}
+
+		return returnObj;
+	}
+
+	// Grandpa's Birthday
+	public static Outcome Event1033(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+		if (Constants.Roll(0, requirements.Parent.Popularity, (int)Enums.Difficulty.STANDARD) && 
+			Constants.Roll(requirements.Child.Cuteness, requirements.Child.Popularity, (int)Enums.Difficulty.STANDARD))
+		{
+			requirements.Parent.Popularity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+			requirements.Child.Popularity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+
+			manager.PlayerFamily.Grandpa.Pride += Constants.Character.MAJOR_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR;
+			returnObj.OutcomeDescription = String.Format (
+				"Grandpa couldn't believe it when Mitt Romney jumped out of that cake! Everyone was there wishing Grandpa a happy birthday! " +
+				"Even {2} was there kissing Grandpa's ring. Grandpa will treasure moments (and belongings) like these for the rest of his life.\n\n" +
+				"{0}'s popularity up.\n" +
+				"{1}'s popularity up.\n" +
+				"Grandpa's pride way up.",
+				requirements.Child.Name, requirements.Parent.Name, requirements.Grandpa.Name);
+		}
+		else if (Constants.Roll(0, requirements.Parent.Popularity, (int)Enums.Difficulty.VERY_EASY) && 
+			Constants.Roll(requirements.Child.Cuteness, requirements.Child.Popularity, (int)Enums.Difficulty.VERY_EASY))
+		{
+			requirements.Parent.Popularity += Constants.Character.MINOR_STAT_CHANGE_AMOUNT;
+			requirements.Child.Popularity += Constants.Character.MINOR_STAT_CHANGE_AMOUNT;
+
+			manager.PlayerFamily.Grandpa.Pride -= Constants.Character.MINOR_PRIDE_CHANGE_AMOUNT;
+			requirements.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR;
+			returnObj.OutcomeDescription = String.Format (
+				"The party was going pretty good until {2} released that swarm of hornets into the house. He shouted something about pride and sprinted away. " +
+				"I didn't realize old guys could move that fast.\n\n" +
+				"{0}'s popularity up slightly.\n" +
+				"{1}'s popularity up slightly.\n" +
+				"{2}'s pride up.\n" +
+				"Grandpa's pride down slightly.",
+				requirements.Child.Name, requirements.Parent.Name, requirements.Grandpa.Name);
+		}
+		else
+		{
+			requirements.Parent.Popularity -= Constants.Character.MINOR_STAT_CHANGE_AMOUNT;
+			requirements.Child.Popularity -= Constants.Character.MINOR_STAT_CHANGE_AMOUNT;
+
+			manager.PlayerFamily.Grandpa.Pride -= Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE_BLACKLIST_YEAR;
+			returnObj.OutcomeDescription = String.Format (
+				"That was... awkward. A lot of standing around. I hate when people don't dance. Who invited all those nerds? Grandpa's gone and locked himself " +
+				"in his room. \n\n" +
+				"{0}'s popularity down slightly.\n" +
+				"{1}'s popularity down slightly.\n" +
+				"Grandpa's pride down.",
+				requirements.Child.Name, requirements.Parent.Name);
 		}
 
 		return returnObj;
