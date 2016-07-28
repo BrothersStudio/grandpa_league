@@ -1679,4 +1679,33 @@ public static class EventManager
 
 		return returnObj;
 	}
+
+	// Fourth of July
+	public static Outcome Event1036(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+
+		requirements.Grandpa.Pride -= Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+		manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+		returnObj.Mail = new Mail();
+		returnObj.Mail.Date = manager.Calendar.GetCurrentDay();
+		returnObj.Mail.Subject = "The Display Last Night";
+		returnObj.Mail.Sender = requirements.Grandpa.Name;
+		returnObj.Mail.Message = string.Format(
+			"Grandpa {1},\n\n\t" +
+			"That was quite a display you lit up outside my house last night. Really cool, man. My son had an important meeting today, but he fell asleep halfway through it. Now he's " +
+			"fired and our house might be foreclosed on. I hope you know that you've made a powerful enemy here today. You haven't seen the last of me.\n\nFuck you,\n{0}", 
+			requirements.Grandpa.Name, manager.PlayerFamily.Grandpa.Name);
+
+		returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+		returnObj.OutcomeDescription = String.Format (
+			"That was quite a fireworks display! Right outside {0}'s house too. For two hours. At 3 AM.\n\n" +
+			"{0}'s pride down.\n" +
+			"Grandpa's pride up.",
+			requirements.Grandpa.Name);
+
+		return returnObj;
+	}
 }
