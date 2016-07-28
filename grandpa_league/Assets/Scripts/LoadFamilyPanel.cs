@@ -58,12 +58,13 @@ public class LoadFamilyPanel : MonoBehaviour
                     qualification_panel[i].GetComponent<Image>().color = new Color(0, 0, 0, 0);
                     qualification_panel[i].GetComponent<Collider2D>().enabled = false;
                 }
-                int num_quals = PlayerFamily.Grandpa.Qualifications.Count > 6 ? 6 : PlayerFamily.Grandpa.Qualifications.Count;
+                List<int> visibleQuals = PlayerFamily.Grandpa.GetVisibleQualifications();
+                int num_quals = visibleQuals.Count > 6 ? 6 : visibleQuals.Count;
                 for (int i = 0; i < num_quals; i++)
                 {
-                    qualification_panel[i].GetComponent<Image>().sprite = GetSpriteForQual(PlayerFamily.Grandpa.Qualifications[i]);
+                    qualification_panel[i].GetComponent<Image>().sprite = GetSpriteForQual(visibleQuals[i]);
                     qualification_panel[i].GetComponent<Image>().color = new Color(0, 0, 0, 1);
-                    qualification_panel[i].GetComponent<QualificationToolTip>().SetToolTipText(Qualification.GetDisplayName(PlayerFamily.Grandpa.Qualifications[i]));
+                    qualification_panel[i].GetComponent<QualificationToolTip>().SetToolTipText(Qualification.GetDisplayName(visibleQuals[i]));
                     qualification_panel[i].GetComponent<Collider2D>().enabled = true;
                 }
 
@@ -100,12 +101,13 @@ public class LoadFamilyPanel : MonoBehaviour
                         qualification_panel[i].GetComponent<Image>().color = new Color(0, 0, 0, 0);
                         qualification_panel[i].GetComponent<Collider2D>().enabled = false;
                     }
-                    int num_quals = parent.Qualifications.Count > 6 ? 6 : parent.Qualifications.Count;
+                    List<int> visibleQuals = parent.GetVisibleQualifications();
+                    int num_quals = visibleQuals.Count > 6 ? 6 : visibleQuals.Count;
                     for (int i = 0; i < num_quals; i++)
                     {
-                        qualification_panel[i].GetComponent<Image>().sprite = GetSpriteForQual(parent.Qualifications[i]);
+                        qualification_panel[i].GetComponent<Image>().sprite = GetSpriteForQual(visibleQuals[i]);
                         qualification_panel[i].GetComponent<Image>().color = new Color(0, 0, 0, 1);
-                        qualification_panel[i].GetComponent<QualificationToolTip>().SetToolTipText(Qualification.GetDisplayName(parent.Qualifications[i]));
+                        qualification_panel[i].GetComponent<QualificationToolTip>().SetToolTipText(Qualification.GetDisplayName(visibleQuals[i]));
                         qualification_panel[i].GetComponent<Collider2D>().enabled = true;
                     }
 
@@ -146,12 +148,13 @@ public class LoadFamilyPanel : MonoBehaviour
                         qualification_panel[i].GetComponent<Image>().color = new Color(0, 0, 0, 0);
                         qualification_panel[i].GetComponent<Collider2D>().enabled = false;
                     }
-                    int num_quals = child.Qualifications.Count > 6 ? 6 : child.Qualifications.Count;
+                    List<int> visibleQuals = child.GetVisibleQualifications();
+                    int num_quals = visibleQuals.Count > 6 ? 6 : visibleQuals.Count;
                     for (int i = 0; i < num_quals; i++)
                     {
-                        qualification_panel[i].GetComponent<Image>().sprite = GetSpriteForQual(child.Qualifications[i]);
+                        qualification_panel[i].GetComponent<Image>().sprite = GetSpriteForQual(visibleQuals[i]);
                         qualification_panel[i].GetComponent<Image>().color = new Color(Constants.RANDOM.Next(1,255)/255, Constants.RANDOM.Next(1, 255) / 255, Constants.RANDOM.Next(1, 255) / 255, 1);
-                        qualification_panel[i].GetComponent<QualificationToolTip>().SetToolTipText(Qualification.GetDisplayName(child.Qualifications[i]));
+                        qualification_panel[i].GetComponent<QualificationToolTip>().SetToolTipText(Qualification.GetDisplayName(visibleQuals[i]));
                         qualification_panel[i].GetComponent<Collider2D>().enabled = true;
                     }
 

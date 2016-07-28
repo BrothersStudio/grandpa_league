@@ -63,6 +63,18 @@ public class Character
         this.m_qualifications.Remove(qualification);
     }
 
+    public List<int> GetVisibleQualifications()
+    {
+        List<int> visibleList = new List<int>();
+        foreach (int qual in this.m_qualifications)
+        {
+            if (Qualification.IsQualificationHidden(qual))
+                continue;
+            visibleList.Add(qual);
+        }
+        return visibleList;
+    }
+
     public virtual void UpgradeRandomStat(double amt) { }
     public virtual void UpgradeRandomStatGrowth(double amt) { }
 
