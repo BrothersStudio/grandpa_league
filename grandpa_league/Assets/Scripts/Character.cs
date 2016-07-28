@@ -4,6 +4,7 @@ using System;
 [Serializable]
 public class Character
 {
+    protected int           m_id                = -1;
     protected string        m_name              = "";
     protected int           m_gender            = 0;
     protected int           m_age               = 0;
@@ -33,6 +34,11 @@ public class Character
 		get { return this.m_age; }
 		set { this.m_age = value; }
 	}
+
+    public int Id
+    {
+        get { return this.m_id; }
+    }
 
     public List<int> Qualifications
     {

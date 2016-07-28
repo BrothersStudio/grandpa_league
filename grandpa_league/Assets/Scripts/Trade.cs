@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -65,8 +65,15 @@ public class Trade
         proposedValue *= 5.5;                           //give edge to AI
         proposedValue += this.proposedMoney;
 
-        if (offeredValue > proposedValue)
+        if (PlayerInfo.FIRST_TRADE & offeredChar.Count <= 2 && proposedChar.Count <= 2 && Math.Abs(offeredMoney - proposedMoney) <= 1000)
+        {
             this.accepted = true;
+            PlayerInfo.FIRST_TRADE = false;
+        }
+        else if (offeredValue > proposedValue)
+        {
+            this.accepted = true;
+        }
     }
 
     public Outcome PerformTradeAction(DataManager dataManager)

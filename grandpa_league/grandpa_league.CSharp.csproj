@@ -76,6 +76,7 @@
     <Compile Include="Assets\Scripts\Enums.cs" />
     <Compile Include="Assets\Scripts\EventManager.cs" />
     <Compile Include="Assets\Scripts\Family.cs" />
+    <Compile Include="Assets\Scripts\Globals.cs" />
     <Compile Include="Assets\Scripts\Grandpa.cs" />
     <Compile Include="Assets\Scripts\LeagueManager.cs" />
     <Compile Include="Assets\Scripts\LoadFamilyPanel.cs" />
