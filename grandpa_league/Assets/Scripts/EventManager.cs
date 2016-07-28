@@ -81,6 +81,8 @@ public static class EventManager
                                                 simEvent.Attribute("ability_description").Value,
                                                 Int32.Parse(simEvent.Attribute("cooldown").Value),
                                                 simEvent.Attribute("picture").Value,
+                                                Convert.ToDouble(simEvent.Attribute("insanity_cost").Value),
+                                                Int32.Parse(simEvent.Attribute("money_cost").Value),
                                                 new SimulationEvent(eventRequirements, 0,
                                                                     simEvent.Attribute("name").Value,
                                                                     simEvent.Attribute("description").Value,
