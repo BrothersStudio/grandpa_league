@@ -1402,4 +1402,65 @@ public static class EventManager
 
 		return returnObj;
 	}
+
+	// Valentine's Day
+	public static Outcome Event1032(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+		if (Constants.Roll(0, manager.PlayerFamily.Grandpa.Wisdom, (int)Enums.Difficulty.EASY) || 
+			Constants.Roll(requirements.Child.Cuteness, requirements.Child.Popularity, (int)Enums.Difficulty.STANDARD))
+		{
+			requirements.Child.Popularity += Constants.Character.MAJOR_STAT_CHANGE_AMOUNT;
+
+			manager.PlayerFamily.Grandpa.Wisdom += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+
+			manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE_BLACKLIST_FOREVER;
+			returnObj.OutcomeDescription = String.Format (
+				"Grandpa is one smooth operator. He whispers into {0}'s ear the secret word that only grandpas know which will make any {1}'s " +
+				"knees weak. It's a critical hit! {0} has a date to the Valentine's Day dance!\n\n" +
+				"{0}'s popularity way up!" +
+				"Grandpa's wisdom up.\n" +
+				"Grandpa's pride up.",
+				requirements.Child.Name, Convert.ToBoolean(requirements.Child.Gender) ? "fella" : "lady");
+		}
+		else if (Constants.Roll(0, manager.PlayerFamily.Grandpa.Insanity, (int)Enums.Difficulty.STANDARD))
+		{
+			requirements.Child.Popularity -= Constants.Character.MAJOR_STAT_CHANGE_AMOUNT;
+
+			manager.PlayerFamily.Grandpa.Wisdom -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+			manager.PlayerFamily.Grandpa.Insanity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+
+			manager.PlayerFamily.Grandpa.Pride -= Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE_BLACKLIST_FOREVER;
+			returnObj.OutcomeDescription = String.Format (
+				"Grandpa, you're nuts!! I never should have listened to you! I knew I shouldn't have put a hornet's nest in {1} locker! " +
+				"Hornet's don't even make honey! How was that an acceptable sentiment?! Can you stop drooling and listen to me?\n\n" +
+				"{0}'s popularity way down!\n" +
+				"Grandpa's insanity up.\n" +
+				"Grandpa's wisdom down.\n" +
+				"Grandpa's pride down.",
+				requirements.Child.Name, Convert.ToBoolean(requirements.Child.Gender) ? "his" : "her");
+		}
+		else
+		{
+			requirements.Child.Popularity -= Constants.Character.MINOR_STAT_CHANGE_AMOUNT;
+
+			manager.PlayerFamily.Grandpa.Insanity += Constants.Character.MINOR_STAT_CHANGE_AMOUNT;
+
+			manager.PlayerFamily.Grandpa.Pride -= Constants.Character.MINOR_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE_BLACKLIST_FOREVER;
+			returnObj.OutcomeDescription = String.Format (
+				"Oof, rejected. Thanks anyway, Grandpa. I thought that Columbian shrew mating dance you taught me was spot on. It could have gone worse, I guess.\n\n" +
+				"{0}'s popularity down slightly.\n" +
+				"Grandpa's insanity up slightly.\n" +
+				"Grandpa's pride down slightly.",
+				requirements.Child.Name);
+		}
+
+		return returnObj;
+	}
 }
