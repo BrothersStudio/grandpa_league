@@ -44,38 +44,13 @@ public class LoadFamilyPanel : MonoBehaviour
 
 		int panel_ind = 0;
 		MakePanel (PlayerFamily.Grandpa, panel_ind, 0);
+		DisplayGrandpaPanel (PlayerFamily);
 
 		// Add character display activation to button
 		prefab_content_panel_instance[panel_ind].GetComponent<Button>().onClick.AddListener(() => 
 			{
-				grandpa_stat_panel.SetActive (true);
-				parent_stat_panel.SetActive (false);
-				child_stat_panel.SetActive (false);
-
-                for (int i = 0; i < qualification_panel.Length; i++)
-                {
-                    qualification_panel[i].GetComponent<Image>().sprite = null;
-                    qualification_panel[i].GetComponent<Image>().color = new Color(0, 0, 0, 0);
-                    qualification_panel[i].GetComponent<Collider2D>().enabled = false;
-                }
-                List<int> visibleQuals = PlayerFamily.Grandpa.GetVisibleQualifications();
-                int num_quals = visibleQuals.Count > 6 ? 6 : visibleQuals.Count;
-                for (int i = 0; i < num_quals; i++)
-                {
-                    qualification_panel[i].GetComponent<Image>().sprite = GetSpriteForQual(visibleQuals[i]);
-                    qualification_panel[i].GetComponent<Image>().color = new Color(0, 0, 0, 1);
-                    qualification_panel[i].GetComponent<QualificationToolTip>().SetToolTipText(Qualification.GetDisplayName(visibleQuals[i]));
-                    qualification_panel[i].GetComponent<Collider2D>().enabled = true;
-                }
-
-                grandpa_stat_panel.transform.Find("Name").GetComponent<Text>().text = PlayerFamily.Grandpa.Name;
-				grandpa_stat_panel.transform.Find("Insanity Bar").GetComponent<Image>().sprite = ReturnSpriteForStat(PlayerFamily.Grandpa.Insanity, true);
-				grandpa_stat_panel.transform.Find("Wisdom Bar").GetComponent<Image>().sprite = ReturnSpriteForStat(PlayerFamily.Grandpa.Wisdom);
-				grandpa_stat_panel.transform.Find("Money").GetComponent<Text>().text = "Money:\n$" + PlayerFamily.Grandpa.Money;
-				grandpa_stat_panel.transform.Find("Pride").GetComponent<Text>().text = "Pride:\n" + PlayerFamily.Grandpa.Pride;
+				DisplayGrandpaPanel (PlayerFamily);
 			});
-
-		DisplayGrandpaPanel (PlayerFamily);
 
 		foreach (Parent parent_instance in PlayerFamily.Parents) 
 		{
@@ -112,6 +87,7 @@ public class LoadFamilyPanel : MonoBehaviour
                     }
 
                     parent_stat_panel.transform.Find("Name").GetComponent<Text>().text = parent.Name + " " + family_name;
+					parent_stat_panel.transform.Find("Image").GetComponent<Image>().sprite = Resources.Load <Sprite> ("Parent_Sprites/" + parent.SpriteName);
 					parent_stat_panel.transform.Find("Age").GetComponent<Text>().text = "Age: " + parent.Age;
 					parent_stat_panel.transform.Find("Popularity Bar").GetComponent<Image>().sprite = ReturnSpriteForStat(parent.Popularity);
 					parent_stat_panel.transform.Find("Intelligence Bar").GetComponent<Image>().sprite = ReturnSpriteForStat(parent.Intelligence);
@@ -159,6 +135,7 @@ public class LoadFamilyPanel : MonoBehaviour
                     }
 
 					child_stat_panel.transform.Find("Name").GetComponent<Text>().text = child.Name + " " + family_name;
+					child_stat_panel.transform.Find("Image").GetComponent<Image>().sprite = Resources.Load <Sprite> ("Child_Sprites/" + child.SpriteName);
 					child_stat_panel.transform.Find("Age").GetComponent<Text>().text = "Age: " + child.Age;
 					child_stat_panel.transform.Find("Cuteness Bar").GetComponent<Image>().sprite = ReturnSpriteForStat(child.Cuteness);
 					child_stat_panel.transform.Find("Intelligence Bar").GetComponent<Image>().sprite = ReturnSpriteForStat(child.Intelligence);
@@ -183,11 +160,28 @@ public class LoadFamilyPanel : MonoBehaviour
 
 	private void DisplayGrandpaPanel(Family PlayerFamily)
 	{
-		grandpa_stat_panel.SetActive (true);
-		parent_stat_panel.SetActive (false);
-		child_stat_panel.SetActive (false);
+        grandpa_stat_panel.SetActive (true);
+        parent_stat_panel.SetActive (false);
+        child_stat_panel.SetActive (false);
+
+        for (int i = 0; i < qualification_panel.Length; i++)
+        {
+            qualification_panel[i].GetComponent<Image>().sprite = null;
+            qualification_panel[i].GetComponent<Image>().color = new Color(0, 0, 0, 0);
+            qualification_panel[i].GetComponent<Collider2D>().enabled = false;
+        }
+        List<int> visibleQuals = PlayerFamily.Grandpa.GetVisibleQualifications();
+        int num_quals = visibleQuals.Count > 6 ? 6 : visibleQuals.Count;
+        for (int i = 0; i < num_quals; i++)
+        {
+            qualification_panel[i].GetComponent<Image>().sprite = GetSpriteForQual(visibleQuals[i]);
+            qualification_panel[i].GetComponent<Image>().color = new Color(0, 0, 0, 1);
+            qualification_panel[i].GetComponent<QualificationToolTip>().SetToolTipText(Qualification.GetDisplayName(visibleQuals[i]));
+            qualification_panel[i].GetComponent<Collider2D>().enabled = true;
+        }
 
 		grandpa_stat_panel.transform.Find("Name").GetComponent<Text>().text = PlayerFamily.Grandpa.Name;
+		grandpa_stat_panel.transform.Find("Image").GetComponent<Image>().sprite = Resources.Load <Sprite> ("Grandpa_Sprites/" + PlayerFamily.Grandpa.SpriteName);
 		grandpa_stat_panel.transform.Find("Insanity Bar").GetComponent<Image>().sprite = ReturnSpriteForStat(PlayerFamily.Grandpa.Insanity, true);
 		grandpa_stat_panel.transform.Find("Wisdom Bar").GetComponent<Image>().sprite = ReturnSpriteForStat(PlayerFamily.Grandpa.Wisdom);
 		grandpa_stat_panel.transform.Find("Money").GetComponent<Text>().text = "Money:\n$" + PlayerFamily.Grandpa.Money;

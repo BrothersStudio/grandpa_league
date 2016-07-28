@@ -825,7 +825,7 @@ public static class EventManager
 				"{0}'s popularity growth up slightly.\n" + 
 				"All parents' love up.\n" + 
 				"Grandpa's pride way up!",
-				requirements.Child.Name, Convert.ToBoolean(requirements.Child.Name) ? "Her" : "His");
+				requirements.Child.Name, Convert.ToBoolean(requirements.Child.Gender) ? "Her" : "His");
 		}
 		else if (Constants.Roll(requirements.Child.Cuteness, requirements.Child.Artistry, (int)Enums.Difficulty.EASY) || 
 			Constants.Roll(requirements.Child.Cuteness, requirements.Child.Popularity, (int)Enums.Difficulty.HARD)) 
@@ -883,7 +883,7 @@ public static class EventManager
 				"{0}'s artistry slightly down.\n" + 
 				"{0}'s artistry growth slightly down.\n" + 
 				"Grandpa's pride slightly down.",
-				requirements.Child.Name, Convert.ToBoolean(requirements.Child.Name) ? "her" : "his");
+				requirements.Child.Name, Convert.ToBoolean(requirements.Child.Gender) ? "her" : "his");
 		}
 		else 
 			returnObj.Status = (int)Enums.EventOutcome.PASS;
@@ -1428,12 +1428,12 @@ public static class EventManager
 
 			returnObj.Status = (int)Enums.EventOutcome.FAILURE_BLACKLIST_YEAR;
 			returnObj.OutcomeDescription = String.Format (
-				"{1} found Grandpa wandering main street at the crack of dawn, naked as the day he was born. He was staring into " +
-				"windows looking for what he called \"Battle Gear\". I have no idea what that means.\n\n" +
+				"{0} found Grandpa wandering main street at the crack of dawn, naked as the day he was born. He was staring into " +
+				"windows looking for what he called \"Metal Gear\". I have no idea what that means.\n\n" +
 				"Grandpa's insanity up.\n" +
 				"Grandpa's wisdom down.\n" +
 				"Grandpa's pride down slightly.",
-				manager.PlayerFamily.Grandpa.Name, requirements.Parent.Name);
+				requirements.Parent.Name);
 		}
 		else 
 			returnObj.Status = (int)Enums.EventOutcome.PASS;
@@ -1614,6 +1614,101 @@ public static class EventManager
 				"Grandpa's pride down.",
 				requirements.Child.Name, requirements.Parent.Name);
 		}
+
+		return returnObj;
+	}
+
+	// Arbor Day
+	public static Outcome Event1034(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+		if (Constants.Roll(requirements.Child.Cuteness, manager.PlayerFamily.Grandpa.Wisdom, (int)Enums.Difficulty.EASY))
+		{
+			manager.PlayerFamily.Grandpa.AddQualification (Qualification.GetQualificationByString ("ARBOR_DAY_SUCCESS"));
+		}
+		else
+		{
+			manager.PlayerFamily.Grandpa.AddQualification (Qualification.GetQualificationByString ("ARBOR_DAY_FAILURE"));
+		}
+
+		manager.Calendar.ScheduleEventInXDays(EventManager.GetEventById(1035), 55);
+
+		requirements.Child.Intelligence += Constants.Character.MINOR_STAT_CHANGE_AMOUNT;
+
+		manager.PlayerFamily.Grandpa.Pride += Constants.Character.MINOR_PRIDE_CHANGE_AMOUNT;
+
+		returnObj.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR;
+		returnObj.OutcomeDescription = String.Format (
+			"So you see, {0}, all you need is a little love and tenderness and a metric shitload of manure and even you can grow a beautiful oak! Let's come back here in " +
+			"two months to see how the tree is coming along!\n\n" +
+			"{0}'s intelligence up slightly.\n" +
+			"Grandpa's pride up slightly.",
+			requirements.Child.Name);
+		
+		return returnObj;
+	}
+
+	// Arbor Day Result
+	public static Outcome Event1035(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+		if (manager.PlayerFamily.Grandpa.Qualifications.Contains (Qualification.GetQualificationByString ("ARBOR_DAY_SUCCESS"))) {
+			manager.PlayerFamily.Grandpa.RemoveQualification (Qualification.GetQualificationByString ("ARBOR_DAY_SUCCESS"));
+
+			manager.PlayerFamily.Grandpa.Wisdom += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+
+			manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+			returnObj.OutcomeDescription = String.Format (
+				"Against all the laws of nature and science, after a mere two months, you and Grandpa are at the base of a towering oak staring at its leafy boughs waving wistfully " +
+				"in the summer breeze. For maybe the first time in his life, Grandpa seems speechless. \n\n" +
+				"Grandpa's wisdom up.\n" +
+				"Grandpa's pride up.");
+		} 
+		else 
+		{
+			manager.PlayerFamily.Grandpa.RemoveQualification (Qualification.GetQualificationByString ("ARBOR_DAY_FAILURE"));
+
+			manager.PlayerFamily.Grandpa.Wisdom -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+
+			manager.PlayerFamily.Grandpa.Pride -= Constants.Character.MINOR_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE;
+			returnObj.OutcomeDescription = String.Format (
+				"The tree Grandpa planted is a shiveled husk. I've never seen a deader-looking tree in all my years on this earth. And here I thought Grandpa had a green thumb...\n\n" +
+				"Grandpa's wisdom down.\n" +
+				"Grandpa's pride down slightly.");
+		}
+
+		return returnObj;
+	}
+
+	// Fourth of July
+	public static Outcome Event1036(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+
+		requirements.Grandpa.Pride -= Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+		manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+		returnObj.Mail = new Mail();
+		returnObj.Mail.Date = manager.Calendar.GetCurrentDay();
+		returnObj.Mail.Subject = "The Display Last Night";
+		returnObj.Mail.Sender = requirements.Grandpa.Name;
+		returnObj.Mail.Message = string.Format(
+			"Grandpa {1},\n\n\t" +
+			"That was quite a display you lit up outside my house last night. Really cool, man. My son had an important meeting today, but he fell asleep halfway through it. Now he's " +
+			"fired and our house might be foreclosed on. I hope you know that you've made a powerful enemy here today. You haven't seen the last of me.\n\nFuck you,\n{0}", 
+			requirements.Grandpa.Name, manager.PlayerFamily.Grandpa.Name);
+
+		returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+		returnObj.OutcomeDescription = String.Format (
+			"That was quite a fireworks display! Right outside {0}'s house too. For two hours. At 3 AM.\n\n" +
+			"{0}'s pride down.\n" +
+			"Grandpa's pride up.",
+			requirements.Grandpa.Name);
 
 		return returnObj;
 	}
