@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System;
 
 [Serializable]
@@ -132,9 +132,9 @@ public class Day
                 this.m_events.Add(ev);
         }
 
-        foreach (SimulationEvent knownEvent in EventManager.GetEventsByDate(this.m_month, this.m_day, this.m_year))
+        foreach (SimulationEvent ev in EventManager.GetEventsByDate(this.m_month, this.m_day, this.m_year))
         {
-            this.m_events.Add(knownEvent);
+            this.m_events.Add(ev);
         }
 
         if(this.m_day == 28)
