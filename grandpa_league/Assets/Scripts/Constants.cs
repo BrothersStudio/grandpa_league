@@ -75,6 +75,8 @@ static class Constants
         public const double INITIAL_WISDOM_GROWTH = 0.03;
         public const double INITIAL_INSANITY = 10;
         public const double INITIAL_INSANITY_GROWTH = 0.01;
+
+		public const string SPRITE_NAME = "Grandpa_Sprite_Scaled";
     }
 
     public struct Character

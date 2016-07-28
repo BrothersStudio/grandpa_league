@@ -819,7 +819,7 @@ public static class EventManager
 				"{0}'s popularity growth up slightly.\n" + 
 				"All parents' love up.\n" + 
 				"Grandpa's pride way up!",
-				requirements.Child.Name, Convert.ToBoolean(requirements.Child.Name) ? "Her" : "His");
+				requirements.Child.Name, Convert.ToBoolean(requirements.Child.Gender) ? "Her" : "His");
 		}
 		else if (Constants.Roll(requirements.Child.Cuteness, requirements.Child.Artistry, (int)Enums.Difficulty.EASY) || 
 			Constants.Roll(requirements.Child.Cuteness, requirements.Child.Popularity, (int)Enums.Difficulty.HARD)) 
@@ -877,7 +877,7 @@ public static class EventManager
 				"{0}'s artistry slightly down.\n" + 
 				"{0}'s artistry growth slightly down.\n" + 
 				"Grandpa's pride slightly down.",
-				requirements.Child.Name, Convert.ToBoolean(requirements.Child.Name) ? "her" : "his");
+				requirements.Child.Name, Convert.ToBoolean(requirements.Child.Gender) ? "her" : "his");
 		}
 		else 
 			returnObj.Status = (int)Enums.EventOutcome.PASS;

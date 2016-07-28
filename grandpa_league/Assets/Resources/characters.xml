@@ -7,48 +7,48 @@
   -->
   
   <!-- CHILDREN -->
-  <character type="0" name="Jacob" gender="0" age="6" cuteness="50" intelligence="20" artistry="50" athleticism="5" popularity="15" sprite_name="default_sprite"/>
-  <character type="0" name="Ethan" gender="0" age="16" cuteness="15" intelligence="60" artistry="40" athleticism="40" popularity="40" sprite_name="default_sprite"/>
-  <character type="0" name="Michael" gender="0" age="12" cuteness="40" intelligence="40" artistry="30" athleticism="40" popularity="50" sprite_name="default_sprite"/>
-  <character type="0" name="Christopher" gender="0" age="10" cuteness="50" intelligence="20" artistry="60" athleticism="30" popularity="20" sprite_name="default_sprite"/>
-  <character type="0" name="Isabella" gender="1" age="7" cuteness="50" intelligence="40" artistry="50" athleticism="10" popularity="50" sprite_name="default_sprite"/>
-  <character type="0" name="Emma" gender="1" age="18" cuteness="25" intelligence="55" artistry="25" athleticism="10" popularity="50" sprite_name="default_sprite"/>
-  <character type="0" name="Olivia" gender="1" age="5" cuteness="30" intelligence="20" artistry="15" athleticism="50" popularity="60" sprite_name="default_sprite"/>
-  <character type="0" name="Sophia" gender="1" age="9" cuteness="50" intelligence="20" artistry="15" athleticism="25" popularity="50" sprite_name="default_sprite"/>
-  <character type="0" name="Patrick" gender="0" age="13" cuteness="40" intelligence="50" artistry="5" athleticism="30" popularity="65" sprite_name="default_sprite"/>
-  <character type="0" name="Kevin" gender="0" age="14" cuteness="50" intelligence="40" artistry="50" athleticism="30" popularity="40" sprite_name="default_sprite"/>
-  <character type="0" name="Joshua" gender="0" age="10" cuteness="30" intelligence="35" artistry="50" athleticism="30" popularity="45" sprite_name="default_sprite"/>
-  <character type="0" name="Samson" gender="0" age="13" cuteness="25" intelligence="5" artistry="5" athleticism="65" popularity="45" sprite_name="default_sprite"/>
-  <character type="0" name="Raul" gender="0" age="15" cuteness="15" intelligence="50" artistry="20" athleticism="25" popularity="15" sprite_name="default_sprite"/>
-  <character type="0" name="Remmy" gender="0" age="15" cuteness="50" intelligence="35" artistry="25" athleticism="50" popularity="20" sprite_name="default_sprite"/>
-  <character type="0" name="Sally Mae" gender="1" age="6" cuteness="50" intelligence="50" artistry="30" athleticism="40" popularity="25" sprite_name="default_sprite"/>
-  <character type="0" name="Jimmy" gender="0" age="6" cuteness="50" intelligence="50" artistry="35" athleticism="40" popularity="5" sprite_name="default_sprite"/>
-  <character type="0" name="Ivan" gender="0" age="17" cuteness="20" intelligence="55" artistry="30" athleticism="40" popularity="45" sprite_name="default_sprite"/> 
-  <character type="0" name="Paige" gender="1" age="16" cuteness="50" intelligence="10" artistry="50" athleticism="60" popularity="50" sprite_name="default_sprite"/>
-  <character type="0" name="Penny" gender="1" age="12" cuteness="45" intelligence="40" artistry="10" athleticism="50" popularity="65" sprite_name="default_sprite"/>
-  <character type="0" name="Roberto" gender="0" age="13" cuteness="40" intelligence="50" artistry="50" athleticism="35" popularity="10" sprite_name="default_sprite"/>
-  <character type="0" name="Frankie" gender="0" age="10" cuteness="25" intelligence="25" artistry="25" athleticism="10" popularity="60" sprite_name="default_sprite"/>
+  <character type="0" name="Jacob" gender="0" age="6" cuteness="50" intelligence="20" artistry="50" athleticism="5" popularity="15" sprite_name="kidMale1_Scaled"/>
+  <character type="0" name="Ethan" gender="0" age="16" cuteness="15" intelligence="60" artistry="40" athleticism="40" popularity="40" sprite_name="kidMale2_Scaled"/>
+  <character type="0" name="Michael" gender="0" age="12" cuteness="40" intelligence="40" artistry="30" athleticism="40" popularity="50" sprite_name="kidMale3_Scaled"/>
+  <character type="0" name="Christopher" gender="0" age="10" cuteness="50" intelligence="20" artistry="60" athleticism="30" popularity="20" sprite_name="kidMale1_Scaled"/>
+  <character type="0" name="Isabella" gender="1" age="7" cuteness="50" intelligence="40" artistry="50" athleticism="10" popularity="50" sprite_name="kidFemale1_Scaled"/>
+  <character type="0" name="Emma" gender="1" age="18" cuteness="25" intelligence="55" artistry="25" athleticism="10" popularity="50" sprite_name="kidFemale2_Scaled"/>
+  <character type="0" name="Olivia" gender="1" age="5" cuteness="30" intelligence="20" artistry="15" athleticism="50" popularity="60" sprite_name="kidFemale3_Scaled"/>
+  <character type="0" name="Sophia" gender="1" age="9" cuteness="50" intelligence="20" artistry="15" athleticism="25" popularity="50" sprite_name="kidFemale1_Scaled"/>
+  <character type="0" name="Patrick" gender="0" age="13" cuteness="40" intelligence="50" artistry="5" athleticism="30" popularity="65" sprite_name="kidMale2_Scaled"/>
+  <character type="0" name="Kevin" gender="0" age="14" cuteness="50" intelligence="40" artistry="50" athleticism="30" popularity="40" sprite_name="kidMale3_Scaled"/>
+  <character type="0" name="Joshua" gender="0" age="10" cuteness="30" intelligence="35" artistry="50" athleticism="30" popularity="45" sprite_name="kidMale1_Scaled"/>
+  <character type="0" name="Samson" gender="0" age="13" cuteness="25" intelligence="5" artistry="5" athleticism="65" popularity="45" sprite_name="kidMale2_Scaled"/>
+  <character type="0" name="Raul" gender="0" age="15" cuteness="15" intelligence="50" artistry="20" athleticism="25" popularity="15" sprite_name="kidMale3_Scaled"/>
+  <character type="0" name="Remmy" gender="0" age="15" cuteness="50" intelligence="35" artistry="25" athleticism="50" popularity="20" sprite_name="kidMale1_Scaled"/>
+  <character type="0" name="Sally Mae" gender="1" age="6" cuteness="50" intelligence="50" artistry="30" athleticism="40" popularity="25" sprite_name="kidFemale1_Scaled"/>
+  <character type="0" name="Jimmy" gender="0" age="6" cuteness="50" intelligence="50" artistry="35" athleticism="40" popularity="5" sprite_name="kidMale2_Scaled"/>
+  <character type="0" name="Ivan" gender="0" age="17" cuteness="20" intelligence="55" artistry="30" athleticism="40" popularity="45" sprite_name="kidMale3_Scaled"/> 
+  <character type="0" name="Paige" gender="1" age="16" cuteness="50" intelligence="10" artistry="50" athleticism="60" popularity="50" sprite_name="kidFemale3_Scaled"/>
+  <character type="0" name="Penny" gender="1" age="12" cuteness="45" intelligence="40" artistry="10" athleticism="50" popularity="65" sprite_name="kidFemale2_Scaled"/>
+  <character type="0" name="Roberta" gender="1" age="13" cuteness="40" intelligence="50" artistry="50" athleticism="35" popularity="10" sprite_name="kidFemale1_Scaled"/>
+  <character type="0" name="Frankie" gender="1" age="10" cuteness="25" intelligence="25" artistry="25" athleticism="10" popularity="60" sprite_name="kidFemale3_Scaled"/>
   <character type="0" name="Janice" gender="1" age="12" cuteness="55" intelligence="50" artistry="5" athleticism="50" popularity="10" sprite_name="default_sprite"/>
-  <character type="0" name="Antonio" gender="0" age="6" cuteness="40" intelligence="10" artistry="10" athleticism="60" popularity="45" sprite_name="default_sprite"/>
-  <character type="0" name="Kyle Jr" gender="0" age="5" cuteness="25" intelligence="25" artistry="50" athleticism="20" popularity="10" sprite_name="default_sprite"/>
+  <character type="0" name="Emily" gender="1" age="6" cuteness="40" intelligence="10" artistry="10" athleticism="60" popularity="45" sprite_name="kidFemale2_Scaled"/>
+  <character type="0" name="Sarah" gender="1" age="5" cuteness="25" intelligence="25" artistry="50" athleticism="20" popularity="10" sprite_name="kidFemale1_Scaled"/>
 
   <!-- PARENTS -->
-  <character type="1" name="Jim" gender="0" age="33" popularity="50" intelligence="20" love="50" sprite_name="default_sprite"/>
-  <character type="1" name="Beth" gender="1" age="28" popularity="55" intelligence="5" love="45" sprite_name="default_sprite"/>
-  <character type="1" name="Mike" gender="0" age="40" popularity="10" intelligence="50" love="20" sprite_name="default_sprite"/>
-  <character type="1" name="Candice" gender="1" age="41" popularity="50" intelligence="20" love="50" sprite_name="default_sprite"/>
-  <character type="1" name="Sam" gender="0" age="34" popularity="10" intelligence="20" love="50" sprite_name="default_sprite"/>
-  <character type="1" name="Elizabeth" gender="1" age="35" popularity="50" intelligence="50" love="50" sprite_name="default_sprite"/>
-  <character type="1" name="Barry" gender="0" age="50" popularity="50" intelligence="50" love="50" sprite_name="default_sprite"/>
-  <character type="1" name="Lisa" gender="1" age="52" popularity="0" intelligence="40" love="40" sprite_name="default_sprite"/>
-  <character type="1" name="John" gender="0" age="25" popularity="45" intelligence="10" love="45" sprite_name="default_sprite"/> 
-  <character type="1" name="Mary" gender="1" age="27" popularity="20" intelligence="20" love="20" sprite_name="default_sprite"/>
-  <character type="1" name="Kyle" gender="0" age="22" popularity="60" intelligence="20" love="10" sprite_name="default_sprite"/>
-  <character type="1" name="Laura" gender="1" age="19" popularity="60" intelligence="15" love="45" sprite_name="default_sprite"/>  
-  <character type="1" name="William" gender="0" age="45" popularity="40" intelligence="50" love="5" sprite_name="default_sprite"/> 
-  <character type="1" name="Karen" gender="1" age="31" popularity="45" intelligence="20" love="60" sprite_name="default_sprite"/>
-  <character type="1" name="James" gender="0" age="18" popularity="60" intelligence="15" love="15" sprite_name="default_sprite"/>
-  <character type="1" name="Rebecca" gender="1" age="39" popularity="50" intelligence="30" love="15" sprite_name="default_sprite"/>
+  <character type="1" name="Jim" gender="0" age="33" popularity="50" intelligence="20" love="50" sprite_name="man1_Sprite_Scaled"/>
+  <character type="1" name="Beth" gender="1" age="28" popularity="55" intelligence="5" love="45" sprite_name="woman1_Sprite_Scaled"/>
+  <character type="1" name="Mike" gender="0" age="40" popularity="10" intelligence="50" love="20" sprite_name="man2_Sprite_Scaled"/>
+  <character type="1" name="Candice" gender="1" age="41" popularity="50" intelligence="20" love="50" sprite_name="woman2_Sprite_Scaled"/>
+  <character type="1" name="Sam" gender="0" age="34" popularity="10" intelligence="20" love="50" sprite_name="man3_Sprite_Scaled"/>
+  <character type="1" name="Elizabeth" gender="1" age="35" popularity="50" intelligence="50" love="50" sprite_name="woman3_Sprite_Scaled"/>
+  <character type="1" name="Barry" gender="0" age="50" popularity="50" intelligence="50" love="50" sprite_name="man1_Sprite_Scaled"/>
+  <character type="1" name="Lisa" gender="1" age="52" popularity="0" intelligence="40" love="40" sprite_name="woman1_Sprite_Scaled"/>
+  <character type="1" name="John" gender="0" age="25" popularity="45" intelligence="10" love="45" sprite_name="man2_Sprite_Scaled"/> 
+  <character type="1" name="Mary" gender="1" age="27" popularity="20" intelligence="20" love="20" sprite_name="woman2_Sprite_Scaled"/>
+  <character type="1" name="Kyle" gender="0" age="22" popularity="60" intelligence="20" love="10" sprite_name="man3_Sprite_Scaled"/>
+  <character type="1" name="Laura" gender="1" age="19" popularity="60" intelligence="15" love="45" sprite_name="woman3_Sprite_Scaled"/>  
+  <character type="1" name="William" gender="0" age="45" popularity="40" intelligence="50" love="5" sprite_name="man1_Sprite_Scaled"/> 
+  <character type="1" name="Karen" gender="1" age="31" popularity="45" intelligence="20" love="60" sprite_name="woman2_Sprite_Scaled"/>
+  <character type="1" name="James" gender="0" age="18" popularity="60" intelligence="15" love="15" sprite_name="man2_Sprite_Scaled"/>
+  <character type="1" name="Rebecca" gender="1" age="39" popularity="50" intelligence="30" love="15" sprite_name="woman1_Sprite_Scaled"/>
  
   <!-- GRANDPARENTS -->
   <character type="2" name="Captain McBreeches" age="88" pride="5000" wisdom="40" insanity="40" money="5000" sprite_name="CMcBreeches_Sprite_Scaled"/>

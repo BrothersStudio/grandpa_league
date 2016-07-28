@@ -25,6 +25,8 @@ public class DataManager
         this.m_playerFamily.Grandpa.WisdomGrowth = Constants.Player.INITIAL_WISDOM_GROWTH;
         this.m_playerFamily.Grandpa.Insanity = Constants.Player.INITIAL_INSANITY;
         this.m_playerFamily.Grandpa.InsanityGrowth = Constants.Player.INITIAL_INSANITY_GROWTH;
+		this.m_playerFamily.Grandpa.SpriteName = Constants.Player.SPRITE_NAME;
+
         this.m_playerFamily.Parents = CharacterManager.GetRandomParents(Constants.INITIAL_PARENTS);
         this.m_playerFamily.Children = CharacterManager.GetRandomChildren(Constants.INITIAL_CHILDREN);
 
