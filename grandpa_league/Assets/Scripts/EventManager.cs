@@ -230,7 +230,12 @@ public static class EventManager
         ret.Mail.Subject = "Day One";
         ret.Mail.Sender = manager.PlayerFamily.Grandpa.Name;
         ret.Mail.Image = "tutorial_1";
-        ret.Mail.Message = string.Format("They locked me up in here. They think I'm crazy but I know the truth! The truth about everything! They'll see...{0} will see...no one can stop me from being the best!!!\nI got the entire year planned out..much as I hate to see it go, my brain wanders at times...I've written what needs to be done on each of the green squares!! I'll need to take a closer look as those days approach. I'm currently on the red date...or was it the blue? Whichever!\nTake care of yourself.\n{1}", manager.PlayerFamily.Parents[0].Name, manager.PlayerFamily.Grandpa.Name);
+        ret.Mail.Message = string.Format(
+			"They locked me up in here. They think I'm crazy, but only I know the truth! The truth about everything! They'll see... {0} will see... " +
+			"No one can stop me from being the best!!!\nI have the entire year planned out... As much as I hate to say it, my thoughts wander at times... " +
+			"I've written is happening each day on the green squares! I'll need to click and take a closer look as those days approach. The current day is " +
+			"the red date... Or was it polka dotted...? Whichever!\nTake care of yourself, me.\n{1}", 
+			manager.PlayerFamily.Parents[0].Name, manager.PlayerFamily.Grandpa.Name);
 
         return ret;
     }
@@ -246,7 +251,11 @@ public static class EventManager
         ret.Mail.Subject = "Day Eight";
         ret.Mail.Sender = manager.PlayerFamily.Grandpa.Name;
         ret.Mail.Image = "tutorial_2";
-        ret.Mail.Message = string.Format("My damn children and grandkids are nothing but disappointments! I've about had it with those whippersnappers. I'll have to provide each with careful instruction on how to lead me to victory over these devils!...But their brains are so tiny they can only focus on one thing at a time...Damn millennials! Back in my day we had six year olds studing astrophysics in Latin, all while earning $0.62 a month.\nGod speed.\n{0}", manager.PlayerFamily.Grandpa.Name);
+        ret.Mail.Message = string.Format(
+			"My damn children and grandkids are nothing but disappointments! I've about had it with those whippersnappers. I'll have to provide each with careful " +
+			"instruction on how to lead me to victory over these other old devils! But my family's brains are like tiny hamster brains... They can only focus on one " +
+			"skill at a time by clicking on them... Damn millennials! Back in my day we had six year olds studing astrophysics in Latin, all while earning $0.62 a month.\nGod speed.\n{0}", 
+			manager.PlayerFamily.Grandpa.Name);
 
         return ret;
     }
@@ -262,7 +271,9 @@ public static class EventManager
         ret.Mail.Subject = "Day Fifteen";
         ret.Mail.Sender = manager.PlayerFamily.Grandpa.Name;
         ret.Mail.Image = "tutorial_3";
-        ret.Mail.Message = "Those damn commies already have a leg up on me. They're cheats, I swear it! No way they could be that proud of their snotty nosed brats. I'm gonna take this community by storm! I swear I'll win I swear I'll win I swear I'll win I swear I'll win I swear I'll win I swear I'll win I swear I'll win...";
+        ret.Mail.Message = 
+			"Those damn commie relics already have a leg up on me. They're cheats, I swear it! No way they could be that proud of their snot-nosed brats. I'm gonna take this " +
+			"community by storm! \nI swear I'll win I swear I'll win I swear I'll win I swear I'll win I swear I'll win I swear I'll win I swear I'll win.";
 
         return ret;
     }
@@ -275,10 +286,13 @@ public static class EventManager
 
         ret.Mail = new Mail();
         ret.Mail.Date = manager.Calendar.GetCurrentDay();
-        ret.Mail.Subject = "Day Twenty Five";
+        ret.Mail.Subject = "Day Twenty-Five";
         ret.Mail.Sender = manager.PlayerFamily.Grandpa.Name;
         ret.Mail.Image = "tutorial_4";
-        ret.Mail.Message = string.Format("That's it! I am done with {0} and {1} too! {2}'s grandson already has a full ride to Stanford and he's only {3}!!! Let's see if we can't con off these idiots to some unsuspecting losers at the adoption agency...A little cash to sweeten the pot wouldn't hurt...", manager.PlayerFamily.Children[0].Name, manager.PlayerFamily.Parents[0].Name, manager.LeagueFamilies[0].Grandpa.Name, manager.LeagueFamilies[0].Children[0].Age);
+        ret.Mail.Message = string.Format(
+			"That's it! I am done with {0} and {1} too! {2}'s grandson already has a full ride to Stanford and he's only {3}! Let's see if we can't con off these idiots to some " +
+			"unsuspecting losers at the adoption agency... A little cash to sweeten the pot wouldn't hurt...", 
+			manager.PlayerFamily.Children[0].Name, manager.PlayerFamily.Parents[0].Name, manager.LeagueFamilies[0].Grandpa.Name, manager.LeagueFamilies[0].Children[0].Age);
 
         return ret;
     }
@@ -1463,7 +1477,7 @@ public static class EventManager
 
 			returnObj.Status = (int)Enums.EventOutcome.FAILURE_BLACKLIST_FOREVER;
 			returnObj.OutcomeDescription = String.Format (
-				"Grandpa just brought over a bunch of pamphlets for The Church of the Tin Can. He's trying to get {1} to wear this weird " +
+				"Grandpa just brought over a bunch of pamphlets for The Church of the Tin Can. He's trying to get {0} to wear this weird " +
 				"hat. Seems like he's joined a cult. " +
 				"He's paying them 10 dollars a month into their Collection Can.\n\n" +
 				"Grandpa's insanity up.\n" +
