@@ -113,13 +113,17 @@ public static class EventManager
         foreach(SimulationEvent ev in m_knownEvents)
         {
             if (ev.EventMonth == month && ev.EventDay == day)
-                if(ev.EventYear != 0 && year == ev.EventYear)
+                if (ev.EventYear != 0 && year == ev.EventYear)
+                    eventsOnDay.Add(ev);
+                else if (ev.EventYear == 0)
                     eventsOnDay.Add(ev);
         }
         foreach (SimulationEvent ev in m_reservedEvents)
         {
             if (ev.EventMonth == month && ev.EventDay == day)
                 if (ev.EventYear != 0 && year == ev.EventYear)
+                    eventsOnDay.Add(ev);
+                else if (ev.EventYear == 0)
                     eventsOnDay.Add(ev);
         }
         return eventsOnDay;
