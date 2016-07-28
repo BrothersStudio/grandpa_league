@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -8,8 +8,9 @@ using UnityEngine;
 
 static class Qualification
 {
-    private static Dictionary<string, int> m_qualifications = new Dictionary<string, int>();
+    private static Dictionary<string, int> m_qualifications = new Dictionary<string, int>();        //TODO: fix this fucking mess of a data structure hole I dug myself
     private static Dictionary<int, string> m_qualificationNames = new Dictionary<int, string>();
+    private static Dictionary<int, bool> m_qualificationHidden = new Dictionary<int, bool>();
 
     static Qualification()
     {
@@ -22,6 +23,7 @@ static class Qualification
         {
             m_qualifications.Add(qual.Attribute("name").Value, Int32.Parse(qual.Attribute("id").Value));
             m_qualificationNames.Add(Int32.Parse(qual.Attribute("id").Value), qual.Attribute("display_name").Value);
+            m_qualificationHidden.Add(Int32.Parse(qual.Attribute("id").Value), Convert.ToBoolean(qual.Attribute("hidden").Value));
         }
     }
 
@@ -43,6 +45,17 @@ static class Qualification
                 return entry.Key;
         }
         return "NONE";
+    }
+
+    public static bool IsQualificationHidden(int id)
+    {
+        foreach (KeyValuePair<int, bool> entry in m_qualificationHidden)
+        {
+            if (entry.Key == id)
+                return entry.Value;
+        }
+        Debug.LogError("Looking for hidden qualification that isn't in the database!");
+        return false;
     }
 }
 
