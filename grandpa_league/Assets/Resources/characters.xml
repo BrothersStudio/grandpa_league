@@ -51,13 +51,13 @@
   <character type="1" name="Rebecca" gender="1" age="39" popularity="50" intelligence="30" love="15" sprite_name="default_sprite"/>
  
   <!-- GRANDPARENTS -->
-  <character type="2" name="Captain McBreeches" age="88" pride="5000" wisdom="40" insanity="40" money="5000" sprite_name="default_sprite"/>
-  <character type="2" name="Dick Walter" age="82" pride="3000" wisdom="30" insanity="70" money="2000" sprite_name="default_sprite"/>
-  <character type="2" name="Frank Dinglebop" age="85" pride="2000" wisdom="60" insanity="20" money="4500" sprite_name="default_sprite"/>
-  <character type="2" name="Steve Sinatra" age="88" pride="9000" wisdom="90" insanity="0" money="5000" sprite_name="default_sprite"/>
-  <character type="2" name="Old Man" age="97" pride="900" wisdom="70" insanity="70" money="1000" sprite_name="default_sprite"/>
-  <character type="2" name="Theodore Bunderschnuff" age="85" pride="4000" wisdom="60" insanity="20" money="3500" sprite_name="default_sprite"/>
-  <character type="2" name="Samuel Rockefeller" age="88" pride="8000" wisdom="20" insanity="20" money="60000" sprite_name="default_sprite"/>
-  <character type="2" name="Santiago Garcia" age="82" pride="7000" wisdom="5" insanity="90" money="2000" sprite_name="default_sprite"/>
+  <character type="2" name="Captain McBreeches" age="88" pride="5000" wisdom="40" insanity="40" money="5000" sprite_name="CMcBreeches_Sprite_Scaled"/>
+  <character type="2" name="Dick Walter" age="82" pride="3000" wisdom="30" insanity="70" money="2000" sprite_name="DWalters_Sprite_Scaled"/>
+  <character type="2" name="Frank Dinglebop" age="85" pride="2000" wisdom="60" insanity="20" money="4500" sprite_name="FDinglebop_Sprite_Scaled"/>
+  <character type="2" name="Steve Sinatra" age="88" pride="9000" wisdom="90" insanity="0" money="5000" sprite_name="SSinatra_Sprite_Scaled"/>
+  <character type="2" name="Old Man" age="97" pride="900" wisdom="70" insanity="70" money="1000" sprite_name="OMan_Sprite_Scaled"/>
+  <character type="2" name="Theodore Bunderschnuff" age="85" pride="4000" wisdom="60" insanity="20" money="3500" sprite_name="TBunderschnuff_Sprite_Scaled"/>
+  <character type="2" name="Samuel Rockefeller" age="88" pride="8000" wisdom="20" insanity="20" money="60000" sprite_name="SRockefeller_Sprite_Scaled"/>
+  <character type="2" name="Santiago Garcia" age="82" pride="7000" wisdom="5" insanity="90" money="2000" sprite_name="SGarcia_Sprite_Scaled"/>
   
 </characters>
