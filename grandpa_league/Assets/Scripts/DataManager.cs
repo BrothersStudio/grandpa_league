@@ -7,14 +7,17 @@ public class DataManager
 {
     private PlayerInfo              m_currentInfo       = null;
     private Calendar                m_currentCalendar   = null;
+
     private List<Family>            m_league            = new List<Family>();
     private Family                  m_playerFamily      = null;
     private Family                  m_orphanage         = new Family();
+
     private List<int>               m_blacklist         = new List<int>();
+    private List<Ability>           m_abilities         = new List<Ability>();
 
     public DataManager (string playerName)
     {
-        this.m_currentInfo = new PlayerInfo(playerName);
+        this.m_currentInfo = new PlayerInfo();
         this.m_currentCalendar = new Calendar();
 
         this.m_playerFamily = new Family();
@@ -27,8 +30,15 @@ public class DataManager
         this.m_playerFamily.Grandpa.InsanityGrowth = Constants.Player.INITIAL_INSANITY_GROWTH;
 		this.m_playerFamily.Grandpa.SpriteName = Constants.Player.SPRITE_NAME;
 
-        this.m_playerFamily.Parents = CharacterManager.GetRandomParents(Constants.INITIAL_PARENTS);
-        this.m_playerFamily.Children = CharacterManager.GetRandomChildren(Constants.INITIAL_CHILDREN);
+        //this.m_playerFamily.Parents = CharacterManager.GetRandomParents(Constants.INITIAL_PARENTS);
+        //this.m_playerFamily.Children = CharacterManager.GetRandomChildren(Constants.INITIAL_CHILDREN);
+
+        //currently we are giving the player some reliable characters to work with in the start
+        this.m_playerFamily.Parents.Add(CharacterManager.GetParentByName("Beth"));
+        this.m_playerFamily.Parents.Add(CharacterManager.GetParentByName("Mike"));
+        this.m_playerFamily.Children.Add(CharacterManager.GetChildByName("Christopher"));
+        this.m_playerFamily.Children.Add(CharacterManager.GetChildByName("Kevin"));
+        this.m_playerFamily.Children.Add(CharacterManager.GetChildByName("Patrick"));
 
         string[] splitName = playerName.Split(' ');
         if (splitName.Length >= 2)

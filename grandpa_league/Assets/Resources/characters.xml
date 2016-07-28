@@ -28,9 +28,9 @@
   <character type="0" name="Penny" gender="1" age="12" cuteness="45" intelligence="40" artistry="10" athleticism="50" popularity="65" sprite_name="kidFemale2_Scaled"/>
   <character type="0" name="Roberta" gender="1" age="13" cuteness="40" intelligence="50" artistry="50" athleticism="35" popularity="10" sprite_name="kidFemale1_Scaled"/>
   <character type="0" name="Frankie" gender="1" age="10" cuteness="25" intelligence="25" artistry="25" athleticism="10" popularity="60" sprite_name="kidFemale3_Scaled"/>
-  <character type="0" name="Janice" gender="1" age="12" cuteness="55" intelligence="50" artistry="5" athleticism="50" popularity="10" sprite_name="default_sprite"/>
+  <character type="0" name="Janice" gender="1" age="12" cuteness="55" intelligence="50" artistry="5" athleticism="50" popularity="10" sprite_name="kidFemale2_Scaled"/>
   <character type="0" name="Emily" gender="1" age="6" cuteness="40" intelligence="10" artistry="10" athleticism="60" popularity="45" sprite_name="kidFemale2_Scaled"/>
-  <character type="0" name="Sarah" gender="1" age="5" cuteness="25" intelligence="25" artistry="50" athleticism="20" popularity="10" sprite_name="kidFemale1_Scaled"/>
+  <character type="0" name="Sarah" gender="1" age="5" cuteness="25" intelligence="25" artistry="50" athleticism="20" popularity="10" sprite_name="kidFemale3_Scaled"/>
 
   <!-- PARENTS -->
   <character type="1" name="Jim" gender="0" age="33" popularity="50" intelligence="20" love="50" sprite_name="man1_Sprite_Scaled"/>

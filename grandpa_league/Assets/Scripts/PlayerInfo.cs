@@ -1,12 +1,8 @@
-﻿using System;
+using System;
 
 [Serializable]
 public class PlayerInfo
 {
-    private     string      m_name = "";
+    public static bool FIRST_TRADE = true;
 
-    public PlayerInfo(string name)
-    {
-        this.m_name = name;
-    }
 }

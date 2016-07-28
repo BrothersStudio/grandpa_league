@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <qualifications>
-  <qualification name="NONE"                id="0"    display_name="none"/>
-  <qualification name="IN_SCHOOL_BAND"      id="1"    display_name="Part of the school band!"/>
-  <qualification name="IS_SINGLE"           id="2"    display_name="Unfortunately single :("/>
-  <qualification name="ON_FOOTBALL_TEAM"    id="3"    display_name="On the football team!"/>
-  <qualification name="ON_SOCCER_TEAM"      id="4"    display_name="On the soccer team!" />
-  <qualification name="ILLEGAL_GEAR"        id="5"    display_name="Currently equipt with illegal cambodian gear"/>
-  <qualification name="IN_PLAY"             id="6"    display_name="Involved in the school play" />
+  <qualification name="NONE"                id="0"    hidden="true"   display_name="none"/>
+  <qualification name="IN_SCHOOL_BAND"      id="1"    hidden="false"  display_name="Part of the school band!"/>
+  <qualification name="IS_SINGLE"           id="2"    hidden="false"  display_name="Unfortunately single :("/>
+  <qualification name="ON_FOOTBALL_TEAM"    id="3"    hidden="false"  display_name="On the football team!"/>
+  <qualification name="ON_SOCCER_TEAM"      id="4"    hidden="false"  display_name="On the soccer team!" />
+  <qualification name="ILLEGAL_GEAR"        id="5"    hidden="false"  display_name="Currently equipt with illegal cambodian gear"/>
+  <qualification name="IN_PLAY"             id="6"    hidden="false"  display_name="Involved in the school play" />
 </qualifications>

@@ -4,6 +4,7 @@ using System;
 [Serializable]
 public class Character
 {
+    protected int           m_id                = -1;
     protected string        m_name              = "";
     protected int           m_gender            = 0;
     protected int           m_age               = 0;
@@ -34,6 +35,11 @@ public class Character
 		set { this.m_age = value; }
 	}
 
+    public int Id
+    {
+        get { return this.m_id; }
+    }
+
     public List<int> Qualifications
     {
         get { return this.m_qualifications; }
@@ -55,6 +61,18 @@ public class Character
     public void RemoveQualification(int qualification)
     {
         this.m_qualifications.Remove(qualification);
+    }
+
+    public List<int> GetVisibleQualifications()
+    {
+        List<int> visibleList = new List<int>();
+        foreach (int qual in this.m_qualifications)
+        {
+            if (Qualification.IsQualificationHidden(qual))
+                continue;
+            visibleList.Add(qual);
+        }
+        return visibleList;
     }
 
     public virtual void UpgradeRandomStat(double amt) { }

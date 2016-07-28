@@ -89,6 +89,35 @@ public class CharacterManager
         return returnList;
     }
 
+
+    public static Parent GetParentByName(string name)
+    {
+        Parent returnChar = null;
+        foreach(Parent par in m_parents)
+        {
+            if (par.Name == name)
+                returnChar = par;
+        }
+        if (returnChar != null)
+            m_parents.Remove(returnChar);
+
+        return returnChar;
+    }
+
+    public static Child GetChildByName(string name)
+    {
+        Child returnChar = null;
+        foreach (Child ch in m_children)
+        {
+            if (ch.Name == name)
+                returnChar = ch;
+        }
+        if (returnChar != null)
+            m_children.Remove(returnChar);
+
+        return returnChar;
+    }
+
     public static Grandpa GetRandomGrandpa()
     {
         int randomInt = Constants.RANDOM.Next(m_grandparents.Count);

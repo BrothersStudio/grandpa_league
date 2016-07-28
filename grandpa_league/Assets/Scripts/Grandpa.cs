@@ -8,8 +8,6 @@ public class Grandpa : Character
     private Stat            m_wisdom            = new Stat();
     private Stat            m_money             = new Stat();
     private Stat            m_pride             = new Stat();
-
-    private List<Ability>   m_abilities         = new List<Ability>();
     
 	public Grandpa(string name, int age, int pride, int wisdom, int insanity, int money, string spriteName)
 	{
@@ -111,11 +109,5 @@ public class Grandpa : Character
     {
         get { return this.m_pride.Value; }
         set { this.m_pride.Value = value; }
-    }
-
-    public List<Ability> Abilities
-    {
-        get { return this.m_abilities; }
-        set { this.m_abilities = value; }
     }
 }
