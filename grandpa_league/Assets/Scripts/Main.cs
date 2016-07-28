@@ -1,3 +1,5 @@
+#define DEBUG
+
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
@@ -87,7 +89,10 @@ public class Main : MonoBehaviour {
         }
         this.DisplayContent("mail");
 
-		InitializeHighlight ();
+#if (DEBUG)
+        Globals.RunUnitTests();
+#endif
+        InitializeHighlight ();
 	}
 
     public void AdvanceDay()
