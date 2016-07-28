@@ -358,9 +358,9 @@ public static class EventManager
 				"Great ball tossing, {0}! Now everyone will value you more as a person! You'll probably be as buff as Dwayne \"The Rock\" Johnson " +
 				"by the end of the season!\n\n" +
 				"{0}'s athleticism up.\n" +
-				"{0}'s athleticism growth up." + 
+				"{0}'s athleticism growth up.\n" + 
 				"{0}'s popularity up.\n" +
-				"{0}'s popularity growth up." + 
+				"{0}'s popularity growth up.\n" + 
 				"{0}'s artistry down slightly.\n" + 
 				"Grandpa's pride up.",
 				requirements.Child.Name);
@@ -377,7 +377,7 @@ public static class EventManager
 				"Well, you didn't get on the team. That's disappointing, {0}. Not to mention you looked really dumb out there. Some of the kids are calling you " +
 				"Not-So-Sticky-Fingers behind your back!\n\n" +
 				"{0}'s popularity down slightly.\n" +
-				"{0}'s popularity growth down slightly." + 
+				"{0}'s popularity growth down slightly.\n" + 
 				"Grandpa's pride down slightly.",
 				requirements.Child.Name);
 		}
@@ -430,7 +430,7 @@ public static class EventManager
 				"Oh God, seeing your leg fly right out of the socket during that indoor football game was brutal! I guess you're off the indoor football team for the year.\n\n" +
 				"{0}'s popularity up.\n" +
 				"{0}'s athleticism way way down!\n" +
-				"{0}'s athleticism growth down." +
+				"{0}'s athleticism growth down.\n" +
 				"Grandpa's pride down slightly.",
 				requirements.Child.Name);
 		}
@@ -456,7 +456,7 @@ public static class EventManager
 				"Holy cow, {0} is just kicking ass at indoor football practice. It's clear to everyone that they're a very skilled player!\n\n" +
 				"{0}'s athleticism up.\n" +
 				"{0}'s athleticism growth up.\n" +
-				"Grandpa's pride up.\n",
+				"Grandpa's pride up.",
 				requirements.Child.Name);
 		}
 		else  
@@ -530,7 +530,7 @@ public static class EventManager
 				"{0}'s athleticism down.\n" +
 				"{0}'s athleticism growth down.\n" +
 				"{0}'s popularity way down!\n" +
-				"Grandpa's pride way down!\n",
+				"Grandpa's pride way down!",
 				requirements.Child.Name);
 		}
 		return returnObj;
@@ -562,7 +562,7 @@ public static class EventManager
 				"{0}'s athleticism growth way up!\n" +
 				"{0}'s popularity way up!\n" +
 				"{0}'s popularity growth up.\n" +
-				"{1}'s pride way down!" +
+				"{1}'s pride way down!\n" +
 				"Grandpa's pride way way up!!\n",
 				requirements.Child.Name, requirements.Grandpa.Name);
 		} 
@@ -598,7 +598,7 @@ public static class EventManager
 				"{0}'s athleticism down.\n" +
 				"{0}'s athleticism growth down.\n" +
 				"{0}'s popularity down.\n" +
-				"Grandpa's pride down.\n",
+				"Grandpa's pride down.",
 				requirements.Child.Name, requirements.Grandpa.Name);
 		}
 		requirements.Child.RemoveQualification (Qualification.GetQualificationByString ("ILLEGAL_GEAR"));
@@ -623,7 +623,7 @@ public static class EventManager
 				"I'm not sure what happened. They got on the team okay. Now all the other kids laugh and throw balls at {1}.\n\n" +
 				"{0}'s athleticism growth down.\n" +
 				"{0}'s popularity down.\n" +
-				"Grandpa's pride down.\n",
+				"Grandpa's pride down.",
 				requirements.Child.Name, Convert.ToBoolean(requirements.Child.Gender) ? "her" : "him");
 		}
 		else  
@@ -680,7 +680,7 @@ public static class EventManager
 				"{0} has made the honor roll! Wow, you're like a freakin' genius {0}!\n\n" +
 				"{0}'s intelligence up.\n" + 
 				"All parents' love up.\n" + 
-				"Grandpa's pride up.\n",
+				"Grandpa's pride up.",
 				requirements.Child.Name);
 		}
 		else  
@@ -693,7 +693,7 @@ public static class EventManager
 			returnObj.OutcomeDescription = String.Format (
 				"{0} missed the honor roll... What a dummy...\n\n" +
 				"{0}'s intelligence down slightly.\n" + 
-				"Grandpa's pride down.\n",
+				"Grandpa's pride down.",
 				requirements.Child.Name);
 		}
 		return returnObj;
@@ -730,7 +730,7 @@ public static class EventManager
 				"{0}'s popularity up.\n" + 
 				"{0}'s popularity growth up slightly.\n" + 
 				"All parents' love up.\n" + 
-				"Grandpa's pride way up!\n",
+				"Grandpa's pride way up!",
 				requirements.Child.Name, Convert.ToBoolean(requirements.Child.Name) ? "Her" : "His");
 		}
 		else if (Constants.Roll(requirements.Child.Cuteness, requirements.Child.Artistry, (int)Enums.Difficulty.EASY) || 
@@ -749,7 +749,7 @@ public static class EventManager
 				"{0} got a minor role in the play!\n\n" +
 				"{0}'s artistry up.\n" + 
 				"{0}'s artistry growth up.\n" + 
-				"Grandpa's pride up.\n",
+				"Grandpa's pride up.",
 				requirements.Child.Name);
 		}
 		else 
@@ -765,7 +765,7 @@ public static class EventManager
 				" a bit.\n\n" +
 				"{0}'s artistry slightly up.\n" +
 				"{0}'s popularity slightly down.\n" + 
-				"Grandpa's pride slightly down.\n",
+				"Grandpa's pride slightly down.",
 				requirements.Child.Name);
 		}
 		return returnObj;
@@ -788,7 +788,7 @@ public static class EventManager
 				"People are starting to talk...\n\n" +
 				"{0}'s artistry slightly down.\n" + 
 				"{0}'s artistry growth slightly down.\n" + 
-				"Grandpa's pride slightly down.\n",
+				"Grandpa's pride slightly down.",
 				requirements.Child.Name, Convert.ToBoolean(requirements.Child.Name) ? "her" : "his");
 		}
 		else 
@@ -819,8 +819,8 @@ public static class EventManager
 				"as rats is on the way to reality.\n\n" +
 				"{0}'s artistry way up!\n" + 
 				"{0}'s artistry growth up.\n" +
-				"{0}'s popularity way up!" + 
-				"Grandpa's pride way way up!!\n",
+				"{0}'s popularity way up!\n" + 
+				"Grandpa's pride way way up!!",
 				requirements.Child.Name);
 		}
 		else 
@@ -838,7 +838,7 @@ public static class EventManager
 				"live this down at school for being a part of it.\n\n" +
 				"{0}'s popularity down!\n" + 
 				"{0}'s popularity growth down slightly.\n" + 
-				"Grandpa's pride down.\n",
+				"Grandpa's pride down.",
 				requirements.Child.Name);
 		}
 		return returnObj;
@@ -862,7 +862,7 @@ public static class EventManager
 				"Grandpa was looking through his old treasure maps and remembered ${0} worth of confederate gold he buried many years ago! How lucky!\n\n" +
 				"Grandpa's wisdom up slightly.\n" + 
 				"Grandpa's insanity down slightly.\n" + 
-				"Grandpa gained {0} dollars!\n",
+				"Grandpa gained {0} dollars!",
 				found_amount);
 		}
 		else  
@@ -898,7 +898,7 @@ public static class EventManager
 				"{2} and the kids are inconsolable.\n\n" +
 				"{0} has left the family!\n" + 
 				"{2}'s love way way down!!\n" + 
-				"Grandpa's pride way down!\n",
+				"Grandpa's pride way down!",
 				requirements.Parent.Name, Convert.ToBoolean(requirements.Parent.Gender) ? "her" : "him", other_parent, 
 				Convert.ToBoolean(requirements.Parent.Gender) ? "She" : "He");
 		}
@@ -919,7 +919,7 @@ public static class EventManager
 				"{0}'s love up.\n" + 
 				"{1}'s love up.\n" + 
 				"Grandpa's wisdom up.\n" + 
-				"Grandpa's pride up.\n",
+				"Grandpa's pride up.",
 				manager.PlayerFamily.Parents[0].Name, manager.PlayerFamily.Parents[1].Name);
 		}
 		else
@@ -957,7 +957,7 @@ public static class EventManager
 				"{2}'s love up.\n" +
 				"{2}'s love growth down.\n" +
 				"{2}'s popularity way up!\n" +
-				"Grandpa's pride down!\n",
+				"Grandpa's pride down!",
 				requirements.Parent.Name, Convert.ToBoolean (requirements.Parent.Gender) ? "her" : "his", other_parent);
 		}
 		else 
@@ -998,7 +998,7 @@ public static class EventManager
 				"{3}'s popularity way up!\n" +
 				"{3}'s popularity growth up!\n" +
 				"Grandpa's pride way way up!!\n" +
-				"Grandpa's insanity up.\n",
+				"Grandpa's insanity up.",
 				manager.PlayerFamily.Grandpa.Name, Convert.ToBoolean (requirements.Parent.Gender) ? "mom" : "dad", requirements.Child.Name, requirements.Parent.Name);
 		} 
 		else if (!requirements.Accept) 
@@ -1056,7 +1056,7 @@ public static class EventManager
 				"What a dummy. What a disgrace...\n\n" +
 				"{0}'s intelligence down.\n" +
 				"{0}'s popularity down!\n" +
-				"Grandpa's pride down slightly.\n",
+				"Grandpa's pride down slightly.",
 				requirements.Parent.Name, Convert.ToBoolean (requirements.Parent.Gender) ? "she" : "he");
 		}
 		else 
@@ -1093,7 +1093,7 @@ public static class EventManager
 				"You feel your entire family get smarter just by being in contact with {2}!\n\n" +
 				"Entire family's intelligence up!!\n" +
 				"Entire family's intelligence growth up!!\n" +
-				"Grandpa's pride way up!!\n",
+				"Grandpa's pride way up!!",
 				requirements.Child.Name, Convert.ToBoolean (requirements.Child.Gender) ? "She" : "He", Convert.ToBoolean (requirements.Child.Gender) ? "her" : "his");
 		}
 		else 
@@ -1125,7 +1125,7 @@ public static class EventManager
 				"Grandpa's insanity up.\n" +
 				"Grandpa's insanity growth up slightly.\n" +
 				"Grandpa's pride down slightly.\n" +
-				"{1}'s intelligence down.\n",
+				"{1}'s intelligence down.",
 				manager.PlayerFamily.Grandpa.Name, requirements.Child.Name, requirements.Parent.Name);
 		}
 		else 
@@ -1154,7 +1154,7 @@ public static class EventManager
 				"Grandpa's wisdom down.\n" +
 				"Grandpa's insanity up.\n" +
 				"Grandpa's insanity growth up slightly.\n" +
-				"Grandpa's pride down slightly.\n",
+				"Grandpa's pride down slightly.",
 				manager.PlayerFamily.Grandpa.Name, requirements.Parent.Name);
 		}
 		else 
@@ -1178,7 +1178,6 @@ public static class EventManager
 			manager.PlayerFamily.Grandpa.Wisdom += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT; 
 
 			manager.PlayerFamily.Grandpa.Insanity -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT; 
-			manager.PlayerFamily.Grandpa.InsanityGrowth -= Constants.Character.STANDARD_STAT_GROWTH_AMOUNT; 
 
 			manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT; 
 
@@ -1189,8 +1188,7 @@ public static class EventManager
 				"{1} ALL STATS UP!!\n" +
 				"Grandpa's wisdom up.\n" +
 				"Grandpa's insanity down.\n" +
-				"Grandpa's insanity growth down.\n" +
-				"Grandpa's pride up.\n",
+				"Grandpa's pride up.",
 				manager.PlayerFamily.Grandpa.Name, requirements.Parent.Name, Convert.ToBoolean (requirements.Parent.Gender) ? "her" : "him");
 		} 
 		else if (Constants.Roll(0, manager.PlayerFamily.Grandpa.Wisdom, (int)Enums.Difficulty.STANDARD) && roll == 1) 
@@ -1205,7 +1203,6 @@ public static class EventManager
 			manager.PlayerFamily.Grandpa.Wisdom += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT; 
 
 			manager.PlayerFamily.Grandpa.Insanity -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT; 
-			manager.PlayerFamily.Grandpa.InsanityGrowth -= Constants.Character.STANDARD_STAT_GROWTH_AMOUNT; 
 
 			manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT; 
 
@@ -1216,8 +1213,7 @@ public static class EventManager
 				"{1} ALL STATS UP!!\n" +
 				"Grandpa's wisdom up.\n" +
 				"Grandpa's insanity down.\n" +
-				"Grandpa's insanity growth down slightly.\n" +
-				"Grandpa's pride up.\n",
+				"Grandpa's pride up.",
 				manager.PlayerFamily.Grandpa.Name, requirements.Child.Name, Convert.ToBoolean (requirements.Child.Gender) ? "her" : "him");
 		}
 		else
@@ -1252,7 +1248,7 @@ public static class EventManager
 				"Grandpa's insanity up.\n" +
 				"Grandpa's insanity growth up slightly.\n" +
 				"Grandpa's pride down slightly.\n" +
-				"Grandpa lost {1} dollars.\n",
+				"Grandpa lost {1} dollars.",
 				manager.PlayerFamily.Grandpa.Name, money_lost.ToString());
 		}
 		else 
@@ -1292,7 +1288,7 @@ public static class EventManager
 			"think the police know.\n\n" +
 			"Grandpa's insanity growth up.\n" +
 			"Grandpa's pride up.\n" +
-			"{1} pride way down!\n",
+			"{1} pride way down!",
 			manager.PlayerFamily.Grandpa.Name, requirements.Grandpa.Name);
 
 		return returnObj;
@@ -1316,7 +1312,7 @@ public static class EventManager
 				"sight, let me tell you. \n\n" +
 				"Grandpa's insanity growth up slightly.\n" +
 				"Grandpa's pride up slightly.\n" +
-				"{1} pride way down!\n",
+				"{1} pride way down!",
 				manager.PlayerFamily.Grandpa.Name, requirements.Grandpa.Name);
 		}
 		else 
@@ -1342,7 +1338,7 @@ public static class EventManager
 				"windows looking for what he called \"Battle Gear\". I have no idea what that means.\n\n" +
 				"Grandpa's insanity up.\n" +
 				"Grandpa's wisdom down.\n" +
-				"Grandpa's pride down slightly.\n",
+				"Grandpa's pride down slightly.",
 				manager.PlayerFamily.Grandpa.Name, requirements.Parent.Name);
 		}
 		else 
@@ -1372,7 +1368,7 @@ public static class EventManager
 				"Grandpa's insanity growth down.\n" +
 				"Grandpa's wisdom up.\n" +
 				"Grandpa's wisdom growth up.\n" +
-				"Grandpa's monthly income down $50.\n");
+				"Grandpa's monthly income down $50.");
 		}
 		else 
 			returnObj.Status = (int)Enums.EventOutcome.PASS_BLACKLIST_YEAR;
@@ -1398,7 +1394,7 @@ public static class EventManager
 				"He's paying them 10 dollars a month into their Collection Can.\n\n" +
 				"Grandpa's insanity up.\n" +
 				"Grandpa's wisdom down.\n" +
-				"Grandpa's monthly income down $10.\n",
+				"Grandpa's monthly income down $10.",
 				requirements.Child.Name);
 		}
 		else 
