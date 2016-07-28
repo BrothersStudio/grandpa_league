@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System;
 
 [Serializable]
@@ -10,6 +10,7 @@ public class Mail
     private Dictionary<string, int> m_date = null;
     private string m_stringDate = "";
     private bool m_read = false;
+    private string m_image = null;
 
     public Mail(string subject="", string message="", string sender="", Dictionary<string, int> date=null)
     {
@@ -31,14 +32,6 @@ public class Mail
         return this.m_stringDate;
     }
 
-
-    //public Mail(string subject = "", string message = "", string sender="", string date="")
-    //{
-    //    this.m_subject = subject;
-    //    this.m_message = message;
-    //    this.m_stringDate = date;
-    //    this.m_sender = sender;
-    //}
 
     public string Message
     {
@@ -74,5 +67,11 @@ public class Mail
     {
         get { return this.m_read; }
         set { this.m_read = value; }
+    }
+
+    public string Image
+    {
+        get { return this.m_image; }
+        set { this.m_image = value; }
     }
 }

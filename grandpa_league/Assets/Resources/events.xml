@@ -1,9 +1,13 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <events>
   <!-- for documentation concerning how to write an event check the wiki -->
   <!-- RESERVED EVENTS -->
   <event type="2" id="0" name="weekly_stat_up" description="" priority="0" chance="1" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00"/>
   <event type="2" id="1" name="trade_accept_reject" description="" priority="1" chance="1" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00"/>
+  <event type="2" id="20" name="tutorial_1" description="" priority="0" chance="1" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" day="1" month="1" year="2016"/>
+  <event type="2" id="21" name="tutorial_2" description="" priority="0" chance="1" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" day="8" month="1" year="2016"/>
+  <event type="2" id="22" name="tutorial_3" description="" priority="0" chance="1" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" day="15" month="1" year="2016"/>
+  <event type="2" id="23" name="tutorial_4" description="" priority="0" chance="1" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" day="25" month="1" year="2016"/>
   <!--<event type="0" id="10" name="test_event_hidden" description="This is a test, {0}" priority="1" month="1-2"
          chance="0" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00"/>  
   <event type="1" id="11" name="test_event_known" description="Select one {C} to do the chore {G}!" priority="2" month="12" day="0" 

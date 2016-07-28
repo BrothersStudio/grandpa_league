@@ -59,7 +59,8 @@ public static class EventManager
                                                             (int)Enums.EventType.KNOWN,
                                                             Int32.Parse(simEvent.Attribute("priority").Value),
                                                             simEvent.Attribute("month").Value,
-                                                            simEvent.Attributes("day").Count() == 0 ? 0 : Int32.Parse(simEvent.Attribute("day").Value)
+                                                            simEvent.Attributes("day").Count() == 0 ? 0 : Int32.Parse(simEvent.Attribute("day").Value),
+                                                            simEvent.Attributes("year").Count() == 0 ? 0 : Int32.Parse(simEvent.Attribute("year").Value)
                                                             ));
                     break;
                 case (int)Enums.EventType.RESERVED:
@@ -69,7 +70,10 @@ public static class EventManager
                                                             simEvent.Attribute("description").Value,
                                                             Int32.Parse(simEvent.Attribute("id").Value),
                                                             (int)Enums.EventType.RESERVED,
-                                                            Int32.Parse(simEvent.Attribute("priority").Value)
+                                                            Int32.Parse(simEvent.Attribute("priority").Value),
+                                                            simEvent.Attributes("month").Count() == 0 ? "0" : simEvent.Attribute("month").Value,
+                                                            simEvent.Attributes("day").Count() == 0 ? 0 : Int32.Parse(simEvent.Attribute("day").Value),
+                                                            simEvent.Attributes("year").Count() == 0 ? 0 : Int32.Parse(simEvent.Attribute("year").Value)
                                                             ));
                     break;
                 case (int)Enums.EventType.ABILITY:
@@ -107,7 +111,14 @@ public static class EventManager
         foreach(SimulationEvent ev in m_knownEvents)
         {
             if (ev.EventMonth == month && ev.EventDay == day)
-                eventsOnDay.Add(ev);
+                if(ev.EventYear != 0 && year == ev.EventYear)
+                    eventsOnDay.Add(ev);
+        }
+        foreach (SimulationEvent ev in m_reservedEvents)
+        {
+            if (ev.EventMonth == month && ev.EventDay == day)
+                if (ev.EventYear != 0 && year == ev.EventYear)
+                    eventsOnDay.Add(ev);
         }
         return eventsOnDay;
     }
@@ -207,31 +218,94 @@ public static class EventManager
         }
         return new Outcome((int)Enums.EventOutcome.FAILURE, "BOO!");
     }
-    
-    //NAME: Grandkid's class does some fingerpainting
- /*public static Outcome Event101(DataManager manager, Requirement requirements)
-    {
-    	int successes = 0;
-    	List<string> outcome = new List<string>();
-    	Outcome returnObj = new Outcome()
-    	
-    	if(requirements.Child.Artistry >= 65 && requirements.Child.Popularity >= 60)
-    	{
-    		successes+=2;
-    	}
-    	else if(requirements.Child.Artistry >= 60)
-    	{
-    		successes++;
-    	}
-    	
-    	if(successes >= 2)
-    	{
-            returnObj.OutcomeDescription = String.Format("Turns out { 0}");
-    	}
-    } */
 
-	// Grandpa buys a car
-	public static Outcome Event1001(DataManager manager, Requirement requirements)
+    //NAME: TUTORIAL MAIL 1
+    public static Outcome Event20(DataManager manager, Requirement requirements)
+    {
+        Outcome ret = new Outcome();
+        ret.Status = (int)Enums.EventOutcome.PASS;
+
+        ret.Mail = new Mail();
+        ret.Mail.Date = manager.Calendar.GetCurrentDay();
+        ret.Mail.Subject = "Day One";
+        ret.Mail.Sender = manager.PlayerFamily.Grandpa.Name;
+        ret.Mail.Image = "tutorial_1";
+        ret.Mail.Message = string.Format("They locked me up in here. They think I'm crazy but I know the truth! The truth about everything! They'll see...{0} will see...no one can stop me from being the best!!!\nI got the entire year planned out..much as I hate to see it go, my brain wanders at times...I've written what needs to be done on each of the green squares!! I'll need to take a closer look as those days approach. I'm currently on the red date...or was it the blue? Whichever!\nTake care of yourself.\n{1}", manager.PlayerFamily.Parents[0].Name, manager.PlayerFamily.Grandpa.Name);
+
+        return ret;
+    }
+
+    //NAME: TUTORIAL MAIL 2
+    public static Outcome Event21(DataManager manager, Requirement requirements)
+    {
+        Outcome ret = new Outcome();
+        ret.Status = (int)Enums.EventOutcome.PASS;
+
+        ret.Mail = new Mail();
+        ret.Mail.Date = manager.Calendar.GetCurrentDay();
+        ret.Mail.Subject = "Day Eight";
+        ret.Mail.Sender = manager.PlayerFamily.Grandpa.Name;
+        ret.Mail.Image = "tutorial_2";
+        ret.Mail.Message = string.Format("My damn children and grandkids are nothing but disappointments! I've about had it with those whippersnappers. I'll have to provide each with careful instruction on how to lead me to victory over these devils!...But their brains are so tiny they can only focus on one thing at a time...Damn millennials! Back in my day we had six year olds studing astrophysics in Latin, all while earning $0.62 a month.\nGod speed.\n{0}", manager.PlayerFamily.Grandpa.Name);
+
+        return ret;
+    }
+
+    //NAME: TUTORIAL MAIL 3
+    public static Outcome Event22(DataManager manager, Requirement requirements)
+    {
+        Outcome ret = new Outcome();
+        ret.Status = (int)Enums.EventOutcome.PASS;
+
+        ret.Mail = new Mail();
+        ret.Mail.Date = manager.Calendar.GetCurrentDay();
+        ret.Mail.Subject = "Day Fifteen";
+        ret.Mail.Sender = manager.PlayerFamily.Grandpa.Name;
+        ret.Mail.Image = "tutorial_3";
+        ret.Mail.Message = "Those damn commies already have a leg up on me. They're cheats, I swear it! No way they could be that proud of their snotty nosed brats. I'm gonna take this community by storm! I swear I'll win I swear I'll win I swear I'll win I swear I'll win I swear I'll win I swear I'll win I swear I'll win...";
+
+        return ret;
+    }
+
+    //NAME: TUTORIAL MAIL 4
+    public static Outcome Event23(DataManager manager, Requirement requirements)
+    {
+        Outcome ret = new Outcome();
+        ret.Status = (int)Enums.EventOutcome.PASS;
+
+        ret.Mail = new Mail();
+        ret.Mail.Date = manager.Calendar.GetCurrentDay();
+        ret.Mail.Subject = "Day Twenty Five";
+        ret.Mail.Sender = manager.PlayerFamily.Grandpa.Name;
+        ret.Mail.Image = "tutorial_4";
+        ret.Mail.Message = string.Format("That's it! I am done with {0} and {1} too! {2}'s grandson already has a full ride to Stanford and he's only {3}!!! Let's see if we can't con off these idiots to some unsuspecting losers at the adoption agency...A little cash to sweeten the pot wouldn't hurt...", manager.PlayerFamily.Children[0].Name, manager.PlayerFamily.Parents[0].Name, manager.LeagueFamilies[0].Grandpa.Name, manager.LeagueFamilies[0].Children[0].Age);
+
+        return ret;
+    }
+    //NAME: Grandkid's class does some fingerpainting
+    /*public static Outcome Event101(DataManager manager, Requirement requirements)
+       {
+           int successes = 0;
+           List<string> outcome = new List<string>();
+           Outcome returnObj = new Outcome()
+
+           if(requirements.Child.Artistry >= 65 && requirements.Child.Popularity >= 60)
+           {
+               successes+=2;
+           }
+           else if(requirements.Child.Artistry >= 60)
+           {
+               successes++;
+           }
+
+           if(successes >= 2)
+           {
+               returnObj.OutcomeDescription = String.Format("Turns out { 0}");
+           }
+       } */
+
+    // Grandpa buys a car
+    public static Outcome Event1001(DataManager manager, Requirement requirements)
 	{
 		Outcome returnObj = new Outcome();
 		if (requirements.Accept) 
