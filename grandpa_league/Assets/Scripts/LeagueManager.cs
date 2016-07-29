@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +7,7 @@ static class LeagueManager
 {
     public static void SimulateDay(DataManager manager)
     {
-        SimulateStatChanges(manager);
+        //SimulateStatChanges(manager);
         SimulateCharacterMovement(manager);
         SimulateLeagueStandings(manager);
         //ScheduleLeagueEvents(manager);            //TODO

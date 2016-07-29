@@ -9,6 +9,7 @@ public class Ability
     private string m_abilityName = "";
     private string m_abilityDescription = "";
     private int m_abilityCooldown = 0;
+    private int m_currentCooldown;
     private string m_abilityPicture = "";
     private double m_insanityCost = 0;
     private int m_moneyCost = 0;
@@ -38,6 +39,12 @@ public class Ability
     public int Cooldown
     {
         get { return this.m_abilityCooldown; }
+    }
+
+    public int CurrentCooldown
+    {
+        get { return this.m_currentCooldown; }
+        set { this.m_currentCooldown = value; }
     }
 
     public int MoneyCost

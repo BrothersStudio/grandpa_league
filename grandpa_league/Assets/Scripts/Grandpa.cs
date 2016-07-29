@@ -45,6 +45,26 @@ public class Grandpa : Character
         }
     }
 
+    public override void SetDoubleStatMultiplier(bool multiply)
+    {
+        if (multiply)
+        {
+            this.m_insanity.ValueMultiplierActive = true;
+            this.m_insanity.ValueMultiplier = 2;
+
+            this.m_wisdom.ValueMultiplierActive = true;
+            this.m_wisdom.ValueMultiplier = 2;
+        }
+        else
+        {
+            this.m_insanity.ValueMultiplierActive = false;
+            this.m_insanity.ValueMultiplier = 0;
+
+            this.m_wisdom.ValueMultiplierActive = false;
+            this.m_wisdom.ValueMultiplier = 0;
+        }
+    }
+
     public override void UpgradeRandomStatGrowth(double amt)
     {
         base.UpgradeRandomStatGrowth(amt);
@@ -72,25 +92,25 @@ public class Grandpa : Character
     public double Wisdom                                            //DEPRECATED
     {
         get { return this.m_wisdom.Value; }
-        set { this.m_wisdom.Value = value > 100 ? 100 : value; }
+        set { Globals.VerifyStat(value); this.m_wisdom.Value = value > 100 ? 100 : value; }
     }
 
     public double WisdomGrowth
     {
         get { return this.m_wisdom.GrowthRate; }
-        set { this.m_wisdom.GrowthRate = value; }
+        set { Globals.VerifyGrowth(value); this.m_wisdom.GrowthRate = value; }
     }
 
     public double Insanity                                            //DEPRECATED
     {
         get { return this.m_insanity.Value; }
-        set { this.m_insanity.Value = value > 100 ? 100 : value; }
+        set { Globals.VerifyStat(value); this.m_insanity.Value = value > 100 ? 100 : value; }
     }
 
     public double InsanityGrowth
     {
         get { return this.m_insanity.GrowthRate; }
-        set { this.m_insanity.GrowthRate = value; }
+        set { Globals.VerifyGrowth(value); this.m_insanity.GrowthRate = value; }
     }
 
     public double Money                                            //DEPRECATED

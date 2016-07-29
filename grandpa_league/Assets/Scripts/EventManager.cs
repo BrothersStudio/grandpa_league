@@ -96,6 +96,16 @@ public static class EventManager
         }
     }
 
+    public static Ability GetAbilityById(int id)
+    {
+        foreach(Ability ability in m_abilities)
+        {
+            if (ability.Event.EventId == id)
+                return ability;
+        }
+        return null;
+    }
+
     public static SimulationEvent GetRandomEvent()
     {
         int rand = Constants.RANDOM.Next(m_hiddenEvents.Count);
@@ -405,7 +415,7 @@ public static class EventManager
 			manager.Calendar.ScheduleEventInXDays(EventManager.GetEventById(61), 28);
 
 			requirements.Child.AddQualification (Qualification.GetQualificationByString ("STAT_GAINS_DOUBLED"));
-			requirements.Child.isDouble = true;
+            requirements.Child.SetDoubleStatMultiplier(true);
 
 			ret.Status = (int)Enums.EventOutcome.SUCCESS;
 			ret.OutcomeDescription = String.Format (
@@ -424,9 +434,9 @@ public static class EventManager
 		Outcome ret = new Outcome ();
 
 		requirements.Child.RemoveQualification (Qualification.GetQualificationByString ("STAT_GAINS_DOUBLED"));
-		requirements.Child.isDouble = false;
+		requirements.Child.SetDoubleStatMultiplier(false);
 
-		ret.Status = (int)Enums.EventOutcome.SUCCESS;
+        ret.Status = (int)Enums.EventOutcome.SUCCESS;
 		ret.OutcomeDescription = String.Format (
 			"{0}'s stat gains are doubled for the next month!", 
 			requirements.Child.Name);

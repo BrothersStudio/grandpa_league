@@ -4,13 +4,12 @@ using System;
 [Serializable]
 public class Character
 {
-    protected int           m_id                = -1;
-    protected string        m_name              = "";
-    protected int           m_gender            = 0;
-    protected int           m_age               = 0;
-    protected List<int>     m_qualifications    = new List<int>();
-    protected string        m_spriteName        = "default_sprite";
-	protected bool          m_isDouble          = false;
+    protected int m_id = -1;
+    protected string m_name = "";
+    protected int m_gender = 0;
+    protected int m_age = 0;
+    protected List<int> m_qualifications = new List<int>();
+    protected string m_spriteName = "default_sprite";
 
     public string SpriteName
     {
@@ -30,17 +29,11 @@ public class Character
         set { this.m_gender = value; }
     }
 
-	public int Age
-	{
-		get { return this.m_age; }
-		set { this.m_age = value; }
-	}
-
-	public bool isDouble
-	{
-		get { return this.m_isDouble; }
-		set { this.m_isDouble = value; }
-	}
+    public int Age
+    {
+        get { return this.m_age; }
+        set { this.m_age = value; }
+    }
 
     public int Id
     {
@@ -84,5 +77,6 @@ public class Character
 
     public virtual void UpgradeRandomStat(double amt) { }
     public virtual void UpgradeRandomStatGrowth(double amt) { }
+    public virtual void SetDoubleStatMultiplier(bool multiply) { }
 
 }

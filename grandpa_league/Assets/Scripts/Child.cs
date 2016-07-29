@@ -35,6 +35,44 @@ public class Child : Character
         this.UpdateValue();
     }
 
+    public override void SetDoubleStatMultiplier(bool multiply)
+    {
+        if (multiply)
+        {
+            this.m_intelligence.ValueMultiplierActive = true;
+            this.m_intelligence.ValueMultiplier = 2;
+
+            this.m_popularity.ValueMultiplierActive = true;
+            this.m_popularity.ValueMultiplier = 2;
+
+            this.m_artistry.ValueMultiplierActive = true;
+            this.m_artistry.ValueMultiplier = 2;
+
+            this.m_cuteness.ValueMultiplierActive = true;
+            this.m_cuteness.ValueMultiplier = 2;
+
+            this.m_athleticism.ValueMultiplierActive = true;
+            this.m_athleticism.ValueMultiplier = 2;
+        }
+        else
+        {
+            this.m_intelligence.ValueMultiplierActive = false;
+            this.m_intelligence.ValueMultiplier = 0;
+
+            this.m_popularity.ValueMultiplierActive = false;
+            this.m_popularity.ValueMultiplier = 0;
+
+            this.m_artistry.ValueMultiplierActive = false;
+            this.m_artistry.ValueMultiplier = 0;
+
+            this.m_cuteness.ValueMultiplierActive = false;
+            this.m_cuteness.ValueMultiplier = 0;
+
+            this.m_athleticism.ValueMultiplierActive = false;
+            this.m_athleticism.ValueMultiplier = 0;
+        }
+    }
+
     public override void UpgradeRandomStat(double amt)
     {
         base.UpgradeRandomStat(amt);
@@ -93,7 +131,7 @@ public class Child : Character
     public double Cuteness
     {
         get { return this.m_cuteness.Value;  }
-        set { this.m_cuteness.Value = value > 100 ? 100 : value; }
+        set { Globals.VerifyStat(value); this.m_cuteness.Value = value > 100 ? 100 : value; }
     }
 
     public Stat CutenessStat
@@ -106,13 +144,13 @@ public class Child : Character
     public double CutenessGrowth
     {
         get { return this.m_cuteness.GrowthRate; }
-        set { this.m_cuteness.GrowthRate = value; }
+        set { Globals.VerifyGrowth(value); this.m_cuteness.GrowthRate = value; }
     }
 
     public double Intelligence
     {
         get { return this.m_intelligence.Value; }
-        set { this.m_intelligence.Value = value > 100 ? 100 : value; }
+        set { Globals.VerifyStat(value); this.m_intelligence.Value = value > 100 ? 100 : value; }
     }
 
     public Stat IntelligenceStat
@@ -125,13 +163,13 @@ public class Child : Character
     public double IntelligenceGrowth
     {
         get { return this.m_intelligence.GrowthRate; }
-        set { this.m_intelligence.GrowthRate = value > 100 ? 100 : value; }
+        set { Globals.VerifyGrowth(value); this.m_intelligence.GrowthRate = value > 100 ? 100 : value; }
     }
 
     public double Artistry
     {
 		get { return this.m_artistry.Value; }
-		set { this.m_artistry.Value = value > 100 ? 100 : value; }
+		set { Globals.VerifyStat(value); this.m_artistry.Value = value > 100 ? 100 : value; }
     }
 
     public Stat ArtistryStat
@@ -144,13 +182,13 @@ public class Child : Character
     public double ArtistryGrowth
     {
 		get { return this.m_artistry.GrowthRate; }
-		set { this.m_artistry.GrowthRate = value; }
+		set { Globals.VerifyGrowth(value); this.m_artistry.GrowthRate = value; }
     }
 
     public double Athleticism
     {
 		get { return this.m_athleticism.Value; }
-		set { this.m_athleticism.Value = value > 100 ? 100 : value; }
+		set { Globals.VerifyStat(value); this.m_athleticism.Value = value > 100 ? 100 : value; }
     }
 
     public Stat AthleticismStat
@@ -163,13 +201,13 @@ public class Child : Character
     public double AthleticismGrowth
     {
         get { return this.m_athleticism.GrowthRate; }
-		set { this.m_athleticism.GrowthRate = value; }
+		set { Globals.VerifyGrowth(value); this.m_athleticism.GrowthRate = value; }
     }
 
     public double Popularity
     {
         get { return this.m_popularity.Value; }
-		set { this.m_popularity.Value = value > 100 ? 100 : value; }
+		set { Globals.VerifyStat(value); this.m_popularity.Value = value > 100 ? 100 : value; }
     }
 
     public Stat PopularityStat
@@ -182,7 +220,7 @@ public class Child : Character
     public double PopularityGrowth
     {
 		get { return this.m_popularity.GrowthRate; }
-		set { this.m_popularity.GrowthRate = value; }
+		set { Globals.VerifyGrowth(value); this.m_popularity.GrowthRate = value; }
     }
 
     public double Value

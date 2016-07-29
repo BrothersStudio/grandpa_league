@@ -12,8 +12,8 @@ public class Stat
     private bool m_growthBonus = false;
     private double m_growthBonusAmount = Constants.Character.GROWTH_BONUS_AMOUNT;
 
-    private bool m_valueBonus = false;
-    private double m_valueBonusAmount = 0.0;
+    private bool m_valueModifier = false;
+    private double m_valueMultiplier = 0.0;
 
     public Stat()
     {
@@ -21,7 +21,7 @@ public class Stat
 
     public double Value
     {
-        get { return this.m_valueBonus ? this.m_value + this.m_valueBonusAmount : this.m_value; }
+        get { return this.m_valueModifier ? this.m_value*m_valueMultiplier : this.m_value; }
         set { this.m_value = value; }
     }
 
@@ -55,16 +55,16 @@ public class Stat
         set {this.m_growthBonusAmount = value; }
     }
 
-    public bool ValueBonus
+    public bool ValueMultiplierActive
     {
         get { return this.m_growthBonus; }
         set { m_growthBonus = value; }
     }
 
-    public double ValueBonusAmount
+    public double ValueMultiplier
     {
-        get { return this.m_valueBonusAmount; }
-        set { this.m_valueBonusAmount = value; }
+        get { return m_valueMultiplier; }
+        set { m_valueMultiplier = value; }
     }
 }
 
