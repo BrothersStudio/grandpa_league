@@ -15,6 +15,8 @@ public class Main : MonoBehaviour {
 	private int current_month = 1;
 	private int display_month = 1;
 	public Text month_title;
+	public GameObject month_forward_button;
+	public GameObject month_back_button;
 
 	public GameObject family_panel;
 	public GameObject trading_panel;
@@ -653,6 +655,9 @@ public class Main : MonoBehaviour {
 		days [current_day].image.color = Color.red;
 
 		month_title.text = Constants.MONTH_NAMES[this.current_month];
+
+		month_back_button.SetActive(false);
+
 		HighlightKnownEvents(current_month);
 	}
 
@@ -662,13 +667,7 @@ public class Main : MonoBehaviour {
 		{
 			display_month = current_month;
 
-			for (int i = 0; i < 28; i++) 
-			{
-				days [i].image.color = Color.white;
-			}
-
-			month_title.text = Constants.MONTH_NAMES [display_month];
-			HighlightKnownEvents (display_month);
+			ChangeDisplayMonth (current_month);
 		}
 
 		if (current_day == days.Length - 1) 
@@ -687,6 +686,7 @@ public class Main : MonoBehaviour {
 		else
 		{
 			current_day++;
+			days[current_day - 1].image.color = Color.white;
 		}
         HighlightKnownEvents(current_month);
         days [current_day].image.color = Color.red;
@@ -696,13 +696,16 @@ public class Main : MonoBehaviour {
 	{
 		display_month = display_month + change;
 
-		if (display_month > 12) 
+		month_back_button.SetActive(true);
+		month_forward_button.SetActive(true);
+
+		if (display_month == 1) 
 		{
-			display_month = 1;
+			month_back_button.SetActive(false);
 		} 
-		else if (display_month < 1) 
+		else if (display_month == 12) 
 		{
-			display_month = 12;
+			month_forward_button.SetActive(false);
 		}
 
 		for (int i = 0; i < 28; i++)

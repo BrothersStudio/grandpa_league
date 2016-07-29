@@ -1212,6 +1212,8 @@ MonoBehaviour:
   - {fileID: 52205197}
   - {fileID: 715028800}
   month_title: {fileID: 2013034682}
+  month_forward_button: {fileID: 29584285}
+  month_back_button: {fileID: 1040232639}
   family_panel: {fileID: 1810429897}
   trading_panel: {fileID: 477448509}
   league_panel: {fileID: 799494477}
