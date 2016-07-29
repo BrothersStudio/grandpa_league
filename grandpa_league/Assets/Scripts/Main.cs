@@ -13,6 +13,7 @@ public class Main : MonoBehaviour {
 	public Button[] days;
 	private int current_day = 0;
 	private int current_month = 1;
+	private int display_month = 1;
 	public Text month_title;
 
 	public GameObject family_panel;
@@ -657,7 +658,19 @@ public class Main : MonoBehaviour {
 
 	public void AdvanceDayHighlight()
 	{
-		days [current_day].image.color = Color.white;
+		if (display_month != current_month) 
+		{
+			display_month = current_month;
+
+			for (int i = 0; i < 28; i++) 
+			{
+				days [i].image.color = Color.white;
+			}
+
+			month_title.text = Constants.MONTH_NAMES [display_month];
+			HighlightKnownEvents (display_month);
+		}
+
 		if (current_day == days.Length - 1) 
 		{
 			current_day = 0;
@@ -678,6 +691,32 @@ public class Main : MonoBehaviour {
         HighlightKnownEvents(current_month);
         days [current_day].image.color = Color.red;
     }
+
+	public void ChangeDisplayMonth(int change)
+	{
+		display_month = display_month + change;
+
+		if (display_month > 12) 
+		{
+			display_month = 1;
+		} 
+		else if (display_month < 1) 
+		{
+			display_month = 12;
+		}
+
+		for (int i = 0; i < 28; i++)
+		{
+			days [i].image.color = Color.white;
+		}
+
+		month_title.text = Constants.MONTH_NAMES[display_month];
+		HighlightKnownEvents (display_month);
+		if (display_month == current_month) 
+		{
+			days [current_day].image.color = Color.red;
+		}
+	}
 
     public void Save()
     {
@@ -700,15 +739,6 @@ public class Main : MonoBehaviour {
             m_dataManager = loadedManager;
         }
     }
-
-    public void ChangeDisplayMonth()
-	{
-		current_month++;
-		if (current_month > 12)
-		{
-			current_month = 1;
-		}
-	}
 
     public static DataManager GetDataManager()
     {
