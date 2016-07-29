@@ -1478,8 +1478,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 47.6, y: 189.97}
-  m_SizeDelta: {x: 170.5, y: 52}
+  m_AnchoredPosition: {x: -4.3994, y: 184.7}
+  m_SizeDelta: {x: 448.3, y: 52}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &108834001
 MonoBehaviour:
@@ -1513,7 +1513,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: League Standings
+  m_Text: Community Standings
 --- !u!222 &108834002
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6380,8 +6380,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1707659020}
   m_HandleRect: {fileID: 1707659019}
   m_Direction: 2
-  m_Value: 0.91071427
-  m_Size: 0.9999896
+  m_Value: 1
+  m_Size: 0.9999936
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -7606,7 +7606,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: aaf73147a326bde41ab03ef27a8a63a1, type: 3}
     m_FontSize: 25
     m_FontStyle: 0
     m_BestFit: 0
@@ -17482,7 +17482,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: aaf73147a326bde41ab03ef27a8a63a1, type: 3}
     m_FontSize: 25
     m_FontStyle: 0
     m_BestFit: 0
@@ -20393,6 +20393,7 @@ MonoBehaviour:
   grandpa_stat_panel: {fileID: 1139134954}
   parent_stat_panel: {fileID: 799175835}
   child_stat_panel: {fileID: 1190192105}
+  MainCanvas: {fileID: 169983688}
   insanity_sprites:
   - {fileID: 21300000, guid: 2a10ebf46e47c524d8cf26faff3c73c9, type: 3}
   - {fileID: 21300000, guid: 342c6bfd24c42eb42afcfb4f86f8fc3d, type: 3}

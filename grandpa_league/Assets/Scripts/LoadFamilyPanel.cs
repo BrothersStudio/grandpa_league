@@ -17,6 +17,8 @@ public class LoadFamilyPanel : MonoBehaviour
 	public GameObject parent_stat_panel;
 	public GameObject child_stat_panel;
 
+	public GameObject MainCanvas;
+
 	public Sprite[] insanity_sprites;
 	public Sprite[] stat_sprites;
 
@@ -24,6 +26,8 @@ public class LoadFamilyPanel : MonoBehaviour
 
 	public void DisplayFamily (Family PlayerFamily)
 	{
+		MainCanvas.GetComponent<CanvasGroup>().blocksRaycasts = false;
+
 		int family_size = PlayerFamily.FamilySize;
 
 		string family_name = PlayerFamily.FamilyName;
@@ -151,6 +155,8 @@ public class LoadFamilyPanel : MonoBehaviour
 		
 	public void RemoveFamilyPanels ()
 	{
+		MainCanvas.GetComponent<CanvasGroup>().blocksRaycasts = true;
+
 		for (int i = 0; i < prefab_content_panel_instance.Length; i++)
 		{
 			Destroy (prefab_content_panel_instance [i]);
