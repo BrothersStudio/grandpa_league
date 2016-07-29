@@ -198,7 +198,7 @@ public static class EventManager
 			"Hey Dad,\n\n\t" +
 			"Here is your social security check for the month plus a little something extra I scraped up for you. The kids are doing just fine " +
 			"and are growing so fast! You'll barely even recognize them soon (between you and me, I'm worred {0} is already getting uglier like " +
-			"Mom did. Anyway have a good month!\nTotal Amount Applied to Account: ${1}.00\n\nLove,\n{2}",
+			"Mom did). Anyway have a good month!\n\nTotal Amount Applied to Account: ${1}.00\n\nLove,\n{2}",
 			manager.PlayerFamily.Children[0].Name, manager.PlayerFamily.Grandpa.MoneyGrowth, manager.PlayerFamily.Parents[0].Name);
         return statOutcome;
     }
@@ -495,7 +495,6 @@ public static class EventManager
 				returnObj.OutcomeDescription = String.Format (
 					"That was the best vacation I've ever been on! We feel much closer as a family and the kids ran around so much " +
 					"that they're looking like buff demigods! Thanks, Grandpa!\n\n" +
-					"{0}'s popularity way up!\n" +
 					"All parents' love up!\n" +
 					"All parents' popularity up!\n" +
 					"All children's popularity up!\n" +
@@ -536,8 +535,6 @@ public static class EventManager
 			requirements.Child.Popularity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
 			requirements.Child.PopularityGrowth += Constants.Character.STANDARD_STAT_GROWTH_AMOUNT;
 
-			requirements.Child.Artistry -= Constants.Character.MINOR_STAT_CHANGE_AMOUNT;
-
 			manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
 
 			returnObj.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR;
@@ -548,7 +545,6 @@ public static class EventManager
 				"{0}'s athleticism growth up.\n" + 
 				"{0}'s popularity up.\n" +
 				"{0}'s popularity growth up.\n" + 
-				"{0}'s artistry down slightly.\n" + 
 				"Grandpa's pride up.",
 				requirements.Child.Name);
 		}
@@ -762,12 +758,12 @@ public static class EventManager
 
 			returnObj.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR;
 			returnObj.OutcomeDescription = String.Format (
-				"{1}'s son's team takes an early lead. {0} puts on a respectable display of resistance. They even put their elbow through" +
-				"Some poor kid's face! That's one for the highlight reel! Ultimately, {0} loses... But Grandpa is still proud! Maybe next year.\n\n" +
+				"{1}'s son's team takes an early lead. {0} puts on a respectable display of resistance. {2} even puts {3} elbow through " +
+				"some poor kid's face! That's one for the highlight reel! Ultimately, {0} loses... But Grandpa is still proud! Maybe next year.\n\n" +
 				"{0}'s athleticism up.\n" +
 				"{0}'s athleticism growth up slightly.\n" +
 				"Grandpa's pride way up!\n",
-				requirements.Child.Name, requirements.Grandpa.Name);
+				requirements.Child.Name, requirements.Grandpa.Name, Convert.ToBoolean(requirements.Child.Gender) ? "She" : "He"), Convert.ToBoolean(requirements.Child.Gender) ? "her" : "his");
 		} 
 		else 
 		{
@@ -1162,7 +1158,9 @@ public static class EventManager
 				requirements.Accept)) 
 			||
 			(Constants.Roll(requirements.Child.Cuteness, requirements.Child.Popularity, (int)Enums.Difficulty.EASY) && 
-				requirements.Money >= 200 && requirements.Accept)) 
+				requirements.Money >= 200 && requirements.Accept) 
+			||
+			(requirements.Money >= 500 && requirements.Accept)) 
 		{
 			requirements.Child.Popularity += Constants.Character.MAJOR_STAT_CHANGE_AMOUNT;
 			requirements.Child.PopularityGrowth += Constants.Character.MAJOR_STAT_GROWTH_AMOUNT;
@@ -1614,7 +1612,7 @@ public static class EventManager
 	public static Outcome Event1032(DataManager manager, Requirement requirements)
 	{
 		Outcome returnObj = new Outcome();
-		if (Constants.Roll(0, manager.PlayerFamily.Grandpa.Wisdom, (int)Enums.Difficulty.EASY) || 
+		if (Constants.Roll(0, manager.PlayerFamily.Grandpa.Wisdom, (int)Enums.Difficulty.STANDARD) || 
 			Constants.Roll(requirements.Child.Cuteness, requirements.Child.Popularity, (int)Enums.Difficulty.STANDARD))
 		{
 			requirements.Child.Popularity += Constants.Character.MAJOR_STAT_CHANGE_AMOUNT;
@@ -1735,7 +1733,7 @@ public static class EventManager
 	public static Outcome Event1034(DataManager manager, Requirement requirements)
 	{
 		Outcome returnObj = new Outcome();
-		if (Constants.Roll(requirements.Child.Cuteness, manager.PlayerFamily.Grandpa.Wisdom, (int)Enums.Difficulty.EASY))
+		if (Constants.Roll(requirements.Child.Cuteness, manager.PlayerFamily.Grandpa.Wisdom, (int)Enums.Difficulty.STANDARD))
 		{
 			manager.PlayerFamily.Grandpa.AddQualification (Qualification.GetQualificationByString ("ARBOR_DAY_SUCCESS"));
 		}
@@ -1774,7 +1772,7 @@ public static class EventManager
 
 			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
 			returnObj.OutcomeDescription = String.Format (
-				"Against all the laws of nature and science, after a mere two months, you and Grandpa are at the base of a towering oak staring at its leafy boughs waving wistfully " +
+				"Against all the laws of nature and science, a mere two months after Arbor Day, you and Grandpa are at the base of a towering oak staring at its leafy boughs waving wistfully " +
 				"in the summer breeze. For maybe the first time in his life, Grandpa seems speechless. \n\n" +
 				"Grandpa's wisdom up.\n" +
 				"Grandpa's pride up.");
