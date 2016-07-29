@@ -194,7 +194,12 @@ public static class EventManager
         statOutcome.Mail.Date = manager.Calendar.GetCurrentDay();
         statOutcome.Mail.Subject = "Your Social Security Check";
         statOutcome.Mail.Sender = manager.PlayerFamily.Parents[0].Name;
-        statOutcome.Mail.Message = string.Format("Hey Dad,\n\n\tHere is your social security check for the month plus a little something extra I scraped up for you. The kids are doing just fine and are growing so fast! You'll barely even recognize them soon (between you and me, I'm worred {0} is already getting uglier like Mom did. Anyway have a good month!\nTotal Amount Applied to Account: ${1}.00\n\nLove,\n{2}",manager.PlayerFamily.Children[0].Name, manager.PlayerFamily.Grandpa.MoneyGrowth, manager.PlayerFamily.Parents[0].Name);
+        statOutcome.Mail.Message = string.Format(
+			"Hey Dad,\n\n\t" +
+			"Here is your social security check for the month plus a little something extra I scraped up for you. The kids are doing just fine " +
+			"and are growing so fast! You'll barely even recognize them soon (between you and me, I'm worred {0} is already getting uglier like " +
+			"Mom did. Anyway have a good month!\nTotal Amount Applied to Account: ${1}.00\n\nLove,\n{2}",
+			manager.PlayerFamily.Children[0].Name, manager.PlayerFamily.Grandpa.MoneyGrowth, manager.PlayerFamily.Parents[0].Name);
         return statOutcome;
     }
 
@@ -260,7 +265,7 @@ public static class EventManager
         ret.Mail.Message = string.Format(
 			"My damn children and grandkids are nothing but disappointments! I've about had it with those whippersnappers. I'll have to provide each with careful " +
 			"instruction on how to lead me to victory over these other old devils! But my family's brains are like tiny hamster brains... They can only focus on one " +
-			"skill at a time by clicking on them... Damn millennials! Back in my day we had six year olds studing astrophysics in Latin, all while earning $0.62 a month.\nGod speed.\n{0}", 
+			"skill at a time by clicking on them on the Family Panel... Damn millennials! Back in my day we had six year olds studing astrophysics in Latin, all while earning $0.62 a month.\nGod speed.\n{0}", 
 			manager.PlayerFamily.Grandpa.Name);
 
         return ret;
@@ -302,6 +307,94 @@ public static class EventManager
 
         return ret;
     }
+
+	//NAME: INSANITY MAIL 1
+	public static Outcome Event40(DataManager manager, Requirement requirements)
+	{
+		Outcome ret = new Outcome ();
+		if (manager.PlayerFamily.Grandpa.Insanity > 30) 
+		{
+			ret.Status = (int)Enums.EventOutcome.PASS_BLACKLIST_FOREVER;
+
+			ret.Mail = new Mail ();
+			ret.Mail.Date = manager.Calendar.GetCurrentDay ();
+			ret.Mail.Subject = "My Mental State";
+			ret.Mail.Sender = manager.PlayerFamily.Grandpa.Name;
+			ret.Mail.Message = string.Format (
+				"It's unfortunate, but I can feel my mental state deteriorating at an alarmingly high rate. Some might say it's simply old age... But I know it's something " +
+				"they put in the water in this damned facility. That or one of my despicable rivals... I'll have to be more careful from now on...");
+		}
+		else
+			ret.Status = (int)Enums.EventOutcome.PASS;
+		
+		return ret;
+	}
+
+	//NAME: INSANITY MAIL 2
+	public static Outcome Event41(DataManager manager, Requirement requirements)
+	{
+		Outcome ret = new Outcome ();
+		if (manager.PlayerFamily.Grandpa.Insanity > 50) 
+		{
+			ret.Status = (int)Enums.EventOutcome.PASS_BLACKLIST_FOREVER;
+
+			ret.Mail = new Mail ();
+			ret.Mail.Date = manager.Calendar.GetCurrentDay ();
+			ret.Mail.Subject = "My Mental Stagqfn";
+			ret.Mail.Sender = manager.PlayerFamily.Grandpa.Name;
+			ret.Mail.Message = string.Format (
+				"I see thnigs that I shouldnt be seeing. I could pretned that I'm as sharp as I eevr was, but that would be a lie. There's moevmnet on the edge of my vision. " +
+				"I can persevrere, though... I must...");
+		}
+		else
+			ret.Status = (int)Enums.EventOutcome.PASS;
+
+		return ret;
+	}
+
+	//NAME: INSANITY MAIL 3
+	public static Outcome Event42(DataManager manager, Requirement requirements)
+	{
+		Outcome ret = new Outcome ();
+		if (manager.PlayerFamily.Grandpa.Insanity > 70) 
+		{
+			ret.Status = (int)Enums.EventOutcome.PASS_BLACKLIST_FOREVER;
+
+			ret.Mail = new Mail ();
+			ret.Mail.Date = manager.Calendar.GetCurrentDay ();
+			ret.Mail.Subject = "Mu Mengyh Stagqfn";
+			ret.Mail.Sender = manager.PlayerFamily.Grandpa.Name;
+			ret.Mail.Message = string.Format (
+				"I feel the insanity taking hold. Its cold grip. I see myself do things I would never do. Horrible things. Why is this happening? I'm afraid. I miss my wife.");
+		}
+		else
+			ret.Status = (int)Enums.EventOutcome.PASS;
+
+		return ret;
+	}
+
+	//NAME: INSANITY MAIL 4
+	public static Outcome Event43(DataManager manager, Requirement requirements)
+	{
+		Outcome ret = new Outcome ();
+		if (manager.PlayerFamily.Grandpa.Insanity > 90) 
+		{
+			ret.Status = (int)Enums.EventOutcome.PASS_BLACKLIST_FOREVER;
+
+			ret.Mail = new Mail ();
+			ret.Mail.Date = manager.Calendar.GetCurrentDay ();
+			ret.Mail.Subject = "The Grandpa League";
+			ret.Mail.Sender = manager.PlayerFamily.Grandpa.Name;
+			ret.Mail.Message = string.Format (
+				"I feel my sanity almost completely gone. Good riddance. Shackled to morality is no way to play this game. I will be at the top of the league. It is inevitable. " +
+				"All others will bow before me! Bow before Grandpa {0}!!!",
+				manager.PlayerFamily.Grandpa.Name);
+		}
+		else
+			ret.Status = (int)Enums.EventOutcome.PASS;
+
+		return ret;
+	}
     //NAME: Grandkid's class does some fingerpainting
     /*public static Outcome Event101(DataManager manager, Requirement requirements)
        {
@@ -509,7 +602,7 @@ public static class EventManager
 	public static Outcome Event1009(DataManager manager, Requirement requirements)
 	{
 		Outcome returnObj = new Outcome();
-		if (!Constants.Roll(requirements.Child.Cuteness, requirements.Child.Athleticism, (int)Enums.Difficulty.VERY_HARD))
+		if (!Constants.Roll(requirements.Child.Cuteness, requirements.Child.Athleticism, (int)Enums.Difficulty.HARD))
 		{
 			requirements.Child.RemoveQualification (Qualification.GetQualificationByString ("ON_FOOTBALL_TEAM"));
 
@@ -1448,18 +1541,27 @@ public static class EventManager
 		if (requirements.Accept)
 		{
 			manager.PlayerFamily.Grandpa.Insanity -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
-			manager.PlayerFamily.Grandpa.InsanityGrowth -= Constants.Character.STANDARD_STAT_GROWTH_AMOUNT;
 			manager.PlayerFamily.Grandpa.Wisdom += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
 			manager.PlayerFamily.Grandpa.WisdomGrowth += Constants.Character.STANDARD_STAT_GROWTH_AMOUNT;
 
 			manager.PlayerFamily.Grandpa.MoneyGrowth -= 50;
+
+			returnObj.Mail = new Mail ();
+			returnObj.Mail.Date = manager.Calendar.GetCurrentDay ();
+			returnObj.Mail.Subject = "RE: Your treatment";
+			returnObj.Mail.Sender = "Doctor Fluffernutter";
+			returnObj.Mail.Message = string.Format (
+				"Grandpa {0},\n\n\t" +
+				"Do not be concerned. You are on the road to recovery, my friend. Though I must say, your delusions about a sinister cabal of " +
+				"grandpas are most interesting to me. I was hoping I could publish them in a paper! I'll ask you to sign a form next time you're in. " +
+				"Anyway, you're going to be fine!\n\nDon't worry,\nDoctor Fluffernutter", 
+				manager.PlayerFamily.Grandpa.Name);
 
 			returnObj.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_FOREVER;
 			returnObj.OutcomeDescription = String.Format (
 				"Grandpa feels much better already! Those pesky voices are just fading into the background! There is no League. " +
 				"There is no League. There is no League.\n\n" +
 				"Grandpa's insanity down.\n" +
-				"Grandpa's insanity growth down.\n" +
 				"Grandpa's wisdom up.\n" +
 				"Grandpa's wisdom growth up.\n" +
 				"Grandpa's monthly income down $50.");
@@ -1480,6 +1582,17 @@ public static class EventManager
 			manager.PlayerFamily.Grandpa.Wisdom -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
 
 			manager.PlayerFamily.Grandpa.MoneyGrowth -= 10;
+
+			returnObj.Mail = new Mail ();
+			returnObj.Mail.Date = manager.Calendar.GetCurrentDay ();
+			returnObj.Mail.Subject = "RE: The Church of the Tin Can";
+			returnObj.Mail.Sender = "Father Cannius";
+			returnObj.Mail.Message = string.Format (
+				"Grandpa {0},\n\n\t" +
+				"I just wanted to send you a quick note to tell you that it's been a pleasure having you in our congregation these last few weeks. " +
+				"We just love your old war stories and stories about how cans were invented. Who knew! Just make sure to keep up your monthly payments! " +
+				"We are on track to build our new church entirely out of cans!\n\nCan bless,\nFather Cannius", 
+				manager.PlayerFamily.Grandpa.Name);
 
 			returnObj.Status = (int)Enums.EventOutcome.FAILURE_BLACKLIST_FOREVER;
 			returnObj.OutcomeDescription = String.Format (
@@ -1710,6 +1823,63 @@ public static class EventManager
 			"Grandpa's pride up.",
 			requirements.Grandpa.Name);
 
+		return returnObj;
+	}
+
+	// Grandpa's gone fishing
+	public static Outcome Event1037(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+		if (Constants.Roll (requirements.Child.Cuteness, manager.PlayerFamily.Grandpa.Wisdom, (int)Enums.Difficulty.STANDARD)) 
+		{	
+			manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+			requirements.Child.Popularity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+			requirements.Child.Intelligence += Constants.Character.MINOR_STAT_CHANGE_AMOUNT;
+
+			returnObj.Mail = new Mail ();
+			returnObj.Mail.Date = manager.Calendar.GetCurrentDay ();
+			returnObj.Mail.Subject = "Cancer Cure";
+			returnObj.Mail.Sender = "Steve Einstein";
+			returnObj.Mail.Message = string.Format (
+				"Grandpa {0},\n\n\t" +
+				"Let me be the first to tell you that you are being put forward as a potential nobel prize of medicine candidate. The fish you caught yesterday showed us a gene that... " +
+				"Well, it's some fancy science stuff that I'm not sure you'll understand but we have cured all cancer! Thanks to you!\n\nThank you!!!\nSteve Einstein", 
+				manager.PlayerFamily.Grandpa.Name);
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR;
+			returnObj.OutcomeDescription = String.Format (
+				"Holy cow Grandpa! That was the biggest fish I've ever seen. I couldn't believe when those park rangers rushed over to take pictures and asked to study it for research " +
+				"purposes. They say that fish could teach us to cure cancer. It's a miracle!\n\n" +
+				"{0}'s popularity up.\n" +
+				"{0}'s intelligence up slightly.\n" +
+				"Grandpa's pride up.",
+				requirements.Child.Name);
+		} 
+		else 
+		{
+			manager.PlayerFamily.Grandpa.Pride -= Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+			requirements.Child.Intelligence -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+
+			returnObj.Mail = new Mail ();
+			returnObj.Mail.Date = manager.Calendar.GetCurrentDay ();
+			returnObj.Mail.Subject = "Don't Do That";
+			returnObj.Mail.Sender = "The EPA";
+			returnObj.Mail.Message = string.Format (
+				"Grandpa {0},\n\n\t" +
+				"It has come to our attention that you poured several gallons of toxic waste into the lake. Please understand that we are very disappointed that you would choose to do that. " +
+				"Hence this strongly worded letter. We would really rather prefer you did not do that again!\n\nSincerely yours,\nThe EPA", 
+				manager.PlayerFamily.Grandpa.Name);
+
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE_BLACKLIST_YEAR;
+			returnObj.OutcomeDescription = String.Format (
+				"Grandpa, I don't think it was such a good idea to bring that barrel of toxic waste with us fishing. And when you started to fill the lake with it so all the dead fish " +
+				"rose to the surface... It really felt like cheating. My head feels woozy from those fumes still...\n\n" +
+				"{0}'s intelligence down.\n" +
+				"Grandpa's pride down.",
+				requirements.Child.Name);
+		}
 		return returnObj;
 	}
 }
