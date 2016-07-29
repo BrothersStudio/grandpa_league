@@ -101,7 +101,7 @@ public class LoadLeaguePanel : MonoBehaviour {
 		league_placement_button_prefab_list[button_inds].GetComponent<Button>().onClick.AddListener(() =>
 			{
 				family_panel.SetActive(true);
-				family_panel_content.GetComponent<LoadFamilyPanel> ().DisplayFamily (family);
+				family_panel_content.GetComponent<LoadFamilyPanel> ().DisplayFamily (family, false);
 			});
 	}
 

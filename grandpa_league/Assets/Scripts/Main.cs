@@ -587,11 +587,11 @@ public class Main : MonoBehaviour {
 	{
 		if (type == "family") 
 		{
-			family_panel.GetComponent<LoadFamilyPanel> ().DisplayFamily (m_dataManager.PlayerFamily);
+			family_panel.GetComponent<LoadFamilyPanel> ().DisplayFamily (m_dataManager.PlayerFamily, true);
 		} 
 		else if (type == "family_event") 
 		{
-			family_panel.GetComponent<LoadFamilyPanel> ().DisplayFamily (m_dataManager.PlayerFamily, true);
+			family_panel.GetComponent<LoadFamilyPanel> ().DisplayFamily (m_dataManager.PlayerFamily, true, true);
 		}
 		else if (type == "trading") 
 		{
