@@ -1,3 +1,5 @@
+#define DEBUG
+
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
@@ -11,12 +13,16 @@ public class Main : MonoBehaviour {
 	public Button[] days;
 	private int current_day = 0;
 	private int current_month = 1;
+	private int display_month = 1;
 	public Text month_title;
+	public GameObject month_forward_button;
+	public GameObject month_back_button;
 
 	public GameObject family_panel;
 	public GameObject trading_panel;
 	public GameObject league_panel;
     public GameObject mail_panel;
+	public GameObject abilities_panel;
 
     private static DataManager m_dataManager;
 
@@ -90,7 +96,10 @@ public class Main : MonoBehaviour {
         }
         this.DisplayContent("mail");
 
-		InitializeHighlight ();
+#if (DEBUG)
+        Globals.RunUnitTests();
+#endif
+        InitializeHighlight ();
 	}
 
     public void AdvanceDay()
@@ -261,7 +270,7 @@ public class Main : MonoBehaviour {
         });
     }
 		
-	private void CreateAndDisplayInputPanel(SimulationEvent ev)
+	public void CreateAndDisplayInputPanel(SimulationEvent ev)
     {
         Child selectedChild = ev.Requirements.Child;
         Parent selectedParent = ev.Requirements.Parent;
@@ -587,8 +596,12 @@ public class Main : MonoBehaviour {
 	{
 		if (type == "family") 
 		{
-			family_panel.GetComponent<LoadFamilyPanel> ().DisplayFamily (m_dataManager.PlayerFamily);
+			family_panel.GetComponent<LoadFamilyPanel> ().DisplayFamily (m_dataManager.PlayerFamily, true);
 		} 
+		else if (type == "family_event") 
+		{
+			family_panel.GetComponent<LoadFamilyPanel> ().DisplayFamily (m_dataManager.PlayerFamily, true, true);
+		}
 		else if (type == "trading") 
 		{
 			trading_panel.GetComponent<LoadTradingPanel> ().DisplayAllFamilies (m_dataManager.PlayerFamily, m_dataManager.LeagueFamilies);
@@ -601,6 +614,10 @@ public class Main : MonoBehaviour {
         {
             mail_panel.GetComponent<LoadMailPanel>().DisplayAllMail(m_dataManager.PlayerFamily.Mailbox);
         }
+		else if (type == "abilities")
+		{
+			abilities_panel.GetComponent<LoadAbilitiesPanel>().DisplayAbilities(m_dataManager);
+		}
 	}
 
 	private void HighlightKnownEvents(int month)
@@ -643,12 +660,21 @@ public class Main : MonoBehaviour {
 		days [current_day].image.color = Color.red;
 
 		month_title.text = Constants.MONTH_NAMES[this.current_month];
+
+		month_back_button.SetActive(false);
+
 		HighlightKnownEvents(current_month);
 	}
 
 	public void AdvanceDayHighlight()
 	{
-		days [current_day].image.color = Color.white;
+		if (display_month != current_month) 
+		{
+			display_month = current_month;
+
+			ChangeDisplayMonth (current_month);
+		}
+
 		if (current_day == days.Length - 1) 
 		{
 			current_day = 0;
@@ -665,10 +691,40 @@ public class Main : MonoBehaviour {
 		else
 		{
 			current_day++;
+			days[current_day - 1].image.color = Color.white;
 		}
         HighlightKnownEvents(current_month);
         days [current_day].image.color = Color.red;
     }
+
+	public void ChangeDisplayMonth(int change)
+	{
+		display_month = display_month + change;
+
+		month_back_button.SetActive(true);
+		month_forward_button.SetActive(true);
+
+		if (display_month == 1) 
+		{
+			month_back_button.SetActive(false);
+		} 
+		else if (display_month == 12) 
+		{
+			month_forward_button.SetActive(false);
+		}
+
+		for (int i = 0; i < 28; i++)
+		{
+			days [i].image.color = Color.white;
+		}
+
+		month_title.text = Constants.MONTH_NAMES[display_month];
+		HighlightKnownEvents (display_month);
+		if (display_month == current_month) 
+		{
+			days [current_day].image.color = Color.red;
+		}
+	}
 
     public void Save()
     {
@@ -691,15 +747,6 @@ public class Main : MonoBehaviour {
             m_dataManager = loadedManager;
         }
     }
-
-    public void ChangeDisplayMonth()
-	{
-		current_month++;
-		if (current_month > 12)
-		{
-			current_month = 1;
-		}
-	}
 
     public static DataManager GetDataManager()
     {

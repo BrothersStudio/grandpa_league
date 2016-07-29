@@ -16,27 +16,27 @@ static class Constants
         switch (difficulty)
         {
             case (int)Enums.Difficulty.VERY_HARD:
-                successChance = (Math.Pow(9.6, -3) * Math.Pow(inStat, 2)) - (0.46 * inStat) + Math.Pow(1.776, -15);
+                successChance = ((9.6 * Math.Pow(10, -3)) * Math.Pow(inStat, 2)) - (0.46 * inStat) + (1.776 * Math.Pow(10, -15));
                 break;
             case (int)Enums.Difficulty.HARD:
-                successChance = (Math.Pow(9.2, -3) * Math.Pow(inStat, 2)) - (0.18 * inStat) + 1;
+                successChance = (9.2 * Math.Pow(10, -3) * Math.Pow(inStat, 2)) - (0.18 * inStat) + 1;
                 break;
             case (int)Enums.Difficulty.STANDARD:
                 successChance = (0.8 * inStat) + 10;
                 break;
             case (int)Enums.Difficulty.EASY:
-                successChance = (Math.Pow(-5, -3) * Math.Pow(inStat, 2)) + (1.25 * inStat) + 20;
+                successChance = (-5 * Math.Pow(10, -3) * Math.Pow(inStat, 2)) + (1.25 * inStat) + 20;
                 break;
             case (int)Enums.Difficulty.VERY_EASY:
-                successChance = (Math.Pow(-8.2, -3) * Math.Pow(inStat, 2)) + (1.51 * inStat) + 30;
+                successChance = (-8.2 * Math.Pow(10, -3) * Math.Pow(inStat, 2)) + (1.51 * inStat) + 30;
                 break;
         }
 
         successChance += cutenessIncrease;
         int randomInt = RANDOM.Next(0, 100);
         if (successChance < randomInt)
-            return true;
-        return false;
+            return false;
+        return true;
     }
 
     public static string[] DAY_NAMES = 
@@ -71,8 +71,8 @@ static class Constants
         public const double INITIAL_MONEY = 1300;
         public const double INITIAL_INCOME = 1300;
         public const string DEFAULT_SURNAME = "Smith";
-        public const double INITIAL_WISDOM = 30;
-        public const double INITIAL_WISDOM_GROWTH = 0.03;
+        public const double INITIAL_WISDOM = 70;
+        public const double INITIAL_WISDOM_GROWTH = -0.01;
         public const double INITIAL_INSANITY = 10;
         public const double INITIAL_INSANITY_GROWTH = 0.01;
 

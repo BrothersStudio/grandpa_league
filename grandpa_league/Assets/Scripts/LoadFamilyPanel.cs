@@ -17,16 +17,24 @@ public class LoadFamilyPanel : MonoBehaviour
 	public GameObject parent_stat_panel;
 	public GameObject child_stat_panel;
 
+	public GameObject MainCanvas;
+
 	public Sprite[] insanity_sprites;
 	public Sprite[] stat_sprites;
 
 	private GameObject[] prefab_content_panel_instance;
 
-	public void DisplayFamily (Family PlayerFamily)
-	{
-		int family_size = PlayerFamily.FamilySize;
+	private bool isFromEvent = false;
 
-		string family_name = PlayerFamily.FamilyName;
+	public void DisplayFamily (Family inputFamily, bool playerFamily, bool fromEvent = false)
+	{
+		isFromEvent = fromEvent;
+		if (!isFromEvent)
+			MainCanvas.GetComponent<CanvasGroup>().blocksRaycasts = false;
+
+		int family_size = inputFamily.FamilySize;
+
+		string family_name = inputFamily.FamilyName;
 
 		// Fit scroll panel to correct size
 		float prefab_height = prefab_content_button.GetComponent<RectTransform> ().rect.height;
@@ -43,16 +51,16 @@ public class LoadFamilyPanel : MonoBehaviour
 		prefab_content_panel_instance = new GameObject[family_size];
 
 		int panel_ind = 0;
-		MakePanel (PlayerFamily.Grandpa, panel_ind, 0);
-		DisplayGrandpaPanel (PlayerFamily);
+		MakePanel (inputFamily.Grandpa, panel_ind, 0);
+		DisplayGrandpaPanel (inputFamily);
 
 		// Add character display activation to button
 		prefab_content_panel_instance[panel_ind].GetComponent<Button>().onClick.AddListener(() => 
 			{
-				DisplayGrandpaPanel (PlayerFamily);
+				DisplayGrandpaPanel (inputFamily);
 			});
 
-		foreach (Parent parent_instance in PlayerFamily.Parents) 
+		foreach (Parent parent_instance in inputFamily.Parents) 
 		{
 			panel_ind++;
 			Parent parent = parent_instance;
@@ -93,11 +101,12 @@ public class LoadFamilyPanel : MonoBehaviour
 					parent_stat_panel.transform.Find("Intelligence Bar").GetComponent<Image>().sprite = ReturnSpriteForStat(parent.Intelligence);
 					parent_stat_panel.transform.Find("Love Bar").GetComponent<Image>().sprite = ReturnSpriteForStat(parent.Love);
 
-                    AddParentFocusButtons(parent);
+					if (playerFamily)
+                    	AddParentFocusButtons(parent);
                 });
 		}
 
-		foreach (Child child_instance in PlayerFamily.Children) 
+		foreach (Child child_instance in inputFamily.Children) 
 		{
 			panel_ind++;
 			Child child = child_instance;
@@ -143,7 +152,8 @@ public class LoadFamilyPanel : MonoBehaviour
 					child_stat_panel.transform.Find("Athleticism Bar").GetComponent<Image>().sprite = ReturnSpriteForStat(child.Athleticism);
 					child_stat_panel.transform.Find("Popularity Bar").GetComponent<Image>().sprite = ReturnSpriteForStat(child.Popularity);
 
-                    AddChildFocusButtons(child);
+					if (playerFamily)
+                    	AddChildFocusButtons(child);
 				});
 		}
 
@@ -151,6 +161,9 @@ public class LoadFamilyPanel : MonoBehaviour
 		
 	public void RemoveFamilyPanels ()
 	{
+		if (!isFromEvent)
+			MainCanvas.GetComponent<CanvasGroup>().blocksRaycasts = true;
+
 		for (int i = 0; i < prefab_content_panel_instance.Length; i++)
 		{
 			Destroy (prefab_content_panel_instance [i]);
@@ -158,7 +171,7 @@ public class LoadFamilyPanel : MonoBehaviour
 		Array.Clear(prefab_content_panel_instance, 0, prefab_content_panel_instance.Length);
 	}
 
-	private void DisplayGrandpaPanel(Family PlayerFamily)
+	private void DisplayGrandpaPanel(Family inputFamily)
 	{
         grandpa_stat_panel.SetActive (true);
         parent_stat_panel.SetActive (false);
@@ -170,7 +183,7 @@ public class LoadFamilyPanel : MonoBehaviour
             qualification_panel[i].GetComponent<Image>().color = new Color(0, 0, 0, 0);
             qualification_panel[i].GetComponent<Collider2D>().enabled = false;
         }
-        List<int> visibleQuals = PlayerFamily.Grandpa.GetVisibleQualifications();
+        List<int> visibleQuals = inputFamily.Grandpa.GetVisibleQualifications();
         int num_quals = visibleQuals.Count > 6 ? 6 : visibleQuals.Count;
         for (int i = 0; i < num_quals; i++)
         {
@@ -180,12 +193,12 @@ public class LoadFamilyPanel : MonoBehaviour
             qualification_panel[i].GetComponent<Collider2D>().enabled = true;
         }
 
-		grandpa_stat_panel.transform.Find("Name").GetComponent<Text>().text = PlayerFamily.Grandpa.Name;
-		grandpa_stat_panel.transform.Find("Image").GetComponent<Image>().sprite = Resources.Load <Sprite> ("Grandpa_Sprites/" + PlayerFamily.Grandpa.SpriteName);
-		grandpa_stat_panel.transform.Find("Insanity Bar").GetComponent<Image>().sprite = ReturnSpriteForStat(PlayerFamily.Grandpa.Insanity, true);
-		grandpa_stat_panel.transform.Find("Wisdom Bar").GetComponent<Image>().sprite = ReturnSpriteForStat(PlayerFamily.Grandpa.Wisdom);
-		grandpa_stat_panel.transform.Find("Money").GetComponent<Text>().text = "Money:\n$" + PlayerFamily.Grandpa.Money;
-		grandpa_stat_panel.transform.Find("Pride").GetComponent<Text>().text = "Pride:\n" + PlayerFamily.Grandpa.Pride;
+		grandpa_stat_panel.transform.Find("Name").GetComponent<Text>().text = inputFamily.Grandpa.Name;
+		grandpa_stat_panel.transform.Find("Image").GetComponent<Image>().sprite = Resources.Load <Sprite> ("Grandpa_Sprites/" + inputFamily.Grandpa.SpriteName);
+		grandpa_stat_panel.transform.Find("Insanity Bar").GetComponent<Image>().sprite = ReturnSpriteForStat(inputFamily.Grandpa.Insanity, true);
+		grandpa_stat_panel.transform.Find("Wisdom Bar").GetComponent<Image>().sprite = ReturnSpriteForStat(inputFamily.Grandpa.Wisdom);
+		grandpa_stat_panel.transform.Find("Money").GetComponent<Text>().text = "Money:\n$" + inputFamily.Grandpa.Money;
+		grandpa_stat_panel.transform.Find("Pride").GetComponent<Text>().text = "Pride:\n" + inputFamily.Grandpa.Pride;
 	}
 
 	private void MakePanel<T>(T member, int panel_ind, int color) where T : Character

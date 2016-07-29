@@ -10,7 +10,7 @@
   <character type="0" name="Jacob" gender="0" age="6" cuteness="50" intelligence="20" artistry="50" athleticism="5" popularity="15" sprite_name="kidMale1_Scaled"/>
   <character type="0" name="Ethan" gender="0" age="16" cuteness="15" intelligence="60" artistry="40" athleticism="40" popularity="40" sprite_name="kidMale2_Scaled"/>
   <character type="0" name="Michael" gender="0" age="12" cuteness="40" intelligence="40" artistry="30" athleticism="40" popularity="50" sprite_name="kidMale3_Scaled"/>
-  <character type="0" name="Christopher" gender="0" age="10" cuteness="50" intelligence="20" artistry="60" athleticism="30" popularity="20" sprite_name="kidMale1_Scaled"/>
+  <character type="0" name="Christopher" gender="0" age="10" cuteness="40" intelligence="20" artistry="50" athleticism="50" popularity="20" sprite_name="kidMale1_Scaled"/>
   <character type="0" name="Isabella" gender="1" age="7" cuteness="50" intelligence="40" artistry="50" athleticism="10" popularity="50" sprite_name="kidFemale1_Scaled"/>
   <character type="0" name="Emma" gender="1" age="18" cuteness="25" intelligence="55" artistry="25" athleticism="10" popularity="50" sprite_name="kidFemale2_Scaled"/>
   <character type="0" name="Olivia" gender="1" age="5" cuteness="30" intelligence="20" artistry="15" athleticism="50" popularity="60" sprite_name="kidFemale3_Scaled"/>

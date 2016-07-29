@@ -40,6 +40,10 @@ public class DataManager
         this.m_playerFamily.Children.Add(CharacterManager.GetChildByName("Kevin"));
         this.m_playerFamily.Children.Add(CharacterManager.GetChildByName("Patrick"));
 
+		//this.m_abilities.Add (EventManager.GetAbilityById (60)); // Stat doubling
+		//this.m_abilities.Add (EventManager.GetAbilityById (62)); // Event replayer
+		//this.m_abilities.Add (EventManager.GetAbilityById (63)); // Child sacrifice
+
         string[] splitName = playerName.Split(' ');
         if (splitName.Length >= 2)
             this.m_playerFamily.FamilyName = splitName[splitName.Length - 1];
@@ -73,7 +77,11 @@ public class DataManager
         mail.StringDate = "January 1, 2016";
         mail.Sender = string.Format("{0} {1}", this.m_playerFamily.Parents[0].Name, this.m_playerFamily.FamilyName);
         mail.Subject = "Your new home";
-        mail.Message = string.Format("Hey Dad,\n\n\tEnjoying the new digs at the new Leagueville nursing home yet? I promise this is just a temporary situation until we can figure out why you were wandering around the neighbor's garage in the middle of the night looking for sniffles. Sniffles has been dead for 10 years, Dad. Anyways, the kids are excited to see you this weekend! Looking forward to seeing you. \n\nLove,\n{0}", this.m_playerFamily.Parents[0].Name);
+        mail.Message = string.Format(
+			"Hey Dad,\n\n\tEnjoying the new digs at the new Leagueville nursing home yet? I promise this is just a temporary " +
+			"situation until we can figure out why you were wandering around the neighbor's garage in the middle of the night " +
+			"looking for Sniffles. Sniffles has been dead for 10 years, Dad. Anyways, the kids are excited to see you this weekend! " +
+			"I'm looking forward to seeing you, too!\n\nLove,\n{0}", this.m_playerFamily.Parents[0].Name);
         return mail;
     }
 
@@ -86,6 +94,11 @@ public class DataManager
     {
         get { return this.m_league; }
     }
+
+	public List<Ability> Abilities
+	{
+		get { return this.m_abilities; }
+	}
 
     public Calendar Calendar
     {

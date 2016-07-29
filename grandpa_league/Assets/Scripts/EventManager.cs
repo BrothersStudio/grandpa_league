@@ -113,13 +113,17 @@ public static class EventManager
         foreach(SimulationEvent ev in m_knownEvents)
         {
             if (ev.EventMonth == month && ev.EventDay == day)
-                if(ev.EventYear != 0 && year == ev.EventYear)
+                if (ev.EventYear != 0 && year == ev.EventYear)
+                    eventsOnDay.Add(ev);
+                else if (ev.EventYear == 0)
                     eventsOnDay.Add(ev);
         }
         foreach (SimulationEvent ev in m_reservedEvents)
         {
             if (ev.EventMonth == month && ev.EventDay == day)
                 if (ev.EventYear != 0 && year == ev.EventYear)
+                    eventsOnDay.Add(ev);
+                else if (ev.EventYear == 0)
                     eventsOnDay.Add(ev);
         }
         return eventsOnDay;
@@ -190,7 +194,12 @@ public static class EventManager
         statOutcome.Mail.Date = manager.Calendar.GetCurrentDay();
         statOutcome.Mail.Subject = "Your Social Security Check";
         statOutcome.Mail.Sender = manager.PlayerFamily.Parents[0].Name;
-        statOutcome.Mail.Message = string.Format("Hey Dad,\n\n\tHere is your social security check for the month plus a little something extra I scraped up for you. The kids are doing just fine and are growing so fast! You'll barely even recognize them soon (between you and me, I'm worred {0} is already getting uglier like Mom did. Anyway have a good month!\nTotal Amount Applied to Account: ${1}.00\n\nLove,\n{2}",manager.PlayerFamily.Children[0].Name, manager.PlayerFamily.Grandpa.MoneyGrowth, manager.PlayerFamily.Parents[0].Name);
+        statOutcome.Mail.Message = string.Format(
+			"Hey Dad,\n\n\t" +
+			"Here is your social security check for the month plus a little something extra I scraped up for you. The kids are doing just fine " +
+			"and are growing so fast! You'll barely even recognize them soon (between you and me, I'm worred {0} is already getting uglier like " +
+			"Mom did). Anyway have a good month!\n\nTotal Amount Applied to Account: ${1}.00\n\nLove,\n{2}",
+			manager.PlayerFamily.Children[0].Name, manager.PlayerFamily.Grandpa.MoneyGrowth, manager.PlayerFamily.Parents[0].Name);
         return statOutcome;
     }
 
@@ -256,7 +265,7 @@ public static class EventManager
         ret.Mail.Message = string.Format(
 			"My damn children and grandkids are nothing but disappointments! I've about had it with those whippersnappers. I'll have to provide each with careful " +
 			"instruction on how to lead me to victory over these other old devils! But my family's brains are like tiny hamster brains... They can only focus on one " +
-			"skill at a time by clicking on them... Damn millennials! Back in my day we had six year olds studing astrophysics in Latin, all while earning $0.62 a month.\nGod speed.\n{0}", 
+			"skill at a time by clicking on them on the Family Panel... Damn millennials! Back in my day we had six year olds studing astrophysics in Latin, all while earning $0.62 a month.\nGod speed.\n{0}", 
 			manager.PlayerFamily.Grandpa.Name);
 
         return ret;
@@ -298,6 +307,171 @@ public static class EventManager
 
         return ret;
     }
+
+	//NAME: INSANITY MAIL 1
+	public static Outcome Event40(DataManager manager, Requirement requirements)
+	{
+		Outcome ret = new Outcome ();
+		if (manager.PlayerFamily.Grandpa.Insanity > 30) 
+		{
+			ret.Status = (int)Enums.EventOutcome.PASS_BLACKLIST_FOREVER;
+
+			ret.Mail = new Mail ();
+			ret.Mail.Date = manager.Calendar.GetCurrentDay ();
+			ret.Mail.Subject = "My Mental State";
+			ret.Mail.Sender = manager.PlayerFamily.Grandpa.Name;
+			ret.Mail.Message = string.Format (
+				"It's unfortunate, but I can feel my mental state deteriorating at an alarmingly high rate. Some might say it's simply old age... But I know it's something " +
+				"they put in the water in this damned facility. That or one of my despicable rivals... I'll have to be more careful from now on...");
+		}
+		else
+			ret.Status = (int)Enums.EventOutcome.PASS;
+		
+		return ret;
+	}
+
+	//NAME: INSANITY MAIL 2
+	public static Outcome Event41(DataManager manager, Requirement requirements)
+	{
+		Outcome ret = new Outcome ();
+		if (manager.PlayerFamily.Grandpa.Insanity > 50) 
+		{
+			ret.Status = (int)Enums.EventOutcome.PASS_BLACKLIST_FOREVER;
+
+			ret.Mail = new Mail ();
+			ret.Mail.Date = manager.Calendar.GetCurrentDay ();
+			ret.Mail.Subject = "My Mental Stagqfn";
+			ret.Mail.Sender = manager.PlayerFamily.Grandpa.Name;
+			ret.Mail.Message = string.Format (
+				"I see thnigs that I shouldnt be seeing. I could pretned that I'm as sharp as I eevr was, but that would be a lie. There's moevmnet on the edge of my vision. " +
+				"I can persevrere, though... I must...");
+		}
+		else
+			ret.Status = (int)Enums.EventOutcome.PASS;
+
+		return ret;
+	}
+
+	//NAME: INSANITY MAIL 3
+	public static Outcome Event42(DataManager manager, Requirement requirements)
+	{
+		Outcome ret = new Outcome ();
+		if (manager.PlayerFamily.Grandpa.Insanity > 70) 
+		{
+			ret.Status = (int)Enums.EventOutcome.PASS_BLACKLIST_FOREVER;
+
+			ret.Mail = new Mail ();
+			ret.Mail.Date = manager.Calendar.GetCurrentDay ();
+			ret.Mail.Subject = "Mu Mengyh Stagqfn";
+			ret.Mail.Sender = manager.PlayerFamily.Grandpa.Name;
+			ret.Mail.Message = string.Format (
+				"I feel the insanity taking hold. Its cold grip. I see myself do things I would never do. Horrible things. Why is this happening? I'm afraid. I miss my wife.");
+		}
+		else
+			ret.Status = (int)Enums.EventOutcome.PASS;
+
+		return ret;
+	}
+
+	//NAME: INSANITY MAIL 4
+	public static Outcome Event43(DataManager manager, Requirement requirements)
+	{
+		Outcome ret = new Outcome ();
+		if (manager.PlayerFamily.Grandpa.Insanity > 90) 
+		{
+			ret.Status = (int)Enums.EventOutcome.PASS_BLACKLIST_FOREVER;
+
+			ret.Mail = new Mail ();
+			ret.Mail.Date = manager.Calendar.GetCurrentDay ();
+			ret.Mail.Subject = "The Grandpa League";
+			ret.Mail.Sender = manager.PlayerFamily.Grandpa.Name;
+			ret.Mail.Message = string.Format (
+				"I feel my sanity almost completely gone. Good riddance. Shackled to morality is no way to play this game. I will be at the top of the league. It is inevitable. " +
+				"All others will bow before me! Bow before Grandpa {0}!!!",
+				manager.PlayerFamily.Grandpa.Name);
+		}
+		else
+			ret.Status = (int)Enums.EventOutcome.PASS;
+
+		return ret;
+	}
+
+	//ABILITY: ABILITY STAT DOUBLE START
+	public static Outcome Event60(DataManager manager, Requirement requirements)
+	{
+		Outcome ret = new Outcome ();
+		if (requirements.Accept) 
+		{
+			manager.Calendar.ScheduleEventInXDays(EventManager.GetEventById(61), 28);
+
+			requirements.Child.AddQualification (Qualification.GetQualificationByString ("STAT_GAINS_DOUBLED"));
+			requirements.Child.isDouble = true;
+
+			ret.Status = (int)Enums.EventOutcome.SUCCESS;
+			ret.OutcomeDescription = String.Format (
+				"{0}'s stat gains are doubled for the next month!", 
+				requirements.Child.Name);
+		}
+		else
+			ret.Status = (int)Enums.EventOutcome.PASS;
+
+		return ret;
+	}
+
+	//ABILITY: ABILITY STAT DOUBLE END
+	public static Outcome Event61(DataManager manager, Requirement requirements)
+	{
+		Outcome ret = new Outcome ();
+
+		requirements.Child.RemoveQualification (Qualification.GetQualificationByString ("STAT_GAINS_DOUBLED"));
+		requirements.Child.isDouble = false;
+
+		ret.Status = (int)Enums.EventOutcome.SUCCESS;
+		ret.OutcomeDescription = String.Format (
+			"{0}'s stat gains are doubled for the next month!", 
+			requirements.Child.Name);
+
+		return ret;
+	}
+
+	//ABILITY: EVENT REPLAYER
+	public static Outcome Event62(DataManager manager, Requirement requirements)
+	{
+		Outcome ret = new Outcome ();
+		if (requirements.Accept) 
+		{
+			// Schedule event from yesterday tomorrow
+
+			ret.Status = (int)Enums.EventOutcome.SUCCESS;
+			ret.OutcomeDescription = String.Format (
+				"Grandpa whips out his time machine... Let's try that event again...");
+		}
+		else
+			ret.Status = (int)Enums.EventOutcome.PASS;
+
+		return ret;
+	}
+
+	//ABILITY: CHILD SACRIFICE
+	public static Outcome Event63(DataManager manager, Requirement requirements)
+	{
+		Outcome ret = new Outcome ();
+		if (requirements.Accept) 
+		{
+			manager.PlayerFamily.Children.Remove (requirements.Child);
+
+			ret.Status = (int)Enums.EventOutcome.SUCCESS;
+			ret.OutcomeDescription = String.Format (
+				"Grandpa lets his sacrificial knife clatter to the floor. I am sorry, {0}, but it was the only way...\n\n" +
+				"{0} removed from the family!",
+				requirements.Child.Name);
+		}
+		else
+			ret.Status = (int)Enums.EventOutcome.PASS;
+
+		return ret;
+	}
+
     //NAME: Grandkid's class does some fingerpainting
     /*public static Outcome Event101(DataManager manager, Requirement requirements)
        {
@@ -398,7 +572,6 @@ public static class EventManager
 				returnObj.OutcomeDescription = String.Format (
 					"That was the best vacation I've ever been on! We feel much closer as a family and the kids ran around so much " +
 					"that they're looking like buff demigods! Thanks, Grandpa!\n\n" +
-					"{0}'s popularity way up!\n" +
 					"All parents' love up!\n" +
 					"All parents' popularity up!\n" +
 					"All children's popularity up!\n" +
@@ -430,7 +603,7 @@ public static class EventManager
 	public static Outcome Event1003(DataManager manager, Requirement requirements)
 	{
 		Outcome returnObj = new Outcome();
-		if (Constants.Roll(requirements.Child.Cuteness, requirements.Child.Athleticism, (int)Enums.Difficulty.EASY))
+		if (Constants.Roll(requirements.Child.Cuteness, requirements.Child.Athleticism, (int)Enums.Difficulty.VERY_EASY))
 		{
 			requirements.Child.AddQualification (Qualification.GetQualificationByString ("ON_FOOTBALL_TEAM"));
 
@@ -438,8 +611,6 @@ public static class EventManager
 			requirements.Child.AthleticismGrowth += Constants.Character.STANDARD_STAT_GROWTH_AMOUNT;
 			requirements.Child.Popularity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
 			requirements.Child.PopularityGrowth += Constants.Character.STANDARD_STAT_GROWTH_AMOUNT;
-
-			requirements.Child.Artistry -= Constants.Character.MINOR_STAT_CHANGE_AMOUNT;
 
 			manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
 
@@ -451,7 +622,6 @@ public static class EventManager
 				"{0}'s athleticism growth up.\n" + 
 				"{0}'s popularity up.\n" +
 				"{0}'s popularity growth up.\n" + 
-				"{0}'s artistry down slightly.\n" + 
 				"Grandpa's pride up.",
 				requirements.Child.Name);
 		}
@@ -505,7 +675,7 @@ public static class EventManager
 	public static Outcome Event1009(DataManager manager, Requirement requirements)
 	{
 		Outcome returnObj = new Outcome();
-		if (!Constants.Roll(requirements.Child.Cuteness, requirements.Child.Athleticism, (int)Enums.Difficulty.VERY_HARD))
+		if (!Constants.Roll(requirements.Child.Cuteness, requirements.Child.Athleticism, (int)Enums.Difficulty.HARD))
 		{
 			requirements.Child.RemoveQualification (Qualification.GetQualificationByString ("ON_FOOTBALL_TEAM"));
 
@@ -665,12 +835,12 @@ public static class EventManager
 
 			returnObj.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR;
 			returnObj.OutcomeDescription = String.Format (
-				"{1}'s son's team takes an early lead. {0} puts on a respectable display of resistance. They even put their elbow through" +
-				"Some poor kid's face! That's one for the highlight reel! Ultimately, {0} loses... But Grandpa is still proud! Maybe next year.\n\n" +
+				"{1}'s son's team takes an early lead. {0} puts on a respectable display of resistance. {2} even puts {3} elbow through " +
+				"some poor kid's face! That's one for the highlight reel! Ultimately, {0} loses... But Grandpa is still proud! Maybe next year.\n\n" +
 				"{0}'s athleticism up.\n" +
 				"{0}'s athleticism growth up slightly.\n" +
 				"Grandpa's pride way up!\n",
-				requirements.Child.Name, requirements.Grandpa.Name);
+				requirements.Child.Name, requirements.Grandpa.Name, Convert.ToBoolean(requirements.Child.Gender) ? "She" : "He", Convert.ToBoolean(requirements.Child.Gender) ? "her" : "his");
 		} 
 		else 
 		{
@@ -1065,7 +1235,9 @@ public static class EventManager
 				requirements.Accept)) 
 			||
 			(Constants.Roll(requirements.Child.Cuteness, requirements.Child.Popularity, (int)Enums.Difficulty.EASY) && 
-				requirements.Money >= 200 && requirements.Accept)) 
+				requirements.Money >= 200 && requirements.Accept) 
+			||
+			(requirements.Money >= 500 && requirements.Accept)) 
 		{
 			requirements.Child.Popularity += Constants.Character.MAJOR_STAT_CHANGE_AMOUNT;
 			requirements.Child.PopularityGrowth += Constants.Character.MAJOR_STAT_GROWTH_AMOUNT;
@@ -1078,7 +1250,7 @@ public static class EventManager
 			manager.PlayerFamily.Grandpa.Insanity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
 			manager.PlayerFamily.Grandpa.Money -= requirements.Money;
 
-			returnObj.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR;
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
 			returnObj.OutcomeDescription = String.Format (
 				"Holy shit. It's all kind of a blur, but that party was off the hook! Where did that elephant come from? I've never seen Grandpa dance like that. " +
 				"It's so cool that your {1} let us throw that! Can't believe Barack Obama showed up. I want to remember last night for the rest of my life. " +
@@ -1095,7 +1267,7 @@ public static class EventManager
 		{
 			requirements.Child.Popularity -= Constants.Character.MINOR_STAT_CHANGE_AMOUNT;
 
-			returnObj.Status = (int)Enums.EventOutcome.FAILURE_BLACKLIST_YEAR;
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE;
 			returnObj.OutcomeDescription = String.Format (
 				"Lame! Don't you ever have any fun? You're wrong, it would have been a totally rad party... \nSniff... \n\n" +
 				"{0}'s popularity slightly down.\n",
@@ -1113,7 +1285,7 @@ public static class EventManager
 
 			manager.PlayerFamily.Grandpa.Pride -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
 
-			returnObj.Status = (int)Enums.EventOutcome.FAILURE_BLACKLIST_YEAR;
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE;
 			returnObj.OutcomeDescription = String.Format (
 				"Well, that was the might awkward night of {0}'s life. No amount of money would have made that fun. Who let that kid throw a party? {1}'s totally a loser... And who brought " +
 				"that live tiger? Was that you, Grandpa?\n\n" +
@@ -1424,12 +1596,12 @@ public static class EventManager
 
 			returnObj.Status = (int)Enums.EventOutcome.FAILURE_BLACKLIST_YEAR;
 			returnObj.OutcomeDescription = String.Format (
-				"{1} found Grandpa wandering main street at the crack of dawn, naked as the day he was born. He was staring into " +
-				"windows looking for what he called \"Battle Gear\". I have no idea what that means.\n\n" +
+				"{0} found Grandpa wandering main street at the crack of dawn, naked as the day he was born. He was staring into " +
+				"windows looking for what he called \"Metal Gear\". I have no idea what that means.\n\n" +
 				"Grandpa's insanity up.\n" +
 				"Grandpa's wisdom down.\n" +
 				"Grandpa's pride down slightly.",
-				manager.PlayerFamily.Grandpa.Name, requirements.Parent.Name);
+				requirements.Parent.Name);
 		}
 		else 
 			returnObj.Status = (int)Enums.EventOutcome.PASS;
@@ -1444,18 +1616,27 @@ public static class EventManager
 		if (requirements.Accept)
 		{
 			manager.PlayerFamily.Grandpa.Insanity -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
-			manager.PlayerFamily.Grandpa.InsanityGrowth -= Constants.Character.STANDARD_STAT_GROWTH_AMOUNT;
 			manager.PlayerFamily.Grandpa.Wisdom += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
 			manager.PlayerFamily.Grandpa.WisdomGrowth += Constants.Character.STANDARD_STAT_GROWTH_AMOUNT;
 
 			manager.PlayerFamily.Grandpa.MoneyGrowth -= 50;
+
+			returnObj.Mail = new Mail ();
+			returnObj.Mail.Date = manager.Calendar.GetCurrentDay ();
+			returnObj.Mail.Subject = "RE: Your treatment";
+			returnObj.Mail.Sender = "Doctor Fluffernutter";
+			returnObj.Mail.Message = string.Format (
+				"Grandpa {0},\n\n\t" +
+				"Do not be concerned. You are on the road to recovery, my friend. Though I must say, your delusions about a sinister cabal of " +
+				"grandpas are most interesting to me. I was hoping I could publish them in a paper! I'll ask you to sign a form next time you're in. " +
+				"Anyway, you're going to be fine!\n\nDon't worry,\nDoctor Fluffernutter", 
+				manager.PlayerFamily.Grandpa.Name);
 
 			returnObj.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_FOREVER;
 			returnObj.OutcomeDescription = String.Format (
 				"Grandpa feels much better already! Those pesky voices are just fading into the background! There is no League. " +
 				"There is no League. There is no League.\n\n" +
 				"Grandpa's insanity down.\n" +
-				"Grandpa's insanity growth down.\n" +
 				"Grandpa's wisdom up.\n" +
 				"Grandpa's wisdom growth up.\n" +
 				"Grandpa's monthly income down $50.");
@@ -1477,6 +1658,17 @@ public static class EventManager
 
 			manager.PlayerFamily.Grandpa.MoneyGrowth -= 10;
 
+			returnObj.Mail = new Mail ();
+			returnObj.Mail.Date = manager.Calendar.GetCurrentDay ();
+			returnObj.Mail.Subject = "RE: The Church of the Tin Can";
+			returnObj.Mail.Sender = "Father Cannius";
+			returnObj.Mail.Message = string.Format (
+				"Grandpa {0},\n\n\t" +
+				"I just wanted to send you a quick note to tell you that it's been a pleasure having you in our congregation these last few weeks. " +
+				"We just love your old war stories and stories about how cans were invented. Who knew! Just make sure to keep up your monthly payments! " +
+				"We are on track to build our new church entirely out of cans!\n\nCan bless,\nFather Cannius", 
+				manager.PlayerFamily.Grandpa.Name);
+
 			returnObj.Status = (int)Enums.EventOutcome.FAILURE_BLACKLIST_FOREVER;
 			returnObj.OutcomeDescription = String.Format (
 				"Grandpa just brought over a bunch of pamphlets for The Church of the Tin Can. He's trying to get {0} to wear this weird " +
@@ -1497,7 +1689,7 @@ public static class EventManager
 	public static Outcome Event1032(DataManager manager, Requirement requirements)
 	{
 		Outcome returnObj = new Outcome();
-		if (Constants.Roll(0, manager.PlayerFamily.Grandpa.Wisdom, (int)Enums.Difficulty.EASY) || 
+		if (Constants.Roll(0, manager.PlayerFamily.Grandpa.Wisdom, (int)Enums.Difficulty.STANDARD) || 
 			Constants.Roll(requirements.Child.Cuteness, requirements.Child.Popularity, (int)Enums.Difficulty.STANDARD))
 		{
 			requirements.Child.Popularity += Constants.Character.MAJOR_STAT_CHANGE_AMOUNT;
@@ -1609,6 +1801,240 @@ public static class EventManager
 				"{1}'s popularity down slightly.\n" +
 				"Grandpa's pride down.",
 				requirements.Child.Name, requirements.Parent.Name);
+		}
+
+		return returnObj;
+	}
+
+	// Arbor Day
+	public static Outcome Event1034(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+		if (Constants.Roll(requirements.Child.Cuteness, manager.PlayerFamily.Grandpa.Wisdom, (int)Enums.Difficulty.STANDARD))
+		{
+			manager.PlayerFamily.Grandpa.AddQualification (Qualification.GetQualificationByString ("ARBOR_DAY_SUCCESS"));
+		}
+		else
+		{
+			manager.PlayerFamily.Grandpa.AddQualification (Qualification.GetQualificationByString ("ARBOR_DAY_FAILURE"));
+		}
+
+		manager.Calendar.ScheduleEventInXDays(EventManager.GetEventById(1035), 55);
+
+		requirements.Child.Intelligence += Constants.Character.MINOR_STAT_CHANGE_AMOUNT;
+
+		manager.PlayerFamily.Grandpa.Pride += Constants.Character.MINOR_PRIDE_CHANGE_AMOUNT;
+
+		returnObj.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR;
+		returnObj.OutcomeDescription = String.Format (
+			"So you see, {0}, all you need is a little love and tenderness and a metric shitload of manure and even you can grow a beautiful oak! Let's come back here in " +
+			"two months to see how the tree is coming along!\n\n" +
+			"{0}'s intelligence up slightly.\n" +
+			"Grandpa's pride up slightly.",
+			requirements.Child.Name);
+		
+		return returnObj;
+	}
+
+	// Arbor Day Result
+	public static Outcome Event1035(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+		if (manager.PlayerFamily.Grandpa.Qualifications.Contains (Qualification.GetQualificationByString ("ARBOR_DAY_SUCCESS"))) {
+			manager.PlayerFamily.Grandpa.RemoveQualification (Qualification.GetQualificationByString ("ARBOR_DAY_SUCCESS"));
+
+			manager.PlayerFamily.Grandpa.Wisdom += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+
+			manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+			returnObj.OutcomeDescription = String.Format (
+				"Against all the laws of nature and science, a mere two months after Arbor Day, you and Grandpa are at the base of a towering oak staring at its leafy boughs waving wistfully " +
+				"in the summer breeze. For maybe the first time in his life, Grandpa seems speechless. \n\n" +
+				"Grandpa's wisdom up.\n" +
+				"Grandpa's pride up.");
+		} 
+		else 
+		{
+			manager.PlayerFamily.Grandpa.RemoveQualification (Qualification.GetQualificationByString ("ARBOR_DAY_FAILURE"));
+
+			manager.PlayerFamily.Grandpa.Wisdom -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+
+			manager.PlayerFamily.Grandpa.Pride -= Constants.Character.MINOR_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE;
+			returnObj.OutcomeDescription = String.Format (
+				"The tree Grandpa planted is a shiveled husk. I've never seen a deader-looking tree in all my years on this earth. And here I thought Grandpa had a green thumb...\n\n" +
+				"Grandpa's wisdom down.\n" +
+				"Grandpa's pride down slightly.");
+		}
+
+		return returnObj;
+	}
+
+	// Fourth of July
+	public static Outcome Event1036(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+
+		requirements.Grandpa.Pride -= Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+		manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+		returnObj.Mail = new Mail();
+		returnObj.Mail.Date = manager.Calendar.GetCurrentDay();
+		returnObj.Mail.Subject = "The Display Last Night";
+		returnObj.Mail.Sender = requirements.Grandpa.Name;
+		returnObj.Mail.Message = string.Format(
+			"Grandpa {1},\n\n\t" +
+			"That was quite a display you lit up outside my house last night. Really cool, man. My son had an important meeting today, but he fell asleep halfway through it. Now he's " +
+			"fired and our house might be foreclosed on. I hope you know that you've made a powerful enemy here today. You haven't seen the last of me.\n\nFuck you,\n{0}", 
+			requirements.Grandpa.Name, manager.PlayerFamily.Grandpa.Name);
+
+		returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+		returnObj.OutcomeDescription = String.Format (
+			"That was quite a fireworks display! Right outside {0}'s house too. For two hours. At 3 AM.\n\n" +
+			"{0}'s pride down.\n" +
+			"Grandpa's pride up.",
+			requirements.Grandpa.Name);
+
+		return returnObj;
+	}
+
+	// Grandpa's gone fishing
+	public static Outcome Event1037(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+		if (Constants.Roll (requirements.Child.Cuteness, manager.PlayerFamily.Grandpa.Wisdom, (int)Enums.Difficulty.STANDARD)) 
+		{	
+			manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+			requirements.Child.Popularity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+			requirements.Child.Intelligence += Constants.Character.MINOR_STAT_CHANGE_AMOUNT;
+
+			returnObj.Mail = new Mail ();
+			returnObj.Mail.Date = manager.Calendar.GetCurrentDay ();
+			returnObj.Mail.Subject = "Cancer Cure";
+			returnObj.Mail.Sender = "Steve Einstein";
+			returnObj.Mail.Message = string.Format (
+				"Grandpa {0},\n\n\t" +
+				"Let me be the first to tell you that you are being put forward as a potential nobel prize of medicine candidate. The fish you caught yesterday showed us a gene that... " +
+				"Well, it's some fancy science stuff that I'm not sure you'll understand but we have cured all cancer! Thanks to you!\n\nThank you!!!\nSteve Einstein", 
+				manager.PlayerFamily.Grandpa.Name);
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR;
+			returnObj.OutcomeDescription = String.Format (
+				"Holy cow Grandpa! That was the biggest fish I've ever seen. I couldn't believe when those park rangers rushed over to take pictures and asked to study it for research " +
+				"purposes. They say that fish could teach us to cure cancer. It's a miracle!\n\n" +
+				"{0}'s popularity up.\n" +
+				"{0}'s intelligence up slightly.\n" +
+				"Grandpa's pride up.",
+				requirements.Child.Name);
+		} 
+		else 
+		{
+			manager.PlayerFamily.Grandpa.Pride -= Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+			requirements.Child.Intelligence -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+
+			returnObj.Mail = new Mail ();
+			returnObj.Mail.Date = manager.Calendar.GetCurrentDay ();
+			returnObj.Mail.Subject = "Don't Do That";
+			returnObj.Mail.Sender = "The EPA";
+			returnObj.Mail.Message = string.Format (
+				"Grandpa {0},\n\n\t" +
+				"It has come to our attention that you poured several gallons of toxic waste into the lake. Please understand that we are very disappointed that you would choose to do that. " +
+				"Hence this strongly worded letter. We would really rather prefer you did not do that again!\n\nSincerely yours,\nThe EPA", 
+				manager.PlayerFamily.Grandpa.Name);
+
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE_BLACKLIST_YEAR;
+			returnObj.OutcomeDescription = String.Format (
+				"Grandpa, I don't think it was such a good idea to bring that barrel of toxic waste with us fishing. And when you started to fill the lake with it so all the dead fish " +
+				"rose to the surface... It really felt like cheating. My head feels woozy from those fumes still...\n\n" +
+				"{0}'s intelligence down.\n" +
+				"Grandpa's pride down.",
+				requirements.Child.Name);
+		}
+		return returnObj;
+	}
+
+	// April Fools
+	public static Outcome Event1038(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+
+		requirements.Grandpa.Pride -= Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+		manager.PlayerFamily.Grandpa.Insanity += Constants.Character.MINOR_STAT_CHANGE_AMOUNT;
+		manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+		returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+		returnObj.OutcomeDescription = String.Format (
+			"Ha! I took all the air out of {0}'s car's tires! Best prank ever! Then I rolled his car off a cliff! Got him!\n\n" +
+			"{0}'s pride down.\n" +
+			"Grandpa's insanity up slightly.\n" +
+			"Grandpa's pride up.",
+			requirements.Grandpa.Name);
+		return returnObj;
+	}
+
+
+	// Parent promotion
+	public static Outcome Event1039(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+
+		if (Constants.Roll (0, requirements.Parent.Intelligence, (int)Enums.Difficulty.EASY)) 
+		{
+			requirements.Parent.Intelligence += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+			requirements.Parent.Popularity += Constants.Character.MINOR_STAT_CHANGE_AMOUNT;
+
+			manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_FOREVER;
+			returnObj.OutcomeDescription = String.Format (
+				"{0} has been putting in the long hours down at the toothpaste factory and it's finally paying off! {1} boss is promoting {2} " +
+				"to Chief Regional Cap Screwer! What an honor.\n\n" +
+				"{0}'s intelligence up.\n" +
+				"{0}'s popularity up slightly.\n" +
+				"Grandpa's pride up.",
+				requirements.Parent.Name, Convert.ToBoolean (requirements.Parent.Gender) ? "Her" : "His", Convert.ToBoolean (requirements.Parent.Gender) ? "her" : "him");
+		}
+		else
+			returnObj.Status = (int)Enums.EventOutcome.PASS;
+		
+		return returnObj;
+	}
+
+	// Parent catches coworker stealing
+	public static Outcome Event1040(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+
+		if (requirements.Accept) 
+		{
+			requirements.Parent.Popularity -= Constants.Character.MAJOR_STAT_CHANGE_AMOUNT;
+
+			manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR;
+			returnObj.OutcomeDescription = String.Format (
+				"\"STOP, THIEF,\" {0} yells! The thief stops dead in their tracks, pencils spilling out of their pocket. \"Wha-what?\" they mutter. But it's " +
+				"too late. The work cops are already handcuffing the thief. They'll be going away for a long, long time.\n\n" +
+				"{0}'s popularity way down!\n" +
+				"Grandpa's pride up.",
+				requirements.Parent.Name);
+		}
+		else
+		{
+			requirements.Parent.Popularity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR;
+			returnObj.OutcomeDescription = String.Format (
+				"\"H-hey,\" {0} says as the thief turns to look at {1}. \"Cool stealing.\" {0} gives the thief a thumbs up, hands shaking. \"Wow, didn't realize you were " +
+				"so cool, {0},\" the thief says. Nice!\n\n" +
+				"{0}'s popularity up.",
+				requirements.Parent.Name, Convert.ToBoolean (requirements.Parent.Gender) ? "her" : "him");
 		}
 
 		return returnObj;

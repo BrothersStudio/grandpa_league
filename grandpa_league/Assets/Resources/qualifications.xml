@@ -7,4 +7,7 @@
   <qualification name="ON_SOCCER_TEAM"      id="4"    hidden="false"  display_name="On the soccer team!" />
   <qualification name="ILLEGAL_GEAR"        id="5"    hidden="false"  display_name="Currently equipt with illegal cambodian gear"/>
   <qualification name="IN_PLAY"             id="6"    hidden="false"  display_name="Involved in the school play" />
+  <qualification name="ARBOR_DAY_SUCCESS"   id="7"    hidden="true"   display_name="" />
+  <qualification name="ARBOR_DAY_FAILURE"   id="8"    hidden="true"   display_name="" />
+  <qualification name="STAT_GAINS_DOUBLED"  id="9"    hidden="false"  display_name="Stat gains are doubled" />
 </qualifications>
