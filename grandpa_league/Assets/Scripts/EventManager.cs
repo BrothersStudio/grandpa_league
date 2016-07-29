@@ -527,7 +527,7 @@ public static class EventManager
 	public static Outcome Event1003(DataManager manager, Requirement requirements)
 	{
 		Outcome returnObj = new Outcome();
-		if (Constants.Roll(requirements.Child.Cuteness, requirements.Child.Athleticism, (int)Enums.Difficulty.EASY))
+		if (Constants.Roll(requirements.Child.Cuteness, requirements.Child.Athleticism, (int)Enums.Difficulty.VERY_EASY))
 		{
 			requirements.Child.AddQualification (Qualification.GetQualificationByString ("ON_FOOTBALL_TEAM"));
 

@@ -589,6 +589,10 @@ public class Main : MonoBehaviour {
 		{
 			family_panel.GetComponent<LoadFamilyPanel> ().DisplayFamily (m_dataManager.PlayerFamily);
 		} 
+		else if (type == "family_event") 
+		{
+			family_panel.GetComponent<LoadFamilyPanel> ().DisplayFamily (m_dataManager.PlayerFamily, true);
+		}
 		else if (type == "trading") 
 		{
 			trading_panel.GetComponent<LoadTradingPanel> ().DisplayAllFamilies (m_dataManager.PlayerFamily, m_dataManager.LeagueFamilies);

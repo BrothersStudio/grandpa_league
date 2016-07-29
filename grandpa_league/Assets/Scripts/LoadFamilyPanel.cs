@@ -24,9 +24,13 @@ public class LoadFamilyPanel : MonoBehaviour
 
 	private GameObject[] prefab_content_panel_instance;
 
-	public void DisplayFamily (Family PlayerFamily)
+	private bool isFromEvent = false;
+
+	public void DisplayFamily (Family PlayerFamily, bool fromEvent = false)
 	{
-		MainCanvas.GetComponent<CanvasGroup>().blocksRaycasts = false;
+		isFromEvent = fromEvent;
+		if (!isFromEvent)
+			MainCanvas.GetComponent<CanvasGroup>().blocksRaycasts = false;
 
 		int family_size = PlayerFamily.FamilySize;
 
@@ -155,7 +159,8 @@ public class LoadFamilyPanel : MonoBehaviour
 		
 	public void RemoveFamilyPanels ()
 	{
-		MainCanvas.GetComponent<CanvasGroup>().blocksRaycasts = true;
+		if (!isFromEvent)
+			MainCanvas.GetComponent<CanvasGroup>().blocksRaycasts = true;
 
 		for (int i = 0; i < prefab_content_panel_instance.Length; i++)
 		{
