@@ -65,6 +65,9 @@ public class Main : MonoBehaviour {
     public GameObject ResumeButton;
     public GameObject QuitButton;
 
+    public Camera SceneCamera;
+    private SoundEffectPlayer getAudioComponent;
+
     bool userInputting = false;
 
 	public void Awake()
@@ -224,11 +227,13 @@ public class Main : MonoBehaviour {
             //EXECUTE THE EVENT
             Outcome eventOutcome = ev.RunEvent(m_dataManager);
 
+            
             //send mail to mail panel using eventOutcome.Mail
             if (eventOutcome.Mail != null)
             {
                 m_dataManager.PlayerFamily.Mailbox.Insert(0, eventOutcome.Mail);
                 this.DisplayContent("mail");
+ 
             }
 
             //CHECK THE OUTCOME
