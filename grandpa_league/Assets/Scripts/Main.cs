@@ -94,6 +94,7 @@ public class Main : MonoBehaviour {
             m_dataManager = new DataManager(PlayerPrefs.GetString("name"));
             PlayerPrefs.DeleteKey("name");
         }
+
         this.DisplayContent("mail");
 
 #if (DEBUG)
