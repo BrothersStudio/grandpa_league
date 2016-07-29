@@ -22,7 +22,7 @@
   <!-- <event type="0" id="101" name="Fingerpainting 101" description="{0}'s kindergarten class had a day of finger painting during class today!" priority="1" chance="0.005" req_children="11" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" month="9-12" age="5-6" /> -->
 
   <event type="0" id="1001" name="Grandpa buys a car" description="{G} is tired of seeing {P} drive that old beater around. Wouldn't you like a nice, new car? Now, how much to spend...?" priority="1" chance="0.0005" req_children="00" req_parent="11" req_grandpa="00" req_money="01" req_accept="01"/>
-  <event type="0" id="1002" name="Grandpa's vacation" description="{G} wants the family to have a nice, relaxing vacation. The more you spend, the better the vacation will be!" priority="1" chance="0.002" req_children="11" req_parent="11" req_grandpa="00" req_money="01" req_accept="01"/>
+  <event type="0" id="1002" name="Grandpa's vacation" description="{G} wants the family to have a nice, relaxing vacation. The more you spend, the better the vacation will be!" priority="1" chance="0.002" req_children="11" req_parent="11" req_grandpa="00" req_money="01" req_accept="01" month="7" day="20" />
   <event type="0" id="1004" name="Grandpa's social security" description="" priority="1" chance="0.005" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00"/>
   <event type="0" id="1007" name="Grandpa finds buried gold" description="" priority="1" chance="0.005" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00"/>
   <event type="0" id="1008" name="Grandkid is dating head cheerleader" description="" priority="1" chance="0.05" req_children="11" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" qualification="ON_FOOTBALL_TEAM"/>
@@ -48,6 +48,8 @@
   <event type="0" id="1031" name="Grandpa joins a cult" description="" priority="1" chance="0.001" req_children="11" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" />  
   <event type="0" id="1035" name="Arbor Day Result" description="" priority="1" chance="0" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" />  
   <event type="0" id="1037" name="Grandpa goes fishing" description="Ahh, the summer is the perfect time for the most stereotypical grandpa activity there is. Fishing! I should take one of the kids!" priority="1" chance="0.05" req_children="01" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" month="6" day="0" />  
+  <event type="0" id="1039" name="Parent gets promotion" description="" priority="1" chance="0.01" req_children="00" req_parent="11" req_grandpa="00" req_money="00" req_accept="00" />  
+  <event type="0" id="1040" name="{P} is dusting the files at work when they see a coworker stuff a handful of pencils into their pocket. Stealing! At work! Should you turn them in...?" description="" priority="1" chance="0.01" req_children="00" req_parent="11" req_grandpa="00" req_money="00" req_accept="01" />    
   
   <!-- KNOWN EVENTS req_ of the form 1=true, 0=false, [RANDOM][REQUIRED]-->
   

@@ -1173,7 +1173,7 @@ public static class EventManager
 			manager.PlayerFamily.Grandpa.Insanity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
 			manager.PlayerFamily.Grandpa.Money -= requirements.Money;
 
-			returnObj.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR;
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
 			returnObj.OutcomeDescription = String.Format (
 				"Holy shit. It's all kind of a blur, but that party was off the hook! Where did that elephant come from? I've never seen Grandpa dance like that. " +
 				"It's so cool that your {1} let us throw that! Can't believe Barack Obama showed up. I want to remember last night for the rest of my life. " +
@@ -1190,7 +1190,7 @@ public static class EventManager
 		{
 			requirements.Child.Popularity -= Constants.Character.MINOR_STAT_CHANGE_AMOUNT;
 
-			returnObj.Status = (int)Enums.EventOutcome.FAILURE_BLACKLIST_YEAR;
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE;
 			returnObj.OutcomeDescription = String.Format (
 				"Lame! Don't you ever have any fun? You're wrong, it would have been a totally rad party... \nSniff... \n\n" +
 				"{0}'s popularity slightly down.\n",
@@ -1208,7 +1208,7 @@ public static class EventManager
 
 			manager.PlayerFamily.Grandpa.Pride -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
 
-			returnObj.Status = (int)Enums.EventOutcome.FAILURE_BLACKLIST_YEAR;
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE;
 			returnObj.OutcomeDescription = String.Format (
 				"Well, that was the might awkward night of {0}'s life. No amount of money would have made that fun. Who let that kid throw a party? {1}'s totally a loser... And who brought " +
 				"that live tiger? Was that you, Grandpa?\n\n" +
@@ -1898,6 +1898,68 @@ public static class EventManager
 			"Grandpa's insanity up slightly.\n" +
 			"Grandpa's pride up.",
 			requirements.Grandpa.Name);
+		return returnObj;
+	}
+
+
+	// Parent promotion
+	public static Outcome Event1039(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+
+		if (Constants.Roll (0, requirements.Parent.Intelligence, (int)Enums.Difficulty.EASY)) 
+		{
+			requirements.Parent.Intelligence += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+			requirements.Parent.Popularity += Constants.Character.MINOR_STAT_CHANGE_AMOUNT;
+
+			manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_FOREVER;
+			returnObj.OutcomeDescription = String.Format (
+				"{0} has been putting in the long hours down at the toothpaste factory and it's finally paying off! {1} boss is promoting {2} " +
+				"to Chief Regional Cap Screwer! What an honor.\n\n" +
+				"{0}'s intelligence up.\n" +
+				"{0}'s popularity up slightly.\n" +
+				"Grandpa's pride up.",
+				requirements.Parent.Name, Convert.ToBoolean (requirements.Child.Gender) ? "Her" : "His", Convert.ToBoolean (requirements.Child.Gender) ? "her" : "him");
+		}
+		else
+			returnObj.Status = (int)Enums.EventOutcome.PASS;
+		
+		return returnObj;
+	}
+
+	// Parent catches coworker stealing
+	public static Outcome Event1040(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+
+		if (requirements.Accept) 
+		{
+			requirements.Parent.Popularity -= Constants.Character.MAJOR_STAT_CHANGE_AMOUNT;
+
+			manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR;
+			returnObj.OutcomeDescription = String.Format (
+				"\"STOP, THIEF,\" {0} yells! The thief stops dead in their tracks, pencils spilling out of their pocket. \"Wha-what?\" they mutter. But it's " +
+				"too late. The work cops are already handcuffing the thief. They'll be going away for a long, long time.\n\n" +
+				"{0}'s popularity way down!\n" +
+				"Grandpa's pride up.",
+				requirements.Parent.Name);
+		}
+		else
+		{
+			requirements.Parent.Popularity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR;
+			returnObj.OutcomeDescription = String.Format (
+				"\"H-hey,\" {0} says as the thief turns to look at {1}. \"Cool stealing.\" {0} gives the thief a thumbs up, hands shaking. \"Wow, didn't realize you were " +
+				"so cool, {0},\" the thief says. Nice!\n\n" +
+				"{0}'s popularity up.",
+				requirements.Parent.Name, Convert.ToBoolean (requirements.Child.Gender) ? "her" : "him");
+		}
+
 		return returnObj;
 	}
 }
