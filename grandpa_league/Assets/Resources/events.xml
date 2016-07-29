@@ -12,6 +12,10 @@
   <event type="0" id="41" name="Insanity Stage 50" description="" priority="0" chance="0.1" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" />
   <event type="0" id="42" name="Insanity Stage 70" description="" priority="0" chance="0.1" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" />
   <event type="0" id="43" name="Insanity Stage 90" description="" priority="0" chance="0.1" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" />
+  <event type="3" id="60" ability_name="Ability: Stat Gains Doubled" ability_description="Choose a child to gain double bonuses to all stat gains for one month!" cooldown="56" picture="" insanity_cost="5" money_cost="0" name="Stat Gains Doubled" description="Choose a child to gain double bonuses to all stat gains for one month!" req_children="01" req_parent="00" req_grandpa="00" req_money="00" req_accept="01" />
+  <event type="0" id="61" name="Ability: Stat double end" description="" priority="0" chance="0" req_children="11" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" qualification="STAT_GAINS_DOUBLED" />
+  <event type="3" id="62" ability_name="Ability: Event Replayer" ability_description="Well that event yesterday didn't go well! Fortunately, I can replay it! For a price..." cooldown="28" picture="" insanity_cost="5" money_cost="5000" name="Event Replayer" description="Well that event yesterday didn't go well! Fortunately, I can replay it! For a price..." req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="01" />    
+  <event type="3" id="63" ability_name="Ability: Child Sacrifice" ability_description="I can feel the grip of insanity upon me. I can sharply reduce my sanity for a sacrifice. A very high price to a very old god." cooldown="168" picture="" insanity_cost="0" money_cost="0" name="Child Sacrifice" description="I can feel the grip of insanity upon me. I can sharply reduce my sanity for a sacrifice. A very high price to a very old god." req_children="01" req_parent="00" req_grandpa="00" req_money="00" req_accept="01" />    
   
   <!--<event type="0" id="10" name="test_event_hidden" description="This is a test, {0}" priority="1" month="1-2"
          chance="0" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00"/>  
@@ -22,7 +26,7 @@
   <!-- <event type="0" id="101" name="Fingerpainting 101" description="{0}'s kindergarten class had a day of finger painting during class today!" priority="1" chance="0.005" req_children="11" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" month="9-12" age="5-6" /> -->
 
   <event type="0" id="1001" name="Grandpa buys a car" description="{G} is tired of seeing {P} drive that old beater around. Wouldn't you like a nice, new car? Now, how much to spend...?" priority="1" chance="0.0005" req_children="00" req_parent="11" req_grandpa="00" req_money="01" req_accept="01"/>
-  <event type="0" id="1002" name="Grandpa's vacation" description="{G} wants the family to have a nice, relaxing vacation. The more you spend, the better the vacation will be!" priority="1" chance="0.002" req_children="11" req_parent="11" req_grandpa="00" req_money="01" req_accept="01"/>
+  <event type="0" id="1002" name="Grandpa's vacation" description="{G} wants the family to have a nice, relaxing vacation. The more you spend, the better the vacation will be!" priority="1" chance="0.002" req_children="11" req_parent="11" req_grandpa="00" req_money="01" req_accept="01" month="7" day="20" />
   <event type="0" id="1004" name="Grandpa's social security" description="" priority="1" chance="0.005" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00"/>
   <event type="0" id="1007" name="Grandpa finds buried gold" description="" priority="1" chance="0.005" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00"/>
   <event type="0" id="1008" name="Grandkid is dating head cheerleader" description="" priority="1" chance="0.05" req_children="11" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" qualification="ON_FOOTBALL_TEAM"/>
@@ -48,6 +52,8 @@
   <event type="0" id="1031" name="Grandpa joins a cult" description="" priority="1" chance="0.001" req_children="11" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" />  
   <event type="0" id="1035" name="Arbor Day Result" description="" priority="1" chance="0" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" />  
   <event type="0" id="1037" name="Grandpa goes fishing" description="Ahh, the summer is the perfect time for the most stereotypical grandpa activity there is. Fishing! I should take one of the kids!" priority="1" chance="0.05" req_children="01" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" month="6" day="0" />  
+  <event type="0" id="1039" name="Parent gets promotion" description="" priority="1" chance="0.01" req_children="00" req_parent="11" req_grandpa="00" req_money="00" req_accept="00" />  
+  <event type="0" id="1040" name="{P} is dusting the files at work when they see a coworker stuff a handful of pencils into their pocket. Stealing! At work! Should you turn them in...?" description="" priority="1" chance="0.01" req_children="00" req_parent="11" req_grandpa="00" req_money="00" req_accept="01" />    
   
   <!-- KNOWN EVENTS req_ of the form 1=true, 0=false, [RANDOM][REQUIRED]-->
   
