@@ -1921,7 +1921,7 @@ public static class EventManager
 				"{0}'s intelligence up.\n" +
 				"{0}'s popularity up slightly.\n" +
 				"Grandpa's pride up.",
-				requirements.Parent.Name, Convert.ToBoolean (requirements.Child.Gender) ? "Her" : "His", Convert.ToBoolean (requirements.Child.Gender) ? "her" : "him");
+				requirements.Parent.Name, Convert.ToBoolean (requirements.Parent.Gender) ? "Her" : "His", Convert.ToBoolean (requirements.Parent.Gender) ? "her" : "him");
 		}
 		else
 			returnObj.Status = (int)Enums.EventOutcome.PASS;
@@ -1957,7 +1957,7 @@ public static class EventManager
 				"\"H-hey,\" {0} says as the thief turns to look at {1}. \"Cool stealing.\" {0} gives the thief a thumbs up, hands shaking. \"Wow, didn't realize you were " +
 				"so cool, {0},\" the thief says. Nice!\n\n" +
 				"{0}'s popularity up.",
-				requirements.Parent.Name, Convert.ToBoolean (requirements.Child.Gender) ? "her" : "him");
+				requirements.Parent.Name, Convert.ToBoolean (requirements.Parent.Gender) ? "her" : "him");
 		}
 
 		return returnObj;
