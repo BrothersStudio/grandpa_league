@@ -1163,6 +1163,7 @@ MonoBehaviour:
   SaveButton: {fileID: 1707019127}
   ResumeButton: {fileID: 2001787769}
   QuitButton: {fileID: 299690296}
+  SceneCamera: {fileID: 844725693}
 --- !u!4 &87242171
 Transform:
   m_ObjectHideFlags: 0
@@ -2618,10 +2619,9 @@ Transform:
   m_LocalPosition: {x: -466.5, y: -262.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children:
-  - {fileID: 702909308}
+  m_Children: []
   m_Father: {fileID: 844725689}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!1 &202383450
 GameObject:
   m_ObjectHideFlags: 0
@@ -6381,7 +6381,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1707659019}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.9999941
+  m_Size: 0.9999956
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -7942,6 +7942,7 @@ GameObject:
   - 82: {fileID: 702909311}
   - 82: {fileID: 702909310}
   - 82: {fileID: 702909309}
+  - 82: {fileID: 702909312}
   m_Layer: 5
   m_Name: FxPlayer
   m_TagString: Untagged
@@ -7956,11 +7957,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 702909307}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -466.5, y: -262.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
-  m_Father: {fileID: 190710751}
+  m_Father: {fileID: 844725689}
   m_RootOrder: 0
 --- !u!82 &702909309
 AudioSource:
@@ -8138,6 +8139,81 @@ AudioSource:
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+--- !u!82 &702909312
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 702909307}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 24385670, guid: 56e339b424c02704294a5bfa12078899,
+    type: 2}
+  m_audioClip: {fileID: 8300000, guid: 821e680474a40e84abcf2ff92eaf51ec, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 1
+  BypassListenerEffects: 0
+  BypassReverbZones: 1
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -9832,6 +9908,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
+  - {fileID: 702909308}
   - {fileID: 190710751}
   m_Father: {fileID: 636275548}
   m_RootOrder: 0
@@ -9920,6 +9997,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 17f280c8dc8dc154b932649a72cc0f5e, type: 3}
   - {fileID: 8300000, guid: d66259d3a20f4a842a64450247365486, type: 3}
   clickSource: {fileID: 702909311}
+  mail: {fileID: 8300000, guid: 821e680474a40e84abcf2ff92eaf51ec, type: 3}
+  mailSource: {fileID: 702909311}
 --- !u!1 &846429499
 GameObject:
   m_ObjectHideFlags: 0
