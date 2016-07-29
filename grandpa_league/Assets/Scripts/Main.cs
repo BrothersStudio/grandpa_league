@@ -262,7 +262,7 @@ public class Main : MonoBehaviour {
         });
     }
 		
-	private void CreateAndDisplayInputPanel(SimulationEvent ev)
+	public void CreateAndDisplayInputPanel(SimulationEvent ev)
     {
         Child selectedChild = ev.Requirements.Child;
         Parent selectedParent = ev.Requirements.Parent;
@@ -608,7 +608,7 @@ public class Main : MonoBehaviour {
         }
 		else if (type == "abilities")
 		{
-			abilities_panel.GetComponent<LoadAbilitiesPanel>().DisplayAbilities(m_dataManager.PlayerFamily);
+			abilities_panel.GetComponent<LoadAbilitiesPanel>().DisplayAbilities(m_dataManager);
 		}
 	}
 

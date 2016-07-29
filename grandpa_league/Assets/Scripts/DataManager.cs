@@ -91,6 +91,11 @@ public class DataManager
         get { return this.m_league; }
     }
 
+	public List<Ability> Abilities
+	{
+		get { return this.m_abilities; }
+	}
+
     public Calendar Calendar
     {
         get { return this.m_currentCalendar; }
