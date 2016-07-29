@@ -103,6 +103,14 @@ public class Main : MonoBehaviour {
     public void AdvanceDay()
     {
         StartCoroutine(SimulateDay());
+
+        foreach(Ability abilities in m_dataManager.Abilities)
+        {
+            if(abilities.CurrentCooldown > 0)
+            {
+                abilities.CurrentCooldown--;
+            }
+        }
     }
 
     public IEnumerator SimulateDay()
