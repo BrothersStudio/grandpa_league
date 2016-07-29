@@ -763,7 +763,7 @@ public static class EventManager
 				"{0}'s athleticism up.\n" +
 				"{0}'s athleticism growth up slightly.\n" +
 				"Grandpa's pride way up!\n",
-				requirements.Child.Name, requirements.Grandpa.Name, Convert.ToBoolean(requirements.Child.Gender) ? "She" : "He"), Convert.ToBoolean(requirements.Child.Gender) ? "her" : "his");
+				requirements.Child.Name, requirements.Grandpa.Name, Convert.ToBoolean(requirements.Child.Gender) ? "She" : "He", Convert.ToBoolean(requirements.Child.Gender) ? "her" : "his");
 		} 
 		else 
 		{
@@ -1878,6 +1878,26 @@ public static class EventManager
 				"Grandpa's pride down.",
 				requirements.Child.Name);
 		}
+		return returnObj;
+	}
+
+	// April Fools
+	public static Outcome Event1038(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+
+		requirements.Grandpa.Pride -= Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+		manager.PlayerFamily.Grandpa.Insanity += Constants.Character.MINOR_STAT_CHANGE_AMOUNT;
+		manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+		returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+		returnObj.OutcomeDescription = String.Format (
+			"Ha! I took all the air out of {0}'s car's tires! Best prank ever! Then I rolled his car off a cliff! Got him!\n\n" +
+			"{0}'s pride down.\n" +
+			"Grandpa's insanity up slightly.\n" +
+			"Grandpa's pride up.",
+			requirements.Grandpa.Name);
 		return returnObj;
 	}
 }
