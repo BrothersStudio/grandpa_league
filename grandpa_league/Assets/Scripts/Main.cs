@@ -19,6 +19,7 @@ public class Main : MonoBehaviour {
 	public GameObject trading_panel;
 	public GameObject league_panel;
     public GameObject mail_panel;
+	public GameObject abilities_panel;
 
     private static DataManager m_dataManager;
 
@@ -605,6 +606,10 @@ public class Main : MonoBehaviour {
         {
             mail_panel.GetComponent<LoadMailPanel>().DisplayAllMail(m_dataManager.PlayerFamily.Mailbox);
         }
+		else if (type == "abilities")
+		{
+			abilities_panel.GetComponent<LoadAbilitiesPanel>().DisplayAbilities(m_dataManager.PlayerFamily);
+		}
 	}
 
 	private void HighlightKnownEvents(int month)
