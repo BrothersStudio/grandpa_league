@@ -24,6 +24,7 @@ public class LoadMailPanel : MonoBehaviour
 
     public void Awake()
     {
+        mailCloseButton.GetComponent<Button>().onClick.RemoveAllListeners();
         mailCloseButton.GetComponent<Button>().onClick.AddListener(() =>
         {
             ModalBlockingPanel.SetActive(false);
@@ -63,6 +64,7 @@ public class LoadMailPanel : MonoBehaviour
                 prefabContentPanel[panelInd].GetComponent<Button>().image.color = new Color(230, 235, 107);
 
             Button thisButton = prefabContentPanel[panelInd].GetComponent<Button>();
+            prefabContentPanel[panelInd].GetComponent<Button>().onClick.RemoveAllListeners();
             prefabContentPanel[panelInd].GetComponent<Button>().onClick.AddListener(() =>
             {     
                 ModalBlockingPanel.SetActive(true);
@@ -87,6 +89,7 @@ public class LoadMailPanel : MonoBehaviour
                     mailImage.SetActive(false);
                 }
 
+                mailDeleteButton.GetComponent<Button>().onClick.RemoveAllListeners();
                 mailDeleteButton.GetComponent<Button>().onClick.AddListener(() =>
                 {
                     mailbox.Remove(mail);
