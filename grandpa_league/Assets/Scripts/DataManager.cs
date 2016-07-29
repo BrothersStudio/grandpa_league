@@ -40,6 +40,10 @@ public class DataManager
         this.m_playerFamily.Children.Add(CharacterManager.GetChildByName("Kevin"));
         this.m_playerFamily.Children.Add(CharacterManager.GetChildByName("Patrick"));
 
+		//this.m_abilities.Add (EventManager.GetAbilityById (60)); // Stat doubling
+		//this.m_abilities.Add (EventManager.GetAbilityById (62)); // Event replayer
+		//this.m_abilities.Add (EventManager.GetAbilityById (63)); // Child sacrifice
+
         string[] splitName = playerName.Split(' ');
         if (splitName.Length >= 2)
             this.m_playerFamily.FamilyName = splitName[splitName.Length - 1];

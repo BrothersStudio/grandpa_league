@@ -395,6 +395,83 @@ public static class EventManager
 
 		return ret;
 	}
+
+	//ABILITY: ABILITY STAT DOUBLE START
+	public static Outcome Event60(DataManager manager, Requirement requirements)
+	{
+		Outcome ret = new Outcome ();
+		if (requirements.Accept) 
+		{
+			manager.Calendar.ScheduleEventInXDays(EventManager.GetEventById(61), 28);
+
+			requirements.Child.AddQualification (Qualification.GetQualificationByString ("STAT_GAINS_DOUBLED"));
+			requirements.Child.isDouble = true;
+
+			ret.Status = (int)Enums.EventOutcome.SUCCESS;
+			ret.OutcomeDescription = String.Format (
+				"{0}'s stat gains are doubled for the next month!", 
+				requirements.Child.Name);
+		}
+		else
+			ret.Status = (int)Enums.EventOutcome.PASS;
+
+		return ret;
+	}
+
+	//ABILITY: ABILITY STAT DOUBLE END
+	public static Outcome Event61(DataManager manager, Requirement requirements)
+	{
+		Outcome ret = new Outcome ();
+
+		requirements.Child.RemoveQualification (Qualification.GetQualificationByString ("STAT_GAINS_DOUBLED"));
+		requirements.Child.isDouble = false;
+
+		ret.Status = (int)Enums.EventOutcome.SUCCESS;
+		ret.OutcomeDescription = String.Format (
+			"{0}'s stat gains are doubled for the next month!", 
+			requirements.Child.Name);
+
+		return ret;
+	}
+
+	//ABILITY: EVENT REPLAYER
+	public static Outcome Event62(DataManager manager, Requirement requirements)
+	{
+		Outcome ret = new Outcome ();
+		if (requirements.Accept) 
+		{
+			// Schedule event from yesterday tomorrow
+
+			ret.Status = (int)Enums.EventOutcome.SUCCESS;
+			ret.OutcomeDescription = String.Format (
+				"Grandpa whips out his time machine... Let's try that event again...");
+		}
+		else
+			ret.Status = (int)Enums.EventOutcome.PASS;
+
+		return ret;
+	}
+
+	//ABILITY: CHILD SACRIFICE
+	public static Outcome Event63(DataManager manager, Requirement requirements)
+	{
+		Outcome ret = new Outcome ();
+		if (requirements.Accept) 
+		{
+			manager.PlayerFamily.Children.Remove (requirements.Child);
+
+			ret.Status = (int)Enums.EventOutcome.SUCCESS;
+			ret.OutcomeDescription = String.Format (
+				"Grandpa lets his sacrificial knife clatter to the floor. I am sorry, {0}, but it was the only way...\n\n" +
+				"{0} removed from the family!",
+				requirements.Child.Name);
+		}
+		else
+			ret.Status = (int)Enums.EventOutcome.PASS;
+
+		return ret;
+	}
+
     //NAME: Grandkid's class does some fingerpainting
     /*public static Outcome Event101(DataManager manager, Requirement requirements)
        {
