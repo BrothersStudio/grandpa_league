@@ -65,14 +65,12 @@ public class Trade
         proposedValue *= 7;                           //give edge to AI
         proposedValue += this.proposedMoney * 0.75;
 
-        //if (PlayerInfo.FIRST_TRADE & offeredChar.Count <= 2 && proposedChar.Count <= 2 && Math.Abs(offeredMoney - proposedMoney) <= 1000)
-        //{
-        //    this.accepted = true;
-        //    PlayerInfo.FIRST_TRADE = false;
-        //}
-        //else 
-        
-        if (offeredValue > proposedValue)
+        if (Main.GetDataManager().PlayerInfo.FIRST_TRADE & offeredChar.Count <= 2 && proposedChar.Count <= 2 && Math.Abs(offeredMoney - proposedMoney) <= 1000)
+        {
+            this.accepted = true;
+            Main.GetDataManager().PlayerInfo.FIRST_TRADE = false;
+        }
+        else if (offeredValue > proposedValue)
         {
             this.accepted = true;
         }
