@@ -453,9 +453,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 450418085}
   - 212: {fileID: 450418086}
+  - 50: {fileID: 450418087}
   m_Layer: 0
   m_Name: background_notScaled
-  m_TagString: Untagged
+  m_TagString: Sky
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -503,6 +504,23 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!50 &450418087
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 450418084}
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &507514822
 GameObject:
   m_ObjectHideFlags: 0
@@ -903,6 +921,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: {x: 9.5, y: 9.5}
   StartPos: {x: 0, y: 0, z: 0}
+  chirpSource: {fileID: 945720236}
+  chirp: {fileID: 8300000, guid: b4ad6b0795e8d7a419191fb40501d064, type: 3}
 --- !u!50 &772655030
 Rigidbody2D:
   serializedVersion: 2
@@ -1913,6 +1933,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: {x: 9, y: 0}
   StartPos: {x: 0, y: 0, z: 0}
+  chirpSource: {fileID: 945720236}
+  chirp: {fileID: 8300000, guid: b4ad6b0795e8d7a419191fb40501d064, type: 3}
 --- !u!50 &1144957968
 Rigidbody2D:
   serializedVersion: 2
@@ -2045,12 +2067,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 917574735}
-        m_MethodName: 
+      - m_Target: {fileID: 917574741}
+        m_MethodName: PlayClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2581,6 +2603,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: {x: 10, y: 10}
   StartPos: {x: 0, y: 0, z: 0}
+  chirpSource: {fileID: 945720236}
+  chirp: {fileID: 8300000, guid: b4ad6b0795e8d7a419191fb40501d064, type: 3}
 --- !u!50 &1603541335
 Rigidbody2D:
   serializedVersion: 2
@@ -3135,6 +3159,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: {x: 9, y: 9}
   StartPos: {x: 0, y: 0, z: 0}
+  chirpSource: {fileID: 945720236}
+  chirp: {fileID: 8300000, guid: b4ad6b0795e8d7a419191fb40501d064, type: 3}
 --- !u!1 &2147063436
 GameObject:
   m_ObjectHideFlags: 0
