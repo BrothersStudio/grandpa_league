@@ -1,12 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <ProjectGuid>{7A565309-CE1B-C312-8DDE-436E59ADB966}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -46,52 +45,50 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Ability.cs" />
-    <Compile Include="Assets\Scripts\BirdFlying.cs" />
-    <Compile Include="Assets\Scripts\Calendar.cs" />
-    <Compile Include="Assets\Scripts\Character.cs" />
-    <Compile Include="Assets\Scripts\CharacterManager.cs" />
-    <Compile Include="Assets\Scripts\Child.cs" />
-    <Compile Include="Assets\Scripts\CloudMovement.cs" />
-    <Compile Include="Assets\Scripts\Constants.cs" />
-    <Compile Include="Assets\Scripts\DataManager.cs" />
-    <Compile Include="Assets\Scripts\Enums.cs" />
-    <Compile Include="Assets\Scripts\EventManager.cs" />
-    <Compile Include="Assets\Scripts\Family.cs" />
-    <Compile Include="Assets\Scripts\Globals.cs" />
-    <Compile Include="Assets\Scripts\Grandpa.cs" />
-    <Compile Include="Assets\Scripts\LeagueManager.cs" />
-    <Compile Include="Assets\Scripts\LoadAbilitiesPanel.cs" />
-    <Compile Include="Assets\Scripts\LoadFamilyPanel.cs" />
-    <Compile Include="Assets\Scripts\LoadLeaguePanel.cs" />
-    <Compile Include="Assets\Scripts\LoadMailPanel.cs" />
-    <Compile Include="Assets\Scripts\LoadTradingPanel.cs" />
-    <Compile Include="Assets\Scripts\Mail.cs" />
-    <Compile Include="Assets\Scripts\Main.cs" />
-    <Compile Include="Assets\Scripts\Outcome.cs" />
-    <Compile Include="Assets\Scripts\Parent.cs" />
-    <Compile Include="Assets\Scripts\PlayerInfo.cs" />
-    <Compile Include="Assets\Scripts\Qualification.cs" />
-    <Compile Include="Assets\Scripts\QualificationToolTip.cs" />
-    <Compile Include="Assets\Scripts\Requirement.cs" />
-    <Compile Include="Assets\Scripts\SimulationEvent.cs" />
-    <Compile Include="Assets\Scripts\SoundEffectPlayer.cs" />
-    <Compile Include="Assets\Scripts\Stat.cs" />
-    <Compile Include="Assets\Scripts\Team.cs" />
-    <Compile Include="Assets\Scripts\Trade.cs" />
-    <Compile Include="Assets\Start\Scripts\MainMenu.cs" />
-    <Compile Include="Assets\Start\Scripts\Splash.cs" />
-    <None Include="Assets\Resources\qualifications.xml" />
-    <None Include="Assets\Resources\characters.xml">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Assets\Resources\events.xml" />
-    <Reference Include="UnityEngine.UI">
-      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
-    </Reference>
+     <Compile Include="Assets\Scripts\Ability.cs" />
+     <Compile Include="Assets\Scripts\BirdFlying.cs" />
+     <Compile Include="Assets\Scripts\Calendar.cs" />
+     <Compile Include="Assets\Scripts\Character.cs" />
+     <Compile Include="Assets\Scripts\CharacterManager.cs" />
+     <Compile Include="Assets\Scripts\Child.cs" />
+     <Compile Include="Assets\Scripts\CloudMovement.cs" />
+     <Compile Include="Assets\Scripts\Constants.cs" />
+     <Compile Include="Assets\Scripts\DataManager.cs" />
+     <Compile Include="Assets\Scripts\Enums.cs" />
+     <Compile Include="Assets\Scripts\EventManager.cs" />
+     <Compile Include="Assets\Scripts\Family.cs" />
+     <Compile Include="Assets\Scripts\Globals.cs" />
+     <Compile Include="Assets\Scripts\Grandpa.cs" />
+     <Compile Include="Assets\Scripts\LeagueManager.cs" />
+     <Compile Include="Assets\Scripts\LoadAbilitiesPanel.cs" />
+     <Compile Include="Assets\Scripts\LoadFamilyPanel.cs" />
+     <Compile Include="Assets\Scripts\LoadLeaguePanel.cs" />
+     <Compile Include="Assets\Scripts\LoadMailPanel.cs" />
+     <Compile Include="Assets\Scripts\LoadTradingPanel.cs" />
+     <Compile Include="Assets\Scripts\Mail.cs" />
+     <Compile Include="Assets\Scripts\Main.cs" />
+     <Compile Include="Assets\Scripts\Outcome.cs" />
+     <Compile Include="Assets\Scripts\Parent.cs" />
+     <Compile Include="Assets\Scripts\PlayerInfo.cs" />
+     <Compile Include="Assets\Scripts\Qualification.cs" />
+     <Compile Include="Assets\Scripts\QualificationToolTip.cs" />
+     <Compile Include="Assets\Scripts\Requirement.cs" />
+     <Compile Include="Assets\Scripts\SimulationEvent.cs" />
+     <Compile Include="Assets\Scripts\SoundEffectPlayer.cs" />
+     <Compile Include="Assets\Scripts\Stat.cs" />
+     <Compile Include="Assets\Scripts\Team.cs" />
+     <Compile Include="Assets\Scripts\Trade.cs" />
+     <Compile Include="Assets\Start\Scripts\MainMenu.cs" />
+     <Compile Include="Assets\Start\Scripts\Splash.cs" />
+     <None Include="Assets\Resources\qualifications.xml" />
+     <None Include="Assets\Resources\characters.xml" />
+     <None Include="Assets\Resources\events.xml" />
+ <Reference Include="UnityEngine.UI">
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Networking">
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -101,4 +98,5 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  
 </Project>

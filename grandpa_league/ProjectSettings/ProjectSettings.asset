@@ -11,7 +11,7 @@ PlayerSettings:
   accelerometerFrequency: 60
   companyName: Three Brothers Studios
   productName: Grandpa League
-  defaultCursor: {fileID: 2800000, guid: c805b45c32425c245a88da9028367b92, type: 3}
+  defaultCursor: {fileID: 2800000, guid: e0ada599294993940b026506376f88e4, type: 3}
   cursorHotspot: {x: 0, y: 0}
   m_ShowUnitySplashScreen: 1
   m_VirtualRealitySplashScreen: {fileID: 0}
