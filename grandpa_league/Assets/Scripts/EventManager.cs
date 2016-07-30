@@ -1378,7 +1378,7 @@ public static class EventManager
 	public static Outcome Event1022(DataManager manager, Requirement requirements)
 	{
 		Outcome returnObj = new Outcome();
-		if (Constants.Roll(0, manager.PlayerFamily.Grandpa.Insanity, (int)Enums.Difficulty.STANDARD))
+		if (Constants.Roll(0, manager.PlayerFamily.Grandpa.Insanity, (int)Enums.Difficulty.HARD))
 		{
 			requirements.Child.Intelligence -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
 
@@ -1387,16 +1387,16 @@ public static class EventManager
 			manager.PlayerFamily.Grandpa.Insanity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
 			manager.PlayerFamily.Grandpa.InsanityGrowth += Constants.Character.MINOR_STAT_GROWTH_AMOUNT;
 
-			manager.PlayerFamily.Grandpa.Pride -= Constants.Character.MINOR_PRIDE_CHANGE_AMOUNT;
+			manager.PlayerFamily.Grandpa.Pride -= Constants.Character.MAJOR_PRIDE_CHANGE_AMOUNT;
 
-			returnObj.Status = (int)Enums.EventOutcome.FAILURE_BLACKLIST_YEAR;
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE;
 			returnObj.OutcomeDescription = String.Format (
 				"Grandpa brought home a doggy! We were all so happy until it started foaming at the mouth and bit {1} right in the face! " +
 				"Turns out Grandpa found it by the side of the road... Is Grandpa going to be okay, {2}?\n\n" +
 				"Grandpa's wisdom down.\n" +
 				"Grandpa's insanity up.\n" +
 				"Grandpa's insanity growth up slightly.\n" +
-				"Grandpa's pride down slightly.\n" +
+				"Grandpa's pride way down!\n" +
 				"{1}'s intelligence down.",
 				manager.PlayerFamily.Grandpa.Name, requirements.Child.Name, requirements.Parent.Name);
 		}
@@ -1417,16 +1417,16 @@ public static class EventManager
 			manager.PlayerFamily.Grandpa.Insanity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT; 
 			manager.PlayerFamily.Grandpa.InsanityGrowth += Constants.Character.MINOR_STAT_GROWTH_AMOUNT; 
 
-			manager.PlayerFamily.Grandpa.Pride -= Constants.Character.MINOR_PRIDE_CHANGE_AMOUNT; 
+			manager.PlayerFamily.Grandpa.Pride -= Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT; 
 
-			returnObj.Status = (int)Enums.EventOutcome.FAILURE_BLACKLIST_YEAR;
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE;
 			returnObj.OutcomeDescription = String.Format (
 				"{1} just got off the phone with the coast guard. They finally found Grandpa. Turns out he wandered into a shipping container " +
 				"and got halfway around the world before someone noticed! I'm getting worried about him...\n\n" +
 				"Grandpa's wisdom down.\n" +
 				"Grandpa's insanity up.\n" +
 				"Grandpa's insanity growth up slightly.\n" +
-				"Grandpa's pride down slightly.",
+				"Grandpa's pride down.",
 				manager.PlayerFamily.Grandpa.Name, requirements.Parent.Name);
 		}
 		else 
@@ -1509,9 +1509,9 @@ public static class EventManager
 			manager.PlayerFamily.Grandpa.Insanity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT; 
 			manager.PlayerFamily.Grandpa.InsanityGrowth += Constants.Character.MINOR_STAT_GROWTH_AMOUNT;  
 
-			manager.PlayerFamily.Grandpa.Pride -= Constants.Character.MINOR_PRIDE_CHANGE_AMOUNT; 
+			manager.PlayerFamily.Grandpa.Pride -= Constants.Character.MAJOR_PRIDE_CHANGE_AMOUNT; 
 
-			returnObj.Status = (int)Enums.EventOutcome.FAILURE_BLACKLIST_YEAR;
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE;
 			returnObj.OutcomeDescription = String.Format (
 				"Grandpa just lost ${1} on a ponzi scheme! He actually thought he could get rich quick selling plungers door to door. " +
 				"Grandpa seems like he's losing more of his independance every day...\n\n" +
@@ -1533,7 +1533,7 @@ public static class EventManager
 	public static Outcome Event1030(DataManager manager, Requirement requirements)
 	{
 		Outcome returnObj = new Outcome();
-		if (Constants.Roll(0, manager.PlayerFamily.Grandpa.Insanity, (int)Enums.Difficulty.EASY))
+		if (Constants.Roll(0, manager.PlayerFamily.Grandpa.Insanity, (int)Enums.Difficulty.STANDARD))
 		{
 			manager.Calendar.ScheduleEventInXDays(EventManager.GetEventById(1026), 1);
 			returnObj.Status = (int)Enums.EventOutcome.PASS_BLACKLIST_YEAR;
