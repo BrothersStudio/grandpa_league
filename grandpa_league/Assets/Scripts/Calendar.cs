@@ -7,7 +7,7 @@ public class Calendar
     private int m_currentMonth = 1;
     private int m_currentDay = 1;
     private int m_currentYear = 2016;
-    private List<Day> m_days = new List<Day>();
+    private List<Day> m_days = null;
 
     public Calendar()
     {
@@ -57,6 +57,7 @@ public class Calendar
 
     private void GenerateCalendarForYear()
     {
+        this.m_days = new List<Day>();
         for (var i = 1; i <= 12; i++)
         {
             for (var k = 1; k <= 28; k++)
