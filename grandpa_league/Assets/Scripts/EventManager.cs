@@ -254,7 +254,7 @@ public static class EventManager
         ret.Mail.Message = string.Format(
 			"They locked me up in here. They think I'm crazy, but only I know the truth! The truth about everything! They'll see... {0} will see... " +
 			"No one can stop me from being the best!!!\nI have the entire year planned out... As much as I hate to say it, my thoughts wander at times... " +
-			"I've written is happening each day on the green squares! I'll need to click and take a closer look as those days approach. The current day is " +
+			"I've written down what will happen each day on the green squares on my calendar! I'll need to click and take a closer look as those days approach. The current day is " +
 			"the red date... Or was it polka dotted...? Whichever!\nTake care of yourself, me.\n{1}", 
 			manager.PlayerFamily.Parents[0].Name, manager.PlayerFamily.Grandpa.Name);
 
