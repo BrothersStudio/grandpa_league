@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Xml.Linq;
 using System;
 using System.Reflection;
 using UnityEngine;
@@ -17,8 +15,10 @@ public class LoadAbilitiesPanel : MonoBehaviour {
 	public void DisplayAbilities(DataManager manager)
 	{
 		int ability_ind = 0;
-		foreach (Ability ability in manager.Abilities) 
+		foreach (Ability ability_instance in manager.Abilities) 
 		{
+			Ability ability = ability_instance;
+
 			GameObject new_button = Instantiate(ability_button_prefab) as GameObject;
 			new_button.transform.SetParent(ability_panel.transform, false);
 
@@ -27,7 +27,7 @@ public class LoadAbilitiesPanel : MonoBehaviour {
 			float current_x = new_button.GetComponent<RectTransform> ().anchoredPosition.x;
 			float current_y = new_button.GetComponent<RectTransform> ().anchoredPosition.y;
 			new_button.GetComponent<RectTransform> ().anchoredPosition = 
-				new Vector2 (current_x  - (float)(ability_ind) * width, current_y);
+				new Vector2 (current_x  + (float)(ability_ind) * width, current_y);
 
 			new_button.GetComponent<Button> ().image = Resources.Load <Image> (ability.Picture);
 			new_button.GetComponentInChildren<Text> ().text = String.Format (
