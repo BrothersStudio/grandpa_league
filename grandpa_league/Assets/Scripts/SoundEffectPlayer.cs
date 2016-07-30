@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.Audio;
 
@@ -11,7 +11,7 @@ public class SoundEffectPlayer : MonoBehaviour {
 
     public void Awake()
     {
-        mailSource.Play();
+        //mailSource.Play();
     }
 
     public void PlayNotification()

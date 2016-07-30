@@ -11,7 +11,7 @@ PlayerSettings:
   accelerometerFrequency: 60
   companyName: Three Brothers Studios
   productName: Grandpa Manager
-  defaultCursor: {fileID: 2800000, guid: e0ada599294993940b026506376f88e4, type: 3}
+  defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_ShowUnitySplashScreen: 1
   m_VirtualRealitySplashScreen: {fileID: 0}
