@@ -1296,6 +1296,7 @@ MonoBehaviour:
   mail_panel: {fileID: 315274212}
   abilities_panel: {fileID: 1278131213}
   EventCanvas: {fileID: 1957800532}
+  AbilitiesButton: {fileID: 712709557}
   known_event_display_panel: {fileID: 1863059561}
   EventOutcomePanel: {fileID: 1151178615}
   OutcomeTextbox: {fileID: 463889370}
@@ -8520,8 +8521,8 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_DisabledColor: {r: 0, g: 0, b: 0, a: 0.5019608}
+    m_PressedColor: {r: 0.6764706, g: 0.6416522, b: 0.6416522, a: 1}
+    m_DisabledColor: {r: 0.66176474, g: 0.63743514, b: 0.63743514, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -8533,7 +8534,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 712709560}
   m_OnClick:
     m_PersistentCalls:
@@ -10068,6 +10069,17 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 844725695}
         m_MethodName: PlayClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 87242170}
+        m_MethodName: RemoveModalBacking
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

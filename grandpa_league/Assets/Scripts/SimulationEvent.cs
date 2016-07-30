@@ -19,6 +19,8 @@ public class SimulationEvent
     private double m_chance = 0;
     private Outcome m_outcome = null;
 
+    private bool m_finishedExecution = false;
+
     public SimulationEvent(Requirement requirements, double chance, string eventName, string eventDescription, int eventId, int eventType, int priority, string month="0", int day=0, int year=0)
     {
         this.m_eventDescription = eventDescription;
@@ -148,5 +150,11 @@ public class SimulationEvent
     public double Chance
     {
         get { return this.m_chance; }
+    }
+
+    public bool FinishedExecution
+    {
+        get { return this.m_finishedExecution; }
+        set { this.m_finishedExecution = value; }
     }
 }

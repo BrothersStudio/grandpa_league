@@ -28,8 +28,9 @@ public class Main : MonoBehaviour {
 
     /* user input panel objects */
     public Canvas EventCanvas;
+    public GameObject AbilitiesButton;
 
-	public GameObject known_event_display_panel;
+    public GameObject known_event_display_panel;
 
     public GameObject EventOutcomePanel;
     public GameObject OutcomeTextbox;
@@ -106,6 +107,9 @@ public class Main : MonoBehaviour {
     public void AdvanceDay()
     {
         StartCoroutine(SimulateDay());
+
+        if (m_dataManager.PlayerInfo.ABILITIES_DISABLED && current_month >= 3)
+            AbilitiesButton.GetComponent<Button>().interactable = true;
 
         foreach(Ability abilities in m_dataManager.Abilities)
         {
@@ -261,6 +265,7 @@ public class Main : MonoBehaviour {
             }
             Debug.Log(String.Format("event {0} completed", ev.EventName));
             ev.ResetEventFields();
+            ev.FinishedExecution = true;
         }
 
         LeagueManager.SimulateDay(m_dataManager);   //move league standings around and stuff
@@ -646,7 +651,10 @@ public class Main : MonoBehaviour {
 			days [known_event_day].GetComponent<Button>().onClick.RemoveAllListeners();
 			days [known_event_day].GetComponent<Button>().onClick.AddListener(() =>
 			{
-				known_event_display_panel.transform.Find("Event Text").GetComponent<Text>().text = "";
+                ModalBlockingPanel.SetActive(true);
+                MainCanvas.GetComponent<CanvasGroup>().blocksRaycasts = false;
+
+                known_event_display_panel.transform.Find("Event Text").GetComponent<Text>().text = "";
 				known_event_display_panel.SetActive(true);
 
 				List<SimulationEvent> events_of_day = m_dataManager.Calendar.GetEventsForDay(known_event_day+1, month);
@@ -764,5 +772,11 @@ public class Main : MonoBehaviour {
     public static DataManager GetDataManager()
     {
         return m_dataManager;
+    }
+
+    public void RemoveModalBacking()
+    {
+        ModalBlockingPanel.SetActive(false);
+        MainCanvas.GetComponent<CanvasGroup>().blocksRaycasts = true;
     }
 }

@@ -61,7 +61,26 @@ public class LoadAbilitiesPanel : MonoBehaviour {
         Globals.UserInputting = false;
         control.GetComponent<Main>().MainCanvas.GetComponent<CanvasGroup>().blocksRaycasts = true;
 
-        Outcome eventOutcome = ability.Event.RunEvent(Main.GetDataManager());
+        if(ability.Event.Requirements.Accept == false)
+        {
+            DestroyButtons();
+            ability_panel.SetActive(false);
+            yield return true;
+        }
+
+        Outcome eventOutcome;
+        if (Main.GetDataManager().PlayerFamily.Grandpa.Money - ability.MoneyCost < 0)
+        {
+            eventOutcome = new Outcome((int)Enums.EventOutcome.FAILURE, "Hey pal, you don't have the cash...");
+        }
+        else if (Main.GetDataManager().PlayerFamily.Grandpa.Insanity + ability.InsanityCost > 100)
+        {
+            eventOutcome = new Outcome((int)Enums.EventOutcome.FAILURE, "Woah pal, you don't seem all here...Come back when you're in the right state of mind..");
+        }
+        else
+        {
+            eventOutcome = ability.Event.RunEvent(Main.GetDataManager());
+        }
 
         if (eventOutcome.Mail != null)
         {
@@ -79,10 +98,18 @@ public class LoadAbilitiesPanel : MonoBehaviour {
             yield return StartCoroutine("WaitForUserConfirm");
             Globals.UserInputting = false;
             control.GetComponent<Main>().MainCanvas.GetComponent<CanvasGroup>().blocksRaycasts = true;
-            ability.CurrentCooldown = ability.MaxCooldown;
-            DestroyButtons();
-            ability_panel.SetActive(false);
         }
+
+
+        if(eventOutcome.Status == (int)Enums.EventOutcome.SUCCESS)
+        {
+            ability.CurrentCooldown = ability.MaxCooldown;
+            Main.GetDataManager().PlayerFamily.Grandpa.Insanity += ability.InsanityCost;
+            Main.GetDataManager().PlayerFamily.Grandpa.Money -= ability.MoneyCost;
+        }
+
+        DestroyButtons();
+        ability_panel.SetActive(false);
     }
 
     private IEnumerator WaitForUserConfirm()
