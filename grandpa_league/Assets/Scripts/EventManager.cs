@@ -569,8 +569,12 @@ public static class EventManager
 		requirements.Child.SetDoubleStatMultiplier(false);
 
         ret.Status = (int)Enums.EventOutcome.SUCCESS;
-		ret.OutcomeDescription = String.Format (
-			"{0}'s stat gains are doubled for the next month!", 
+        ret.Mail = new Mail();
+        ret.Mail.Date = manager.Calendar.GetCurrentDay();
+        ret.Mail.Sender = "???";
+        ret.Mail.Subject = "Boost running dry...";
+        ret.Mail.Message =  String.Format (
+			"Hey pal...{0}'s roid's uh, I mean nutrients should be wearing off soon...I forgot to mention but you may want to keep an eye on them for a little while...May get angry...or worse... Come back if you ever need more...", 
 			requirements.Child.Name);
 
 		return ret;

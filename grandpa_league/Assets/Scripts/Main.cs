@@ -68,7 +68,7 @@ public class Main : MonoBehaviour {
     public Camera SceneCamera;
     private SoundEffectPlayer getAudioComponent;
 
-    bool userInputting = false;
+    public bool userInputting = false;
 
 	public void Awake()
 	{
@@ -233,7 +233,6 @@ public class Main : MonoBehaviour {
             {
                 m_dataManager.PlayerFamily.Mailbox.Insert(0, eventOutcome.Mail);
                 this.DisplayContent("mail");
- 
             }
 
             //CHECK THE OUTCOME
@@ -268,7 +267,7 @@ public class Main : MonoBehaviour {
 		AdvanceDayHighlight();
     }
 
-    private void CreateAndDisplayResultPanel(Outcome eventOutcome)
+    public void CreateAndDisplayResultPanel(Outcome eventOutcome)
     {
         EventOutcomePanel.SetActive(true);
         OutcomeTextbox.GetComponent<Text>().text = eventOutcome.OutcomeDescription;
