@@ -53,7 +53,7 @@
   <event type="0" id="1035" name="Arbor Day Result" description="" priority="1" chance="0" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" />  
   <event type="0" id="1037" name="Grandpa goes fishing" description="Ahh, the summer is the perfect time for the most stereotypical grandpa activity there is. Fishing! I should take one of the kids!" priority="1" chance="0.05" req_children="01" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" month="6" day="0" />  
   <event type="0" id="1039" name="Parent gets promotion" description="" priority="1" chance="0.01" req_children="00" req_parent="11" req_grandpa="00" req_money="00" req_accept="00" />  
-  <event type="0" id="1040" name="{P} is dusting the files at work when they see a coworker stuff a handful of pencils into their pocket. Stealing! At work! Should you turn them in...?" description="" priority="1" chance="0.01" req_children="00" req_parent="11" req_grandpa="00" req_money="00" req_accept="01" />    
+  <event type="0" id="1040" name="Parent catches coworker stealing" description="{P} is dusting the files at work when they see a coworker stuff a handful of pencils into their pocket. Stealing! At work! Should you turn them in...?" priority="1" chance="0.01" req_children="00" req_parent="11" req_grandpa="00" req_money="00" req_accept="01" />    
   
   <!-- KNOWN EVENTS req_ of the form 1=true, 0=false, [RANDOM][REQUIRED]-->
   
