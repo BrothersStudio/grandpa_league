@@ -22,7 +22,10 @@ public class MainMenu : MonoBehaviour
 
     public Text versionInfo;
     public GameObject panel;
+
     public InputField inputField;
+    public InputField lastNameInputField;
+
     public Button confirmButton;
     public Button cancelButton;
 
@@ -61,7 +64,7 @@ public class MainMenu : MonoBehaviour
 
     public void OnConfirmButtonClicked()
     {
-        PlayerPrefs.SetString("name", inputField.text);
+        PlayerPrefs.SetString("name", inputField.text + " " + lastNameInputField.text);
         SceneManager.LoadScene(2);
     }
 }
