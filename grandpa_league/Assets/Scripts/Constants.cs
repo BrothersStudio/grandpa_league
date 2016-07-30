@@ -92,7 +92,7 @@ static class Constants
 
     public struct Character
     {
-        public const double GROWTH_DIVIDER = 300;
+        public const double GROWTH_DIVIDER = 500;
         public const double MAX_INITIAL_GROWTH = 0.05;
         public const double INITIAL_MONEY_GROWTH = 400;
 

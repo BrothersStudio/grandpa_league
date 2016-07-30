@@ -118,6 +118,11 @@ public class Main : MonoBehaviour {
                 abilities.CurrentCooldown--;
             }
         }
+
+        if(current_month == 12 && current_day == 27)
+        {
+            SceneCamera.transform.position = new Vector3(SceneCamera.transform.position.x, SceneCamera.transform.position.y, 100);
+        }
     }
 
     public IEnumerator SimulateDay()

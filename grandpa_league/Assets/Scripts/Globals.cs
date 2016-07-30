@@ -51,7 +51,7 @@ public class Globals
     {
         if(value > 100)
         {
-            Debug.LogError(string.Format("WARNING: Just tried to set a stat to: {0}", value));
+            Debug.LogWarning(string.Format("WARNING: Just tried to set a stat to: {0}", value));
         }
     }
 
@@ -59,7 +59,7 @@ public class Globals
     {
         if (value > 1)
         {
-            Debug.LogError(string.Format("WARNING: Just tried to set a STAT GROWTH to: {0}", value));
+            Debug.LogWarning(string.Format("WARNING: Just tried to set a STAT GROWTH to: {0}", value));
         }
     }
 }
