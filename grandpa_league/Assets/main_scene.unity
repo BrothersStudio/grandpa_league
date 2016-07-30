@@ -6470,7 +6470,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1707659019}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.9999957
+  m_Size: 0.99999607
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6526,7 +6526,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &525890403
 RectTransform:
   m_ObjectHideFlags: 0
@@ -23733,7 +23733,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 941653e6504d9b848a19d18d33896679, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 84ad52bd5e3b8c348ac12316a8e0ab9c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
