@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Globals
 {
+    public static bool UserInputting = false;
+ 
     private static int NUM_TESTS = 1000;
     private static int CUTENESS = 0;
     private static int STAT = 100;

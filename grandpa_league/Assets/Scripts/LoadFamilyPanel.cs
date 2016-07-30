@@ -242,7 +242,7 @@ public class LoadFamilyPanel : MonoBehaviour
 		
     private Sprite GetSpriteForQual(int qual)
     {
-        return qual_sprites[1];
+        return qual_sprites[0];             //TODO DIFFERENT SPRITES FOR QUALS
     }
 
 	private Sprite ReturnSpriteForStat(double stat, bool insanity = false)

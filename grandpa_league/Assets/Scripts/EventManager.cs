@@ -721,11 +721,13 @@ public static class EventManager
 					parent.Love += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
 					parent.Popularity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
 				}
+
 				foreach (Child child in manager.PlayerFamily.Children) 
 				{
 					child.Popularity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
 					child.Athleticism += Constants.Character.MINOR_STAT_CHANGE_AMOUNT;
 				}
+
 				manager.PlayerFamily.Grandpa.Money -= requirements.Money;
 				manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT * 2;
 
@@ -2545,5 +2547,357 @@ public static class EventManager
 		return returnObj;
 	}
 
+	// Child joins scouts
+	public static Outcome Event1049(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
 
+		if (requirements.Accept) 
+		{
+			requirements.Child.AddQualification (Qualification.GetQualificationByString ("IN_SCOUTS"));
+
+			requirements.Child.Athleticism += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+			requirements.Child.AthleticismGrowth += Constants.Character.STANDARD_STAT_GROWTH_AMOUNT;
+			requirements.Child.Popularity += Constants.Character.MINOR_STAT_CHANGE_AMOUNT;
+
+			manager.PlayerFamily.Grandpa.Pride -= Constants.Character.MINOR_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+			returnObj.OutcomeDescription = String.Format (
+				"Of course you can join the scouts, {0}! Think of all the skills you'll build that can then be leveraged for skill checks! {0} is overjoyed!\n\n" +
+				"{0}'s athleticism up.\n" +
+				"{0}'s athleticism growth up.\n" +
+				"Grandpa's pride down slightly.",
+				requirements.Child.Name);
+		} 
+		else 
+		{
+			manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE;
+			returnObj.OutcomeDescription = String.Format (
+				"No no no! You will not be tying knots in the woods like an animal! Those skills are not transferrable! {0} runs to their room crying. It's the for the best. " +
+				"Probably.\n\n" +
+				"Grandpa's pride up.",
+				requirements.Child.Name, Convert.ToBoolean (requirements.Child.Gender) ? "she" : "he");
+		}
+			
+		return returnObj;
+	}
+
+	// Student council election rigging?
+	public static Outcome Event1050(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+
+		if (requirements.Accept) 
+		{
+			requirements.Child.AddQualification (Qualification.GetQualificationByString ("RIGGED_ELECTION"));
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+			returnObj.OutcomeDescription = String.Format (
+				"Wonderful. Everything is all set. Just had to grease a few palms with favors. Next week when the votes are counted, {0} will be the winner by a tight margin.", 
+				requirements.Child.Name);
+		} 
+		else 
+		{
+			manager.PlayerFamily.Grandpa.Wisdom += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+			manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+			returnObj.OutcomeDescription = String.Format (
+				"No! I will not sully this holy process with lies!\n\n" +
+				"Grandpa's wisdom up." +
+				"Grandpa's pride up.");
+		}
+
+		return returnObj;
+	}
+
+	// Student council election
+	public static Outcome Event1051(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+
+		// Caught rigging
+		if (requirements.Child.Qualifications.Contains (Qualification.GetQualificationByString ("RIGGED_ELECTION")) && 
+			Constants.RANDOM.Next(1,100) < 20) 
+		{
+			manager.Calendar.ScheduleEventInXDays(EventManager.GetEventById(1052), 10);
+		}
+
+		if (requirements.Child.Qualifications.Contains(Qualification.GetQualificationByString ("RIGGED_ELECTION")) ||
+			Constants.Roll (requirements.Child.Cuteness, requirements.Child.Popularity, (int)Enums.Difficulty.HARD)) 
+		{
+			requirements.Child.RemoveQualification (Qualification.GetQualificationByString ("RIGGED_ELECTION"));
+			requirements.Child.AddQualification (Qualification.GetQualificationByString ("STUDENT_COUNCIL"));
+
+			requirements.Child.Popularity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+			requirements.Child.PopularityGrowth += Constants.Character.STANDARD_STAT_GROWTH_AMOUNT;
+
+			manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT * 2;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+			returnObj.OutcomeDescription = String.Format (
+				"{0} has joined the pantheon of great presidents such as George Washington, Ben Franklin, and Charlemagne! May {1} rule be long and prosperous!\n\n" +
+				"{0}'s popularity up.\n" +
+				"{0}'s popularity growth up.\n" +
+				"Grandpa's pride way up!",
+				requirements.Child.Name, Convert.ToBoolean (requirements.Child.Gender) ? "her" : "his");
+		} 
+		else 
+		{
+			requirements.Child.Popularity -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+
+			manager.PlayerFamily.Grandpa.Pride -= Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE;
+			returnObj.OutcomeDescription = String.Format (
+				"Too bad, {0}. I guess no one at school actually likes you. Maybe the big X's drawn on all your campaign posters should have been a hint. There's always next " +
+				"year, though.\n\n" +
+				"{0}'s popularity down.\n" +
+				"Grandpa's pride down.",
+				requirements.Child.Name);
+		}
+
+		return returnObj;
+	}
+		
+	// Caught rigging
+	public static Outcome Event1052(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+
+		requirements.Child.RemoveQualification (Qualification.GetQualificationByString ("STUDENT_COUNCIL"));
+
+		requirements.Child.Popularity -= Constants.Character.MAJOR_STAT_CHANGE_AMOUNT;
+		requirements.Child.PopularityGrowth -= Constants.Character.MAJOR_STAT_GROWTH_AMOUNT;
+
+		manager.PlayerFamily.Grandpa.Pride -= Constants.Character.MAJOR_PRIDE_CHANGE_AMOUNT * 2;
+
+		returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+		returnObj.OutcomeDescription = String.Format (
+			"{0} knew there was something fishy about those elections. That is why he worked tirelessly day and night to solve the mystery. Going through the ballots, though, one thing didn't add " +
+			"up. Why did someone write \"RIGGED BALLOT\" on three hundred ballots? Ah ha! Checkmate! {1} looks at Grandpa... \"How could you?!\" {1}'s title is taken away.\n\n" +
+			"{1}'s popularity way down!\n" +
+			"{1}'s popularity growth way down!\n" +
+			"Grandpa's pride way way way way down!!!!",
+			requirements.Grandpa.Name, requirements.Child.Name);
+
+		return returnObj;
+	}
+
+	// Take your grandpa to work day
+	public static Outcome Event1053(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+
+		if (Constants.Roll (0, manager.PlayerFamily.Grandpa.Insanity, (int)Enums.Difficulty.STANDARD)) 
+		{
+			requirements.Parent.Popularity -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+			requirements.Parent.Love -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+			requirements.Parent.PopularityGrowth -= Constants.Character.STANDARD_STAT_GROWTH_AMOUNT;
+
+			manager.PlayerFamily.Grandpa.Pride -= Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE;
+			returnObj.OutcomeDescription = String.Format (
+				"\"No, Grandpa! Don't touch that!\" But it's too late. Grandpa has touched it. Red lights start flashing all throughout the facility. Fires sprout up everywhere. " +
+				"Wow who made a button with this functionality?! Anyway, looks like {0} is out of a job.\n\n" +
+				"{0}'s popularity down.\n" +
+				"{0}'s love down.\n" +
+				"{0}'s popularity growth down.\n" +
+				"Grandpa's pride down.",
+				requirements.Parent.Name);
+		} 
+		else 
+		{
+			requirements.Parent.Popularity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+			requirements.Parent.Love += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+			requirements.Parent.PopularityGrowth += Constants.Character.STANDARD_STAT_GROWTH_AMOUNT;
+
+			manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+			returnObj.OutcomeDescription = String.Format (
+				"\"Oh, Grandpa, you're so funny!\" Grandpa is a big hit at work. He teaches {0}'s boss how to be a better boss as well! Productivity is up 70%!\n\n" +
+				"{0}'s popularity up.\n" +
+				"{0}'s love up.\n" +
+				"{0}'s popularity growth up.\n" +
+				"Grandpa's pride up.",
+				requirements.Parent.Name);
+		}
+
+		return returnObj;
+	}
+
+	// Grandpa goes to the bar
+	public static Outcome Event1054(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+
+		if (Constants.Roll (0, manager.PlayerFamily.Grandpa.Insanity, (int)Enums.Difficulty.HARD) ||
+			Constants.RANDOM.Next(1,100) < 50) 
+		{
+			requirements.Grandpa.Pride -= Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+			manager.PlayerFamily.Grandpa.Pride -= Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+			returnObj.OutcomeDescription = String.Format (
+				"\"{0}, what did you say about my grandson?!\" Grandpa socks {0} right in the mouth. {0} slams a chair over Grandpa's head. BAR FIGHT!! Everyone starts breaking windows and " +
+				"glasses and causing chaos. The cops are called. There are no real consequences like usual.\n\n" +
+				"{0}'s pride down.\n" +
+				"Grandpa's pride down.",
+				requirements.Grandpa.Name);
+		} 
+		else 
+		{
+			requirements.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+			manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+			returnObj.OutcomeDescription = String.Format (
+				"Against all odds, Grandpa has a relaxing night with {0}. Trading war stories and grandkid stories. They have more in common than they originally thought. They're just " +
+				"combatants on opposite sides of a conflict. But the conflict must go on. All nice nights must end.\n\n" +
+				"{0}'s pride up.\n" +
+				"Grandpa's pride up.",
+				requirements.Grandpa.Name);
+		}
+
+		return returnObj;
+	}
+
+	// Field Trip
+	public static Outcome Event1055(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+
+		if (Constants.Roll (requirements.Child.Cuteness, manager.PlayerFamily.Grandpa.Insanity, (int)Enums.Difficulty.HARD) ||
+			(! Constants.Roll (requirements.Child.Cuteness, requirements.Parent.Love, (int)Enums.Difficulty.EASY))) 
+		{
+			requirements.Child.Popularity -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+
+			requirements.Parent.Love -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+			requirements.Parent.LoveGrowth -= Constants.Character.STANDARD_STAT_GROWTH_AMOUNT;
+
+			manager.PlayerFamily.Grandpa.Insanity += Constants.Character.STANDARD_STAT_GROWTH_AMOUNT;
+			manager.PlayerFamily.Grandpa.Pride -= Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE;
+			returnObj.OutcomeDescription = String.Format (
+				"From the second they get on the bus, Grandpa, {0}, and {1} are fighting non stop. All the other kids feel very awkward. At the farm, Grandpa kicks a hole through every " +
+				"pumpkin he can find. {0} just drinks the whole time. {1} cries on the bus ride home.\n\n" +
+				"{0}'s love down.\n" +
+				"{0}'s love growth down.\n" +
+				"{1}'s popularity down.\n" +
+				"Grandpa's insanity up.\n" +
+				"Grandpa's pride down.",
+				requirements.Parent.Name, requirements.Child.Name);
+		} 
+		else 
+		{
+			requirements.Child.Popularity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+
+			requirements.Parent.Love += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+
+			manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+			returnObj.OutcomeDescription = String.Format (
+				"That was surprisingly fun! Grandpa picked out a big pumpkin, and everyone ate apple cider donuts.\n\n" +
+				"{0}'s love up.\n" +
+				"{1}'s popularity up.\n" +
+				"Grandpa's pride up.",
+				requirements.Parent.Name, requirements.Child.Name);
+		}
+
+		return returnObj;
+	}
+
+	// Grandkid takes joyride
+	public static Outcome Event1056(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+
+		if (!Constants.Roll (requirements.Child.Cuteness, requirements.Child.Intelligence, (int)Enums.Difficulty.VERY_EASY))
+		{
+			foreach (Parent parent in manager.PlayerFamily.Parents) 
+			{
+				parent.Love -= Constants.Character.MAJOR_STAT_CHANGE_AMOUNT;
+			}
+
+			manager.PlayerFamily.Grandpa.Pride -= Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+			manager.PlayerFamily.Children.Remove (requirements.Child);
+
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE;
+			returnObj.OutcomeDescription = String.Format (
+				"{0} goes for a joyride with {1}'s car. However, {0} keeps checking their Snapchat, and, unfortunately, the car veers into an " +
+				"oncoming semi-truck. {0} perishes in a fiery explosion.\n\n" +
+				"{0} has left the family!!\n" +
+				"All parents' love way down!!\n" +
+				"Grandpa's pride down.",
+				requirements.Child.Name, requirements.Parent.Name);
+		} 
+		else if (!Constants.Roll (requirements.Child.Cuteness, requirements.Child.Intelligence, (int)Enums.Difficulty.STANDARD))
+		{
+			requirements.Child.Popularity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+			requirements.Child.PopularityGrowth += Constants.Character.STANDARD_STAT_GROWTH_AMOUNT;
+
+			requirements.Child.Intelligence -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+
+			manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+			returnObj.OutcomeDescription = String.Format (
+				"Woo hoo! {0} just went on a wild joyride with {1}'s car! Fortunately, {0} kept their eyes and ears on the road so no one was hurt! " +
+				"That could have gone terribly!\n\n" +
+				"{0}'s popularity up.\n" +
+				"{0}'s popularity growth up.\n" +
+				"{0}'s intelligence down.\n" +
+				"Grandpa's pride up.",
+				requirements.Child.Name, requirements.Parent.Name);
+		} 
+		else
+			returnObj.Status = (int)Enums.EventOutcome.PASS;
+
+		return returnObj;
+	}
+
+	// Veteran's Day
+	public static Outcome Event1057(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+
+		if (!Constants.Roll (0, manager.PlayerFamily.Grandpa.Insanity, (int)Enums.Difficulty.STANDARD))
+		{
+			manager.PlayerFamily.Grandpa.Insanity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+
+			manager.PlayerFamily.Grandpa.Pride -= Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE;
+			returnObj.OutcomeDescription = String.Format (
+				"No, Grandpa, no! Put the knife down! Grandpa stumbled onto a civil war reenactment and was reminded of his days in 'nam. He seems to be having " +
+				"a fit. Poor Grandpa.\n\n" +
+				"Grandpa's insanity up.\n" +
+				"Grandpa's pride down.");
+		} 
+		else
+		{
+			manager.PlayerFamily.Grandpa.Wisdom += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+
+			manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT * 2;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+			returnObj.OutcomeDescription = String.Format (
+				"Grandpa lounges peacefully at the local park watching the Civil War reenactment. He reminisces about his own service to our blessed country " +
+				"and the friends he made and lost there.\n\n" +
+				"Grandpa's wisdom up.\n" +
+				"Grandpa's pride way up!");
+		} 
+
+		return returnObj;
+	}
 }

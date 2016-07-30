@@ -41,7 +41,5 @@ public class SoundEffectPlayer : MonoBehaviour {
         int randClip = Random.Range(0, clicks.Length);
         clickSource.clip = clicks[randClip];
         clickSource.Play();
-        mailSource.clip = mail;
-        mailSource.Play();
     }
 }

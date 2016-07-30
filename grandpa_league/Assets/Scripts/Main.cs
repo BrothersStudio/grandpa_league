@@ -66,7 +66,7 @@ public class Main : MonoBehaviour {
     public GameObject QuitButton;
 
     public Camera SceneCamera;
-    private SoundEffectPlayer getAudioComponent;
+    //private SoundEffectPlayer getAudioComponent;
 
     public bool userInputting = false;
 
@@ -233,6 +233,7 @@ public class Main : MonoBehaviour {
             {
                 m_dataManager.PlayerFamily.Mailbox.Insert(0, eventOutcome.Mail);
                 this.DisplayContent("mail");
+                //SoundEffectsPlayer. PlayNotification();
             }
 
             //CHECK THE OUTCOME

@@ -12,7 +12,6 @@ public class LoadAbilitiesPanel : MonoBehaviour {
 	public GameObject ability_panel;
 
 	public GameObject game_controller;
-    private bool userInputting = false;
 
 	public void DisplayAbilities(DataManager manager)
 	{
@@ -38,7 +37,8 @@ public class LoadAbilitiesPanel : MonoBehaviour {
                 "{2} insanity ${3}",
 				ability.Name, ability.CurrentCooldown == 0 ? "Available Now" : string.Format("{0} days until available\n",ability.CurrentCooldown.ToString()), ability.InsanityCost, ability.MoneyCost);
 
-
+            if (ability.CurrentCooldown != 0)
+                new_button.GetComponent<Button>().interactable = false;
             new_button.GetComponent<Button>().onClick.RemoveAllListeners();
 			new_button.GetComponent<Button>().onClick.AddListener (() => 
 				{
@@ -54,11 +54,11 @@ public class LoadAbilitiesPanel : MonoBehaviour {
     {
         control.GetComponent<Main>().CreateAndDisplayInputPanel(ability.Event);
 
-        userInputting = true;
+        Globals.UserInputting = true;
 
         control.GetComponent<Main>().MainCanvas.GetComponent<CanvasGroup>().blocksRaycasts = false;
         yield return StartCoroutine("WaitForUserConfirm");
-        userInputting = false;
+        Globals.UserInputting = false;
         control.GetComponent<Main>().MainCanvas.GetComponent<CanvasGroup>().blocksRaycasts = true;
 
         Outcome eventOutcome = ability.Event.RunEvent(Main.GetDataManager());
@@ -73,17 +73,21 @@ public class LoadAbilitiesPanel : MonoBehaviour {
         if (eventOutcome.OutcomeDescription != "")
         {
             control.GetComponent<Main>().CreateAndDisplayResultPanel(eventOutcome);
-            userInputting = true;
+            Globals.UserInputting = true;
 
             control.GetComponent<Main>().MainCanvas.GetComponent<CanvasGroup>().blocksRaycasts = false;
             yield return StartCoroutine("WaitForUserConfirm");
+            Globals.UserInputting = false;
             control.GetComponent<Main>().MainCanvas.GetComponent<CanvasGroup>().blocksRaycasts = true;
+            ability.CurrentCooldown = ability.MaxCooldown;
+            DestroyButtons();
+            ability_panel.SetActive(false);
         }
     }
 
     private IEnumerator WaitForUserConfirm()
     {
-        while (userInputting)
+        while (Globals.UserInputting)
         {
             yield return null;
         }
