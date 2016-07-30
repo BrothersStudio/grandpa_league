@@ -134,7 +134,8 @@ public class Family
 
     public double Chemistry
     {
-        get { return this.CalculateChemistry(); }
+        get { return this.m_chemistry; }
+        set { this.m_chemistry = value; }
     }
 
     public double Upkeep

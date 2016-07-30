@@ -22,6 +22,10 @@ public class LoadFamilyPanel : MonoBehaviour
 	public Sprite[] insanity_sprites;
 	public Sprite[] stat_sprites;
 
+    public GameObject chemistryLabel;
+    public GameObject upkeepLabel;
+    public GameObject questionLabel;
+
 	private GameObject[] prefab_content_panel_instance;
 
 	private bool isFromEvent = false;
@@ -53,6 +57,22 @@ public class LoadFamilyPanel : MonoBehaviour
 		int panel_ind = 0;
 		MakePanel (inputFamily.Grandpa, panel_ind, 0);
 		DisplayGrandpaPanel (inputFamily);
+
+        if(playerFamily)
+        {
+            questionLabel.SetActive(true);
+            chemistryLabel.SetActive(true);
+            upkeepLabel.SetActive(true);
+            //questionLabel.GetComponent<QualificationToolTip>().SetToolTipText("Chemistry is the measure of how well your family likes each other. Upkeep is how much you pay a month to keep them alive and happy.");
+            chemistryLabel.GetComponent<Text>().text = string.Format("Chemistry: {0:0.00}",inputFamily.Chemistry);
+            upkeepLabel.GetComponent<Text>().text = "Upkeep: " + inputFamily.Upkeep;
+        }
+        else
+        {
+            questionLabel.SetActive(false);
+            chemistryLabel.SetActive(false);
+            upkeepLabel.SetActive(false);
+        }
 
 		// Add character display activation to button
 		prefab_content_panel_instance[panel_ind].GetComponent<Button>().onClick.AddListener(() => 

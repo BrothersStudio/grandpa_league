@@ -227,6 +227,7 @@ public static class EventManager
         Outcome cpsOutcome = new Outcome();
         string familyStatusString;
         int familyStatus;
+        manager.PlayerFamily.CalculateChemistry();
         if (manager.PlayerFamily.Chemistry >= 100)
         {
             familyStatusString = "is doing great and really seems to like being around you,";
