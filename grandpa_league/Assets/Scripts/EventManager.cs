@@ -2507,4 +2507,145 @@ public static class EventManager
 
 		return returnObj;
 	}
+
+	// Child joins scouts
+	public static Outcome Event1049(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+
+		if (requirements.Accept) 
+		{
+			requirements.Child.AddQualification (Qualification.GetQualificationByString ("IN_SCOUTS"));
+
+			requirements.Child.Athleticism += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+			requirements.Child.AthleticismGrowth += Constants.Character.STANDARD_STAT_GROWTH_AMOUNT;
+			requirements.Child.Popularity += Constants.Character.MINOR_STAT_CHANGE_AMOUNT;
+
+			manager.PlayerFamily.Grandpa.Pride -= Constants.Character.MINOR_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+			returnObj.OutcomeDescription = String.Format (
+				"Of course you can join the scouts, {0}! Think of all the skills you'll build that can then be leveraged for skill checks! {0} is overjoyed!\n\n" +
+				"{0}'s athleticism up.\n" +
+				"{0}'s athleticism growth up.\n" +
+				"Grandpa's pride down slightly.",
+				requirements.Child.Name);
+		} 
+		else 
+		{
+			manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE;
+			returnObj.OutcomeDescription = String.Format (
+				"No no no! You will not be tying knots in the woods like an animal! Those skills are not transferrable! {0} runs to their room crying. It's the for the best. " +
+				"Probably.\n\n" +
+				"Grandpa's pride up.",
+				requirements.Child.Name, Convert.ToBoolean (requirements.Child.Gender) ? "she" : "he");
+		}
+			
+		return returnObj;
+	}
+
+	// Student council election rigging?
+	public static Outcome Event1050(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+
+		if (requirements.Accept) 
+		{
+			requirements.Child.AddQualification (Qualification.GetQualificationByString ("RIGGED_ELECTION"));
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+			returnObj.OutcomeDescription = String.Format (
+				"Wonderful. Everything is all set. Just had to grease a few palms with favors. Next week when the votes are counted, {0} will be the winner by a tight margin.", 
+				requirements.Child.Name);
+		} 
+		else 
+		{
+			manager.PlayerFamily.Grandpa.Wisdom += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+			manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+			returnObj.OutcomeDescription = String.Format (
+				"No! I will not sully this holy process with lies!\n\n" +
+				"Grandpa's wisdom up." +
+				"Grandpa's pride up.");
+		}
+
+		return returnObj;
+	}
+
+	// Student council election
+	public static Outcome Event1051(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+
+		// Caught rigging
+		if (requirements.Child.Qualifications.Contains (Qualification.GetQualificationByString ("RIGGED_ELECTION")) && 
+			Constants.RANDOM.Next(1,100) < 20) 
+		{
+			manager.Calendar.ScheduleEventInXDays(EventManager.GetEventById(1052), 10);
+		}
+
+		if (requirements.Child.Qualifications.Contains(Qualification.GetQualificationByString ("RIGGED_ELECTION")) ||
+			Constants.Roll (requirements.Child.Cuteness, requirements.Child.Popularity, (int)Enums.Difficulty.HARD)) 
+		{
+			requirements.Child.RemoveQualification (Qualification.GetQualificationByString ("RIGGED_ELECTION"));
+			requirements.Child.AddQualification (Qualification.GetQualificationByString ("STUDENT_COUNCIL"));
+
+			requirements.Child.Popularity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+			requirements.Child.PopularityGrowth += Constants.Character.STANDARD_STAT_GROWTH_AMOUNT;
+
+			manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT * 2;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+			returnObj.OutcomeDescription = String.Format (
+				"{0} has joined the pantheon of great presidents such as George Washington, Ben Franklin, and Charlemagne! May {1} rule be long and prosperous!\n\n" +
+				"{0}'s popularity up.\n" +
+				"{0}'s popularity growth up.\n" +
+				"Grandpa's pride way up!",
+				requirements.Child.Name, Convert.ToBoolean (requirements.Child.Gender) ? "her" : "his");
+		} 
+		else 
+		{
+			requirements.Child.Popularity -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+
+			manager.PlayerFamily.Grandpa.Pride -= Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE;
+			returnObj.OutcomeDescription = String.Format (
+				"Too bad, {0}. I guess no one at school actually likes you. Maybe the big X's drawn on all your campaign posters should have been a hint. There's always next " +
+				"year, though.\n\n" +
+				"{0}'s popularity down.\n" +
+				"Grandpa's pride down.",
+				requirements.Child.Name);
+		}
+
+		return returnObj;
+	}
+
+
+	// Caught rigging
+	public static Outcome Event1052(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+
+		requirements.Child.RemoveQualification (Qualification.GetQualificationByString ("STUDENT_COUNCIL"));
+
+		requirements.Child.Popularity -= Constants.Character.MAJOR_STAT_CHANGE_AMOUNT;
+		requirements.Child.PopularityGrowth -= Constants.Character.MAJOR_STAT_GROWTH_AMOUNT;
+
+		manager.PlayerFamily.Grandpa.Pride -= Constants.Character.MAJOR_PRIDE_CHANGE_AMOUNT * 2;
+
+		returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+		returnObj.OutcomeDescription = String.Format (
+			"{0} knew there was something fishy about those elections. That is why he worked tirelessly day and night to solve the mystery. Going through the ballots, though, one thing didn't add " +
+			"up. Why did someone write \"RIGGED BALLOT\" on three hundred ballots? Ah ha! Checkmate! {1} looks at Grandpa... \"How could you?!\" {1}'s title is taken away.\n\n" +
+			"{1}'s popularity way down!\n" +
+			"{1}'s popularity growth way down!\n" +
+			"Grandpa's pride way way way way down!!!!",
+			requirements.Grandpa.Name, requirements.Child.Name);
+
+		return returnObj;
+	}
 }

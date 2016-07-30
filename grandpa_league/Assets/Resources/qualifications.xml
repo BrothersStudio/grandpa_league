@@ -11,4 +11,7 @@
   <qualification name="ARBOR_DAY_FAILURE"      id="8"    hidden="true"   display_name="" />
   <qualification name="STAT_GAINS_DOUBLED"     id="9"    hidden="false"  display_name="Stat gains are doubled" />
   <qualification name="GRANDPA_SELLING_DRUGS"  id="10"   hidden="true"   display_name="" />
+  <qualification name="IN_SCOUTS"              id="11"   hidden="false"  display_name="Member of scouts" />
+  <qualification name="RIGGED_ELECTION"        id="12"   hidden="true"   display_name="" />
+  <qualification name="STUDENT_COUNCIL"        id="13"   hidden="false"  display_name="Head of student council" />
 </qualifications>
