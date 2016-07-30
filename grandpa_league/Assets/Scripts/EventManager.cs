@@ -2421,4 +2421,85 @@ public static class EventManager
 		manager.Calendar.ScheduleEventInXDays(EventManager.GetEventById(1046), 99);
 		return returnObj;
 	}
+
+	// Grandpa goes for a walk in the park.
+	public static Outcome Event1047(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+		if (Constants.Roll (0, manager.PlayerFamily.Grandpa.Insanity, (int)Enums.Difficulty.STANDARD) &&
+			requirements.Child.Age < 10) 
+		{
+			SimulationEvent ev = GetEventById (1048);
+			ev.Requirements.Child = requirements.Child;
+			manager.PlayerFamily.Children.Remove (requirements.Child);
+			manager.Calendar.ScheduleEventInXDays(ev, 7);
+
+			manager.PlayerFamily.Grandpa.Insanity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+			manager.PlayerFamily.Grandpa.Pride -= Constants.Character.MAJOR_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE;
+			returnObj.OutcomeDescription = String.Format (
+				"Grandpa, I thought {0} went with you? What do you mean you don't think so? Where is {1}?! Lost in the woods???\n\n" +
+				"{0} left the family!\n" +
+				"Grandpa's insanity up.\n" +
+				"Grandpa's pride way way down!!",
+				requirements.Child.Name, Convert.ToBoolean (requirements.Child.Gender) ? "she" : "he");
+		} 
+		else if (Constants.Roll (requirements.Child.Cuteness, manager.PlayerFamily.Grandpa.Wisdom, (int)Enums.Difficulty.STANDARD)) 
+		{	
+			requirements.Child.Intelligence += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+
+			manager.PlayerFamily.Grandpa.Wisdom += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+			manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+			returnObj.OutcomeDescription = String.Format (
+				"Grandpa regales you with tales of a time when he was a wee boy. Grandpa once socked Hitler in the jaw. It's true. Open a history book, you " +
+				"neanderthal.\n\n" +
+				"{0}'s intelligence up.\n" +
+				"Grandpa's wisdom up.\n" +
+				"Grandpa's pride up.",
+				requirements.Child.Name);
+		} 
+		else 
+		{
+			requirements.Child.Athleticism += Constants.Character.MINOR_STAT_CHANGE_AMOUNT;
+
+			manager.PlayerFamily.Grandpa.Pride += Constants.Character.MINOR_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+			returnObj.OutcomeDescription = String.Format (
+				"You and Grandpa have a nice time at the park. You toss around a frisbee a little. There's a slight chill in the air.\n\n" +
+				"{0}'s athleticism up slightly.\n" +
+				"Grandpa's pride up slightly.",
+				requirements.Child.Name);
+		}
+	
+		return returnObj;
+	}
+
+	// Found child
+	public static Outcome Event1048(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+
+		requirements.Child.Intelligence += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+		requirements.Child.Athleticism += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+
+		manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+		manager.PlayerFamily.Children.Add (requirements.Child);
+
+		returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+		returnObj.OutcomeDescription = String.Format (
+			"After a week of fearful searching, {0} stumbles out of the underbrush one day covered in poison ivy and missing a toe. {1} has seen some shit. Grandpa is " +
+			"somewhat relieved to see {0} alive! After all, {1} had some very important stats for the family team!\n\n" +
+			"{0} returned to the family!\n" +
+			"{0}'s intelligence up.\n" +
+			"{0}'s athleticism up.\n" +
+			"Grandpa's pride up.",
+			requirements.Child.Name, Convert.ToBoolean (requirements.Child.Gender) ? "she" : "he");
+
+		return returnObj;
+	}
 }
