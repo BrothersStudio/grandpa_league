@@ -9,6 +9,7 @@ static class LeagueManager
     {
         //SimulateStatChanges(manager);
         SimulateCharacterMovement(manager);
+        SimulateMoneyChanges(manager);
         SimulateLeagueStandings(manager);
         //ScheduleLeagueEvents(manager);            //TODO
     }
@@ -62,7 +63,29 @@ static class LeagueManager
 
     private static void SimulateCharacterMovement(DataManager manager)
     {
-        //TODO
+        foreach (Family fam in manager.LeagueFamilies)
+        {
+            if (fam.Children.Count <= 2)
+            {
+                int random = Constants.RANDOM.Next(0, 100);
+                if (random <= 5)
+                {
+                    random = Constants.RANDOM.Next(0, manager.Orphanage.Children.Count - 1);
+                    fam.Children.Add(manager.Orphanage.Children[random]);
+                    manager.Orphanage.Children.RemoveAt(random);
+                }
+            }
+            else if (fam.Parents.Count <= 1)
+            {
+                int random = Constants.RANDOM.Next(0, 100);
+                if (random <= 5)
+                {
+                    random = Constants.RANDOM.Next(0, manager.Orphanage.Parents.Count - 1);
+                    fam.Parents.Add(manager.Orphanage.Parents[random]);
+                    manager.Orphanage.Parents.RemoveAt(random);
+                }
+            }
+        }
     }
 
     private static void SimulateLeagueStandings(DataManager manager)
@@ -74,6 +97,18 @@ static class LeagueManager
                 fam.Grandpa.Pride -= Constants.League.STANDARD_PRIDE_INCREASE_AMOUNT;
             else
                 fam.Grandpa.Pride += Constants.League.STANDARD_PRIDE_INCREASE_AMOUNT;
+        }
+    }
+
+    private static void SimulateMoneyChanges(DataManager manager)
+    {
+        foreach (Family fam in manager.LeagueFamilies)
+        {
+            int random = Constants.RANDOM.Next(0, 2);                   //TODO maj, min, and also decrease
+            if (random == 1)
+                fam.Grandpa.Money -= 40;
+            else
+                fam.Grandpa.Money += 45;
         }
     }
 }

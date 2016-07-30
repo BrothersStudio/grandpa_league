@@ -116,4 +116,10 @@ public class DataManager
         get { return this.m_blacklist; }
         set { this.m_blacklist = value; }
     }
+
+    public Family Orphanage
+    {
+        get { return this.m_orphanage; }
+        set { this.m_orphanage = value; }
+    }
 }
