@@ -2729,4 +2729,51 @@ public static class EventManager
 
 		return returnObj;
 	}
+
+	// Field Trip
+	public static Outcome Event1055(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+
+		if (Constants.Roll (0, manager.PlayerFamily.Grandpa.Insanity, (int)Enums.Difficulty.HARD) ||
+			(! Constants.Roll (0, requirements.Parent.Love, (int)Enums.Difficulty.EASY))) 
+		{
+			requirements.Child.Popularity -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+
+			requirements.Parent.Love -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+			requirements.Parent.LoveGrowth -= Constants.Character.STANDARD_STAT_GROWTH_AMOUNT;
+
+			manager.PlayerFamily.Grandpa.Insanity += Constants.Character.STANDARD_STAT_GROWTH_AMOUNT;
+			manager.PlayerFamily.Grandpa.Pride -= Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE;
+			returnObj.OutcomeDescription = String.Format (
+				"From the second they get on the bus, Grandpa, {0}, and {1} are fighting non stop. All the other kids feel very awkward. At the farm, Grandpa kicks a hole through every " +
+				"pumpkin he can find. {0} just drinks the whole time. {1} cries on the bus ride home.\n\n" +
+				"{0}'s love down.\n" +
+				"{0}'s love growth down.\n" +
+				"{1}'s popularity down.\n" +
+				"Grandpa's insanity up.\n" +
+				"Grandpa's pride down.",
+				requirements.Parent.Name, requirements.Child.Name);
+		} 
+		else 
+		{
+			requirements.Child.Popularity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+
+			requirements.Parent.Love += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+
+			manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+			returnObj.OutcomeDescription = String.Format (
+				"That was surprisingly fun! Grandpa picked out a big pumpkin, and everyone ate apple cider donuts.\n\n" +
+				"{0}'s love up.\n" +
+				"{1}'s popularity up.\n" +
+				"Grandpa's pride up.",
+				requirements.Parent.Name, requirements.Child.Name);
+		}
+
+		return returnObj;
+	}
 }

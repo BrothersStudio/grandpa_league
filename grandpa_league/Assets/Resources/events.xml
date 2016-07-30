@@ -67,7 +67,7 @@
   <event type="0" id="1049" name="Grandkid joins scouts" description="{C} is really interested in joining the Gender Neutral Scouts. They want to go camping and learn survival skills. Man, those scouts are losers! Should I let them join?" priority="1" chance="0.003" req_children="11" req_parent="00" req_grandpa="00" req_money="00" req_accept="00"  month="10" day="0" age="6-12" /> 
   <event type="0" id="1050" name="Grandpa rigs elections?" description="As you know, the student council elections are next week. One of your grandchildren are planning on running, but Grandpa isn't sure they have what it takes to win... Perhaps a little vote rigging is in order? I'm sure there would be no consequences." priority="1" chance="0" req_children="11" req_parent="00" req_grandpa="00" req_money="00" req_accept="01" month="9" day="5" /> 
   <event type="0" id="1052" name="Caught rigging" description="" priority="1" chance="0" req_children="11" req_parent="00" req_grandpa="11" req_money="00" req_accept="00" qualification="STUDENT_COUNCIL"/> 
-  <event type="0" id="1054" name="Grandpa goes to the bar" description="Grandpa is always so fixated on this silly league, but sometimes it's best to kick back and relax. Grandpa wants to take another Grandpa to the bar." priority="1" chance="0.01" req_children="00" req_parent="00" req_grandpa="01" req_money="00" req_accept="00" /> 
+  <event type="0" id="1054" name="Grandpa goes to the bar" description="Grandpa is always so fixated on this silly league, but sometimes it's best to kick back and relax. Grandpa wants to take another Grandpa to the bar." priority="1" chance="0.008" req_children="00" req_parent="00" req_grandpa="01" req_money="00" req_accept="00" /> 
   
   <!-- KNOWN EVENTS req_ of the form 1=true, 0=false, [RANDOM][REQUIRED]-->
   
@@ -85,5 +85,7 @@
   <event type="1" id="1046" name="Grandkid's school dance" description="The most magical day of any child's life! The school dance. Where imprints of awkward childhood nights will imprint onto their mind any follow them to their grave. Or not! Let's get this over with." priority="2" req_children="11" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" age="10-18" month="2" day="23" />  
   <event type="1" id="1051" name="Student Council Elections" description="Ah, nothing is more holy and sacred in this great country than the democratic process. This is what our forefathers died for. Surely no one would sully this sacred ritual with fraud. Let's count the votes..." priority="2" req_children="11" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" age="8-18" month="9" day="12" />  
   <event type="1" id="1053" name="Take Your Grandpa to Work Day" description="It's everyone's favorite real life, not-made-up holiday! Take your Grandpa to work day! Who should Grandpa go with?" priority="1" req_children="00" req_parent="01" req_grandpa="00" req_money="00" req_accept="00" month="8" day="0" />  
+  <event type="1" id="1055" name="Field Trip" description="Time for {C}'s yearly field trip to the pumpkin patch/apple orchard. However, they're two chaperones short! Grandpa will go, obviously, but I guess a parent should go as well. Who?" priority="1" req_children="11" req_parent="01" req_grandpa="00" req_money="00" req_accept="00" month="10" day="0" />  
  
+  
 </events>
