@@ -254,7 +254,7 @@ public static class EventManager
         ret.Mail.Message = string.Format(
 			"They locked me up in here. They think I'm crazy, but only I know the truth! The truth about everything! They'll see... {0} will see... " +
 			"No one can stop me from being the best!!!\nI have the entire year planned out... As much as I hate to say it, my thoughts wander at times... " +
-			"I've written is happening each day on the green squares! I'll need to click and take a closer look as those days approach. The current day is " +
+			"I've written down what will happen each day on the green squares on my calendar! I'll need to click and take a closer look as those days approach. The current day is " +
 			"the red date... Or was it polka dotted...? Whichever!\nTake care of yourself, me.\n{1}", 
 			manager.PlayerFamily.Parents[0].Name, manager.PlayerFamily.Grandpa.Name);
 
@@ -2045,6 +2045,151 @@ public static class EventManager
 				"so cool, {0},\" the thief says. Nice!\n\n" +
 				"{0}'s popularity up.",
 				requirements.Parent.Name, Convert.ToBoolean (requirements.Parent.Gender) ? "her" : "him");
+		}
+
+		return returnObj;
+	}
+
+	// Grandpa sells drugs
+	public static Outcome Event1041(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+
+		if (requirements.Accept) 
+		{
+			requirements.Child.AddQualification (Qualification.GetQualificationByString ("GRANDPA_SELLING_DRUGS"));
+
+			manager.PlayerFamily.Grandpa.MoneyGrowth += 200;
+			manager.PlayerFamily.Grandpa.Insanity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+			manager.PlayerFamily.Grandpa.InsanityGrowth += Constants.Character.STANDARD_STAT_GROWTH_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR;
+			returnObj.OutcomeDescription = String.Format (
+				"Pleasure doing business with you! Grandpa rolls up another twenty and stuffs it in his back pocket along with the rest of them. Business is booming!\n\n" +
+				"Grandpa's insanity up.\n" +
+				"Grandpa's insanity growth up.\n" +
+				"Grandpa's income up by 200 dollars a month.");
+		}
+			returnObj.Status = (int)Enums.EventOutcome.PASS;
+
+		return returnObj;
+	}
+
+	// Child catches classmate doing drugs. 
+	public static Outcome Event1042(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+
+		if (requirements.Accept) 
+		{
+			requirements.Child.RemoveQualification (Qualification.GetQualificationByString ("GRANDPA_SELLING_DRUGS"));
+
+			manager.PlayerFamily.Grandpa.MoneyGrowth -= 200;
+			manager.PlayerFamily.Grandpa.Pride -= Constants.Character.MAJOR_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE_BLACKLIST_FOREVER;
+			returnObj.OutcomeDescription = String.Format (
+				"\"Freeze, it's the FBI!\" Grandpa throws his hands up into the air. {0} catching those kids in the bathroom started a massive investigation which led right back " +
+				"to Grandpa himself! Book him, boys!\n\n" +
+				"Grandpa's pride way way down!!\n" +
+				"Grandpa's income down by 200 dollars a month.",
+				requirements.Child.Name);
+		}
+		else
+		{
+			requirements.Child.Popularity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+			manager.PlayerFamily.Grandpa.Pride += Constants.Character.MINOR_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR;
+			returnObj.OutcomeDescription = String.Format (
+				"No need to ruffle any feathers! \n\n" +
+				"{0}'s popularity up.\n" +
+				"Grandpa's pride up slightly.",
+				requirements.Child.Name);
+		}
+
+		return returnObj;
+	}
+
+	// Grandkid fights bully
+	public static Outcome Event1043(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+
+		if (Constants.Roll (requirements.Child.Cuteness, requirements.Child.Athleticism, (int)Enums.Difficulty.HARD)) 
+		{
+			requirements.Child.Popularity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+			requirements.Child.Athleticism += Constants.Character.MINOR_STAT_CHANGE_AMOUNT;
+			manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+			returnObj.OutcomeDescription = String.Format (
+				"{0} is being picked on by a bully at school. One day, {1} has simply had enough and challenges the bully to a showdown at high noon... " +
+				"And {0} beats the ever-living shit out of them! {0} flawlessly dodges every punch the bully throws. The bully has to go to the hospital. Nice going, {0}!\n\n" +
+				"{0}'s popularity up.\n" +
+				"{0}'s athleticism up slightly.\n" +
+				"Grandpa's pride up.",
+				requirements.Child.Name, Convert.ToBoolean(requirements.Child.Gender) ? "she" : "he");
+		} 
+		else if (Constants.Roll (requirements.Child.Cuteness, requirements.Child.Popularity, (int)Enums.Difficulty.STANDARD)) 
+		{
+			requirements.Child.Popularity += Constants.Character.MINOR_STAT_CHANGE_AMOUNT;
+			manager.PlayerFamily.Grandpa.Pride -= Constants.Character.MINOR_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+			returnObj.OutcomeDescription = String.Format (
+				"{0} is being picked on by a bully at school. One day, {1} has simply had enough and challenges the bully to a showdown at high noon... " +
+				"But before it starts, all the kids in {0}'s grade dogpile onto the bully beating the ever-living shit out of them! {0} is just that popular!\n\n" +
+				"{0}'s popularity up slightly.\n" +
+				"Grandpa's pride down slightly.",
+				requirements.Child.Name, Convert.ToBoolean(requirements.Child.Gender) ? "she" : "he");
+		} 
+		else 
+		{
+			requirements.Child.Popularity -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+
+			manager.PlayerFamily.Grandpa.Pride -= Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE;
+			returnObj.OutcomeDescription = String.Format (
+				"{0} is being picked on by a bully at school. One day, {1} has simply had enough and challenges the bully to a showdown at high noon... " +
+				"And {0} gets the ever-living shit beaten out of {2}! So sorry to have said anything, Mr. Bully.\n\n" +
+				"{0}'s popularity down.\n" +
+				"Grandpa's pride down.",
+				requirements.Child.Name, Convert.ToBoolean(requirements.Child.Gender) ? "she" : "he", Convert.ToBoolean(requirements.Child.Gender) ? "her" : "him");
+		}
+
+		return returnObj;
+	}
+
+	// Child takes test
+	public static Outcome Event1044(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+
+		if (Constants.Roll (requirements.Child.Cuteness, requirements.Child.Intelligence, (int)Enums.Difficulty.HARD)) 
+		{
+			requirements.Child.Intelligence += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+			manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+			returnObj.OutcomeDescription = String.Format (
+				"{0} had a test today on {1}... And aced it! The teacher has never seen a score that high. I didn't know there was a percentage about 100! Congrats!\n\n" +
+				"{0}'s intelligence up.\n" +
+				"Grandpa's pride up.",
+				requirements.Child.Name, Convert.ToBoolean(Constants.RANDOM.Next(0, 1)) ? "History of Asian Fishing" : "Mega Geometry");
+		}
+		else
+		{
+			requirements.Child.Intelligence -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+			manager.PlayerFamily.Grandpa.Pride -= Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE;
+			returnObj.OutcomeDescription = String.Format (
+				"{0} had a test today on {1}... And completely bombed it! {2} even stayed up late studying... The teacher is making {3} sit in the loser chair for the rest of the term...\n\n" +
+				"{0}'s intelligence down.\n" +
+				"Grandpa's pride down.",
+				requirements.Child.Name, Convert.ToBoolean(Constants.RANDOM.Next(0, 1)) ? "Conversational Latin" : "History of Salad", Convert.ToBoolean(requirements.Child.Gender) ? "She" : "He", Convert.ToBoolean(requirements.Child.Gender) ? "her" : "him");
 		}
 
 		return returnObj;
