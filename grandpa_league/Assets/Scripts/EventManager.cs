@@ -482,28 +482,6 @@ public static class EventManager
 		return ret;
 	}
 
-    //NAME: Grandkid's class does some fingerpainting
-    /*public static Outcome Event101(DataManager manager, Requirement requirements)
-       {
-           int successes = 0;
-           List<string> outcome = new List<string>();
-           Outcome returnObj = new Outcome()
-
-           if(requirements.Child.Artistry >= 65 && requirements.Child.Popularity >= 60)
-           {
-               successes+=2;
-           }
-           else if(requirements.Child.Artistry >= 60)
-           {
-               successes++;
-           }
-
-           if(successes >= 2)
-           {
-               returnObj.OutcomeDescription = String.Format("Turns out { 0}");
-           }
-       } */
-
     // Grandpa buys a car
     public static Outcome Event1001(DataManager manager, Requirement requirements)
 	{
@@ -1308,6 +1286,7 @@ public static class EventManager
 				requirements.Child.Name, Convert.ToBoolean (requirements.Child.Gender) ? "She" : "He");
 		}
 
+		manager.Calendar.ScheduleEventInXDays(EventManager.GetEventById(1019), 120);
 		return returnObj;
 	}
 
@@ -2192,6 +2171,123 @@ public static class EventManager
 				requirements.Child.Name, Convert.ToBoolean(Constants.RANDOM.Next(0, 1)) ? "Conversational Latin" : "History of Salad", Convert.ToBoolean(requirements.Child.Gender) ? "She" : "He", Convert.ToBoolean(requirements.Child.Gender) ? "her" : "him");
 		}
 
+		return returnObj;
+	}
+
+
+	// Grandkid's class does fingerpainting
+	public static Outcome Event1045(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+
+		if (Constants.Roll(requirements.Child.Cuteness, requirements.Child.Artistry, (int)Enums.Difficulty.EASY) && 
+			Constants.Roll(requirements.Child.Cuteness, requirements.Child.Popularity, (int)Enums.Difficulty.STANDARD))
+   		{
+			requirements.Child.Artistry += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+			requirements.Child.Popularity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+
+			manager.PlayerFamily.Grandpa.Pride -= Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+			returnObj.OutcomeDescription = String.Format (
+				"{0}'s class was fingerpainting today. {0} did a very good sharing {1} paints. Even so, painted an exact replica of the Mona Lisa! The fact cats in the pricinpal's office are calling it " +
+				"a \"miracle\"! Ha!\n\n" +
+				"{0}'s artistry up.\n" +
+				"{0}'s popularity up.\n" +
+				"Grandpa's pride up.",
+				requirements.Child.Name, Convert.ToBoolean(requirements.Child.Gender) ? "her" : "his", Convert.ToBoolean(requirements.Child.Gender) ? "she" : "he");
+   		}
+		else if (Constants.Roll(requirements.Child.Cuteness, requirements.Child.Artistry, (int)Enums.Difficulty.STANDARD))
+   		{
+			requirements.Child.Artistry += Constants.Character.MINOR_STAT_CHANGE_AMOUNT;
+			requirements.Child.Popularity += Constants.Character.MINOR_STAT_CHANGE_AMOUNT;
+
+			manager.PlayerFamily.Grandpa.Pride -= Constants.Character.MINOR_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+			returnObj.OutcomeDescription = String.Format (
+				"{0}'s class was fingerpainting today. {0} spilled paint all over the page and {1}... But it came out looking exactly like Van Gough's Starry Night. Kind of freaky actually. {2} " +
+				"kindergarten teacher apparently refuses to teach {3} now... Something about demons." +
+				"a \"miracle\"! Ha!\n\n" +
+				"{0}'s artistry up slightly.\n" +
+				"{0}'s popularity up slightly.\n" +
+				"Grandpa's pride up slightly.",
+				requirements.Child.Name, Convert.ToBoolean(requirements.Child.Gender) ? "herself" : "hisself", 
+				Convert.ToBoolean(requirements.Child.Gender) ? "Her" : "His", Convert.ToBoolean(requirements.Child.Gender) ? "her" : "him");
+   		}
+		else
+		{	
+			requirements.Child.Artistry -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+
+			manager.PlayerFamily.Grandpa.Pride -= Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE;
+			returnObj.OutcomeDescription = String.Format (
+				"{0}'s class was fingerpainting today... But {0} couldn't be roused from nap time. {2} just lay there. They actually thought {1} was dead. This is no way for a young child to " +
+				"build finger painting skills for the real world!\n\n" +
+				"{0}'s artistry down.\n" +
+				"Grandpa's pride down.",
+				requirements.Child.Name, Convert.ToBoolean(requirements.Child.Gender) ? "she" : "he", Convert.ToBoolean(requirements.Child.Gender) ? "She" : "He");
+		}
+
+		return returnObj;
+	}
+
+	// Grandkid's school dance
+	public static Outcome Event1046(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+
+		if (Constants.Roll (requirements.Child.Cuteness, requirements.Child.Popularity, (int)Enums.Difficulty.VERY_HARD)) 
+		{
+			requirements.Child.Popularity += Constants.Character.MAJOR_STAT_CHANGE_AMOUNT;
+			requirements.Child.PopularityGrowth += Constants.Character.STANDARD_STAT_GROWTH_AMOUNT;
+
+			manager.PlayerFamily.Grandpa.Money += 80;
+			manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT * 2;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+			returnObj.OutcomeDescription = String.Format (
+				"Nice dancing, {0}! I think you danced with every {1} in the building. And they were still lining up. I couldn't believe when you started charging them " +
+				"per dance. That's economical!\n\n" +
+				"{0}'s popularity way up!\n" +
+				"{0}'s popularity growth up.\n" +
+				"Grandpa gained 80 dollars.\n" +
+				"Grandpa's pride way up!",
+				requirements.Child.Name, Convert.ToBoolean (requirements.Child.Gender) ? "guy" : "girl");
+		} 
+		else if (Constants.Roll (requirements.Child.Cuteness, requirements.Child.Popularity, (int)Enums.Difficulty.EASY)) 
+		{	
+			requirements.Child.Popularity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+			requirements.Child.PopularityGrowth += Constants.Character.MINOR_STAT_GROWTH_AMOUNT;
+
+			manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+			returnObj.OutcomeDescription = String.Format (
+				"That went adequately! You may have gotten shot down by every {1} you asked to dance, but at least you tried. That's worth something, right? Wait, it isn't? " +
+				"Nevermind, then, that was a waste of time.\n\n" +
+				"{0}'s popularity up.\n" +
+				"{0}'s popularity growth up slightly.\n" +
+				"Grandpa's pride up.",
+				requirements.Child.Name, Convert.ToBoolean (requirements.Child.Gender) ? "guy" : "girl");
+		} 
+		else 
+		{
+			requirements.Child.Popularity -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+
+			manager.PlayerFamily.Grandpa.Pride -= Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE;
+			returnObj.OutcomeDescription = String.Format (
+				"Talk about a wallflower. Standing by the punch table and avoiding eye contact with anyone who even attempted to make eye contact with you between fistfuls of food? " +
+				"Not exactly graceful, {0}.\n\n" +
+				"{0}'s popularity down.\n" +
+				"Grandpa's pride down.",
+				requirements.Child.Name, Convert.ToBoolean (requirements.Child.Gender) ? "guy" : "girl");
+		}
+
+		manager.Calendar.ScheduleEventInXDays(EventManager.GetEventById(1046), 99);
 		return returnObj;
 	}
 }
