@@ -631,6 +631,12 @@ public class Main : MonoBehaviour {
 
 	private void HighlightKnownEvents(int month)
 	{
+		for (int i = 0; i < 28; i++)
+		{
+			days [i].image.color = Color.white;
+			days [i].GetComponent<Button>().onClick.RemoveAllListeners();
+		}
+
 		List<int> knownEvents = m_dataManager.Calendar.GetKnownEventDaysForMonth(month);
 		foreach (int known_event_day_instance in knownEvents) 
 		{
@@ -666,24 +672,20 @@ public class Main : MonoBehaviour {
 
 	private void InitializeHighlight()
 	{     
-		days [current_day].image.color = Color.red;
-
 		month_title.text = Constants.MONTH_NAMES[this.current_month];
 
 		month_back_button.SetActive(false);
 
-		HighlightKnownEvents(current_month);
+		HighlightKnownEvents(this.current_month);
+
+		days [current_day].image.color = Color.red;
 	}
 
 	public void AdvanceDayHighlight()
 	{
-		if (display_month != current_month) 
-		{
-			display_month = current_month;
-
+		if (display_month != this.current_month) 
 			ChangeDisplayMonth (current_month);
-		}
-
+	
 		if (current_day == days.Length - 1) 
 		{
 			current_day = 0;
@@ -694,15 +696,22 @@ public class Main : MonoBehaviour {
 			}
 			month_title.text = Constants.MONTH_NAMES[current_month];
 
-            for (int i = 0; i < 28; i++)
-                days[i].image.color = Color.white;
+			for (int i = 0; i < 28; i++) 
+			{
+				days [i].image.color = Color.white;
+				days [i].GetComponent<Button>().onClick.RemoveAllListeners();
+			}
         }
 		else
 		{
 			current_day++;
 			days[current_day - 1].image.color = Color.white;
 		}
-        HighlightKnownEvents(current_month);
+
+		display_month = current_month;
+
+		ChangeDisplayMonth (0);
+
         days [current_day].image.color = Color.red;
     }
 
@@ -720,11 +729,6 @@ public class Main : MonoBehaviour {
 		else if (display_month == 12) 
 		{
 			month_forward_button.SetActive(false);
-		}
-
-		for (int i = 0; i < 28; i++)
-		{
-			days [i].image.color = Color.white;
 		}
 
 		month_title.text = Constants.MONTH_NAMES[display_month];
