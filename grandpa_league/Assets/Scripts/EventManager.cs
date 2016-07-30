@@ -2623,8 +2623,7 @@ public static class EventManager
 
 		return returnObj;
 	}
-
-
+		
 	// Caught rigging
 	public static Outcome Event1052(DataManager manager, Requirement requirements)
 	{
@@ -2645,6 +2644,88 @@ public static class EventManager
 			"{1}'s popularity growth way down!\n" +
 			"Grandpa's pride way way way way down!!!!",
 			requirements.Grandpa.Name, requirements.Child.Name);
+
+		return returnObj;
+	}
+
+	// Take your grandpa to work day
+	public static Outcome Event1053(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+
+		if (Constants.Roll (0, manager.PlayerFamily.Grandpa.Insanity, (int)Enums.Difficulty.STANDARD)) 
+		{
+			requirements.Parent.Popularity -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+			requirements.Parent.Love -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+			requirements.Parent.PopularityGrowth -= Constants.Character.STANDARD_STAT_GROWTH_AMOUNT;
+
+			manager.PlayerFamily.Grandpa.Pride -= Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE;
+			returnObj.OutcomeDescription = String.Format (
+				"\"No, Grandpa! Don't touch that!\" But it's too late. Grandpa has touched it. Red lights start flashing all throughout the facility. Fires sprout up everywhere. " +
+				"Wow who made a button with this functionality?! Anyway, looks like {0} is out of a job.\n\n" +
+				"{0}'s popularity down.\n" +
+				"{0}'s love down.\n" +
+				"{0}'s popularity growth down.\n" +
+				"Grandpa's pride down.",
+				requirements.Parent.Name);
+		} 
+		else 
+		{
+			requirements.Parent.Popularity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+			requirements.Parent.Love += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+			requirements.Parent.PopularityGrowth += Constants.Character.STANDARD_STAT_GROWTH_AMOUNT;
+
+			manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+			returnObj.OutcomeDescription = String.Format (
+				"\"Oh, Grandpa, you're so funny!\" Grandpa is a big hit at work. He teaches {0}'s boss how to be a better boss as well! Productivity is up 70%!\n\n" +
+				"{0}'s popularity up.\n" +
+				"{0}'s love up.\n" +
+				"{0}'s popularity growth up.\n" +
+				"Grandpa's pride up.",
+				requirements.Parent.Name);
+		}
+
+		return returnObj;
+	}
+
+	// Grandpa goes to the bar
+	public static Outcome Event1054(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+
+		if (Constants.Roll (0, manager.PlayerFamily.Grandpa.Insanity, (int)Enums.Difficulty.HARD) ||
+			Constants.RANDOM.Next(1,100) < 50) 
+		{
+			requirements.Grandpa.Pride -= Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+			manager.PlayerFamily.Grandpa.Pride -= Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+			returnObj.OutcomeDescription = String.Format (
+				"\"{0}, what did you say about my grandson?!\" Grandpa socks {0} right in the mouth. {0} slams a chair over Grandpa's head. BAR FIGHT!! Everyone starts breaking windows and " +
+				"glasses and causing chaos. The cops are called. There are no real consequences like usual.\n\n" +
+				"{0}'s pride down.\n" +
+				"Grandpa's pride down.",
+				requirements.Grandpa.Name);
+		} 
+		else 
+		{
+			requirements.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+			manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+			returnObj.OutcomeDescription = String.Format (
+				"Against all odds, Grandpa has a relaxing night with {0}. Trading war stories and grandkid stories. They have more in common than they originally thought. They're just " +
+				"combatants on opposite sides of a conflict. But the conflict must go on. All nice nights must end.\n\n" +
+				"{0}'s pride up.\n" +
+				"Grandpa's pride up.",
+				requirements.Grandpa.Name);
+		}
 
 		return returnObj;
 	}
