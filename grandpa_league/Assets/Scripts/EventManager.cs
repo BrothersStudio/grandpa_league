@@ -292,7 +292,7 @@ public static class EventManager
 
         cpsOutcome.Mail = new Mail();
         cpsOutcome.Mail.Date = manager.Calendar.GetCurrentDay();
-        cpsOutcome.Mail.Subject = "Montly CPS Update";
+        cpsOutcome.Mail.Subject = "Monthly CPS Update";
         cpsOutcome.Mail.Sender = "Charlene Dogood";
         cpsOutcome.Mail.Message = string.Format(
             "Hello Mr. {0},\n\n\t" +
@@ -617,6 +617,43 @@ public static class EventManager
 
 		return ret;
 	}
+
+    //Grandkid wanders into traffic
+    public static Outcome Event102(DataManager manager, Requirement requirements)
+    {
+        Outcome returnObj = new Outcome();
+
+        if (Constants.Roll(requirements.Child.Cuteness, requirements.Child.Intelligence, (int)Enums.Difficulty.EASY))
+        {
+            manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+            requirements.Child.Popularity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+
+            returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+            returnObj.OutcomeDescription = String.Format(
+                "While {0} was playing playing kickball with the neighborhood kids, the ball accidentaly went rolling into street. " +
+                "When a car came roaring down the road, {0} pulled {1} unaware friend out of the way just before he got hit! " +
+                "{0} is now a neighborhood hero! \n \n" +
+                "{0}'s popularity up! \n" +
+                "Grandpa pride up!",
+                requirements.Child.Name, Convert.ToBoolean(requirements.Child.Gender) ? "her" : "his");
+
+        }
+        else
+        {
+            requirements.Child.Athleticism -= Constants.Character.MAJOR_STAT_CHANGE_AMOUNT;
+            manager.PlayerFamily.Grandpa.Pride -= Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+            returnObj.Status = (int)Enums.EventOutcome.FAILURE;
+            returnObj.OutcomeDescription = String.Format(
+                "Well, {0} was never known for {1} intelligence. While out playing in the yard one day, " +
+                "he wandered into traffic to get his wayward ball. Unfortunately, the car did not see his little body " +
+                "in the road in time. It's okay, though. It was just a love tap from the car. However, {1} leg is now screwed up. \n \n" +
+                "{0}'s athleticism way down! \n" +
+                "Grandpa's pride down!",
+                requirements.Child.Name, Convert.ToBoolean(requirements.Child.Gender) ? "her" : "his");
+        }
+        return returnObj;
+    }
 
     // Grandpa buys a car
     public static Outcome Event1001(DataManager manager, Requirement requirements)
@@ -2507,4 +2544,6 @@ public static class EventManager
 
 		return returnObj;
 	}
+
+
 }

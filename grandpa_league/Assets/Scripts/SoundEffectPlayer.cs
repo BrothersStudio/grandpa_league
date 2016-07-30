@@ -9,6 +9,11 @@ public class SoundEffectPlayer : MonoBehaviour {
     public AudioClip mail;
     public AudioSource mailSource;
 
+    public void Awake()
+    {
+        mailSource.Play();
+    }
+
     public void PlayNotification()
     {
         mail.LoadAudioData();
@@ -36,5 +41,7 @@ public class SoundEffectPlayer : MonoBehaviour {
         int randClip = Random.Range(0, clicks.Length);
         clickSource.clip = clicks[randClip];
         clickSource.Play();
+        mailSource.clip = mail;
+        mailSource.Play();
     }
 }
