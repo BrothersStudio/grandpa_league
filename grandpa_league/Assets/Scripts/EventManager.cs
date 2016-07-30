@@ -2049,4 +2049,65 @@ public static class EventManager
 
 		return returnObj;
 	}
+
+	// Grandpa sells drugs
+	public static Outcome Event1041(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+
+		if (requirements.Accept) 
+		{
+			requirements.Child.AddQualification (Qualification.GetQualificationByString ("GRANDPA_SELLING_DRUGS"));
+
+			manager.PlayerFamily.Grandpa.MoneyGrowth += 200;
+			manager.PlayerFamily.Grandpa.Insanity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+			manager.PlayerFamily.Grandpa.InsanityGrowth += Constants.Character.STANDARD_STAT_GROWTH_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR;
+			returnObj.OutcomeDescription = String.Format (
+				"Pleasure doing business with you! Grandpa rolls up another twenty and stuffs it in his back pocket along with the rest of them. Business is booming!\n\n" +
+				"Grandpa's insanity up.\n" +
+				"Grandpa's insanity growth up.\n" +
+				"Grandpa's income up by 200 dollars a month.");
+		}
+			returnObj.Status = (int)Enums.EventOutcome.PASS;
+
+		return returnObj;
+	}
+
+	// Child catches classmate doing drugs. 
+	public static Outcome Event1042(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+
+		if (requirements.Accept) 
+		{
+			requirements.Child.RemoveQualification (Qualification.GetQualificationByString ("GRANDPA_SELLING_DRUGS"));
+
+			manager.PlayerFamily.Grandpa.MoneyGrowth -= 200;
+			manager.PlayerFamily.Grandpa.Pride -= Constants.Character.MAJOR_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE_BLACKLIST_FOREVER;
+			returnObj.OutcomeDescription = String.Format (
+				"\"Freeze, it's the FBI!\" Grandpa throws his hands up into the air. {0} catching those kids in the bathroom started a massive investigation which led right back " +
+				"to Grandpa himself! Book him, boys!\n\n" +
+				"Grandpa's pride way way down!!\n" +
+				"Grandpa's income down by 200 dollars a month.",
+				requirements.Child.Name);
+		}
+		else
+		{
+			requirements.Child.Popularity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+			manager.PlayerFamily.Grandpa.Pride += Constants.Character.MINOR_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR;
+			returnObj.OutcomeDescription = String.Format (
+				"No need to ruffle any feathers! \n\n" +
+				"{0}'s popularity up.\n" +
+				"Grandpa's pride up slightly.",
+				requirements.Child.Name);
+		}
+
+		return returnObj;
+	}
 }
