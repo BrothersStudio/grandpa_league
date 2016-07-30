@@ -57,6 +57,8 @@
   <event type="0" id="1041" name="Grandpa sells drugs" description="Kids at {C}'s school are under a lot of pressure to succeed in school. Seems like all the kids are taking adderall. Could make a healthy buck off that!" priority="1" chance="0.002" req_children="11" req_parent="00" req_grandpa="00" req_money="00" req_accept="01" />    
   <event type="0" id="1042" name="Grandkid finds classmate doing drugs" description="{C} steps out of the stall at school and finds a couple students doing crystal meth. Damn, that is some hard shit. Should you turn them in?" priority="1" chance="0.002" req_children="11" req_parent="00" req_grandpa="00" req_money="00" req_accept="01" qualification="GRANDPA_SELLING_DRUGS" />    
   <event type="0" id="1019" name="Grandkid throws wild party" description="The only way to be a cool kid is to throw a cool party. {C} has plans to throw the coolest party ever. Obviously this is a good idea. Maybe pitch in a hundred bucks to make sure it goes off without a hitch? Extra money can counteract a lame kid, everyone knows that." priority="1" chance="0.01" req_children="11" req_parent="11" req_grandpa="11" req_money="01" req_accept="01"  age="12-18" />  
+  <event type="0" id="1043" name="Grandkid fights bully" description="" priority="1" chance="0.01" req_children="11" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" />    
+  <event type="0" id="1044" name="Grandkid takes a test" description="" priority="1" chance="0.01" req_children="11" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" />    
   
   <!-- KNOWN EVENTS req_ of the form 1=true, 0=false, [RANDOM][REQUIRED]-->
   
