@@ -11,6 +11,7 @@
   <event type="2" id="21" name="tutorial_2" description="" priority="0" chance="1" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" day="8" month="1" year="2016"/>
   <event type="2" id="22" name="tutorial_3" description="" priority="0" chance="1" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" day="15" month="1" year="2016"/>
   <event type="2" id="23" name="tutorial_4" description="" priority="0" chance="1" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" day="25" month="1" year="2016"/>
+  <event type="2" id="24" name="tutorial_5" description="" priority="0" chance="1" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" day="1" month="3" year="2016"/>
   <event type="0" id="40" name="Insanity Stage 30" description="" priority="0" chance="0.1" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" />
   <event type="0" id="41" name="Insanity Stage 50" description="" priority="0" chance="0.1" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" />
   <event type="0" id="42" name="Insanity Stage 70" description="" priority="0" chance="0.1" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" />

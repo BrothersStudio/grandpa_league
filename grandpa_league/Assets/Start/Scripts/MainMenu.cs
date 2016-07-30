@@ -9,7 +9,7 @@ public struct Version
     public const string ReleaseVersion = "Alpha";
     public const int MajorVersion = 0;
     public const int MinorVersion = 1;
-    public const int BuildNumber = 217;
+    public const int BuildNumber = 317;
 }
 
 

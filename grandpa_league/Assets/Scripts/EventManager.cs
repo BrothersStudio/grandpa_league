@@ -450,8 +450,26 @@ public static class EventManager
         return ret;
     }
 
-	//NAME: INSANITY MAIL 1
-	public static Outcome Event40(DataManager manager, Requirement requirements)
+    //NAME: TUTORIAL MAIL 5 (abilities)
+    public static Outcome Event24(DataManager manager, Requirement requirements)
+    {
+        Outcome ret = new Outcome();
+        ret.Status = (int)Enums.EventOutcome.PASS;
+
+        ret.Mail = new Mail();
+        ret.Mail.Date = manager.Calendar.GetCurrentDay();
+        ret.Mail.Subject = "Unlock your inner potential";
+        ret.Mail.Image = "tutorial_5";
+        ret.Mail.Sender = "???";
+        ret.Mail.Message = string.Format(
+            "Hey buddy, old pal...good to see you again? Remember the good old days? Me too, me too. Come on down and I'll help you unlock your inner potential and abilities you never even" +
+            "knew you had! Whenever you need help, I'm there for you. I always am, aren't I?\n\nLove,\n????");
+
+        return ret;
+    }
+
+    //NAME: INSANITY MAIL 1
+    public static Outcome Event40(DataManager manager, Requirement requirements)
 	{
 		Outcome ret = new Outcome ();
 		if (manager.PlayerFamily.Grandpa.Insanity > 30) 
@@ -586,12 +604,27 @@ public static class EventManager
 		Outcome ret = new Outcome ();
 		if (requirements.Accept) 
 		{
-			// Schedule event from yesterday tomorrow
+            int day = manager.Calendar.Day == 1 ? 28 : manager.Calendar.Day - 1;
+            List<SimulationEvent> prevDay = manager.Calendar.GetEventsForDay(day, manager.Calendar.Month);
+            List<SimulationEvent> executed = new List<SimulationEvent>();
+            foreach(SimulationEvent ev in prevDay)
+            {
+                if (ev.FinishedExecution)
+                    executed.Add(ev);
+            }
 
-			ret.Status = (int)Enums.EventOutcome.SUCCESS;
+            if (executed.Count == 0)
+            {
+                ret.Status = (int)Enums.EventOutcome.FAILURE;
+                ret.OutcomeDescription = String.Format("Hmm nothing of note happened yesterday...");
+                return ret;
+            }
+
+            ret.Status = (int)Enums.EventOutcome.SUCCESS;
 			ret.OutcomeDescription = String.Format (
 				"Grandpa whips out his time machine... Let's try that event again...");
-		}
+            manager.Calendar.ScheduleEventInXDays(executed[0], 1);
+        }
 		else
 			ret.Status = (int)Enums.EventOutcome.PASS;
 
@@ -604,12 +637,21 @@ public static class EventManager
 		Outcome ret = new Outcome ();
 		if (requirements.Accept) 
 		{
+            if(manager.PlayerFamily.Children.Count <= 0)
+            {
+                ret.Status = (int)Enums.EventOutcome.FAILURE;
+                ret.OutcomeDescription = String.Format(
+                    "This is my last grandchild...that wouldn't help me win...");
+                return ret;
+            }
 			manager.PlayerFamily.Children.Remove (requirements.Child);
+            manager.PlayerFamily.Grandpa.Insanity = manager.PlayerFamily.Grandpa.Insanity * 0.20;
+            manager.PlayerFamily.Grandpa.Insanity -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
 
-			ret.Status = (int)Enums.EventOutcome.SUCCESS;
+            ret.Status = (int)Enums.EventOutcome.SUCCESS;
 			ret.OutcomeDescription = String.Format (
 				"Grandpa lets his sacrificial knife clatter to the floor. I am sorry, {0}, but it was the only way...\n\n" +
-				"{0} removed from the family!",
+				"{0} removed from the family!\nGrandpa's Insanity way down!\nGrandpa's Wisdom down!",
 				requirements.Child.Name);
 		}
 		else
