@@ -37,6 +37,7 @@ public static class EventManager
                                                             simEvent.Attributes("age").Count() == 0 ? null : Convert.ToString(simEvent.Attribute("age").Value)
                                                             );
 
+			Debug.Log(simEvent.Attribute("name").Value);
             switch (Int32.Parse(simEvent.Attribute("type").Value))
             {
                 case (int)Enums.EventType.HIDDEN:

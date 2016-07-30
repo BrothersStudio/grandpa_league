@@ -54,7 +54,7 @@
   <event type="0" id="1029" name="Grandpa gets a doctor" description="Grandpa hasn't been feeling terribly well lately. A lot of sinister voices talking about a League. Fortunately, a doctor in town specializes in this sort of thing. For 50 dollars a month he can help you!" priority="1" chance="0.002" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="01" />   
   <event type="0" id="1031" name="Grandpa joins a cult" description="" priority="1" chance="0.001" req_children="11" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" />  
   <event type="0" id="1035" name="Arbor Day Result" description="" priority="1" chance="0" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" />  
-  <event type="0" id="1037" name="Grandpa goes fishing" description="Ahh, the summer is the perfect time for the most stereotypical grandpa activity there is. Fishing! I should take one of the kids!" priority="1" req_children="01" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" month="6" day="0" />  
+  <event type="0" id="1037" name="Grandpa goes fishing" description="Ahh, the summer is the perfect time for the most stereotypical grandpa activity there is. Fishing! I should take one of the kids!" priority="1" chance="0" req_children="01" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" month="6" day="0" />  
   <event type="0" id="1039" name="Parent gets promotion" description="" priority="1" chance="0.01" req_children="00" req_parent="11" req_grandpa="00" req_money="00" req_accept="00" />  
   <event type="0" id="1040" name="Parent catches coworker stealing" description="{P} is dusting the files at work when they see a coworker stuff a handful of pencils into their pocket. Stealing! At work! Should you turn them in...?" priority="1" chance="0.002" req_children="00" req_parent="11" req_grandpa="00" req_money="00" req_accept="01" />    
   <event type="0" id="1041" name="Grandpa sells drugs" description="Kids at {C}'s school are under a lot of pressure to succeed in school. Seems like all the kids are taking adderall. Could make a healthy buck off that!" priority="1" chance="0.002" req_children="11" req_parent="00" req_grandpa="00" req_money="00" req_accept="01" />    
@@ -62,9 +62,8 @@
   <event type="0" id="1043" name="Grandkid fights bully" description="" priority="1" chance="0.01" req_children="11" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" />    
   <event type="0" id="1044" name="Grandkid takes a test" description="" priority="1" chance="0.01" req_children="11" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" age="8-18"/>    
   <event type="0" id="1045" name="Grandkid's class does fingerpainting" description="" priority="1" chance="0.006" req_children="11" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" age="4-8" />    
-  <event type="0" id="1047" name="Grandpa's walk in the park" description="It's a beautiful fall day. I ought to take one of my grandkids for a walk in the park slash bonding experience." priority="1" req_children="01" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" age="4-18" month="9" day="0" />    
-  <event type="0" id="1048" name="Found lost park child" description="" priority="1" chance="0" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" />    
-  
+  <event type="0" id="1047" name="Grandpa's walk in the park" description="It's a beautiful fall day. I ought to take one of my grandkids for a walk in the park slash bonding experience." priority="1" chance="0" req_children="01" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" age="4-18" month="9" day="0" />    
+  <event type="0" id="1048" name="Found lost park child" description="" priority="1" chance="0" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" /> 
   
   <!-- KNOWN EVENTS req_ of the form 1=true, 0=false, [RANDOM][REQUIRED]-->
   
