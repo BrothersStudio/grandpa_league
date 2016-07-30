@@ -4,6 +4,9 @@
   <!-- RESERVED EVENTS -->
   <event type="2" id="0" name="weekly_stat_up" description="" priority="0" chance="1" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00"/>
   <event type="2" id="1" name="trade_accept_reject" description="" priority="1" chance="1" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00"/>
+  <event type="2" id="2" name="cps_montly" description="" priority="0" chance="1" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" day="14" month="1"/>
+  <event type="2" id="3" name="cps_warning" description="" priority="0" chance="1" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" />
+  <event type="2" id="4" name="cps_takedown" description="" priority="1" chance="1" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" />
   <event type="2" id="20" name="tutorial_1" description="" priority="0" chance="1" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" day="1" month="1" year="2016"/>
   <event type="2" id="21" name="tutorial_2" description="" priority="0" chance="1" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" day="8" month="1" year="2016"/>
   <event type="2" id="22" name="tutorial_3" description="" priority="0" chance="1" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" day="15" month="1" year="2016"/>

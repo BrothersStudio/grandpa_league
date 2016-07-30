@@ -206,10 +206,10 @@ public static class EventManager
         statOutcome.Mail.Sender = manager.PlayerFamily.Parents[0].Name;
         statOutcome.Mail.Message = string.Format(
 			"Hey Dad,\n\n\t" +
-			"Here is your social security check for the month plus a little something extra I scraped up for you. The kids are doing just fine " +
+			"Here is your social security check for the month plus a little something extra I scraped up for you after taking what we needed to keep the family going. The kids are doing just fine " +
 			"and are growing so fast! You'll barely even recognize them soon (between you and me, I'm worred {0} is already getting uglier like " +
-			"Mom did). Anyway have a good month!\n\nTotal Amount Applied to Account: ${1}.00\n\nLove,\n{2}",
-			manager.PlayerFamily.Children[0].Name, manager.PlayerFamily.Grandpa.MoneyGrowth, manager.PlayerFamily.Parents[0].Name);
+			"Mom did). Anyway have a good month!\n\nTotal Income: ${3}\nTotal Family Expenses: ${4}.00\nTotal Amount Applied to Account: ${1}.00\n\nLove,\n{2}",
+			manager.PlayerFamily.Children[0].Name, manager.PlayerFamily.Grandpa.MoneyGrowth - manager.PlayerFamily.Upkeep, manager.PlayerFamily.Parents[0].Name, manager.PlayerFamily.Grandpa.MoneyGrowth, manager.PlayerFamily.Upkeep);
         return statOutcome;
     }
 
@@ -218,6 +218,137 @@ public static class EventManager
     {
         Outcome tradeOutcome = requirements.Trade.PerformTradeAction(manager);
         return tradeOutcome;
+    }
+
+    //NAME: CPS_MONTHLY_EVENT
+    public static Outcome Event2(DataManager manager, Requirement requirements)
+    {
+        Outcome cpsOutcome = new Outcome();
+        string familyStatusString;
+        int familyStatus;
+        if (manager.PlayerFamily.Chemistry >= 100)
+        {
+            familyStatusString = "is doing great and really seems to like being around you,";
+            familyStatus = (int)Enums.Status.GOOD;
+        }
+        else if (manager.PlayerFamily.Chemistry < 100 && manager.PlayerFamily.Chemistry >= 50)
+        {
+            familyStatusString = "is doing decently well and is within acceptable standards,";
+            familyStatus = (int)Enums.Status.OK;
+        }
+        else if (manager.PlayerFamily.Chemistry < 50 && manager.PlayerFamily.Chemistry >= 25)
+        {
+            familyStatusString = "is starting to deteriorate (we will be watching you closely),";
+            familyStatus = (int)Enums.Status.BAD;
+        }
+        else
+        { 
+            familyStatusString = "is in completely deplorable conditions,";
+            familyStatus = (int)Enums.Status.HORRIBLE;
+        }
+
+        string incomeStatusString;
+        int incomeStatus;
+        if (manager.PlayerFamily.Grandpa.Money >= 10000)
+        {
+            incomeStatusString = "to be doing fantastic! I guess the stock market worked out for you after all";
+            incomeStatus = (int)Enums.Status.GOOD;
+        }
+        else if (manager.PlayerFamily.Grandpa.Money < 10000 && manager.PlayerFamily.Grandpa.Money >= 5000)
+        {
+            incomeStatusString = "stable, saving for retirement really pays off I guess";
+            incomeStatus = (int)Enums.Status.OK;
+        }
+        else if (manager.PlayerFamily.Grandpa.Money < 5000 && manager.PlayerFamily.Grandpa.Money >= 1500)
+        {
+            incomeStatusString = "is looking a little lackluster. Social security alone isn't enough to get by these days";
+            incomeStatus = (int)Enums.Status.BAD;
+        }
+        else
+        { 
+            incomeStatusString = "horrible. You're broke";
+            incomeStatus = (int)Enums.Status.HORRIBLE;
+        }
+
+        if(incomeStatus == (int)Enums.Status.HORRIBLE && familyStatus == (int)Enums.Status.HORRIBLE)
+        {
+            if (manager.Calendar.Month < 4 && manager.Calendar.Year == 2016)
+            {
+                cpsOutcome.Status = (int)Enums.EventOutcome.PASS;
+            }
+            else if (manager.PlayerInfo.FINAL_WARNING)
+            {
+                manager.Calendar.ScheduleEventInXDays(EventManager.GetEventById(3), 1);
+                manager.PlayerInfo.FINAL_WARNING = false;
+                cpsOutcome.Status = (int)Enums.EventOutcome.SUCCESS;
+            }
+            else
+            {
+                manager.Calendar.ScheduleEventInXDays(EventManager.GetEventById(4), 1);
+                cpsOutcome.Status = (int)Enums.EventOutcome.SUCCESS;
+            }
+        }
+
+        cpsOutcome.Mail = new Mail();
+        cpsOutcome.Mail.Date = manager.Calendar.GetCurrentDay();
+        cpsOutcome.Mail.Subject = "Montly CPS Update";
+        cpsOutcome.Mail.Sender = "Charlene Dogood";
+        cpsOutcome.Mail.Message = string.Format(
+            "Hello Mr. {0},\n\n\t" +
+            "This is Ms. Dogood from the Child Protection Services, performing your monthly scheduled check-in as laid out in the terms of your 1993 release from Leagueville County Prison. " +
+            "Currently your family {1} and your income seems {2}. We may have to perform additional check-ins during the month if this is not up to our standards. Until next time.\n\nCordially,\nCharlene Dogood",
+            manager.PlayerFamily.FamilyName, familyStatusString, incomeStatusString);
+
+        manager.Calendar.ScheduleEventInXDays(EventManager.GetEventById(2), 28);
+
+        return cpsOutcome;
+    }
+
+    //NAME: CPS_FINAL_WARNING
+    public static Outcome Event3(DataManager manager, Requirement requirements)
+    {
+        Outcome cpsOutcome = new Outcome();
+        cpsOutcome.Status = (int)Enums.EventOutcome.SUCCESS;
+        cpsOutcome.Mail = new Mail();
+        cpsOutcome.Mail.Date = manager.Calendar.GetCurrentDay();
+        cpsOutcome.Mail.Subject = "URGENT: Child Protection Services";
+        cpsOutcome.Mail.Sender = "Offices of the Leagueville CPS";
+        cpsOutcome.Mail.Message = string.Format(
+            "Mr. {0},\n\n\t" +
+            "This is your FINAL NOTICE being served directly from the County CPS and Second Court of Appeals. If the conditions in your family do not improve we will be forced to step in and make things improve." +
+            "\n\nWarm Regards,\nJudge Charles Stopbad", manager.PlayerFamily.Grandpa.Name);
+        return cpsOutcome;
+    }
+
+    //NAME: CPS_FINAL_WARNING
+    public static Outcome Event4(DataManager manager, Requirement requirements)
+    {
+        Outcome cpsOutcome = new Outcome();
+
+        if (manager.PlayerFamily.Children.Count <= 1)
+        {
+            cpsOutcome.Status = (int)Enums.EventOutcome.PASS;
+            return cpsOutcome;
+        }
+
+        int random = Constants.RANDOM.Next(0, manager.PlayerFamily.Children.Count - 1);
+        string childName = manager.PlayerFamily.Children[random].Name;
+        manager.Orphanage.Children.Add(manager.PlayerFamily.Children[random]);
+        manager.PlayerFamily.Children.RemoveAt(random);
+
+        cpsOutcome.OutcomeDescription = string.Format("You hear a screech, then a crash. Before you realize it 20 Leagueville SWAT Team members are surrounding your house. Charlene Dogood walks through the front door," +
+                                        "picks up {0} and with quite a bit of effort (and help) drags them into the back of the SWAT van. Then silence.", childName);
+        cpsOutcome.Mail = new Mail();
+        cpsOutcome.Status = (int)Enums.EventOutcome.SUCCESS;
+        cpsOutcome.Mail.Date = manager.Calendar.GetCurrentDay();
+        cpsOutcome.Mail.Subject = string.Format("CPS at the {0} residence", manager.PlayerFamily.FamilyName);
+        cpsOutcome.Mail.Sender = "Charlene";
+        cpsOutcome.Mail.Message = string.Format(
+            "Mr. {0},\n\n\t" +
+            "It is with the upmost displeasure that I visited your child's deplorable home today. You should be ashamed of the conditions you let your grandchildren live in." +
+            "I am writing this to you as a courtesy to let you know {1} will be with us until further notice. You're lucky I remember that night in Rio in 1997 or else I'd have you and your children locked up." +
+            "\n\nGood Day,\nCharlene Dogood", manager.PlayerFamily.Grandpa.Name, childName);
+        return cpsOutcome;
     }
 
     //NAME: TEST EVENT 1

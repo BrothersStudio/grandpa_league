@@ -66,10 +66,17 @@ static class Constants
 			"December",
 		};
 
+    public struct Family
+    {
+        public const double GRANDPA_UPKEEP = 150;
+        public const double CHILD_UPKEEP = 200;
+        public const double PARENT_UPKEEP = 100;
+    }
+
     public struct Player
     {
         public const double INITIAL_MONEY = 600;
-        public const double INITIAL_INCOME = 750;
+        public const double INITIAL_INCOME = 1400;
         public const string DEFAULT_SURNAME = "Smith";
         public const double INITIAL_WISDOM = 70;
         public const double INITIAL_WISDOM_GROWTH = -0.01;

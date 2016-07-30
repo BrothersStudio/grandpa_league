@@ -3,6 +3,11 @@ using System;
 [Serializable]
 public class PlayerInfo
 {
-    public static bool FIRST_TRADE = true;
+    public bool FIRST_TRADE = true;
+    public bool FINAL_WARNING = true;
 
+    public PlayerInfo()
+    {
+
+    }
 }
