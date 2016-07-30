@@ -53,7 +53,7 @@ public class Trade
                 offeredValue += ((Child)cur).Value;
         }
         offeredValue *= 5;
-        offeredValue += this.offeredMoney;
+        offeredValue += this.offeredMoney * 0.70;
 
         foreach (Character cur in this.proposedChar)
         {
@@ -62,8 +62,8 @@ public class Trade
             else if (typeof(Child) == cur.GetType())
                 proposedValue += ((Child)cur).Value;
         }
-        proposedValue *= 5.5;                           //give edge to AI
-        proposedValue += this.proposedMoney;
+        proposedValue *= 7;                           //give edge to AI
+        proposedValue += this.proposedMoney * 0.75;
 
         if (PlayerInfo.FIRST_TRADE & offeredChar.Count <= 2 && proposedChar.Count <= 2 && Math.Abs(offeredMoney - proposedMoney) <= 1000)
         {
