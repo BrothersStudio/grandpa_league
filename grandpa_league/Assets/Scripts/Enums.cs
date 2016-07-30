@@ -17,4 +17,6 @@ static class Enums
     public enum SystemEvents { WEEKLY_STAT_UP = 0, TRADE_ACCEPT_REJECT = 1 }
 
     public enum Difficulty { VERY_EASY = 0, EASY = 1, STANDARD = 2, HARD = 3, VERY_HARD = 4}
+
+    public enum Status { GOOD = 0, OK = 1, BAD = 2, HORRIBLE = 3 }
 }

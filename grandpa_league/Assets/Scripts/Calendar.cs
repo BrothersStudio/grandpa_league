@@ -103,6 +103,21 @@ public class Calendar
     {
        this.m_days[28 * (month - 1) + (day - 1)].AddEvent(simEvent);
     }
+
+    public int Month
+    {
+        get { return this.m_currentMonth; }
+    }
+
+    public int Day
+    {
+        get { return this.m_currentDay; }
+    }
+
+    public int Year
+    {
+        get { return this.m_currentYear; }
+    }
 }
 
 [Serializable]

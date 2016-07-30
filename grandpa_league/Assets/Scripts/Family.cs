@@ -11,7 +11,12 @@ public class Family
     private     List<Child>     m_children      = new List<Child>();
     private     List<Mail>      m_mailbox       = new List<Mail>();
        
-	private     int           m_chemistry     = 0;
+	private     double          m_chemistry     = 0;
+    private     double          m_upkeep        = 0;
+
+    private     int             m_wins          = 0;
+    private     int             m_losses        = 0;
+    private     int             m_draws         = 0;
 
     public Family(bool random=false)
     {
@@ -61,7 +66,7 @@ public class Family
 
         this.m_grandpa[0].Wisdom *= (1 + this.m_grandpa[0].WisdomGrowth);
 
-        this.m_grandpa[0].Money += (this.m_grandpa[0].MoneyGrowth);
+        this.m_grandpa[0].Money += (this.m_grandpa[0].MoneyGrowth - this.m_upkeep);
 
 		foreach (Parent parent in this.m_parents)
         {
@@ -82,7 +87,41 @@ public class Family
         }
     }
 
-	public int FamilySize
+    public double CalculateChemistry()
+    {
+        int familySize = this.m_children.Count + this.m_parents.Count + this.m_grandpa.Count;
+        double totalLove = 0;
+        foreach(Parent parent in this.m_parents)
+        {
+            totalLove += parent.Love;
+        }
+
+        double totalChildrenStats = 0;
+        foreach(Child child in this.m_children)
+        {
+            totalChildrenStats += (child.Artistry + child.Athleticism + child.Cuteness + child.Intelligence + child.Popularity);
+        }
+
+        double grandpaInstanityFactor = 2 * (m_grandpa[0].Insanity - m_grandpa[0].Wisdom);
+
+        this.m_chemistry = (totalChildrenStats + grandpaInstanityFactor) / (totalLove * familySize);
+        return this.m_chemistry;
+    }
+
+    public double CalculateUpkeep()
+    {
+        double upkeep = 0;
+        upkeep += Constants.Family.GRANDPA_UPKEEP;
+
+        upkeep += (this.m_children.Count * Constants.Family.CHILD_UPKEEP);
+
+        upkeep += (this.m_parents.Count * Constants.Family.PARENT_UPKEEP);
+
+        this.m_upkeep = upkeep;
+        return this.m_upkeep;
+    }
+
+    public int FamilySize
 	{
 		get {return this.m_parents.Count + this.m_children.Count + 1;}
 	}
@@ -93,10 +132,14 @@ public class Family
         set { this.m_familyName = value; }
     }
 
-    public int Chemistry
+    public double Chemistry
     {
-        get { return this.m_chemistry; }
-        set { this.m_chemistry = value; }
+        get { return this.CalculateChemistry(); }
+    }
+
+    public double Upkeep
+    {
+        get { return this.CalculateUpkeep(); }
     }
 
     public Grandpa Grandpa
@@ -126,5 +169,23 @@ public class Family
     public List<Mail> Mailbox
     {
         get { return this.m_mailbox;  }
+    }
+
+    public int Wins
+    {
+        get { return this.m_wins; }
+        set { this.m_wins = value; }
+    }
+
+    public int Losses
+    {
+        get { return this.m_losses; }
+        set { this.m_losses = value; }
+    }
+
+    public int Draws
+    {
+        get { return this.m_draws; }
+        set { this.m_draws = value; }
     }
 }
