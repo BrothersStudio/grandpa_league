@@ -10,7 +10,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: Three Brothers Studios
-  productName: Grandpa League
+  productName: Grandpa Manager
   defaultCursor: {fileID: 2800000, guid: c805b45c32425c245a88da9028367b92, type: 3}
   cursorHotspot: {x: 0, y: 0}
   m_ShowUnitySplashScreen: 1

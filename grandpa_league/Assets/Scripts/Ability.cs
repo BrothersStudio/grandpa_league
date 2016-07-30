@@ -36,7 +36,7 @@ public class Ability
         get { return this.m_abilityDescription; }
     }
 
-    public int Cooldown
+    public int MaxCooldown
     {
         get { return this.m_abilityCooldown; }
     }

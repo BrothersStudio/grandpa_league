@@ -1252,6 +1252,7 @@ MonoBehaviour:
   ResumeButton: {fileID: 2001787769}
   QuitButton: {fileID: 299690296}
   SceneCamera: {fileID: 844725693}
+  userInputting: 0
 --- !u!4 &87242171
 Transform:
   m_ObjectHideFlags: 0
@@ -6526,7 +6527,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &525890403
 RectTransform:
   m_ObjectHideFlags: 0
