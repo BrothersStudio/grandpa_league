@@ -684,11 +684,13 @@ public static class EventManager
 					parent.Love += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
 					parent.Popularity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
 				}
+
 				foreach (Child child in manager.PlayerFamily.Children) 
 				{
 					child.Popularity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
 					child.Athleticism += Constants.Character.MINOR_STAT_CHANGE_AMOUNT;
 				}
+
 				manager.PlayerFamily.Grandpa.Money -= requirements.Money;
 				manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT * 2;
 
@@ -2735,8 +2737,8 @@ public static class EventManager
 	{
 		Outcome returnObj = new Outcome();
 
-		if (Constants.Roll (0, manager.PlayerFamily.Grandpa.Insanity, (int)Enums.Difficulty.HARD) ||
-			(! Constants.Roll (0, requirements.Parent.Love, (int)Enums.Difficulty.EASY))) 
+		if (Constants.Roll (requirements.Child.Cuteness, manager.PlayerFamily.Grandpa.Insanity, (int)Enums.Difficulty.HARD) ||
+			(! Constants.Roll (requirements.Child.Cuteness, requirements.Parent.Love, (int)Enums.Difficulty.EASY))) 
 		{
 			requirements.Child.Popularity -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
 
@@ -2773,6 +2775,91 @@ public static class EventManager
 				"Grandpa's pride up.",
 				requirements.Parent.Name, requirements.Child.Name);
 		}
+
+		return returnObj;
+	}
+
+	// Grandkid takes joyride
+	public static Outcome Event1056(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+
+		if (!Constants.Roll (requirements.Child.Cuteness, requirements.Child.Intelligence, (int)Enums.Difficulty.VERY_EASY))
+		{
+			foreach (Parent parent in manager.PlayerFamily.Parents) 
+			{
+				parent.Love -= Constants.Character.MAJOR_STAT_CHANGE_AMOUNT;
+			}
+
+			manager.PlayerFamily.Grandpa.Pride -= Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+			manager.PlayerFamily.Children.Remove (requirements.Child);
+
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE;
+			returnObj.OutcomeDescription = String.Format (
+				"{0} goes for a joyride with {1}'s car. However, {0} keeps checking their Snapchat, and, unfortunately, the car veers into an " +
+				"oncoming semi-truck. {0} perishes in a fiery explosion.\n\n" +
+				"{0} has left the family!!\n" +
+				"All parents' love way down!!\n" +
+				"Grandpa's pride down.",
+				requirements.Child.Name, requirements.Parent.Name);
+		} 
+		else if (!Constants.Roll (requirements.Child.Cuteness, requirements.Child.Intelligence, (int)Enums.Difficulty.STANDARD))
+		{
+			requirements.Child.Popularity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+			requirements.Child.PopularityGrowth += Constants.Character.STANDARD_STAT_GROWTH_AMOUNT;
+
+			requirements.Child.Intelligence -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+
+			manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+			returnObj.OutcomeDescription = String.Format (
+				"Woo hoo! {0} just went on a wild joyride with {1}'s car! Fortunately, {0} kept their eyes and ears on the road so no one was hurt! " +
+				"That could have gone terribly!\n\n" +
+				"{0}'s popularity up.\n" +
+				"{0}'s popularity growth up.\n" +
+				"{0}'s intelligence down.\n" +
+				"Grandpa's pride up.",
+				requirements.Child.Name, requirements.Parent.Name);
+		} 
+		else
+			returnObj.Status = (int)Enums.EventOutcome.PASS;
+
+		return returnObj;
+	}
+
+	// Veteran's Day
+	public static Outcome Event1057(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+
+		if (!Constants.Roll (0, manager.PlayerFamily.Grandpa.Insanity, (int)Enums.Difficulty.STANDARD))
+		{
+			manager.PlayerFamily.Grandpa.Insanity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+
+			manager.PlayerFamily.Grandpa.Pride -= Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE;
+			returnObj.OutcomeDescription = String.Format (
+				"No, Grandpa, no! Put the knife down! Grandpa stumbled onto a civil war reenactment and was reminded of his days in 'nam. He seems to be having " +
+				"a fit. Poor Grandpa.\n\n" +
+				"Grandpa's insanity up.\n" +
+				"Grandpa's pride down.");
+		} 
+		else
+		{
+			manager.PlayerFamily.Grandpa.Wisdom += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+
+			manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT * 2;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+			returnObj.OutcomeDescription = String.Format (
+				"Grandpa lounges peacefully at the local park watching the Civil War reenactment. He reminisces about his own service to our blessed country " +
+				"and the friends he made and lost there.\n\n" +
+				"Grandpa's wisdom up.\n" +
+				"Grandpa's pride way up!");
+		} 
 
 		return returnObj;
 	}
