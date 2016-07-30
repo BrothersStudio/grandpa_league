@@ -71,6 +71,10 @@ static class Constants
         public const double GRANDPA_UPKEEP = 150;
         public const double CHILD_UPKEEP = 200;
         public const double PARENT_UPKEEP = 100;
+
+        public const double WIN_PRIDE_AMOUNT = 1000;
+        public const double LOSS_PRIDE_AMOUNT = -500;
+        public const double DRAW_PRIDE_AMOUNT = 0;
     }
 
     public struct Player

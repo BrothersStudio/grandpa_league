@@ -8,7 +8,9 @@ public class Grandpa : Character
     private Stat            m_wisdom            = new Stat();
     private Stat            m_money             = new Stat();
     private Stat            m_pride             = new Stat();
-    
+
+    private Stat            m_cumulativePride   = new Stat();
+        
 	public Grandpa(string name, int age, int pride, int wisdom, int insanity, int money, string spriteName)
 	{
         this.m_name = name;
@@ -129,5 +131,11 @@ public class Grandpa : Character
     {
         get { return this.m_pride.Value; }
         set { this.m_pride.Value = value; }
+    }
+
+    public Stat CumulativePride
+    {
+        get { return this.m_cumulativePride; }
+        set { this.m_cumulativePride = value; }
     }
 }

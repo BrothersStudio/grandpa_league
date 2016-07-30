@@ -10,9 +10,6 @@ public class SimulationEvent
     private int m_eventId = -1;
     private int m_priority = -1;
     private Func<DataManager, Requirement, Outcome> m_eventFunction = null;
-    private List<string> m_outcomeStrings = new List<string>();         //TODO: add strings to events.xml and load them into here
-                                                                        //possible just a list of ids in events.xml which correspond
-                                                                        //to strings in strings.xml
 
     private Requirement m_requirements = null;
     private int m_eventMonth = 0;
@@ -85,6 +82,17 @@ public class SimulationEvent
         {
             UnityEngine.Debug.Log(e.Message);
         }
+    }
+
+    public void ResetEventFields()
+    {
+        this.m_outcome = null;
+        this.m_requirements.Accept = false;
+        this.m_requirements.Child = null;
+        this.m_requirements.Parent = null;
+        this.m_requirements.Grandpa = null;
+        this.m_requirements.Trade = null;
+        this.m_requirements.Money = 0;
     }
 
     public int EventId

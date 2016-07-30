@@ -12,7 +12,11 @@ public class Family
     private     List<Mail>      m_mailbox       = new List<Mail>();
        
 	private     double          m_chemistry     = 0;
-    private     double          m_upkeep         = 0;
+    private     double          m_upkeep        = 0;
+
+    private     int             m_wins          = 0;
+    private     int             m_losses        = 0;
+    private     int             m_draws         = 0;
 
     public Family(bool random=false)
     {
@@ -165,5 +169,23 @@ public class Family
     public List<Mail> Mailbox
     {
         get { return this.m_mailbox;  }
+    }
+
+    public int Wins
+    {
+        get { return this.m_wins; }
+        set { this.m_wins = value; }
+    }
+
+    public int Losses
+    {
+        get { return this.m_losses; }
+        set { this.m_losses = value; }
+    }
+
+    public int Draws
+    {
+        get { return this.m_draws; }
+        set { this.m_draws = value; }
     }
 }

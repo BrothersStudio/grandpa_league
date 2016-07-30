@@ -260,7 +260,7 @@ public class Main : MonoBehaviour {
                 ModalBlockingPanel.SetActive(false);
             }
             Debug.Log(String.Format("event {0} completed", ev.EventName));
-            StopCoroutine("WaitForUserConfirm");
+            ev.ResetEventFields();
         }
 
         LeagueManager.SimulateDay(m_dataManager);   //move league standings around and stuff
