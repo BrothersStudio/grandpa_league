@@ -19,6 +19,7 @@ public class Ability
     public Ability(string name, string description, int cooldown, string picture, double insanityCost, int moneyCost, SimulationEvent abilityEvent)
     {
         this.m_abilityName = name;
+        this.m_abilityPicture = picture;
         this.m_abilityDescription = description;
         this.m_abilityCooldown = cooldown;
         this.m_abilityEvent = abilityEvent;

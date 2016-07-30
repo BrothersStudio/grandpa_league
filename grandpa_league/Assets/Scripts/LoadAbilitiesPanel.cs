@@ -30,7 +30,7 @@ public class LoadAbilitiesPanel : MonoBehaviour {
 			new_button.GetComponent<RectTransform> ().anchoredPosition = 
 				new Vector2 (current_x  + (float)(ability_ind) * width, current_y);
 
-			new_button.GetComponent<Button> ().image = Resources.Load <Image> (ability.Picture);
+			new_button.GetComponent<Image> ().sprite = Resources.Load <Sprite> ("Ability_icons/" + ability.Picture);
 			new_button.GetComponentInChildren<Text> ().text = String.Format (
 				"{0}\n" +
 				"{1}\n" + 

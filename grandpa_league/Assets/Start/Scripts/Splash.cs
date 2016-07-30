@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Splash : MonoBehaviour
@@ -11,12 +11,12 @@ public class Splash : MonoBehaviour
     public Light dimLight;
     public float dimAmt = 0.01f;
 
-    Camera c;
+    //Camera c;
     float timer;
 
 	void Start ()
     {
-        c = GetComponent<Camera>();
+       // c = GetComponent<Camera>();
         timer = 0.0f;
 	}
 	
