@@ -69,8 +69,9 @@
   <event type="0" id="1050" name="Grandpa rigs elections?" description="As you know, the student council elections are next week. One of your grandchildren are planning on running, but Grandpa isn't sure they have what it takes to win... Perhaps a little vote rigging is in order? I'm sure there would be no consequences." priority="1" chance="1" req_children="11" req_parent="00" req_grandpa="00" req_money="00" req_accept="01" month="9" day="5" /> 
   <event type="0" id="1052" name="Caught rigging" description="" priority="1" chance="0" req_children="11" req_parent="00" req_grandpa="11" req_money="00" req_accept="00" qualification="STUDENT_COUNCIL"/> 
   <event type="0" id="1054" name="Grandpa goes to the bar" description="Grandpa is always so fixated on this silly league, but sometimes it's best to kick back and relax. Grandpa wants to take another Grandpa to the bar." priority="1" chance="0.003" req_children="00" req_parent="00" req_grandpa="01" req_money="00" req_accept="00" /> 
-  <event type="0" id="1056" name="Grandkid goes on joyride" description="" priority="1" chance="0.007" req_children="11" req_parent="11" req_grandpa="00" req_money="00" req_accept="00" age="12-16" /> 
-  
+  <event type="0" id="1056" name="Grandkid goes on joyride" description="" priority="1" chance="0.007" req_children="11" req_parent="11" req_grandpa="00" req_money="00" req_accept="00" age="12-16" />
+  <event type="0" id="3009" name="School Band Bullying" description="" priority="1" chance="1" req_children="11" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" month="9-11" qualification="IN_SCHOOL_BAND" />
+
   <!-- KNOWN EVENTS req_ of the form 1=true, 0=false, [RANDOM][REQUIRED]-->
   
   <event type="1" id="1003" name="Grandkid tries out for football" description="The indoor football team is having tryouts! I wonder who should go out?" priority="1" req_children="01" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" month="1" day="0" age="10-18"/>
