@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 [Serializable]
 public class Requirement
@@ -106,7 +106,7 @@ public class Requirement
     public int Money
     {
         get { return this.m_money; }
-        set { this.m_money = value; }
+        set { this.m_money = value < 0 ? 0 : value; }
     }
 
     public bool ReqMoney

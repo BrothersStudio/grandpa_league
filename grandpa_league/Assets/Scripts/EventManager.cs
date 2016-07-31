@@ -1447,6 +1447,7 @@ public static class EventManager
 	public static Outcome Event1019(DataManager manager, Requirement requirements)
 	{
 		Outcome returnObj = new Outcome();
+
 		if ((Constants.Roll(requirements.Child.Cuteness, requirements.Parent.Love, (int)Enums.Difficulty.EASY) && 
 			(Constants.Roll(requirements.Child.Cuteness, requirements.Child.Popularity, (int)Enums.Difficulty.HARD) && 
 				requirements.Accept)) 
