@@ -5,7 +5,10 @@ using System.Collections.Generic;
 public class SimulationEvent
 {
     private string m_eventName = "";
+
     private string m_eventDescription = "";
+    private string m_originalDescription = "";
+
     private int m_eventType = -1;
     private int m_eventId = -1;
     private int m_priority = -1;
@@ -23,6 +26,7 @@ public class SimulationEvent
 
     public SimulationEvent(Requirement requirements, double chance, string eventName, string eventDescription, int eventId, int eventType, int priority, string month="0", int day=0, int year=0)
     {
+        this.m_originalDescription = eventDescription;
         this.m_eventDescription = eventDescription;
         this.m_eventName = eventName;
         this.m_eventType = eventType;
@@ -71,6 +75,8 @@ public class SimulationEvent
     {
         try
         {
+            this.m_eventDescription = this.m_originalDescription;
+
             if (this.m_eventDescription.Contains("{G}"))
                 this.m_eventDescription = this.m_eventDescription.Replace("{G}", currentManager.PlayerFamily.Grandpa.Name);
             if (this.m_eventDescription.Contains("{EG}"))
