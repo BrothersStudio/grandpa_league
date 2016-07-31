@@ -108,8 +108,8 @@ public class Main : MonoBehaviour {
     {
         StartCoroutine(SimulateDay());
 
-        //if (m_dataManager.PlayerInfo.ABILITIES_DISABLED && current_month >= 3)
-        AbilitiesButton.GetComponent<Button>().interactable = true;
+        if (m_dataManager.PlayerInfo.ABILITIES_DISABLED && current_month >= 3)
+            AbilitiesButton.GetComponent<Button>().interactable = true;
 
         foreach(Ability abilities in m_dataManager.Abilities)
         {
