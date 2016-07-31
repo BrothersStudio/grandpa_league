@@ -8,6 +8,10 @@ public class SoundEffectPlayer : MonoBehaviour {
     public AudioSource clickSource;
     public AudioClip mail;
     public AudioSource mailSource;
+    public AudioSource successSource;
+    public AudioSource failSource;
+    public AudioClip success;
+    public AudioClip fail;
 
 
     public void PlayNotification()
@@ -37,5 +41,17 @@ public class SoundEffectPlayer : MonoBehaviour {
         int randClip = Random.Range(0, clicks.Length);
         clickSource.clip = clicks[randClip];
         clickSource.Play();
+    }
+
+    public void PlaySuccess()
+    {
+        successSource.clip = success;
+        successSource.Play();
+    }
+
+    public void PlayFailure()
+    {
+        failSource.clip = fail;
+        failSource.Play();
     }
 }
