@@ -922,7 +922,7 @@ MonoBehaviour:
   velocity: {x: 9.5, y: 9.5}
   StartPos: {x: 0, y: 0, z: 0}
   chirpSource: {fileID: 945720236}
-  chirp: {fileID: 8300000, guid: b4ad6b0795e8d7a419191fb40501d064, type: 3}
+  chirp: {fileID: 8300000, guid: 2be609a0f34c9e14fafa41b66d849fd2, type: 3}
 --- !u!50 &772655030
 Rigidbody2D:
   serializedVersion: 2
@@ -1319,6 +1319,7 @@ GameObject:
   - 82: {fileID: 945720236}
   - 82: {fileID: 945720239}
   - 82: {fileID: 945720238}
+  - 82: {fileID: 945720240}
   m_Layer: 0
   m_Name: MusicPlayer
   m_TagString: Untagged
@@ -1553,6 +1554,81 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+--- !u!82 &945720240
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 945720235}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 24384796, guid: 56e339b424c02704294a5bfa12078899,
+    type: 2}
+  m_audioClip: {fileID: 8300000, guid: 2be609a0f34c9e14fafa41b66d849fd2, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -2080,7 +2156,7 @@ MonoBehaviour:
   velocity: {x: 9, y: 0}
   StartPos: {x: 0, y: 0, z: 0}
   chirpSource: {fileID: 945720236}
-  chirp: {fileID: 8300000, guid: b4ad6b0795e8d7a419191fb40501d064, type: 3}
+  chirp: {fileID: 8300000, guid: 2be609a0f34c9e14fafa41b66d849fd2, type: 3}
 --- !u!50 &1144957968
 Rigidbody2D:
   serializedVersion: 2
@@ -2824,7 +2900,7 @@ MonoBehaviour:
   velocity: {x: 10, y: 10}
   StartPos: {x: 0, y: 0, z: 0}
   chirpSource: {fileID: 945720236}
-  chirp: {fileID: 8300000, guid: b4ad6b0795e8d7a419191fb40501d064, type: 3}
+  chirp: {fileID: 8300000, guid: 2be609a0f34c9e14fafa41b66d849fd2, type: 3}
 --- !u!50 &1603541335
 Rigidbody2D:
   serializedVersion: 2
@@ -3455,7 +3531,7 @@ MonoBehaviour:
   velocity: {x: 9, y: 9}
   StartPos: {x: 0, y: 0, z: 0}
   chirpSource: {fileID: 945720236}
-  chirp: {fileID: 8300000, guid: b4ad6b0795e8d7a419191fb40501d064, type: 3}
+  chirp: {fileID: 8300000, guid: 2be609a0f34c9e14fafa41b66d849fd2, type: 3}
 --- !u!1 &2147063436
 GameObject:
   m_ObjectHideFlags: 0
