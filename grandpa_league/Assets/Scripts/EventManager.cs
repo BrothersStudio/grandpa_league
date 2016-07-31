@@ -217,7 +217,8 @@ public static class EventManager
     //NAME: TRADE_ACCEPT_REJECT
     public static Outcome Event1(DataManager manager, Requirement requirements)
     {
-        Outcome tradeOutcome = requirements.Trade.PerformTradeAction(manager);
+        Outcome tradeOutcome = requirements.Trade[0].PerformTradeAction(manager);
+        requirements.Trade.Remove(requirements.Trade[0]);
         return tradeOutcome;
     }
 
@@ -621,7 +622,7 @@ public static class EventManager
             List<SimulationEvent> executed = new List<SimulationEvent>();
             foreach(SimulationEvent ev in prevDay)
             {
-                if (ev.FinishedExecution)
+                if (ev.FinishedExecution && ev.EventId != 1)
                     executed.Add(ev);
             }
 
@@ -631,6 +632,11 @@ public static class EventManager
                 ret.OutcomeDescription = String.Format("Hmm nothing of note happened yesterday...");
                 return ret;
             }
+
+            if (manager.BlacklistYear.Contains(executed[0].EventId))
+                manager.BlacklistYear.Remove(executed[0].EventId);
+            if (manager.BlacklistForever.Contains(executed[0].EventId))
+                manager.BlacklistForever.Remove(executed[0].EventId);
 
             ret.Status = (int)Enums.EventOutcome.SUCCESS;
 			ret.OutcomeDescription = String.Format (

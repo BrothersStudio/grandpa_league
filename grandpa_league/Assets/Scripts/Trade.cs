@@ -197,7 +197,7 @@ public class Trade
     {
         DataManager datamanager = Main.GetDataManager();
         SimulationEvent newTrade = EventManager.GetSystemEventById((int)Enums.SystemEvents.TRADE_ACCEPT_REJECT);
-        newTrade.Requirements.Trade = this;
+        newTrade.Requirements.Trade.Add(this);
         datamanager.Calendar.ScheduleEventInXDays(newTrade, 5);
     }
 }
