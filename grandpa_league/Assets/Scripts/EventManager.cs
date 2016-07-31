@@ -2654,7 +2654,7 @@ public static class EventManager
 
 		if (requirements.Accept) 
 		{
-			requirements.Child.AddQualification (Qualification.GetQualificationByString ("RIGGED_ELECTION"));
+			manager.PlayerFamily.Grandpa.AddQualification (Qualification.GetQualificationByString ("RIGGED_ELECTION"));
 
 			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
 			returnObj.OutcomeDescription = String.Format (
@@ -2682,16 +2682,16 @@ public static class EventManager
 		Outcome returnObj = new Outcome();
 
 		// Caught rigging
-		if (requirements.Child.Qualifications.Contains (Qualification.GetQualificationByString ("RIGGED_ELECTION")) && 
+		if (manager.PlayerFamily.Grandpa.Qualifications.Contains (Qualification.GetQualificationByString ("RIGGED_ELECTION")) && 
 			Constants.RANDOM.Next(1,100) < 20) 
 		{
 			manager.Calendar.ScheduleEventInXDays(EventManager.GetEventById(1052), 10);
 		}
 
-		if (requirements.Child.Qualifications.Contains(Qualification.GetQualificationByString ("RIGGED_ELECTION")) ||
+		if (manager.PlayerFamily.Grandpa.Qualifications.Contains(Qualification.GetQualificationByString ("RIGGED_ELECTION")) ||
 			Constants.Roll (requirements.Child.Cuteness, requirements.Child.Popularity, (int)Enums.Difficulty.HARD)) 
 		{
-			requirements.Child.RemoveQualification (Qualification.GetQualificationByString ("RIGGED_ELECTION"));
+            manager.PlayerFamily.Grandpa.RemoveQualification (Qualification.GetQualificationByString ("RIGGED_ELECTION"));
 			requirements.Child.AddQualification (Qualification.GetQualificationByString ("STUDENT_COUNCIL"));
 
 			requirements.Child.Popularity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
