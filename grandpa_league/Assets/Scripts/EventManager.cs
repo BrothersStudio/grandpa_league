@@ -2658,8 +2658,7 @@ public static class EventManager
 
 			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
 			returnObj.OutcomeDescription = String.Format (
-				"Wonderful. Everything is all set. Just had to grease a few palms with favors. Next week when the votes are counted, {0} will be the winner by a tight margin.", 
-				requirements.Child.Name);
+				"Wonderful. Everything is all set. Just had to grease a few palms with favors. Next week when the votes are counted, My grandchild will be the winner by a tight margin.");
 		} 
 		else 
 		{
