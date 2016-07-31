@@ -69,8 +69,6 @@ public class Main : MonoBehaviour {
     public Camera SceneCamera;
     //private SoundEffectPlayer getAudioComponent;
 
-    public bool userInputting = false;
-
 	public void Awake()
 	{
         user_input_panel.SetActive(false);
@@ -223,12 +221,12 @@ public class Main : MonoBehaviour {
                 ev.FormatEventDescription(m_dataManager);
 
 				CreateAndDisplayInputPanel(ev);
-                userInputting = true;
+                Globals.UserInputting = true;
 
                 ModalBlockingPanel.SetActive(true);
                 MainCanvas.GetComponent<CanvasGroup>().blocksRaycasts = false;
                 yield return StartCoroutine("WaitForUserConfirm");
-                userInputting = false;
+                Globals.UserInputting = false;
                 MainCanvas.GetComponent<CanvasGroup>().blocksRaycasts = true;
                 ModalBlockingPanel.SetActive(false);
             }
@@ -260,7 +258,7 @@ public class Main : MonoBehaviour {
             if (ev.Priority != 0)
             {
                 CreateAndDisplayResultPanel(eventOutcome);
-                userInputting = true;
+                Globals.UserInputting = true;
 
                 ModalBlockingPanel.SetActive(true);
                 MainCanvas.GetComponent<CanvasGroup>().blocksRaycasts = false;
@@ -285,7 +283,9 @@ public class Main : MonoBehaviour {
 		OkButton.GetComponent<Button> ().onClick.RemoveAllListeners ();
         OkButton.GetComponent<Button>().onClick.AddListener(() =>
         {
-                userInputting = false;
+            EventOutcomePanel.SetActive(false);
+            Globals.UserInputting = false;
+            this.RemoveModalBacking();
         });
     }
 		
@@ -500,7 +500,7 @@ public class Main : MonoBehaviour {
 		AcceptButton.GetComponent<Button>().onClick.RemoveAllListeners();
         AcceptButton.GetComponent<Button>().onClick.AddListener(() =>
         {
-            userInputting = false;
+            Globals.UserInputting = false;
             ev.Requirements.Accept = true;
             ev.Requirements.Money = MoneyInputField.GetComponent<InputField>().text == "" ? 0 : Int32.Parse(MoneyInputField.GetComponent<InputField>().text);
             ev.Requirements.Child = selectedChild;
@@ -511,7 +511,7 @@ public class Main : MonoBehaviour {
 		RejectButton.GetComponent<Button>().onClick.RemoveAllListeners();
         RejectButton.GetComponent<Button>().onClick.AddListener(() =>
         {
-            userInputting = false;
+            Globals.UserInputting = false;
             ev.Requirements.Accept = false;
         });
 
@@ -580,7 +580,7 @@ public class Main : MonoBehaviour {
 
     private IEnumerator WaitForUserConfirm()
     {
-        while (userInputting)
+        while (Globals.UserInputting)
         {
             yield return null;
         }
