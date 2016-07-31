@@ -429,7 +429,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: {x: -10, y: 10}
-  StartPos: {x: 0, y: 0, z: 0}
+  startPos: {x: 0, y: 0, z: 0}
+  waitTime: 22
 --- !u!95 &355586085
 Animator:
   serializedVersion: 3
@@ -517,7 +518,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 437858084}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -41.67692, y: -5.4569774, z: 0}
+  m_LocalPosition: {x: -46.8, y: -3.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -674,7 +675,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: {x: -10, y: 10}
-  StartPos: {x: 0, y: 0, z: 0}
+  startPos: {x: 0, y: 0, z: 0}
+  waitTime: 22
 --- !u!50 &498523970
 Rigidbody2D:
   serializedVersion: 2
@@ -1138,7 +1140,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: {x: 9.5, y: 9.5}
-  StartPos: {x: 0, y: 0, z: 0}
+  startPos: {x: 0, y: 0, z: 0}
+  waitTime: 22
 --- !u!50 &772655030
 Rigidbody2D:
   serializedVersion: 2
@@ -1226,7 +1229,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 882903274}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -18.3, y: -0.78, z: 0}
+  m_LocalPosition: {x: -29.1, y: -0.1, z: 0}
   m_LocalScale: {x: 0.7976221, y: 0.7888232, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -1959,7 +1962,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 949044152}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -47.93, y: 1.02, z: 0}
+  m_LocalPosition: {x: -86.7, y: 4.6, z: 0}
   m_LocalScale: {x: 1.4102712, y: 1.5636679, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -2151,7 +2154,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1076317000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -29.98, y: 2.4, z: 0}
+  m_LocalPosition: {x: -114, y: -3, z: 0}
   m_LocalScale: {x: 1.1238902, y: 1.2690401, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -2450,7 +2453,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: {x: 9, y: 0}
-  StartPos: {x: 0, y: 0, z: 0}
+  startPos: {x: 0, y: 0, z: 0}
+  waitTime: 22
 --- !u!50 &1144957968
 Rigidbody2D:
   serializedVersion: 2
@@ -2804,7 +2808,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1245169822}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -37.8, y: 6.6, z: 0}
+  m_LocalPosition: {x: -64.5, y: 2.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -3192,7 +3196,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: {x: 10, y: 10}
-  StartPos: {x: 0, y: 0, z: 0}
+  startPos: {x: 0, y: 0, z: 0}
+  waitTime: 22
 --- !u!50 &1603541335
 Rigidbody2D:
   serializedVersion: 2
@@ -3823,7 +3828,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: {x: 9, y: 9}
-  StartPos: {x: 0, y: 0, z: 0}
+  startPos: {x: 0, y: 0, z: 0}
+  waitTime: 22
 --- !u!1 &2147063436
 GameObject:
   m_ObjectHideFlags: 0
