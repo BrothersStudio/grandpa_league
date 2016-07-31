@@ -3906,7 +3906,7 @@ public static class EventManager
     }
 
     //school band trip
-    public static Outcome Event3011(DataManager manager, Requirement requirements)
+    public static Outcome Event3018(DataManager manager, Requirement requirements)
     {
         Outcome ret = new Outcome();
 
@@ -3942,7 +3942,8 @@ public static class EventManager
         return ret;
     }
 
-    public static Outcome Event3012(DataManager manager, Requirement requirements)
+	// Band return trip
+    public static Outcome Event3019(DataManager manager, Requirement requirements)
     {
         Outcome ret = new Outcome();
 
