@@ -3389,6 +3389,7 @@ public static class EventManager
         return ret;
     }
 
+    //grand final consolation
     public static Outcome Event3007(DataManager manager, Requirement requirements)
     {
         Outcome ret = new Outcome();
@@ -3423,6 +3424,35 @@ public static class EventManager
         ret.Mail.Date = manager.Calendar.GetCurrentDay();
         ret.Mail.Subject = "Merry Christmas!";
         ret.Mail.Message = string.Format("{0},\n\nHo ho ho! Merrrry Christmas!! Maybe next year, {0}, maybe next year.\n\nUntil then!\n\"Santa Claus\"", manager.PlayerFamily.Grandpa.Name);
+
+        return ret;
+    }
+
+    //HALLOWEEN
+    public static Outcome Event3008(DataManager manager, Requirement requirements)
+    {
+        Outcome ret = new Outcome();
+
+        if(Constants.Roll(0, manager.PlayerFamily.Grandpa.Insanity, (int)Enums.Difficulty.STANDARD) && Constants.Roll(0, manager.PlayerFamily.Grandpa.Wisdom, (int)Enums.Difficulty.STANDARD))
+        {
+            ret.OutcomeDescription = string.Format("Grandpa momentarily loses sight of {0} when a \"Monster Mash\" flash mob floods the streets." +
+                                                    " While searching for them he comes across {1} and his grandson. Grandpa reaches for his rusty spoon but then is hit by a moment of clarity and " +
+                                                    "continues searching for {0}, and finds him passed out from over-exposure to chocolate.\n\nGrandpa's Pride Up!\nGrandpa's Wisdom up\n{0}'s Popularity Up!", requirements.Child.Name, requirements.Grandpa.Name);
+
+            manager.PlayerFamily.Grandpa.Pride += Constants.Character.MAJOR_PRIDE_CHANGE_AMOUNT;
+            manager.PlayerFamily.Grandpa.Wisdom += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+            requirements.Child.Popularity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+        }
+        else
+        {
+            ret.OutcomeDescription = string.Format("Grandpa momentarily loses sight of {0} when a \"Spooky Scary Skeleton's\" flash mob floods the streets." +
+                                                                " While searching for them he comes across {1} and his grandson. It isn't long before the confronation devolves into a shouting match. " +
+                                                                "Grandpa keeps yelling about stealing his grandson for sacrifice. Hmm, strange. {0} eventually wanders around the corner and is so embarassed by grandpa... " +
+                                                                "\nGrandpa's Pride Down!\nGrandpa's Insanity up\n{0}'s Popularity Way down!", requirements.Child.Name, requirements.Grandpa.Name);
+            manager.PlayerFamily.Grandpa.Pride -= Constants.Character.MAJOR_PRIDE_CHANGE_AMOUNT;
+            manager.PlayerFamily.Grandpa.Insanity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+            requirements.Child.Popularity -= Constants.Character.MAJOR_STAT_CHANGE_AMOUNT;
+        }
 
         return ret;
     }

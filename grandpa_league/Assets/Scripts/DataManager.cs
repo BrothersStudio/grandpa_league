@@ -47,9 +47,15 @@ public class DataManager
 
         string[] splitName = playerName.Split(' ');
         if (splitName.Length >= 2)
+        {
             this.m_playerFamily.FamilyName = splitName[splitName.Length - 1];
+            this.m_playerFamily.Grandpa.Name = splitName[0];
+        }
         else
+        {
             this.m_playerFamily.FamilyName = Constants.Player.DEFAULT_SURNAME;
+            this.m_playerFamily.Grandpa.Name = Constants.Player.DEFAULT_FIRST_NAME;
+        }
 
         for (int i = 1; i < Constants.NUM_FAMILIES; i++)
             this.m_league.Add(new Family(true));

@@ -64,7 +64,16 @@ public class MainMenu : MonoBehaviour
 
     public void OnConfirmButtonClicked()
     {
-        PlayerPrefs.SetString("name", inputField.text + " " + lastNameInputField.text);
+        string firstName = inputField.text.Replace(" ", "");
+        string lastName = lastNameInputField.text.Replace(" ", "");
+
+        if (firstName == "")
+            firstName = Constants.Player.DEFAULT_FIRST_NAME;
+
+        if (lastName == "")
+            lastName = Constants.Player.DEFAULT_SURNAME;
+    
+        PlayerPrefs.SetString("name", firstName + " " + lastName);
         SceneManager.LoadScene(2);
     }
 }
