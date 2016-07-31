@@ -334,7 +334,7 @@ public static class EventManager
         return cpsOutcome;
     }
 
-    //NAME: CPS_FINAL_WARNING
+    //NAME: CPS_RECLAIM
     public static Outcome Event4(DataManager manager, Requirement requirements)
     {
         Outcome cpsOutcome = new Outcome();
@@ -347,8 +347,10 @@ public static class EventManager
 
         int random = Constants.RANDOM.Next(0, manager.PlayerFamily.Children.Count - 1);
         string childName = manager.PlayerFamily.Children[random].Name;
-        manager.Orphanage.Children.Add(manager.PlayerFamily.Children[random]);
-        manager.PlayerFamily.Children.RemoveAt(random);
+        Child remChild = manager.PlayerFamily.Children[random];
+        manager.Orphanage.Children.Add(remChild);
+        manager.PlayerFamily.Children.Remove(remChild);
+        remChild = null;
 
         cpsOutcome.OutcomeDescription = string.Format("You hear a screech, then a crash. Before you realize it 20 Leagueville SWAT Team members are surrounding your house. Charlene Dogood walks through the front door," +
                                         "picks up {0} and with quite a bit of effort (and help) drags them into the back of the SWAT van. Then silence.", childName);
@@ -1407,7 +1409,8 @@ public static class EventManager
 		}
 		else
 			returnObj.Status = (int)Enums.EventOutcome.PASS;
-		
+
+        requirements.Parent = null;
 		return returnObj;
 	}
 
