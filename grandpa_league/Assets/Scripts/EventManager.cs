@@ -4018,4 +4018,12 @@ public static class EventManager
 
         return ret;
     }
+
+    //school band final concert
+    public static Outcome Event3021(DataManager manager, Requirement requirements)
+    {
+        Outcome ret = new Outcome();
+
+        return ret;
+    }
 }
