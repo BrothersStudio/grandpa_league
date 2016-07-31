@@ -52,7 +52,7 @@ public class Family
         if (eligible.Count == 0)
             return null;
         else
-            return eligible[Constants.RANDOM.Next(0, eligible.Count - 1)];
+            return eligible[Constants.RANDOM.Next(0, eligible.Count)];
     }
 
     public Parent GetRandomParent()
