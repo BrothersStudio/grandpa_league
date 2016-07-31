@@ -85,9 +85,9 @@ public class DataManager
         mail.Sender = string.Format("{0} {1}", this.m_playerFamily.Parents[0].Name, this.m_playerFamily.FamilyName);
         mail.Subject = "Your new home";
         mail.Message = string.Format(
-			"Hey Dad,\n\n\tEnjoying the new digs at the new Leagueville nursing home yet? I promise this is just a temporary " +
-			"situation until we can figure out why you were wandering around the neighbor's garage in the middle of the night " +
-			"looking for Sniffles. Sniffles has been dead for 10 years, Dad. Anyways, the kids are excited to see you this weekend! " +
+			"Hey Dad,\n\n\tEnjoying the new digs at our home yet? I promise this is just a temporary " +
+			"situation until we can figure out why you were wandering around your neighbor's garage in the middle of the night " +
+			"looking for Sniffles. Sniffles has been dead for 10 years, Dad. Anyway, the kids are excited to see you this weekend! " +
 			"I'm looking forward to seeing you, too!\n\nLove,\n{0}", this.m_playerFamily.Parents[0].Name);
         return mail;
     }
