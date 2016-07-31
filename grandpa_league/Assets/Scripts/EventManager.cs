@@ -892,7 +892,7 @@ public static class EventManager
 	public static Outcome Event1009(DataManager manager, Requirement requirements)
 	{
 		Outcome returnObj = new Outcome();
-		if (!Constants.Roll(requirements.Child.Cuteness, requirements.Child.Athleticism, (int)Enums.Difficulty.HARD))
+		if (!Constants.Roll(requirements.Child.Cuteness, requirements.Child.Athleticism, (int)Enums.Difficulty.STANDARD))
 		{
 			requirements.Child.RemoveQualification (Qualification.GetQualificationByString ("ON_FOOTBALL_TEAM"));
 
@@ -1118,16 +1118,16 @@ public static class EventManager
 			manager.PlayerFamily.Grandpa.Wisdom += Constants.Character.MINOR_STAT_CHANGE_AMOUNT;
 			manager.PlayerFamily.Grandpa.Insanity -= Constants.Character.MINOR_STAT_CHANGE_AMOUNT;
 
-			int income_gain = Constants.RANDOM.Next (75, 150);
+			int income_gain = Constants.RANDOM.Next (159, 304);
 			manager.PlayerFamily.Grandpa.MoneyGrowth += income_gain;
 			manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
 
 			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
 			returnObj.OutcomeDescription = String.Format (
-				"Going through your social security payments, you find a nice loophole. That'll increase your weekly income! Thanks Obama!\n\n" +
+				"Going through your social security payments, you find a nice loophole. That'll increase your monthly income! Thanks Obama!\n\n" +
 				"Grandpa's wisdom up slightly.\n" + 
 				"Grandpa's insanity down slightly.\n" + 
-				"Grandpa's income up by {0} per week!\n" +
+				"Grandpa's income up by {0} per month!\n" +
 				"Grandpa's pride up.",
 				income_gain);
 		}
@@ -1619,7 +1619,7 @@ public static class EventManager
 	public static Outcome Event1023(DataManager manager, Requirement requirements)
 	{
 		Outcome returnObj = new Outcome();
-		if (Constants.Roll(0, manager.PlayerFamily.Grandpa.Insanity, (int)Enums.Difficulty.STANDARD))
+		if (Constants.Roll(0, manager.PlayerFamily.Grandpa.Insanity, (int)Enums.Difficulty.HARD))
 		{
 			manager.PlayerFamily.Grandpa.Wisdom -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT; 
 
@@ -1779,7 +1779,7 @@ public static class EventManager
 	public static Outcome Event1027(DataManager manager, Requirement requirements)
 	{
 		Outcome returnObj = new Outcome();
-		if (Constants.Roll(0, manager.PlayerFamily.Grandpa.Insanity, (int)Enums.Difficulty.EASY))
+		if (Constants.Roll(0, manager.PlayerFamily.Grandpa.Insanity, (int)Enums.Difficulty.STANDARD))
 		{
 			manager.PlayerFamily.Grandpa.InsanityGrowth += Constants.Character.MINOR_STAT_GROWTH_AMOUNT; 
 
@@ -1806,7 +1806,7 @@ public static class EventManager
 	public static Outcome Event1028(DataManager manager, Requirement requirements)
 	{
 		Outcome returnObj = new Outcome();
-		if (Constants.Roll(0, manager.PlayerFamily.Grandpa.Insanity, (int)Enums.Difficulty.STANDARD))
+		if (Constants.Roll(0, manager.PlayerFamily.Grandpa.Insanity, (int)Enums.Difficulty.HARD))
 		{
 			manager.PlayerFamily.Grandpa.Insanity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
 			manager.PlayerFamily.Grandpa.Wisdom -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
@@ -1870,7 +1870,7 @@ public static class EventManager
 	public static Outcome Event1031(DataManager manager, Requirement requirements)
 	{
 		Outcome returnObj = new Outcome();
-		if (Constants.Roll(0, manager.PlayerFamily.Grandpa.Insanity, (int)Enums.Difficulty.STANDARD))
+		if (Constants.Roll(0, manager.PlayerFamily.Grandpa.Insanity, (int)Enums.Difficulty.HARD))
 		{
 			manager.PlayerFamily.Grandpa.Insanity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
 			manager.PlayerFamily.Grandpa.Wisdom -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
@@ -1926,7 +1926,7 @@ public static class EventManager
 				"Grandpa's pride up.",
 				requirements.Child.Name, Convert.ToBoolean(requirements.Child.Gender) ? "fella" : "lady");
 		}
-		else if (Constants.Roll(0, manager.PlayerFamily.Grandpa.Insanity, (int)Enums.Difficulty.STANDARD))
+		else if (Constants.Roll(0, manager.PlayerFamily.Grandpa.Insanity, (int)Enums.Difficulty.HARD))
 		{
 			requirements.Child.Popularity -= Constants.Character.MAJOR_STAT_CHANGE_AMOUNT;
 
@@ -2279,7 +2279,8 @@ public static class EventManager
 				"Grandpa's insanity growth up.\n" +
 				"Grandpa's income up by 200 dollars a month.");
 		}
-			returnObj.Status = (int)Enums.EventOutcome.PASS;
+		else
+			returnObj.Status = (int)Enums.EventOutcome.PASS_BLACKLIST_YEAR;
 
 		return returnObj;
 	}
@@ -2325,7 +2326,7 @@ public static class EventManager
 	{
 		Outcome returnObj = new Outcome();
 
-		if (Constants.Roll (requirements.Child.Cuteness, requirements.Child.Athleticism, (int)Enums.Difficulty.HARD)) 
+		if (Constants.Roll (requirements.Child.Cuteness, requirements.Child.Athleticism, (int)Enums.Difficulty.STANDARD)) 
 		{
 			requirements.Child.Popularity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
 			requirements.Child.Athleticism += Constants.Character.MINOR_STAT_CHANGE_AMOUNT;
@@ -2442,7 +2443,7 @@ public static class EventManager
 				"{0}'s artistry up slightly.\n" +
 				"{0}'s popularity up slightly.\n" +
 				"Grandpa's pride up slightly.",
-				requirements.Child.Name, Convert.ToBoolean(requirements.Child.Gender) ? "herself" : "hisself", 
+				requirements.Child.Name, Convert.ToBoolean(requirements.Child.Gender) ? "herself" : "himself", 
 				Convert.ToBoolean(requirements.Child.Gender) ? "Her" : "His", Convert.ToBoolean(requirements.Child.Gender) ? "her" : "him");
    		}
 		else
@@ -2747,7 +2748,8 @@ public static class EventManager
 	{
 		Outcome returnObj = new Outcome();
 
-		if (Constants.Roll (0, manager.PlayerFamily.Grandpa.Insanity, (int)Enums.Difficulty.STANDARD)) 
+		if (Constants.Roll (0, manager.PlayerFamily.Grandpa.Insanity, (int)Enums.Difficulty.STANDARD) && 
+			!Constants.Roll (0, requirements.Parent.Intelligence, (int)Enums.Difficulty.EASY)) 
 		{
 			requirements.Parent.Popularity -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
 			requirements.Parent.Love -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
@@ -3016,7 +3018,7 @@ public static class EventManager
         SimulationEvent final = EventManager.GetEventById(3006);
         final.Requirements.Grandpa = leagueStandings[leagueStandings.Count - 1].Grandpa;
 
-        ret.OutcomeDescription = string.Format("The moment of reckoning is upon us has almost arrived! As the eve of the blood moon and the Great One, Saint Nicholas, rapidly approaches he demands blood and battles " + 
+        ret.OutcomeDescription = string.Format("The moment of reckoning is upon us has almost arrived! As the eve of the blood moon and the Great One, Saint Nicholas, rapidly approaches, he demands blood and battles " + 
                                     "be fought in his honor. The no holds barred \"Great Final Tournament of the Christmas Star\" is finally upon us! One week from today we embark on this great journey together" +
                                     " I'll be up against {0} in the first round...better get prepared...", leagueStandings[0].Grandpa.Name);
 
@@ -3035,15 +3037,15 @@ public static class EventManager
         Outcome ret = new Outcome();
 
         //List<Family> leagueStandings = manager.LeagueFamilies.OrderBy(o => o.Grandpa.Pride).ToList();
-        ret.OutcomeDescription = string.Format("Holy moley!!! {0} lopped of the head of {1}'s dog with a rusty hatchet like it was nothing! Then he force the raw remains to {1}'s grandchildren " +
-                                                "this is seriously....awesome! {0}'s family dominated! Until {1}'s spear impaled {0} right through the abdomen, pinning him to the ground as a group of rabid dogs descended upon him.", 
+        ret.OutcomeDescription = string.Format("Holy moley!! {0} lopped of the head of {1}'s dog with a rusty hatchet like it was nothing! Then he threw the raw remains at {1}'s grandchildren... " +
+                                                "this is seriously... awesome! {0}'s family dominated! Until {1}'s spear impaled {0} right through the abdomen, pinning him to the ground as a group of rabid dogs descended upon him.", 
                                                 requirements.Grandpa.Name, manager.LeagueFamilies[2].Grandpa.Name);
 
         ret.Mail = new Mail();
         ret.Mail.Sender = requirements.Grandpa.Name;
         ret.Mail.StringDate = string.Format("December 5, {0}", manager.Calendar.Year);
         ret.Mail.Subject = "You're next.";
-        ret.Mail.Message = string.Format("{0},\n\n I hope you're watching what I do to {1} during the first round in a few days because you're next. Sniffles is gonna get a gooooood ol' taste of this hatchet. I soaked in the the blood of virgin calf's just for you. \n\nSee you soon,\n{2}", manager.PlayerFamily.Grandpa.Name, manager.LeagueFamilies[2].Grandpa.Name, manager.LeagueFamilies[0].Grandpa.Name);
+        ret.Mail.Message = string.Format("{0},\n\n I hope you're watching what I do to {1} during the first round in a few days because you're next. Sniffles is gonna get a gooooood ol' taste of this hatchet. I soaked it the the blood of virgin calves just for you. \n\nSee you soon,\n{2}", manager.PlayerFamily.Grandpa.Name, manager.LeagueFamilies[2].Grandpa.Name, manager.LeagueFamilies[0].Grandpa.Name);
 
         return ret;
     }
@@ -3076,7 +3078,7 @@ public static class EventManager
 
         Child playerChild = manager.PlayerFamily.GetRandomEligibleChild(0, 1000);
         Child enemyChild = enemyFamily.GetRandomEligibleChild(0, 1000);
-        if (playerChild.Athleticism > enemyChild.Athleticism && Constants.Roll(playerChild.Cuteness, playerChild.Athleticism, (int)Enums.Difficulty.STANDARD))
+		if (playerChild.Athleticism > enemyChild.Athleticism || Constants.Roll(playerChild.Cuteness, playerChild.Athleticism, (int)Enums.Difficulty.HARD))
         {
             victories++;
             ret.OutcomeDescription += string.Format("{0} uses jiu jitsu to subdue {1} in a single punch! Way to channel that chi buddy! ", playerChild.Name, enemyChild.Name);
@@ -3088,7 +3090,7 @@ public static class EventManager
 
         playerChild = manager.PlayerFamily.GetRandomEligibleChild(0, 1000);
         enemyChild = enemyFamily.GetRandomEligibleChild(0, 1000);
-        if (playerChild.Popularity > enemyChild.Popularity && Constants.Roll(playerChild.Cuteness, playerChild.Popularity, (int)Enums.Difficulty.STANDARD))
+		if (playerChild.Popularity > enemyChild.Popularity || Constants.Roll(playerChild.Cuteness, playerChild.Popularity, (int)Enums.Difficulty.HARD))
         {
             victories++;
             ret.OutcomeDescription += string.Format("Afterwards, {0} calls in the Amish Mafia from his cell phone!! They're right there to back him up and plow right over {1} with their horses. ", playerChild.Name, enemyChild.Name);
@@ -3138,7 +3140,7 @@ public static class EventManager
 
         Parent playerParent = manager.PlayerFamily.GetRandomParent();
         Parent enemyParent = enemyFamily.GetRandomParent();
-        if (playerParent.Love > enemyParent.Love && Constants.Roll(0, playerParent.Love, (int)Enums.Difficulty.HARD))
+		if (playerParent.Love > enemyParent.Love || Constants.Roll(0, playerParent.Love, (int)Enums.Difficulty.STANDARD))
         {
             victories++;
             ret.OutcomeDescription += string.Format("{0} starts the festivities by hiding in the bushes and catching {1} off guard. They wrap {1} up in wrapping paper, suffocating them. ", enemyParent.Name, playerParent.Name);
@@ -3150,7 +3152,7 @@ public static class EventManager
 
         Child playerChild = manager.PlayerFamily.GetRandomEligibleChild(0, 1000);
         Child enemyChild = enemyFamily.GetRandomEligibleChild(0, 1000);
-        if (playerChild.Intelligence > enemyChild.Intelligence && Constants.Roll(playerChild.Cuteness, playerChild.Intelligence, (int)Enums.Difficulty.HARD))
+        if (playerChild.Intelligence > enemyChild.Intelligence || Constants.Roll(playerChild.Cuteness, playerChild.Intelligence, (int)Enums.Difficulty.HARD))
         {
             victories++;
             ret.OutcomeDescription += string.Format("Luckily {0} was studying right before this! When {1} came at him with a knife he blocked it with the thickness of his Astrophysics textbook! ", playerChild.Name, enemyChild.Name);
@@ -3162,7 +3164,7 @@ public static class EventManager
 
         playerChild = manager.PlayerFamily.GetRandomEligibleChild(0, 1000);
         enemyChild = enemyFamily.GetRandomEligibleChild(0, 1000);
-        if (playerChild.Artistry > enemyChild.Artistry && Constants.Roll(playerChild.Artistry, playerChild.Artistry, (int)Enums.Difficulty.HARD))
+        if (playerChild.Artistry > enemyChild.Artistry || Constants.Roll(playerChild.Artistry, playerChild.Artistry, (int)Enums.Difficulty.HARD))
         {
             victories++;
             ret.OutcomeDescription += string.Format("\"Happy little trees, motherf**ker\" {0} yells as he lodges his trusty #6 palette knife into {1}'s spleen. Nice going! ", playerChild.Name, enemyChild.Name);
@@ -3223,7 +3225,7 @@ public static class EventManager
         }
         Parent enemyParent = enemyFamily.GetRandomParent();
 
-        if (playerParent.Popularity > enemyParent.Popularity && Constants.Roll(0, playerParent.Popularity, (int)Enums.Difficulty.VERY_HARD))
+		if (playerParent.Popularity > enemyParent.Popularity || Constants.Roll(0, playerParent.Popularity, (int)Enums.Difficulty.HARD))
         {
             victories++;
             ret.OutcomeDescription += string.Format("\"Ho-ho-holy shit!!\" {0} yells as they pick up a loaded bazooka from the ground. They point it at {1} and pull the trigger. ", playerParent.Name, enemyParent.Name);
@@ -3244,7 +3246,7 @@ public static class EventManager
         }
         enemyParent = enemyFamily.GetRandomParent();
 
-        if (playerParent.Intelligence > enemyParent.Intelligence && Constants.Roll(0, playerParent.Intelligence, (int)Enums.Difficulty.VERY_HARD))
+		if (playerParent.Intelligence > enemyParent.Intelligence || Constants.Roll(0, playerParent.Intelligence, (int)Enums.Difficulty.HARD))
         {
             victories++;
             ret.OutcomeDescription += string.Format("{0} pulls out \"A Christmas Carol\" by Charles Dickens and summons the Ghost of Christmas' To Come on the spot!! They appear and drag {1} to their own grave. ", playerParent.Name, enemyParent.Name);
@@ -3257,7 +3259,7 @@ public static class EventManager
         //CHILD CHECK 1
         Child playerChild = manager.PlayerFamily.GetRandomEligibleChild(0, 1000);
         Child enemyChild = enemyFamily.GetRandomEligibleChild(0, 1000);
-        if (playerChild.Athleticism > enemyChild.Athleticism && Constants.Roll(playerChild.Cuteness, playerChild.Athleticism, (int)Enums.Difficulty.VERY_HARD))
+        if (playerChild.Athleticism > enemyChild.Athleticism || Constants.Roll(playerChild.Cuteness, playerChild.Athleticism, (int)Enums.Difficulty.VERY_HARD))
         {
             victories++;
             ret.OutcomeDescription += string.Format("{0} slips on their track shoes equipt with razor blades. With a combination of speed an strength they trample {1}. ", playerChild.Name, enemyChild.Name);
@@ -3270,7 +3272,7 @@ public static class EventManager
         //CHILD CHECK 2
         playerChild = manager.PlayerFamily.GetRandomEligibleChild(0, 1000);
         enemyChild = enemyFamily.GetRandomEligibleChild(0, 1000);
-        if (playerChild.Artistry > enemyChild.Artistry && Constants.Roll(playerChild.Artistry, playerChild.Artistry, (int)Enums.Difficulty.VERY_HARD))
+        if (playerChild.Artistry > enemyChild.Artistry || Constants.Roll(playerChild.Artistry, playerChild.Artistry, (int)Enums.Difficulty.VERY_HARD))
         {
             victories++;
             ret.OutcomeDescription += string.Format("{0} plants some pipebombs disguised arts and crafts toiletpaper snowmen. \"Let it snow\" they say as they turn their back on the explosion {1} is caught in. ", playerChild.Name, enemyChild.Name);
@@ -3283,7 +3285,7 @@ public static class EventManager
         //CHILD CHECK 3
         playerChild = manager.PlayerFamily.GetRandomEligibleChild(0, 1000);
         enemyChild = enemyFamily.GetRandomEligibleChild(0, 1000);
-        if (playerChild.Popularity > enemyChild.Popularity && Constants.Roll(playerChild.Cuteness, playerChild.Popularity, (int)Enums.Difficulty.VERY_HARD))
+        if (playerChild.Popularity > enemyChild.Popularity || Constants.Roll(playerChild.Cuteness, playerChild.Popularity, (int)Enums.Difficulty.VERY_HARD))
         {
             victories++;
             ret.OutcomeDescription += string.Format("{0} whistles a tune and all of a sudden twenty of Santa's elves jump out from the bushes and drag {1} back to their lair. ", playerChild.Name, enemyChild.Name);
@@ -3321,8 +3323,8 @@ public static class EventManager
     public static Outcome Event3007(DataManager manager, Requirement requirements)
     {
         Outcome ret = new Outcome();
-        ret.OutcomeDescription = string.Format("Grandpa sighs, He doesn't even want to go watch the final bloodbath. He's too depressed to go on..."+
-                                                "The negative attitude propogates through his entire family\nGrandpa's Insanity Up!\nAll Stats Down!\n");
+        ret.OutcomeDescription = string.Format("Grandpa sighs. He doesn't even want to go watch the final bloodbath. He's too depressed to go on... "+
+                                                "The negative attitude propagates throughout his entire family\n\nGrandpa's insanity Up!\nAll family stats down!\n");
 
         foreach(Character ch in manager.PlayerFamily.GetAllCharacters())
         {
