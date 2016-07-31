@@ -2598,13 +2598,13 @@ public static class EventManager
 
 		returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
 		returnObj.OutcomeDescription = String.Format (
-			"After a week of fearful searching, {0} stumbles out of the underbrush one day covered in poison ivy and missing a toe. {1} has seen some shit. Grandpa is " +
+			"After a week of fearful searching, {0} stumbles out of the underbrush one day covered in poison ivy and missing a toe. {2} has seen some shit. Grandpa is " +
 			"somewhat relieved to see {0} alive! After all, {1} had some very important stats for the family team!\n\n" +
 			"{0} returned to the family!\n" +
 			"{0}'s intelligence up.\n" +
 			"{0}'s athleticism up.\n" +
 			"Grandpa's pride up.",
-			requirements.Child.Name, Convert.ToBoolean (requirements.Child.Gender) ? "she" : "he");
+			requirements.Child.Name, Convert.ToBoolean (requirements.Child.Gender) ? "she" : "he", Convert.ToBoolean (requirements.Child.Gender) ? "She" : "He");
 
 		return returnObj;
 	}
@@ -2669,7 +2669,7 @@ public static class EventManager
 			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
 			returnObj.OutcomeDescription = String.Format (
 				"No! I will not sully this holy process with lies!\n\n" +
-				"Grandpa's wisdom up." +
+				"Grandpa's wisdom up.\n" +
 				"Grandpa's pride up.");
 		}
 
@@ -2740,7 +2740,7 @@ public static class EventManager
 		returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
 		returnObj.OutcomeDescription = String.Format (
 			"{0} knew there was something fishy about those elections. That is why he worked tirelessly day and night to solve the mystery. Going through the ballots, though, one thing didn't add " +
-			"up. Why did someone write \"RIGGED BALLOT\" on three hundred ballots? Ah ha! Checkmate! {1} looks at Grandpa... \"How could you?!\" {1}'s title is taken away.\n\n" +
+			"up. Why did someone write \"RIGGED BALLOT\" on three hundred ballots? Ah ha! Checkmate! {1} looks at Grandpa... \"How could you?!\" {1}'s student council membership is taken away.\n\n" +
 			"{1}'s popularity way down!\n" +
 			"{1}'s popularity growth way down!\n" +
 			"Grandpa's pride way way way way down!!!!",
@@ -3118,7 +3118,7 @@ public static class EventManager
 
 			returnObj.Status = (int)Enums.EventOutcome.FAILURE_BLACKLIST_YEAR;
 			returnObj.OutcomeDescription = String.Format(
-				"\"And you'll never be half the president Reagan was!\" Grandpa, no! Grandpa just got off the phone with the present after violently " +
+				"\"And you'll never be half the president Reagan was!\" Grandpa, no! Grandpa just got off the phone with the president after violently " +
 				"threatening him! The family is much more popular due to their 15 minutes of fame!\n\n" +
 				"All parents' popularity up!\n" +
 				"All children's popularity up!\n" +
