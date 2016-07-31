@@ -100,6 +100,7 @@ public class DataManager
     public List<Family> LeagueFamilies
     {
         get { return this.m_league; }
+		set { this.m_league = value; }
     }
 
 	public List<Ability> Abilities
