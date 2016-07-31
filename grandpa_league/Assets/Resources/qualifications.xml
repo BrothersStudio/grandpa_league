@@ -1,21 +1,30 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <qualifications>
-  <qualification name="NONE"                   id="0"    hidden="true"   display_name="none"/>
-  <qualification name="IN_SCHOOL_BAND"         id="1"    hidden="false"  display_name="Part of the school band!"/>
-  <qualification name="IS_SINGLE"              id="2"    hidden="false"  display_name="Unfortunately single :("/>
-  <qualification name="ON_FOOTBALL_TEAM"       id="3"    hidden="false"  display_name="On the football team!"/>
-  <qualification name="ON_SOCCER_TEAM"         id="4"    hidden="false"  display_name="On the soccer team!" />
-  <qualification name="ILLEGAL_GEAR"           id="5"    hidden="false"  display_name="Currently equipped with illegal cambodian gear"/>
-  <qualification name="IN_PLAY"                id="6"    hidden="false"  display_name="Involved in the school play" />
-  <qualification name="ARBOR_DAY_SUCCESS"      id="7"    hidden="true"   display_name="" />
-  <qualification name="ARBOR_DAY_FAILURE"      id="8"    hidden="true"   display_name="" />
-  <qualification name="STAT_GAINS_DOUBLED"     id="9"    hidden="false"  display_name="Stat gains are doubled" />
-  <qualification name="GRANDPA_SELLING_DRUGS"  id="10"   hidden="true"   display_name="" />
-  <qualification name="IN_SCOUTS"              id="11"   hidden="false"  display_name="Member of scouts" />
-  <qualification name="RIGGED_ELECTION"        id="12"   hidden="true"   display_name="" />
-  <qualification name="STUDENT_COUNCIL"        id="13"   hidden="false"  display_name="" />
-  <qualification name="QUARTERFINAL_WINNER"    id="14"   hidden="true"   display_name="" />
-  <qualification name="SEMIFINAL_WINNER"       id="15"   hidden="true"   display_name="" />
-  <qualification name="TOURNAMENT_LOSER"       id="16"   hidden="true"   display_name="" />
-  <qualification name="BAND_SOLO"              id="17"   hidden="false"  display_name="Has the solo in the school concert!" />
+  <qualification name="NONE"                     id="0"    hidden="true"   display_name="none"/>
+  <qualification name="IN_SCHOOL_BAND"           id="1"    hidden="false"  display_name="Part of the school band!"/>
+  <qualification name="IS_SINGLE"                id="2"    hidden="false"  display_name="Unfortunately single :("/>
+  <qualification name="ON_FOOTBALL_TEAM"         id="3"    hidden="false"  display_name="On the football team!"/>
+  <qualification name="ON_SOCCER_TEAM"           id="4"    hidden="false"  display_name="On the soccer team!" />
+  <qualification name="ILLEGAL_GEAR"             id="5"    hidden="false"  display_name="Currently equipped with illegal cambodian gear"/>
+  <qualification name="IN_PLAY"                  id="6"    hidden="false"  display_name="Involved in the school play" />
+  <qualification name="ARBOR_DAY_SUCCESS"        id="7"    hidden="true"   display_name="" />
+  <qualification name="ARBOR_DAY_FAILURE"        id="8"    hidden="true"   display_name="" />
+  <qualification name="STAT_GAINS_DOUBLED"       id="9"    hidden="false"  display_name="Stat gains are doubled" />
+  <qualification name="GRANDPA_SELLING_DRUGS"    id="10"   hidden="true"   display_name="" />
+  <qualification name="IN_SCOUTS"                id="11"   hidden="false"  display_name="Member of scouts" />
+  <qualification name="RIGGED_ELECTION"          id="12"   hidden="true"   display_name="" />
+  <qualification name="STUDENT_COUNCIL"          id="13"   hidden="false"  display_name="" />
+  <qualification name="QUARTERFINAL_WINNER"      id="14"   hidden="true"   display_name="" />
+  <qualification name="SEMIFINAL_WINNER"         id="15"   hidden="true"   display_name="" />
+  <qualification name="TOURNAMENT_LOSER"         id="16"   hidden="true"   display_name="" />
+  <qualification name="BAND_SOLO"                id="17"   hidden="false"  display_name="Has the solo in the school concert!" />
+  <qualification name="QUARTERFINAL_MATCH_1_WIN" id="18"   hidden="true"   display_name="" />
+  <qualification name="QUARTERFINAL_MATCH_2_WIN" id="19"   hidden="true"   display_name="" />
+  <qualification name="QUARTERFINAL_MATCH_3_WIN" id="20"   hidden="true"   display_name="" />
+  <qualification name="SEMIFINAL_MATCH_1_WIN"    id="21"   hidden="true"   display_name="" />
+  <qualification name="SEMIFINAL_MATCH_2_WIN"    id="22"   hidden="true"   display_name="" />
+  <qualification name="SEMIFINAL_MATCH_3_WIN"    id="23"   hidden="true"   display_name="" />
+  <qualification name="GRANDFINAL_MATCH_1_WIN"   id="24"   hidden="true"   display_name="" />
+  <qualification name="GRANDFINAL_MATCH_2_WIN"   id="25"   hidden="true"   display_name="" />
+  <qualification name="GRANDFINAL_MATCH_3_WIN"   id="26"   hidden="true"   display_name="" />
 </qualifications>
