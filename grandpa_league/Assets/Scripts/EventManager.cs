@@ -3642,4 +3642,86 @@ public static class EventManager
 
         return ret;
     }
+
+    //school band trip
+    public static Outcome Event3011(DataManager manager, Requirement requirements)
+    {
+        Outcome ret = new Outcome();
+
+        manager.PlayerFamily.Grandpa.Money -= requirements.Money;
+        if (!requirements.Accept)
+        {
+            ret.OutcomeDescription = string.Format("Ugh Grandpa you're so lame!! The Nazis are NOT going to invade America while I'm gone. You're so lame you never let me do anything fun! " +
+                                                    "\n\nGrandpa's Pride down!\n{0}'s Popularity down!\n{0}'s Artistry down!\n{0}'s Intelligence up!", requirements.Child.Name);
+
+            manager.PlayerFamily.Grandpa.Pride -= Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+            requirements.Child.Popularity -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+            requirements.Child.Artistry -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+            requirements.Child.Intelligence -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+
+            ret.Status = (int)Enums.EventOutcome.FAILURE;
+        }
+        else
+        {
+            ret.OutcomeDescription = string.Format("Wow thanks Grandpa! You're the best!\n\n{0}'s Popularity up!\n{0} has left the family for a week!", requirements.Child.Name);
+
+            requirements.Child.Popularity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+
+            SimulationEvent followUp = EventManager.GetEventById(3012);
+            followUp.Requirements.Child = requirements.Child;
+            followUp.Requirements.Money = requirements.Money;
+            manager.PlayerFamily.Children.Remove(requirements.Child);
+
+            manager.Calendar.ScheduleEventInXDays(followUp, 7);
+
+            ret.Status = (int)Enums.EventOutcome.SUCCESS;
+        }
+
+        return ret;
+    }
+
+    public static Outcome Event3012(DataManager manager, Requirement requirements)
+    {
+        Outcome ret = new Outcome();
+
+        if (requirements.Money >= 250 && Constants.Roll(requirements.Child.Cuteness, requirements.Child.Artistry, (int)Enums.Difficulty.STANDARD))
+        {
+            ret.OutcomeDescription = string.Format("The trip was awesome Grandpa! Me and some of the other kids played \"Rock Around the Clock\" at 3am over Elvis' grave to summon him! " +
+                                                    "He kept saying something about needing money and he smelled like you do on Saturday nights so I just gave him all the money you gave me!" +
+                                                    "\n\nGrandpa's Pride up!\n{0}'s Artistry up!\n{0} has rejoined the family!", requirements.Child.Name);
+
+
+            manager.PlayerFamily.Grandpa.Pride += Constants.Character.MAJOR_PRIDE_CHANGE_AMOUNT;
+            requirements.Child.Artistry += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+            manager.PlayerFamily.Children.Add(requirements.Child);
+            requirements.Child = null;
+
+            ret.Status = (int)Enums.EventOutcome.SUCCESS;
+        }
+        else if (Constants.Roll(requirements.Child.Cuteness, requirements.Child.Artistry, (int)Enums.Difficulty.HARD))
+        {
+            ret.OutcomeDescription = string.Format("The trip was pretty good Grandpa (even if I wish I had a little more money...)! We played to a crowd of nearly 4000 diehard Elvis fans " +
+                                                    "and impersonators! Did I miss anything good here at home while I was away?\n\nGrandpa's Pride up!\n{0}'s Artistry up!\n{0} has rejoined the family!", requirements.Child.Name);
+
+            manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+            requirements.Child.Artistry += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+            manager.PlayerFamily.Children.Add(requirements.Child);
+            requirements.Child = null;
+
+            ret.Status = (int)Enums.EventOutcome.SUCCESS;
+        }
+        else
+        {
+            ret.OutcomeDescription = string.Format("Oh Grandpa the trip was horrible! Everyone just made fun of me the entire time. They dug up Elvis' grave and burried my tuba with him! " +
+                                                    "Why did you let me go!?\n\nGrandpa's Pride down!\n{0}'s Artistry down!\n{0}'s Popularity down\n{0} has rejoined the family!", requirements.Child.Name);
+
+            manager.PlayerFamily.Grandpa.Pride -= Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+            requirements.Child.Artistry -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+            requirements.Child.Popularity -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+            manager.PlayerFamily.Children.Add(requirements.Child);
+            requirements.Child = null;
+        }
+
+        return ret;
+    }
 }
