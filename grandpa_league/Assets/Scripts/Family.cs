@@ -107,6 +107,14 @@ public class Family
         this.m_chemistry = (totalChildrenStats + grandpaInstanityFactor) / (totalLove * familySize);
         return this.m_chemistry;
     }
+    
+    public void ClearAllQualifications()
+    {
+        foreach(Character cur in this.GetAllCharacters())
+        {
+            cur.Qualifications.Clear();
+        }
+    }
 
     public double CalculateUpkeep()
     {

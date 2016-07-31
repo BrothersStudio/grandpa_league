@@ -135,7 +135,7 @@ public class Main : MonoBehaviour {
                                     ev.Requirements.ReqMoney, ev.Requirements.ReqAccept, ev.EventMonth, ev.EventMonthMax, ev.Priority, ev.Requirements.ReqChild, ev.Requirements.ReqParent);
             Debug.Log(debugString);
 
-            if (m_dataManager.Blacklist.Contains(ev.EventId))
+            if (m_dataManager.BlacklistYear.Contains(ev.EventId) || m_dataManager.BlacklistForever.Contains(ev.EventId))
             {
                 Debug.Log(string.Format("Event {0} blacklisted... skipping", ev.EventName));
                 continue;
@@ -244,16 +244,26 @@ public class Main : MonoBehaviour {
             }
 
             //CHECK THE OUTCOME
-            if (eventOutcome.Status == (int)Enums.EventOutcome.PASS_BLACKLIST_FOREVER || eventOutcome.Status == (int)Enums.EventOutcome.PASS_BLACKLIST_YEAR)
-            { 
-                m_dataManager.Blacklist.Add(ev.EventId);
+            if (eventOutcome.Status == (int)Enums.EventOutcome.PASS_BLACKLIST_FOREVER)
+            {
+                m_dataManager.BlacklistForever.Add(ev.EventId);
+                continue;
+            }
+            else if (eventOutcome.Status == (int)Enums.EventOutcome.PASS_BLACKLIST_YEAR)
+            {
+                m_dataManager.BlacklistYear.Add(ev.EventId);
                 continue;
             }
             else if (eventOutcome.Status == (int)Enums.EventOutcome.PASS)
                 continue;
-            else if (eventOutcome.Status == (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR || eventOutcome.Status == (int)Enums.EventOutcome.FAILURE_BLACKLIST_YEAR
-                     || eventOutcome.Status == (int)Enums.EventOutcome.SUCCESS_BLACKLIST_FOREVER || eventOutcome.Status == (int)Enums.EventOutcome.FAILURE_BLACKLIST_FOREVER)
-                m_dataManager.Blacklist.Add(ev.EventId);
+            else if (eventOutcome.Status == (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR || eventOutcome.Status == (int)Enums.EventOutcome.FAILURE_BLACKLIST_YEAR)
+            {
+                m_dataManager.BlacklistYear.Add(ev.EventId);
+            }
+            else if (eventOutcome.Status == (int)Enums.EventOutcome.SUCCESS_BLACKLIST_FOREVER || eventOutcome.Status == (int)Enums.EventOutcome.FAILURE_BLACKLIST_FOREVER)
+            {
+                m_dataManager.BlacklistForever.Add(ev.EventId);
+            }
 
             if (ev.Priority != 0)
             {

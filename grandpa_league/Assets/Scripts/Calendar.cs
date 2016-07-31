@@ -57,6 +57,12 @@ public class Calendar
 
     private void GenerateCalendarForYear()
     {
+        if (Main.GetDataManager() != null)
+        {
+            Main.GetDataManager().BlacklistYear.Clear();
+            Main.GetDataManager().PlayerFamily.ClearAllQualifications();
+        }
+
         this.m_days = new List<Day>();
         for (var i = 1; i <= 12; i++)
         {
