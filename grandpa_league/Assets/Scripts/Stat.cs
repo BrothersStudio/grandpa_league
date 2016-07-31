@@ -21,8 +21,8 @@ public class Stat
 
     public double Value
     {
-        get { return this.m_valueModifier ? this.m_value*m_valueMultiplier : this.m_value; }
-        set { this.m_value = value; }
+        get { return this.m_value; }
+        set { this.m_value = this.m_growthBonus ? value  * (this.m_growthBonusAmount + 1) : value ; }
     }
 
     public double MaxValue
@@ -39,14 +39,14 @@ public class Stat
 
     public double GrowthRate
     {
-        get { return this.m_growthBonus ? this.m_growthRate + this.m_growthBonusAmount : this.m_growthRate; }
-        set { this.m_growthRate = value; }
+        get { return this.m_growthRate > Constants.Character.MAX_INITIAL_GROWTH ? Constants.Character.MAX_INITIAL_GROWTH : this.m_growthRate; }
+        set { this.m_growthRate = value ; }
     }
 
     public bool GrowthBonus
     {
         get { return this.m_growthBonus; }
-        set { m_growthBonus = value; }
+        set { this.m_growthBonus = value; }
     }
 
     public double GrowthBonusAmount

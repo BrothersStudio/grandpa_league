@@ -46,7 +46,7 @@ public class LoadMailPanel : MonoBehaviour
             float currentLowerX = contentPanel.GetComponent<RectTransform>().offsetMin.x;
             float newLowerY = parentHeight - (float)mailSize * prefabHeight;
 
-            contentPanel.GetComponent<RectTransform>().offsetMin = new Vector2(currentLowerX, newLowerY);
+           contentPanel.GetComponent<RectTransform>().offsetMin = new Vector2(currentLowerX, 0);
         }
 
         prefabContentPanel = new GameObject[mailSize];
@@ -57,11 +57,6 @@ public class LoadMailPanel : MonoBehaviour
             Mail mail = mailInstance;
 
             MakePanel(mail, panelInd);
-
-            if(mail.Read)
-                prefabContentPanel[panelInd].GetComponent<Button>().image.color = new Color(179, 181, 121);
-            else
-                prefabContentPanel[panelInd].GetComponent<Button>().image.color = new Color(230, 235, 107);
 
             Button thisButton = prefabContentPanel[panelInd].GetComponent<Button>();
             prefabContentPanel[panelInd].GetComponent<Button>().onClick.RemoveAllListeners();
