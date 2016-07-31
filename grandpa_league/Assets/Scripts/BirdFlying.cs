@@ -15,18 +15,11 @@ public class BirdFlying : MonoBehaviour {
         body2d = GetComponent<Rigidbody2D>();
         StartPos = transform.position;
         chirpSource.clip = chirp;
+        chirpSource.Play();
 	}
 	
 	void FixedUpdate ()
     {
         body2d.velocity = velocity;
 	}
-
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Sky"))
-        {
-            chirpSource.Play();
-        }
-    }
 }

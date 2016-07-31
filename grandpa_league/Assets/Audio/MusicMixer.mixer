@@ -20,6 +20,7 @@ AudioMixerController:
     - aff04c6d336db304e9b98c5463b8e3ec
     - 0135cf6c55c0aff40b446ea1fdd17943
     - 225a33e6cfc5dda43b84cafa0bcfc23e
+    - 1fce85f18caaa5946869e77b8e229a64
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500003}
@@ -35,6 +36,7 @@ AudioMixerGroupController:
   - {fileID: 24367952}
   - {fileID: 24385670}
   - {fileID: 24352932}
+  - {fileID: 24384796}
   m_Volume: e2dbb23c92f83664ea8a87504249fba3
   m_Pitch: 114ba38b5f01659458a59c5a7319e79d
   m_Effects:
@@ -73,6 +75,23 @@ AudioMixerGroupController:
   m_Pitch: 8b23975b49f8cf24f8c1e4d7446660c9
   m_Effects:
   - {fileID: 24470414}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!243 &24384796
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Bird Noises
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 1fce85f18caaa5946869e77b8e229a64
+  m_Children: []
+  m_Volume: 84c43549a859d6144ac79391eed06ee0
+  m_Pitch: f1b5d41c0f9eab74f81a7582910244e3
+  m_Effects:
+  - {fileID: 24485642}
   m_UserColorIndex: 0
   m_Mute: 0
   m_Solo: 0
@@ -133,6 +152,19 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
+--- !u!244 &24485642
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_EffectID: 6f416c71fd6d0a04fbb5e4e2bf3a9261
+  m_EffectName: Attenuation
+  m_MixLevel: ff97dcfb49c99384695d7b8da9dbdbf5
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!244 &24491324
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -156,6 +188,7 @@ AudioMixerSnapshotController:
   m_SnapshotID: 908a9ea2421693945b51989b31cbf909
   m_FloatValues:
     7adfde934fd492649ad5d9831fbb9a31: -5.722484
+    84c43549a859d6144ac79391eed06ee0: -26.404226
     4f40f6ce6da98314dbc74e914a4e330c: -3.2630575
     2da6d4de30b05ea46ac73cad55f1b337: -33.611683
   m_TransitionOverrides: {}

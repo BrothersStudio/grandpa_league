@@ -15,7 +15,7 @@ public class MailAlertPlayer : MonoBehaviour
     public void PlayNotification()
     {
         mailSource.clip = mail;
-        mailSource.Play();
+        mailSource.PlayOneShot(mail, 1.0F);
     }
 	
 }
