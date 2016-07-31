@@ -73,7 +73,8 @@
   <event type="0" id="1060" name="Parent dating supermodel" description="" priority="1" chance="0.01" req_children="00" req_parent="11" req_grandpa="00" req_money="00" req_accept="00" qualification="IS_SINGLE" /> 
   <event type="0" id="1061" name="Grandpa threatens the present" description="" priority="1" chance="0.005" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" /> 
   <event type="0" id="1062" name="Grandkid is a chef" description="" priority="1" chance="0.005" req_children="11" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" /> 
-  
+  <event type="0" id="3009" name="School Band Bullying" description="" priority="1" chance="1" req_children="11" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" month="9-11" qualification="IN_SCHOOL_BAND" />
+
   <!-- KNOWN EVENTS req_ of the form 1=true, 0=false, [RANDOM][REQUIRED]-->
   
   <event type="1" id="1003" name="Grandkid tries out for football" description="The indoor football team is having tryouts! I wonder who should go out?" priority="1" req_children="01" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" month="1" day="0" age="10-18"/>

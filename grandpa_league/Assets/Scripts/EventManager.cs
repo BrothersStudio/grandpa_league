@@ -3547,4 +3547,45 @@ public static class EventManager
 
         return ret;
     }
+
+    //school band bullying
+    public static Outcome Event3009(DataManager manager, Requirement requirements)
+    {
+        Outcome ret = new Outcome();
+
+        if (Constants.Roll(requirements.Child.Cuteness, requirements.Child.Popularity, (int)Enums.Difficulty.HARD))
+        {
+            ret.OutcomeDescription = string.Format("While walking home from school one day with their tuba, {0} is confronted by bullies. Rather than fight {1} puts down their tuba and says: " + 
+                                                    "\"Let's go beat up some nerds!\" Together they whack at least half of the student band, ouch!" +
+                                                     "\n\n{0}'s popularity up!\n{0}'s artistry slightly down!\nGrandpa's Pride up!", requirements.Child.Name, Convert.ToBoolean(requirements.Child.Gender) ? "she" : "he");
+
+            manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+            requirements.Child.Popularity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+            requirements.Child.Artistry -= Constants.Character.MINOR_STAT_CHANGE_AMOUNT;
+            ret.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR;
+        }
+        else if (Constants.Roll(requirements.Child.Cuteness, requirements.Child.Artistry, (int)Enums.Difficulty.HARD))
+        {
+            ret.OutcomeDescription = string.Format("While walking home from school one day with their tuba, {0} is confronted by bullies. Instead of running away {1} takes out his tuba and begins " +
+                                                    "playing the most beautiful song! {1} brings the bullies to tears and their eardrums begin to bleed. Well Tuba'd, {0}!" + 
+                                                     "\n\n{0}'s popularity slightly down!\n{0}'s artistry up!\nGrandpa's Pride up!", requirements.Child.Name, Convert.ToBoolean(requirements.Child.Gender) ? "she" : "he");
+
+            manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+            requirements.Child.Popularity -= Constants.Character.MINOR_STAT_CHANGE_AMOUNT;
+            requirements.Child.Artistry += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+            ret.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR;
+        }
+        else
+        {
+            ret.OutcomeDescription = string.Format("While walking home from school one day with their tuba, {0} is confronted by bullies. \"H-Hey guys what's up\" {1} asks sheepishly as they " +
+                                                    "take out his tuba and superglue their head inside the bell. \"O-okay I'll just wait right here\"" +
+                                                     "\n\n{0}'s popularity down!\nGrandpa's Pride down!", requirements.Child.Name, Convert.ToBoolean(requirements.Child.Gender) ? "she" : "he");
+
+            manager.PlayerFamily.Grandpa.Pride -= Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+            requirements.Child.Popularity -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+            ret.Status = (int)Enums.EventOutcome.FAILURE_BLACKLIST_YEAR;
+        }
+
+        return ret;
+    }
 }
