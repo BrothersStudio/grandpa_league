@@ -3067,6 +3067,97 @@ public static class EventManager
 		return returnObj;
 	}
 
+	// Dating Supermodel
+	public static Outcome Event1060(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+
+		if (Constants.Roll(0, requirements.Parent.Popularity, (int)Enums.Difficulty.HARD))
+		{
+			requirements.Parent.Popularity += Constants.Character.MAJOR_STAT_CHANGE_AMOUNT;
+			requirements.Parent.Love += Constants.Character.MAJOR_STAT_CHANGE_AMOUNT;
+			requirements.Parent.LoveGrowth += Constants.Character.MAJOR_STAT_GROWTH_AMOUNT;
+
+			manager.PlayerFamily.Grandpa.Pride += Constants.Character.MAJOR_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_FOREVER;
+			returnObj.OutcomeDescription = String.Format(
+				"{0} has been spending a lot of time living it up after the divorce. But just last week, {1} started seeing the world-famous supermodel " +
+				"ROBIN SPEILHOFFER! That has to be an ego boost after a tough divorce! \n\n" +
+				"{0} popularity way up!\n" +
+				"{0} love way up!\n" +
+				"{0} love growth way up!\n" +
+				"Grandpa's pride way up!.",
+				requirements.Parent.Name, Convert.ToBoolean(requirements.Parent.Gender) ? "she" : "he");
+		}
+		else
+			returnObj.Status = (int)Enums.EventOutcome.PASS;
+
+		return returnObj;
+	}
+
+	// Grandpa threatens president
+	public static Outcome Event1061(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+
+		if (Constants.Roll(0, manager.PlayerFamily.Grandpa.Insanity, (int)Enums.Difficulty.STANDARD))
+		{
+			foreach (Parent parent in manager.PlayerFamily.Parents) 
+			{
+				parent.Popularity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+			}
+
+			foreach (Child child in manager.PlayerFamily.Children) 
+			{
+				child.Popularity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+			}
+
+			manager.PlayerFamily.Grandpa.Insanity -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+			manager.PlayerFamily.Grandpa.Pride -= Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE_BLACKLIST_YEAR;
+			returnObj.OutcomeDescription = String.Format(
+				"\"And you'll never be half the president Reagan was!\" Grandpa, no! Grandpa just got off the phone with the present after violently " +
+				"threatening him! The family is much more popular due to their 15 minutes of fame!\n\n" +
+				"All parents' popularity up!\n" +
+				"All children's popularity up!\n" +
+				"Grandpa's insanity up.\n" +
+				"Grandpa's pride down.");
+		}
+		else
+			returnObj.Status = (int)Enums.EventOutcome.PASS;
+
+		return returnObj;
+	}
+
+	// Grandkid is a chef
+	public static Outcome Event1062(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+
+		if (Constants.Roll(requirements.Child.Cuteness, requirements.Child.Artistry, (int)Enums.Difficulty.STANDARD))
+		{
+			requirements.Child.Artistry += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+			requirements.Child.ArtistryGrowth += Constants.Character.STANDARD_STAT_GROWTH_AMOUNT;
+
+			manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+			returnObj.OutcomeDescription = String.Format(
+				"Wow, {0}, that was the best {1} I've ever had! You're turning into quite the amateur chef! Maybe you should go on " +
+				"one of those cooking shows?\n\n" +
+				"{0}'s artistry up.\n" +
+				"{0}'s artistry growth up.\n" +
+				"Grandpa's pride up.",
+				requirements.Child.Name, Convert.ToBoolean(Constants.RANDOM.Next(0, 1)) ? "Moon Steak" : "Endangered Fish Ravioli");
+		}
+		else
+			returnObj.Status = (int)Enums.EventOutcome.PASS;
+
+		return returnObj;
+	}
+
     //finals seeding
     public static Outcome Event3001(DataManager manager, Requirement requirements)
     {
