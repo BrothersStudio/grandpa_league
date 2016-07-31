@@ -710,9 +710,6 @@ public class Main : MonoBehaviour {
 
 	public void AdvanceDayHighlight()
 	{
-		if (display_month != this.current_month) 
-			ChangeDisplayMonth (current_month);
-	
 		if (current_day == days.Length - 1) 
 		{
 			current_day = 0;
@@ -721,7 +718,6 @@ public class Main : MonoBehaviour {
 			{
 				current_month = 1;
 			}
-			month_title.text = Constants.MONTH_NAMES[current_month];
 
 			for (int i = 0; i < 28; i++) 
 			{
@@ -736,7 +732,6 @@ public class Main : MonoBehaviour {
 		}
 
 		display_month = current_month;
-
 		ChangeDisplayMonth (0);
 
         days [current_day].image.color = Color.red;
