@@ -57,7 +57,7 @@ public class Family
 
     public Parent GetRandomParent()
     {
-        return this.m_parents[Constants.RANDOM.Next(0, this.m_parents.Count - 1)];
+        return this.m_parents[Constants.RANDOM.Next(0, this.m_parents.Count)];
     }
 
     public void ApplyStatUpgrades()
