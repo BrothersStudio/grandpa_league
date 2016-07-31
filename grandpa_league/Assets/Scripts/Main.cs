@@ -619,6 +619,9 @@ public class Main : MonoBehaviour {
         SaveButton.GetComponent<Button>().onClick.AddListener(() =>
         {
             this.Save();
+			SettingsPanel.SetActive(false);
+			ModalBlockingPanel.SetActive(false);
+			MainCanvas.GetComponent<CanvasGroup>().blocksRaycasts = true;
         });
 		ResumeButton.GetComponent<Button> ().onClick.RemoveAllListeners ();
         ResumeButton.GetComponent<Button>().onClick.AddListener(() =>
