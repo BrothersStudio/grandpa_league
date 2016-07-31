@@ -31,15 +31,21 @@
   <character type="0" name="Janice" gender="1" age="12" cuteness="55" intelligence="50" artistry="5" athleticism="50" popularity="10" sprite_name="kidFemale2_Scaled"/>
   <character type="0" name="Emily" gender="1" age="6" cuteness="40" intelligence="10" artistry="10" athleticism="60" popularity="45" sprite_name="kidFemale2_Scaled"/>
   <character type="0" name="Sarah" gender="1" age="5" cuteness="25" intelligence="25" artistry="50" athleticism="20" popularity="10" sprite_name="kidFemale3_Scaled"/>
+  <character type="0" name="Charlie" gender="1" age="10" cuteness="45" intelligence="50" artistry="20" athleticism="15" popularity="30" sprite_name="kidFemale1_Scaled"/>
+  <character type="0" name="Jonathan" gender="0" age="8" cuteness="20" intelligence="40" artistry="20" athleticism="40" popularity="60" sprite_name="kidMale1_Scaled"/>
+  <character type="0" name="Kat" gender="1" age="15" cuteness="20" intelligence="20" artistry="50" athleticism="30" popularity="20" sprite_name="kidFemale2_Scaled"/>
+  <character type="0" name="Ian" gender="0" age="5" cuteness="60" intelligence="10" artistry="10" athleticism="10" popularity="60" sprite_name="kidMale2_Scaled"/>
+  <character type="0" name="Cat" gender="1" age="6" cuteness="25" intelligence="40" artistry="20" athleticism="50" popularity="10" sprite_name="kidFemale3_Scaled"/>
+  <character type="0" name="John Paul" gender="0" age="16" cuteness="20" intelligence="10" artistry="40" athleticism="40" popularity="30" sprite_name="kidMale3_Scaled"/>
 
   <!-- PARENTS -->
-  <character type="1" name="Jim" gender="0" age="33" popularity="50" intelligence="20" love="50" sprite_name="man1_Sprite_Scaled"/>
+  <character type="1" name="Jim" gender="0" age="33" popularity="45" intelligence="20" love="50" sprite_name="man1_Sprite_Scaled"/>
   <character type="1" name="Beth" gender="1" age="28" popularity="55" intelligence="5" love="45" sprite_name="woman1_Sprite_Scaled"/>
   <character type="1" name="Mike" gender="0" age="40" popularity="10" intelligence="50" love="20" sprite_name="man2_Sprite_Scaled"/>
   <character type="1" name="Candice" gender="1" age="41" popularity="50" intelligence="20" love="50" sprite_name="woman2_Sprite_Scaled"/>
   <character type="1" name="Sam" gender="0" age="34" popularity="10" intelligence="20" love="50" sprite_name="man3_Sprite_Scaled"/>
-  <character type="1" name="Elizabeth" gender="1" age="35" popularity="50" intelligence="50" love="50" sprite_name="woman3_Sprite_Scaled"/>
-  <character type="1" name="Barry" gender="0" age="50" popularity="50" intelligence="50" love="50" sprite_name="man1_Sprite_Scaled"/>
+  <character type="1" name="Elizabeth" gender="1" age="35" popularity="50" intelligence="40" love="40" sprite_name="woman3_Sprite_Scaled"/>
+  <character type="1" name="Barry" gender="0" age="50" popularity="40" intelligence="40" love="50" sprite_name="man1_Sprite_Scaled"/>
   <character type="1" name="Lisa" gender="1" age="52" popularity="0" intelligence="40" love="40" sprite_name="woman1_Sprite_Scaled"/>
   <character type="1" name="John" gender="0" age="25" popularity="45" intelligence="10" love="45" sprite_name="man2_Sprite_Scaled"/> 
   <character type="1" name="Mary" gender="1" age="27" popularity="20" intelligence="20" love="20" sprite_name="woman2_Sprite_Scaled"/>
@@ -49,6 +55,8 @@
   <character type="1" name="Karen" gender="1" age="31" popularity="45" intelligence="20" love="60" sprite_name="woman2_Sprite_Scaled"/>
   <character type="1" name="James" gender="0" age="18" popularity="60" intelligence="15" love="15" sprite_name="man2_Sprite_Scaled"/>
   <character type="1" name="Rebecca" gender="1" age="39" popularity="50" intelligence="30" love="15" sprite_name="woman1_Sprite_Scaled"/>
+  <character type="1" name="Alice" gender="1" age="28" popularity="30" intelligence="10" love="50" sprite_name="woman2_Sprite_Scaled"/>
+  <character type="1" name="Bobby" gender="0" age="54" popularity="20" intelligence="50" love="20" sprite_name="man1_Sprite_Scaled"/>
  
   <!-- GRANDPARENTS -->
   <character type="2" name="Captain McBreeches" age="88" pride="5000" wisdom="40" insanity="40" money="5000" sprite_name="CMcBreeches_Sprite_Scaled"/>
