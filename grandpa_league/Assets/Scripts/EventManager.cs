@@ -3906,7 +3906,7 @@ public static class EventManager
     }
 
     //school band trip
-    public static Outcome Event3011(DataManager manager, Requirement requirements)
+    public static Outcome Event3018(DataManager manager, Requirement requirements)
     {
         Outcome ret = new Outcome();
 
@@ -3941,9 +3941,9 @@ public static class EventManager
 
         return ret;
     }
-
-    //band trip return
-    public static Outcome Event3012(DataManager manager, Requirement requirements)
+		
+	// Band return trip
+    public static Outcome Event3019(DataManager manager, Requirement requirements)
     {
         Outcome ret = new Outcome();
 
@@ -3988,8 +3988,8 @@ public static class EventManager
         return ret;
     }
 
-    //school band skill check
-    public static Outcome Event3013(DataManager manager, Requirement requirements)
+    //school band skill checkup
+    public static Outcome Event3020(DataManager manager, Requirement requirements)
     {
         Outcome ret = new Outcome();
 
@@ -4015,6 +4015,14 @@ public static class EventManager
             requirements.Child.Artistry += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
             ret.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR;
         }
+
+        return ret;
+    }
+
+    //school band final concert
+    public static Outcome Event3021(DataManager manager, Requirement requirements)
+    {
+        Outcome ret = new Outcome();
 
         return ret;
     }

@@ -97,13 +97,12 @@
 
   <!-- BAND EVENTS -->
   <event type="1" id="1059" name="School band tryouts" description="Grandpa is not looking forward to sitting through these concerts but having a grandkid in the school band would be quite a boon! Who should try out?" priority="1" req_children="01" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" month="9" day="2" />
-  <event type="0" id="3009" name="School Band Bullying" description="" priority="1" chance="0.007" req_children="11" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" month="9-11" qualification="IN_SCHOOL_BAND" />
-  <event type="1" id="3010" name="Grandkid goes for the solo" description="The school band is having tryouts for the big concert solo! The band director's wife was just put into the hospital and he needs money badly...maybe we could come to an agreement of sorts?" priority="1" req_children="11" req_parent="00" req_grandpa="00" req_money="01" req_accept="00" month="10" day="2" qualification="IN_SCHOOL_BAND" />
-  <event type="1" id="3011" name="School Band Trip" description="The school band is going on a week long trip to see the grave of Elivs Presley and perform there! Can I go Grandpa? Can I?" priority="1" req_children="11" req_parent="00" req_grandpa="00" req_money="01" req_accept="00" month="10" day="18" qualification="IN_SCHOOL_BAND" />
-  <event type="2" id="3012" name="school_band_return" description="" priority="1" chance="0" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" month="0" day="0" />
-  <event type="0" id="3013" name="School band Checkup" description="" priority="1" chance="0.007" req_children="11" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" month="9-11" qualification="IN_SCHOOL_BAND" />
-  <event type="1" id="3030" name="School Band Fall Concert!" description="" priority="2" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" month="11" day="12" qualification="IN_SCHOOL_BAND" />
-
+  <event type="0" id="3016" name="School Band Bullying" description="" priority="1" chance="0.007" req_children="11" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" month="9-11" qualification="IN_SCHOOL_BAND" />
+  <event type="1" id="3017" name="Grandkid goes for the solo" description="The school band is having tryouts for the big concert solo! The band director's wife was just put into the hospital and he needs money badly...maybe we could come to an agreement of sorts?" priority="1" req_children="11" req_parent="00" req_grandpa="00" req_money="01" req_accept="00" month="10" day="2" qualification="IN_SCHOOL_BAND" />
+  <event type="1" id="3018" name="School Band Trip" description="The school band is going on a week long trip to see the grave of Elivs Presley and perform there! Can I go Grandpa? Can I?" priority="1" req_children="11" req_parent="00" req_grandpa="00" req_money="01" req_accept="00" month="10" day="18" qualification="IN_SCHOOL_BAND" />
+  <event type="2" id="3019" name="school_band_return" description="" priority="1" chance="0" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" month="0" day="0" />
+  <event type="0" id="3020" name="School band Checkup" description="" priority="1" chance="0.007" req_children="11" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" month="9-11" qualification="IN_SCHOOL_BAND" />
+  <event type="1" id="3021" name="School Band Fall Concert!" description="" priority="2" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" month="11" day="12" qualification="IN_SCHOOL_BAND" />
 
   <!-- CHAMPIONSHIP EVENTS STRUCTURE -->
   <event type="2" id="3001" name="FINAL_EVENT_SEEDING" description="" chance="0" priority="1" req_children="00" req_parent="11" req_grandpa="00" req_money="00" req_accept="00" month="12" day="1" />
