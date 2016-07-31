@@ -2955,6 +2955,45 @@ public static class EventManager
 		return returnObj;
 	}
 
+    // Thanksgiving
+    public static Outcome Event1058(DataManager manager, Requirement requirements)
+    {
+        Outcome returnObj = new Outcome();
+
+        if (Constants.Roll(0, manager.PlayerFamily.Grandpa.Wisdom, (int)Enums.Difficulty.STANDARD))
+        {
+            foreach (Parent parent in manager.PlayerFamily.Parents)
+            {
+                parent.Love += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+            }
+
+            manager.PlayerFamily.Grandpa.Wisdom += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+            manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+            returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+            returnObj.OutcomeDescription = String.Format(
+                "Grandpa put on his chef's hat and told the parents to sit back and drink a beer this holiday. He'd be charge of the kitchen! And what a kitchen " +
+                "he ran! Absolutely delicious dishes the likes of which the family has never seen! Amazing job, Grandpa!\n\n" +
+                "All parents' love up!\n" +
+                "Grandpa's wisdom up.\n" +
+                "Grandpa's pride up.");
+        }
+        else
+        {
+            manager.PlayerFamily.Grandpa.Insanity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+            manager.PlayerFamily.Grandpa.Pride -= Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+            returnObj.Status = (int)Enums.EventOutcome.FAILURE;
+            returnObj.OutcomeDescription = String.Format(
+                "It's Thanksgiving! Time to give thanks for what you have! Like family. The family that Grandpa has mercilessly torn apart lately. He offered to " +
+                "cook everyone dinner tonight, but instead he just got drunk and fell asleep in the garage. We are all sharing a single can of beans.\n\n" +
+                "Grandpa's insanity up.\n" +
+                "Grandpa's pride down.");
+        }
+
+        return returnObj;
+    }
+
     //finals seeding
     public static Outcome Event3001(DataManager manager, Requirement requirements)
     {
@@ -2989,6 +3028,7 @@ public static class EventManager
         return ret;
     }
 
+    //AI QUARTER FINAL
     public static Outcome Event3002(DataManager manager, Requirement requirements)
     {
         Outcome ret = new Outcome();
@@ -3314,5 +3354,4 @@ public static class EventManager
 
         return ret;
     }
-
 }
