@@ -3682,6 +3682,7 @@ public static class EventManager
         return ret;
     }
 
+    //band trip return
     public static Outcome Event3012(DataManager manager, Requirement requirements)
     {
         Outcome ret = new Outcome();
@@ -3722,6 +3723,37 @@ public static class EventManager
             requirements.Child.Popularity -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
             manager.PlayerFamily.Children.Add(requirements.Child);
             requirements.Child = null;
+        }
+
+        return ret;
+    }
+
+    //school band skill check
+    public static Outcome Event3013(DataManager manager, Requirement requirements)
+    {
+        Outcome ret = new Outcome();
+
+        if (!Constants.Roll(requirements.Child.Cuteness, requirements.Child.Artistry, (int)Enums.Difficulty.EASY))
+        {
+            ret.OutcomeDescription = string.Format("\"I'm gonna level with you Mr. {0}. {1} is the worst goddamn tuba player I have ever heard in my entire life. As much " +
+                                                    "as it kills me to do this, I'm gonna have to kick him out of the band. I have never done this in all of my 40 years of instruction " +
+                                                    "but {1} is sincerely horrible. So much so that this might even be a compliment!\""+
+                                                    "\n\n{1} kicked out of band!\nGrandpa's pride way down!\nGrandpa's insanity up!\n{1}'s artistry down!\n{1}'s popularity down!", manager.PlayerFamily.FamilyName, requirements.Child.Name);
+
+            manager.PlayerFamily.Grandpa.Pride -= Constants.Character.MAJOR_PRIDE_CHANGE_AMOUNT;
+            requirements.Child.Popularity -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+            requirements.Child.Artistry -= Constants.Character.MAJOR_STAT_CHANGE_AMOUNT;
+            requirements.Child.RemoveQualification(Qualification.GetQualificationByString("IN_SCHOOL_BAND"));
+            ret.Status = (int)Enums.EventOutcome.FAILURE_BLACKLIST_YEAR;
+        }
+        else
+        {
+            ret.OutcomeDescription = string.Format("\"{0} is doing very well in band Mr. {1}. If they keep it up they might be one of the greats! Like Bach, Mozart, or ABBA.\"\n\n" +
+                                                    "Grandpa's pride up!\n{0}'s artistry up!", requirements.Child.Name, manager.PlayerFamily.FamilyName);
+
+            manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+            requirements.Child.Artistry += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+            ret.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR;
         }
 
         return ret;
