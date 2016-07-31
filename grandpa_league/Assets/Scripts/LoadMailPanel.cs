@@ -125,6 +125,7 @@ public class LoadMailPanel : MonoBehaviour
 
         // Set name
         prefabContentPanel[panelInd].GetComponentInChildren<Text>().text = string.Format("{0}\n{1}", mail.StringDate, mail.Subject);
+
+        prefabContentPanel[panelInd].GetComponent<MailAlertPlayer>().PlayNotification();
     }
 }
-

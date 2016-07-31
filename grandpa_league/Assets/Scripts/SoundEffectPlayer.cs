@@ -9,10 +9,6 @@ public class SoundEffectPlayer : MonoBehaviour {
     public AudioClip mail;
     public AudioSource mailSource;
 
-    public void Awake()
-    {
-        //mailSource.Play();
-    }
 
     public void PlayNotification()
     {

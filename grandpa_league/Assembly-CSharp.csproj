@@ -66,6 +66,7 @@
      <Compile Include="Assets\Scripts\LoadMailPanel.cs" />
      <Compile Include="Assets\Scripts\LoadTradingPanel.cs" />
      <Compile Include="Assets\Scripts\Mail.cs" />
+     <Compile Include="Assets\Scripts\MailAlertPlayer.cs" />
      <Compile Include="Assets\Scripts\Main.cs" />
      <Compile Include="Assets\Scripts\Outcome.cs" />
      <Compile Include="Assets\Scripts\Parent.cs" />

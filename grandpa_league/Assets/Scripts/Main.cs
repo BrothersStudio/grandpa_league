@@ -67,7 +67,9 @@ public class Main : MonoBehaviour {
     public GameObject QuitButton;
 
     public Camera SceneCamera;
-    //private SoundEffectPlayer getAudioComponent;
+
+    //declaring variable for the audio player for mail
+    //public AudioSource AudioPlayer;
 
     public bool userInputting = false;
 
@@ -237,7 +239,9 @@ public class Main : MonoBehaviour {
             {
                 m_dataManager.PlayerFamily.Mailbox.Insert(0, eventOutcome.Mail);
                 this.DisplayContent("mail");
-                //SoundEffectsPlayer. PlayNotification();
+                //AudioClip mail = (AudioClip)Resources.Load("mailpop");
+                //AudioPlayer.PlayClipAtPoint(mail, Camera.main.transform.position);
+                
             }
 
             //CHECK THE OUTCOME
