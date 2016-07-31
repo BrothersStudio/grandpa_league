@@ -1504,6 +1504,10 @@ MonoBehaviour:
   clickSource: {fileID: 945720236}
   mail: {fileID: 0}
   mailSource: {fileID: 0}
+  successSource: {fileID: 0}
+  failSource: {fileID: 0}
+  success: {fileID: 0}
+  fail: {fileID: 0}
 --- !u!114 &917574742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3307,7 +3311,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 71c3050444cc3a44ba0eeca5be37c280, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4614a2d69dc84bf47aa18f11f822a3a9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
