@@ -83,7 +83,7 @@ static class Constants
         public const double INITIAL_INCOME = 1000;
         public const string DEFAULT_SURNAME = "Smith";
         public const string DEFAULT_FIRST_NAME = "John";
-        public const double INITIAL_WISDOM = 50;
+        public const double INITIAL_WISDOM = 60;
         public const double INITIAL_WISDOM_GROWTH = -0.04;
         public const double INITIAL_INSANITY = 20;
         public const double INITIAL_INSANITY_GROWTH = 0.02;
