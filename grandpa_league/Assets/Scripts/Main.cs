@@ -163,11 +163,11 @@ public class Main : MonoBehaviour {
                     continue;      //immediately exit the event since no one has the qualificaiton STOP. THE FUNCTION. STOP HAVING IT BE RUN.
                 }
 
-                if (qualChar.GetType() == typeof(Child))
+                if (qualChar.GetType() == typeof(Child) && ev.Requirements.RandomChild)
                     ev.Requirements.Child = (Child)qualChar;
-                else if (qualChar.GetType() == typeof(Parent))
+                else if (qualChar.GetType() == typeof(Parent) && ev.Requirements.RandomParent)
                     ev.Requirements.Parent = (Parent)qualChar;
-                else if (qualChar.GetType() == typeof(Grandpa))
+                else if (qualChar.GetType() == typeof(Grandpa) && ev.Requirements.RandomGrandpa)
                     ev.Requirements.Grandpa = (Grandpa)qualChar;
             }
             //at this point the function has checked the event qualification requirements and chosen the first qualifying member
@@ -301,6 +301,15 @@ public class Main : MonoBehaviour {
             Globals.UserInputting = false;
             this.RemoveModalBacking();
         });
+
+        if(eventOutcome.Status == (int)Enums.EventOutcome.SUCCESS || eventOutcome.Status == (int)Enums.EventOutcome.SUCCESS_BLACKLIST_FOREVER || eventOutcome.Status == (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR)
+        {
+            //PLAY HAPPY SOUND HERE
+        }
+        else if(eventOutcome.Status == (int)Enums.EventOutcome.FAILURE || eventOutcome.Status == (int)Enums.EventOutcome.FAILURE_BLACKLIST_FOREVER || eventOutcome.Status == (int)Enums.EventOutcome.FAILURE_BLACKLIST_YEAR)
+        {
+            //PLAY SAD SOUND HERE
+        }
     }
 		
 	public void CreateAndDisplayInputPanel(SimulationEvent ev)
@@ -710,9 +719,6 @@ public class Main : MonoBehaviour {
 
 	public void AdvanceDayHighlight()
 	{
-		if (display_month != this.current_month) 
-			ChangeDisplayMonth (current_month);
-	
 		if (current_day == days.Length - 1) 
 		{
 			current_day = 0;
@@ -721,7 +727,6 @@ public class Main : MonoBehaviour {
 			{
 				current_month = 1;
 			}
-			month_title.text = Constants.MONTH_NAMES[current_month];
 
 			for (int i = 0; i < 28; i++) 
 			{
@@ -736,7 +741,6 @@ public class Main : MonoBehaviour {
 		}
 
 		display_month = current_month;
-
 		ChangeDisplayMonth (0);
 
         days [current_day].image.color = Color.red;

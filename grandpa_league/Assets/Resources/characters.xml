@@ -15,8 +15,8 @@
   <character type="0" name="Emma" gender="1" age="18" cuteness="25" intelligence="55" artistry="25" athleticism="10" popularity="50" sprite_name="kidFemale2_Scaled"/>
   <character type="0" name="Olivia" gender="1" age="5" cuteness="30" intelligence="20" artistry="15" athleticism="50" popularity="60" sprite_name="kidFemale3_Scaled"/>
   <character type="0" name="Sophia" gender="1" age="9" cuteness="50" intelligence="20" artistry="15" athleticism="25" popularity="50" sprite_name="kidFemale1_Scaled"/>
-  <character type="0" name="Patrick" gender="0" age="13" cuteness="40" intelligence="50" artistry="5" athleticism="30" popularity="65" sprite_name="kidMale2_Scaled"/>
-  <character type="0" name="Kevin" gender="0" age="14" cuteness="50" intelligence="40" artistry="50" athleticism="30" popularity="40" sprite_name="kidMale3_Scaled"/>
+  <character type="0" name="Patrick" gender="0" age="6" cuteness="40" intelligence="50" artistry="5" athleticism="30" popularity="65" sprite_name="kidMale2_Scaled"/>
+  <character type="0" name="Kevin" gender="0" age="17" cuteness="50" intelligence="40" artistry="50" athleticism="30" popularity="40" sprite_name="kidMale3_Scaled"/>
   <character type="0" name="Joshua" gender="0" age="10" cuteness="30" intelligence="35" artistry="50" athleticism="30" popularity="45" sprite_name="kidMale1_Scaled"/>
   <character type="0" name="Samson" gender="0" age="13" cuteness="25" intelligence="5" artistry="5" athleticism="65" popularity="45" sprite_name="kidMale2_Scaled"/>
   <character type="0" name="Raul" gender="0" age="15" cuteness="15" intelligence="50" artistry="20" athleticism="25" popularity="15" sprite_name="kidMale3_Scaled"/>

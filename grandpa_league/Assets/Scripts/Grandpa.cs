@@ -6,7 +6,8 @@ public class Grandpa : Character
 {
     private Stat            m_insanity          = new Stat();
     private Stat            m_wisdom            = new Stat();
-    private Stat            m_money             = new Stat();
+    private double             m_money             = 0;
+    private double             m_income            = 0;
     private Stat            m_pride             = new Stat();
 
     private Stat            m_cumulativePride   = new Stat();
@@ -19,11 +20,11 @@ public class Grandpa : Character
 		this.m_pride.Value = pride;
         this.m_wisdom.Value = wisdom;
         this.m_insanity.Value = insanity;
-		this.m_money.Value = money;
+		this.m_money = money;
 
         this.m_insanity.GrowthRate = (insanity / Constants.Character.GROWTH_DIVIDER) > Constants.Character.MAX_INITIAL_GROWTH ? Constants.Character.MAX_INITIAL_GROWTH : (insanity / Constants.Character.GROWTH_DIVIDER);
         this.m_wisdom.GrowthRate = -1 * (wisdom / Constants.Character.GROWTH_DIVIDER) > Constants.Character.MAX_INITIAL_GROWTH ? Constants.Character.MAX_INITIAL_GROWTH : (wisdom / Constants.Character.GROWTH_DIVIDER);
-        this.m_money.GrowthRate = Constants.Character.INITIAL_MONEY_GROWTH;
+        this.m_income = Constants.Character.INITIAL_MONEY_GROWTH;
 
         this.m_spriteName = spriteName;
     }
@@ -39,7 +40,7 @@ public class Grandpa : Character
                 this.m_wisdom.Value += amt;
                 break;
             case 1:
-                this.m_money.Value += amt * 20;
+                this.m_money += amt * 20;
                 break;
             case 2:
                 this.m_insanity.Value += amt;
@@ -81,7 +82,7 @@ public class Grandpa : Character
                 this.m_wisdom.GrowthRate += amt;
                 break;
             case 2:
-                this.m_money.GrowthRate += amt * 100;
+                this.m_income += amt * 100;
                 break;
         }
     }
@@ -115,16 +116,16 @@ public class Grandpa : Character
         set { Globals.VerifyGrowth(value); this.m_insanity.GrowthRate = value; }
     }
 
-    public double Money                                            //DEPRECATED
+    public double Money                                         
     {
-        get { return this.m_money.Value; }
-        set { this.m_money.Value = value; }
+        get { return this.m_money; }
+        set { this.m_money = value < 0 ? 0 : value; }
     }
 
 	public double MoneyGrowth
 	{
-		get { return this.m_money.GrowthRate; }
-		set { this.m_money.GrowthRate = value; }
+		get { return this.m_income; }
+		set { this.m_income = value; }
 	}
 
     public double Pride                                            //DEPRECATED

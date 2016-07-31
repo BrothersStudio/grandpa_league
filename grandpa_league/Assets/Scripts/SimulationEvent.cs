@@ -88,13 +88,16 @@ public class SimulationEvent
 
     public void ResetEventFields()
     {
+        if (this.m_requirements.Trade.Count != 0)
+            return;
         this.m_outcome = null;
         this.m_requirements.Accept = false;
         this.m_requirements.Child = null;
         this.m_requirements.Parent = null;
         this.m_requirements.Grandpa = null;
-        this.m_requirements.Trade = null;
+        this.m_requirements.Trade = new List<Trade>();
         this.m_requirements.Money = 0;
+        this.m_outcome = null;
     }
 
     public int EventId

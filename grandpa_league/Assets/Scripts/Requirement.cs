@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
 
 [Serializable]
 public class Requirement
@@ -18,7 +19,7 @@ public class Requirement
     private int m_minAge = 0;
     private int m_maxAge = 1000;
 
-    private Trade m_trade = null;
+    private List<Trade> m_trade = new List<Trade>();
 
     //set by user's choices
     private Child m_child = null;
@@ -106,7 +107,7 @@ public class Requirement
     public int Money
     {
         get { return this.m_money; }
-        set { this.m_money = value; }
+        set { this.m_money = value < 0 ? 0 : value; }
     }
 
     public bool ReqMoney
@@ -141,7 +142,7 @@ public class Requirement
         get { return this.m_maxAge; }
     }
 
-    public Trade Trade
+    public List<Trade> Trade
     {
         get { return this.m_trade; }
         set { this.m_trade = value; }
