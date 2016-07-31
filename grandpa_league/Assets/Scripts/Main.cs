@@ -301,6 +301,15 @@ public class Main : MonoBehaviour {
             Globals.UserInputting = false;
             this.RemoveModalBacking();
         });
+
+        if(eventOutcome.Status == (int)Enums.EventOutcome.SUCCESS || eventOutcome.Status == (int)Enums.EventOutcome.SUCCESS_BLACKLIST_FOREVER || eventOutcome.Status == (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR)
+        {
+            //PLAY HAPPY SOUND HERE
+        }
+        else if(eventOutcome.Status == (int)Enums.EventOutcome.FAILURE || eventOutcome.Status == (int)Enums.EventOutcome.FAILURE_BLACKLIST_FOREVER || eventOutcome.Status == (int)Enums.EventOutcome.FAILURE_BLACKLIST_YEAR)
+        {
+            //PLAY SAD SOUND HERE
+        }
     }
 		
 	public void CreateAndDisplayInputPanel(SimulationEvent ev)
