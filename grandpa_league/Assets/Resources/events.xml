@@ -73,7 +73,8 @@
   <event type="0" id="1060" name="Parent dating supermodel" description="" priority="1" chance="0.01" req_children="00" req_parent="11" req_grandpa="00" req_money="00" req_accept="00" qualification="IS_SINGLE" /> 
   <event type="0" id="1061" name="Grandpa threatens the present" description="" priority="1" chance="0.005" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" /> 
   <event type="0" id="1062" name="Grandkid is a chef" description="" priority="1" chance="0.005" req_children="11" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" /> 
-  <event type="0" id="3009" name="School Band Bullying" description="" priority="1" chance="1" req_children="11" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" month="9-11" qualification="IN_SCHOOL_BAND" />
+  <event type="0" id="3009" name="School Band Bullying" description="" priority="1" chance="0.007" req_children="11" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" month="9-11" qualification="IN_SCHOOL_BAND" />
+
 
   <!-- KNOWN EVENTS req_ of the form 1=true, 0=false, [RANDOM][REQUIRED]-->
   
@@ -96,6 +97,7 @@
   <event type="1" id="1058" name="Thanksgiving" description="" priority="1" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" month="11" day="26" />  
   <event type="1" id="1059" name="School Band Tryouts" description="Grandpa is not looking forward to sitting through these concerts but having a grandkid in the school band would be quite a boon! Who should try out?" priority="1" req_children="01" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" month="9" day="2" />
   <event type="1" id="3008" name="Halloween" description="It's that spooky time of year again! The day when grandpa can dress up like a serial killer and not get arrested for having blood on his shirt! Who to take trick-or-treating?" priority="2" req_children="01" req_parent="00" req_grandpa="11" req_money="00" req_accept="00" month="10" day="28" age="5-12"/>
+  <event type="1" id="3010" name="Grandkid goes for the solo" description="The school band is having tryouts for the big concert solo! The band director's wife was just put into the hospital and he needs money badly...maybe we could come to an agreement of sorts?" priority="1" req_children="11" req_parent="00" req_grandpa="00" req_money="01" req_accept="00" month="10" day="2" qualification="IN_SCHOOL_BAND" />
 
 
 

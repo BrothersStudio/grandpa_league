@@ -17,4 +17,5 @@
   <qualification name="QUARTERFINAL_WINNER"    id="14"   hidden="true"   display_name="" />
   <qualification name="SEMIFINAL_WINNER"       id="15"   hidden="true"   display_name="" />
   <qualification name="TOURNAMENT_LOSER"       id="16"   hidden="true"   display_name="" />
+  <qualification name="BAND_SOLO"              id="17"   hidden="false"  display_name="Has the solo in the school concert!" />
 </qualifications>

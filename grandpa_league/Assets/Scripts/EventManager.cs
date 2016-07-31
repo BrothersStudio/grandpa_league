@@ -3588,4 +3588,58 @@ public static class EventManager
 
         return ret;
     }
+
+    //school band solo
+    public static Outcome Event3010(DataManager manager, Requirement requirements)
+    {
+        Outcome ret = new Outcome();
+
+        manager.PlayerFamily.Grandpa.Money -= requirements.Money;
+        if(requirements.Money >= 2000)
+        {
+            ret.OutcomeDescription = string.Format("{0} got the solo!! \"Great job, kid\" Grandpa says as he gives a *wink* to the band director. " +
+                                                               "Now it might be time to actually start practicing...\n\nGrandpa's pride up!\n{0}'s popularity up!", requirements.Child.Name);
+
+            manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+            requirements.Child.Popularity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+            requirements.Child.AddQualification(Qualification.GetQualificationByString("BAND_SOLO"));
+
+            ret.Status = (int)Enums.EventOutcome.SUCCESS;
+        }
+        else if (Constants.Roll(requirements.Child.Cuteness, requirements.Child.Artistry, (int)Enums.Difficulty.VERY_HARD))
+        {
+            ret.OutcomeDescription = string.Format("{0} walks up on stage and lets loose the solo, it is so perfectly executed it brings the entire band to tears. {0} has " +
+                                                    "unequivocally played the greatest solo in the history of mankind. No other student even dares to try and beat them!\n\nGrandpa's pride way up!\n" +
+                                                    "{0}'s Aristry up! {0}'s popularity up!", requirements.Child.Name);
+
+            manager.PlayerFamily.Grandpa.Pride += Constants.Character.MAJOR_PRIDE_CHANGE_AMOUNT;
+            requirements.Child.Popularity += Constants.Character.MINOR_STAT_CHANGE_AMOUNT;
+            requirements.Child.Artistry += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+            requirements.Child.AddQualification(Qualification.GetQualificationByString("BAND_SOLO"));
+            ret.Status = (int)Enums.EventOutcome.SUCCESS;
+        }
+        else if (Constants.Roll(requirements.Child.Cuteness, requirements.Child.Artistry, (int)Enums.Difficulty.HARD))
+        {
+            ret.OutcomeDescription = string.Format("{0} plays a decent solo...it's not as good as {1}'s grandchild though, who really blows everyone else out of the water... " + 
+                                                    "The band director says {0} can play the solo if {1}'s kid is like, sick, or something. Maybe next year I guess.\n\nGrandpa's Pride down!\n{0}'s Popularity down!",
+                                                    requirements.Child.Name, manager.LeagueFamilies[0].Grandpa.Name);
+
+            manager.PlayerFamily.Grandpa.Pride -= Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+            requirements.Child.Popularity -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+            ret.Status = (int)Enums.EventOutcome.FAILURE;
+        }
+        else
+        {
+            ret.OutcomeDescription = string.Format("{0} walks on stage and lets loose the solo, its...its...completely horrible. People in the band are crying -- in pain. " +
+                                                    "Yo Yo Ma walks up on stage and personally asks {0} to never play their instument again. That's a little demoralizing!" +
+                                                    "\n\nGrandpa's pride down!\n{0}'s popularity down!\n{0}'s artistry down!", requirements.Child.Name);
+
+            manager.PlayerFamily.Grandpa.Pride -= Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+            requirements.Child.Popularity -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+            requirements.Child.Artistry -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+            ret.Status = (int)Enums.EventOutcome.FAILURE;
+        }
+
+        return ret;
+    }
 }
