@@ -3929,7 +3929,7 @@ public static class EventManager
 
             requirements.Child.Popularity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
 
-            SimulationEvent followUp = EventManager.GetEventById(3012);
+            SimulationEvent followUp = EventManager.GetEventById(3019);
             followUp.Requirements.Child = requirements.Child;
             followUp.Requirements.Money = requirements.Money;
             manager.PlayerFamily.Children.Remove(requirements.Child);
