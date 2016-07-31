@@ -161,11 +161,11 @@ public class Main : MonoBehaviour {
                     continue;      //immediately exit the event since no one has the qualificaiton STOP. THE FUNCTION. STOP HAVING IT BE RUN.
                 }
 
-                if (qualChar.GetType() == typeof(Child))
+                if (qualChar.GetType() == typeof(Child) && ev.Requirements.RandomChild)
                     ev.Requirements.Child = (Child)qualChar;
-                else if (qualChar.GetType() == typeof(Parent))
+                else if (qualChar.GetType() == typeof(Parent) && ev.Requirements.RandomParent)
                     ev.Requirements.Parent = (Parent)qualChar;
-                else if (qualChar.GetType() == typeof(Grandpa))
+                else if (qualChar.GetType() == typeof(Grandpa) && ev.Requirements.RandomGrandpa)
                     ev.Requirements.Grandpa = (Grandpa)qualChar;
             }
             //at this point the function has checked the event qualification requirements and chosen the first qualifying member
