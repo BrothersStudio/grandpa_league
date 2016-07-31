@@ -63,7 +63,6 @@ public class LoadFamilyPanel : MonoBehaviour
             questionLabel.SetActive(true);
             chemistryLabel.SetActive(true);
             upkeepLabel.SetActive(true);
-            //questionLabel.GetComponent<QualificationToolTip>().SetToolTipText("Chemistry is the measure of how well your family likes each other. Upkeep is how much you pay a month to keep them alive and happy.");
             chemistryLabel.GetComponent<Text>().text = string.Format("Chemistry: {0:0.00}",inputFamily.Chemistry);
             upkeepLabel.GetComponent<Text>().text = "Upkeep: " + inputFamily.Upkeep;
         }
@@ -121,8 +120,10 @@ public class LoadFamilyPanel : MonoBehaviour
 					parent_stat_panel.transform.Find("Intelligence Bar").GetComponent<Image>().sprite = ReturnSpriteForStat(parent.Intelligence);
 					parent_stat_panel.transform.Find("Love Bar").GetComponent<Image>().sprite = ReturnSpriteForStat(parent.Love);
 
-					if (playerFamily)
-                    	AddParentFocusButtons(parent);
+                    if (playerFamily)
+                        AddParentFocusButtons(parent);
+                    else
+                        ResetParentFocusButtons(parent);
                 });
 		}
 
@@ -172,8 +173,10 @@ public class LoadFamilyPanel : MonoBehaviour
 					child_stat_panel.transform.Find("Athleticism Bar").GetComponent<Image>().sprite = ReturnSpriteForStat(child.Athleticism);
 					child_stat_panel.transform.Find("Popularity Bar").GetComponent<Image>().sprite = ReturnSpriteForStat(child.Popularity);
 
-					if (playerFamily)
-                    	AddChildFocusButtons(child);
+                    if (playerFamily)
+                        AddChildFocusButtons(child);
+                    else
+                        ResetChildFocusButtons(child);
 				});
 		}
 
@@ -342,6 +345,18 @@ public class LoadFamilyPanel : MonoBehaviour
         });
     }
 
+    public void ResetParentFocusButtons(Parent par)
+    {
+        Parent parent = par;
+        parent_stat_panel.transform.Find("Intelligence").GetComponent<Text>().color = Color.white;
+        parent_stat_panel.transform.Find("Popularity").GetComponent<Text>().color = Color.white;
+        parent_stat_panel.transform.Find("Love").GetComponent<Text>().color = Color.white;
+
+        parent_stat_panel.transform.Find("IntelligenceFocusButton").GetComponent<Button>().onClick.RemoveAllListeners();
+        parent_stat_panel.transform.Find("LoveFocusButton").GetComponent<Button>().onClick.RemoveAllListeners();
+        parent_stat_panel.transform.Find("PopularityFocusButton").GetComponent<Button>().onClick.RemoveAllListeners();
+    }
+
     private void AddChildFocusButtons(Child ch)
     {
         Child child = ch;
@@ -471,5 +486,21 @@ public class LoadFamilyPanel : MonoBehaviour
             child_stat_panel.transform.Find("Artistry").GetComponent<Text>().color = Color.white;
             child_stat_panel.transform.Find("Athleticism").GetComponent<Text>().color = Color.yellow;
         });
+    }
+
+    public void ResetChildFocusButtons(Child ch)
+    {
+        Child child = ch;
+        child_stat_panel.transform.Find("Intelligence").GetComponent<Text>().color = Color.white;
+        child_stat_panel.transform.Find("Popularity").GetComponent<Text>().color = Color.white;
+        child_stat_panel.transform.Find("Cuteness").GetComponent<Text>().color = Color.white;
+        child_stat_panel.transform.Find("Artistry").GetComponent<Text>().color = Color.white;
+        child_stat_panel.transform.Find("Athleticism").GetComponent<Text>().color = Color.white;
+
+        child_stat_panel.transform.Find("IntelligenceFocusButton").GetComponent<Button>().onClick.RemoveAllListeners();
+        child_stat_panel.transform.Find("AthleticismFocusButton").GetComponent<Button>().onClick.RemoveAllListeners();
+        child_stat_panel.transform.Find("CutenessFocusButton").GetComponent<Button>().onClick.RemoveAllListeners();
+        child_stat_panel.transform.Find("ArtistryFocusButton").GetComponent<Button>().onClick.RemoveAllListeners();
+        child_stat_panel.transform.Find("PopularityFocusButton").GetComponent<Button>().onClick.RemoveAllListeners();
     }
 }

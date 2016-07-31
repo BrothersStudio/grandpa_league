@@ -12,7 +12,8 @@ public class DataManager
     private Family                  m_playerFamily      = null;
     private Family                  m_orphanage         = new Family();
 
-    private List<int>               m_blacklist         = new List<int>();
+    private List<int>               m_blacklistYear     = new List<int>();
+    private List<int>               m_blacklistForever  = new List<int>();
     private List<Ability>           m_abilities         = new List<Ability>();
 
     public DataManager (string playerName)
@@ -84,7 +85,7 @@ public class DataManager
 			"I'm looking forward to seeing you, too!\n\nLove,\n{0}", this.m_playerFamily.Parents[0].Name);
         return mail;
     }
-
+    
     public Family PlayerFamily
     {
         get { return this.m_playerFamily; }
@@ -111,10 +112,16 @@ public class DataManager
         set { this.m_currentInfo = value; }
     }
 
-    public List<int> Blacklist
+    public List<int> BlacklistYear
     {
-        get { return this.m_blacklist; }
-        set { this.m_blacklist = value; }
+        get { return this.m_blacklistYear; }
+        set { this.m_blacklistYear = value; }
+    }
+
+    public List<int> BlacklistForever
+    {
+        get { return this.m_blacklistForever; }
+        set { this.m_blacklistForever = value; }
     }
 
     public Family Orphanage

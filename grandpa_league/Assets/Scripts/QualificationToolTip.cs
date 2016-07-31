@@ -11,7 +11,8 @@ class QualificationToolTip : MonoBehaviour
     void OnMouseEnter()
     {
         ToolTipPanel.SetActive(true);
-        ToolTipPanel.transform.Find("ToolTipText").GetComponent<Text>().text = ToolTipText;
+        if(ToolTipPanel.transform.Find("ToolTipText") != null)
+            ToolTipPanel.transform.Find("ToolTipText").GetComponent<Text>().text = ToolTipText;
     }
 
     void OnMouseExit()

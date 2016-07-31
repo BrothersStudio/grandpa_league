@@ -53,7 +53,6 @@ public class LoadAbilitiesPanel : MonoBehaviour {
     public IEnumerator EventInputPanel(GameObject control, Ability ability)
     {
         control.GetComponent<Main>().CreateAndDisplayInputPanel(ability.Event);
-
         Globals.UserInputting = true;
 
         control.GetComponent<Main>().MainCanvas.GetComponent<CanvasGroup>().blocksRaycasts = false;

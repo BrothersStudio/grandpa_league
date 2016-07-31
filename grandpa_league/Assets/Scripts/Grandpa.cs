@@ -22,7 +22,7 @@ public class Grandpa : Character
 		this.m_money.Value = money;
 
         this.m_insanity.GrowthRate = (insanity / Constants.Character.GROWTH_DIVIDER) > Constants.Character.MAX_INITIAL_GROWTH ? Constants.Character.MAX_INITIAL_GROWTH : (insanity / Constants.Character.GROWTH_DIVIDER);
-        this.m_wisdom.GrowthRate = (wisdom / Constants.Character.GROWTH_DIVIDER) > Constants.Character.MAX_INITIAL_GROWTH ? Constants.Character.MAX_INITIAL_GROWTH : (wisdom / Constants.Character.GROWTH_DIVIDER);
+        this.m_wisdom.GrowthRate = -1 * (wisdom / Constants.Character.GROWTH_DIVIDER) > Constants.Character.MAX_INITIAL_GROWTH ? Constants.Character.MAX_INITIAL_GROWTH : (wisdom / Constants.Character.GROWTH_DIVIDER);
         this.m_money.GrowthRate = Constants.Character.INITIAL_MONEY_GROWTH;
 
         this.m_spriteName = spriteName;

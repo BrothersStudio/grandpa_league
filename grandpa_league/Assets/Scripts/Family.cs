@@ -52,12 +52,12 @@ public class Family
         if (eligible.Count == 0)
             return null;
         else
-            return eligible[Constants.RANDOM.Next(0, eligible.Count - 1)];
+            return eligible[Constants.RANDOM.Next(0, eligible.Count)];
     }
 
     public Parent GetRandomParent()
     {
-        return this.m_parents[Constants.RANDOM.Next(0, this.m_parents.Count - 1)];
+        return this.m_parents[Constants.RANDOM.Next(0, this.m_parents.Count)];
     }
 
     public void ApplyStatUpgrades()
@@ -106,6 +106,14 @@ public class Family
 
         this.m_chemistry = (totalChildrenStats + grandpaInstanityFactor) / (totalLove * familySize);
         return this.m_chemistry;
+    }
+    
+    public void ClearAllQualifications()
+    {
+        foreach(Character cur in this.GetAllCharacters())
+        {
+            cur.Qualifications.Clear();
+        }
     }
 
     public double CalculateUpkeep()

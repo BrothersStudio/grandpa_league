@@ -71,8 +71,6 @@ public class Main : MonoBehaviour {
     //declaring variable for the audio player for mail
     //public AudioSource AudioPlayer;
 
-    public bool userInputting = false;
-
 	public void Awake()
 	{
         user_input_panel.SetActive(false);
@@ -110,8 +108,8 @@ public class Main : MonoBehaviour {
     {
         StartCoroutine(SimulateDay());
 
-        //if (m_dataManager.PlayerInfo.ABILITIES_DISABLED && current_month >= 3)
-        AbilitiesButton.GetComponent<Button>().interactable = true;
+        if (m_dataManager.PlayerInfo.ABILITIES_DISABLED && current_month >= 3)
+            AbilitiesButton.GetComponent<Button>().interactable = true;
 
         foreach(Ability abilities in m_dataManager.Abilities)
         {
@@ -119,6 +117,11 @@ public class Main : MonoBehaviour {
             {
                 abilities.CurrentCooldown--;
             }
+        }
+
+        if(current_month == 12 && current_day == 27)
+        {
+            SceneCamera.transform.position = new Vector3(SceneCamera.transform.position.x, SceneCamera.transform.position.y, 100);
         }
     }
 
@@ -134,7 +137,7 @@ public class Main : MonoBehaviour {
                                     ev.Requirements.ReqMoney, ev.Requirements.ReqAccept, ev.EventMonth, ev.EventMonthMax, ev.Priority, ev.Requirements.ReqChild, ev.Requirements.ReqParent);
             Debug.Log(debugString);
 
-            if (m_dataManager.Blacklist.Contains(ev.EventId))
+            if (m_dataManager.BlacklistYear.Contains(ev.EventId) || m_dataManager.BlacklistForever.Contains(ev.EventId))
             {
                 Debug.Log(string.Format("Event {0} blacklisted... skipping", ev.EventName));
                 continue;
@@ -220,12 +223,12 @@ public class Main : MonoBehaviour {
                 ev.FormatEventDescription(m_dataManager);
 
 				CreateAndDisplayInputPanel(ev);
-                userInputting = true;
+                Globals.UserInputting = true;
 
                 ModalBlockingPanel.SetActive(true);
                 MainCanvas.GetComponent<CanvasGroup>().blocksRaycasts = false;
                 yield return StartCoroutine("WaitForUserConfirm");
-                userInputting = false;
+                Globals.UserInputting = false;
                 MainCanvas.GetComponent<CanvasGroup>().blocksRaycasts = true;
                 ModalBlockingPanel.SetActive(false);
             }
@@ -245,21 +248,31 @@ public class Main : MonoBehaviour {
             }
 
             //CHECK THE OUTCOME
-            if (eventOutcome.Status == (int)Enums.EventOutcome.PASS_BLACKLIST_FOREVER || eventOutcome.Status == (int)Enums.EventOutcome.PASS_BLACKLIST_YEAR)
-            { 
-                m_dataManager.Blacklist.Add(ev.EventId);
+            if (eventOutcome.Status == (int)Enums.EventOutcome.PASS_BLACKLIST_FOREVER)
+            {
+                m_dataManager.BlacklistForever.Add(ev.EventId);
+                continue;
+            }
+            else if (eventOutcome.Status == (int)Enums.EventOutcome.PASS_BLACKLIST_YEAR)
+            {
+                m_dataManager.BlacklistYear.Add(ev.EventId);
                 continue;
             }
             else if (eventOutcome.Status == (int)Enums.EventOutcome.PASS)
                 continue;
-            else if (eventOutcome.Status == (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR || eventOutcome.Status == (int)Enums.EventOutcome.FAILURE_BLACKLIST_YEAR
-                     || eventOutcome.Status == (int)Enums.EventOutcome.SUCCESS_BLACKLIST_FOREVER || eventOutcome.Status == (int)Enums.EventOutcome.FAILURE_BLACKLIST_FOREVER)
-                m_dataManager.Blacklist.Add(ev.EventId);
+            else if (eventOutcome.Status == (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR || eventOutcome.Status == (int)Enums.EventOutcome.FAILURE_BLACKLIST_YEAR)
+            {
+                m_dataManager.BlacklistYear.Add(ev.EventId);
+            }
+            else if (eventOutcome.Status == (int)Enums.EventOutcome.SUCCESS_BLACKLIST_FOREVER || eventOutcome.Status == (int)Enums.EventOutcome.FAILURE_BLACKLIST_FOREVER)
+            {
+                m_dataManager.BlacklistForever.Add(ev.EventId);
+            }
 
             if (ev.Priority != 0)
             {
                 CreateAndDisplayResultPanel(eventOutcome);
-                userInputting = true;
+                Globals.UserInputting = true;
 
                 ModalBlockingPanel.SetActive(true);
                 MainCanvas.GetComponent<CanvasGroup>().blocksRaycasts = false;
@@ -284,7 +297,9 @@ public class Main : MonoBehaviour {
 		OkButton.GetComponent<Button> ().onClick.RemoveAllListeners ();
         OkButton.GetComponent<Button>().onClick.AddListener(() =>
         {
-                userInputting = false;
+            EventOutcomePanel.SetActive(false);
+            Globals.UserInputting = false;
+            this.RemoveModalBacking();
         });
     }
 		
@@ -499,7 +514,7 @@ public class Main : MonoBehaviour {
 		AcceptButton.GetComponent<Button>().onClick.RemoveAllListeners();
         AcceptButton.GetComponent<Button>().onClick.AddListener(() =>
         {
-            userInputting = false;
+            Globals.UserInputting = false;
             ev.Requirements.Accept = true;
             ev.Requirements.Money = MoneyInputField.GetComponent<InputField>().text == "" ? 0 : Int32.Parse(MoneyInputField.GetComponent<InputField>().text);
             ev.Requirements.Child = selectedChild;
@@ -510,7 +525,7 @@ public class Main : MonoBehaviour {
 		RejectButton.GetComponent<Button>().onClick.RemoveAllListeners();
         RejectButton.GetComponent<Button>().onClick.AddListener(() =>
         {
-            userInputting = false;
+            Globals.UserInputting = false;
             ev.Requirements.Accept = false;
         });
 
@@ -579,7 +594,7 @@ public class Main : MonoBehaviour {
 
     private IEnumerator WaitForUserConfirm()
     {
-        while (userInputting)
+        while (Globals.UserInputting)
         {
             yield return null;
         }

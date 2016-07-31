@@ -79,30 +79,30 @@ static class Constants
 
     public struct Player
     {
-        public const double INITIAL_MONEY = 600;
-        public const double INITIAL_INCOME = 1400;
+        public const double INITIAL_MONEY = 500;
+        public const double INITIAL_INCOME = 1000;
         public const string DEFAULT_SURNAME = "Smith";
-        public const double INITIAL_WISDOM = 70;
-        public const double INITIAL_WISDOM_GROWTH = -0.01;
-        public const double INITIAL_INSANITY = 10;
-        public const double INITIAL_INSANITY_GROWTH = 0.01;
+        public const double INITIAL_WISDOM = 50;
+        public const double INITIAL_WISDOM_GROWTH = -0.04;
+        public const double INITIAL_INSANITY = 20;
+        public const double INITIAL_INSANITY_GROWTH = 0.02;
 
 		public const string SPRITE_NAME = "Grandpa_Sprite_Scaled";
     }
 
     public struct Character
     {
-        public const double GROWTH_DIVIDER = 300;
-        public const double MAX_INITIAL_GROWTH = 0.05;
-        public const double INITIAL_MONEY_GROWTH = 400;
+        public const double GROWTH_DIVIDER = 500;
+        public const double MAX_INITIAL_GROWTH = 0.04;
+        public const double INITIAL_MONEY_GROWTH = 300;
 
-        public const double MAJOR_STAT_CHANGE_AMOUNT = 5;
-        public const double STANDARD_STAT_CHANGE_AMOUNT = 2.5;
-        public const double MINOR_STAT_CHANGE_AMOUNT = 1;
+        public const double MAJOR_STAT_CHANGE_AMOUNT = 3;
+        public const double STANDARD_STAT_CHANGE_AMOUNT = 1.5;
+        public const double MINOR_STAT_CHANGE_AMOUNT = 0.5;
 
-        public const double MAJOR_STAT_GROWTH_AMOUNT = 0.025;
-        public const double STANDARD_STAT_GROWTH_AMOUNT = 0.01;
-        public const double MINOR_STAT_GROWTH_AMOUNT = 0.0005;
+        public const double MAJOR_STAT_GROWTH_AMOUNT = 0.015;
+        public const double STANDARD_STAT_GROWTH_AMOUNT = 0.008;
+        public const double MINOR_STAT_GROWTH_AMOUNT = 0.0003;
 
         public const double MAJOR_PRIDE_CHANGE_AMOUNT = 500;
         public const double STANDARD_PRIDE_CHANGE_AMOUNT = 100;

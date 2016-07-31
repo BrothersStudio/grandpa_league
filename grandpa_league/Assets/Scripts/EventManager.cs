@@ -228,17 +228,17 @@ public static class EventManager
         string familyStatusString;
         int familyStatus;
         manager.PlayerFamily.CalculateChemistry();
-        if (manager.PlayerFamily.Chemistry >= 100)
+        if (manager.PlayerFamily.Chemistry >= 3)
         {
             familyStatusString = "is doing great and really seems to like being around you,";
             familyStatus = (int)Enums.Status.GOOD;
         }
-        else if (manager.PlayerFamily.Chemistry < 100 && manager.PlayerFamily.Chemistry >= 50)
+        else if (manager.PlayerFamily.Chemistry < 3 && manager.PlayerFamily.Chemistry >= 2)
         {
             familyStatusString = "is doing decently well and is within acceptable standards,";
             familyStatus = (int)Enums.Status.OK;
         }
-        else if (manager.PlayerFamily.Chemistry < 50 && manager.PlayerFamily.Chemistry >= 25)
+        else if (manager.PlayerFamily.Chemistry < 2 && manager.PlayerFamily.Chemistry >= 1)
         {
             familyStatusString = "is starting to deteriorate (we will be watching you closely),";
             familyStatus = (int)Enums.Status.BAD;
@@ -291,9 +291,20 @@ public static class EventManager
             }
         }
 
+        string subjectStatus = "";
+        if (incomeStatus + familyStatus < 2)
+            subjectStatus = "GREAT";
+        else if(incomeStatus + familyStatus < 4)
+            subjectStatus = "GOOD";
+        else if (incomeStatus + familyStatus < 6)
+            subjectStatus = "O.K.";
+        else
+            subjectStatus = "HORRIBLE";
+
+
         cpsOutcome.Mail = new Mail();
         cpsOutcome.Mail.Date = manager.Calendar.GetCurrentDay();
-        cpsOutcome.Mail.Subject = "Monthly CPS Update";
+        cpsOutcome.Mail.Subject = string.Format("Monthly CPS Update: {0}", subjectStatus);
         cpsOutcome.Mail.Sender = "Charlene Dogood";
         cpsOutcome.Mail.Message = string.Format(
             "Hello Mr. {0},\n\n\t" +
