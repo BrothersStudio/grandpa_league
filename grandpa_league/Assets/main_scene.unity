@@ -6547,7 +6547,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1707659019}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.9999874
+  m_Size: 0.9999898
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -10271,7 +10271,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.01
+  near clip plane: 0.3
   far clip plane: 1000
   field of view: 3.4
   orthographic: 0
