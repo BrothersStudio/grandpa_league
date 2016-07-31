@@ -103,7 +103,6 @@ public class SimulationEvent
         this.m_requirements.Grandpa = null;
         this.m_requirements.Trade = new List<Trade>();
         this.m_requirements.Money = 0;
-        this.m_outcome = null;
     }
 
     public int EventId

@@ -46,7 +46,7 @@ public class LoadMailPanel : MonoBehaviour
             float currentLowerX = contentPanel.GetComponent<RectTransform>().offsetMin.x;
             float newLowerY = parentHeight - (float)mailSize * prefabHeight;
 
-           contentPanel.GetComponent<RectTransform>().offsetMin = new Vector2(currentLowerX, 0);
+           contentPanel.GetComponent<RectTransform>().offsetMin = new Vector2(currentLowerX, newLowerY);
         }
 
         prefabContentPanel = new GameObject[mailSize];

@@ -130,16 +130,20 @@ public class Main : MonoBehaviour {
         foreach (SimulationEvent curEvent in m_dataManager.Calendar.GetEventsForCurrentDay())
         {
             SimulationEvent ev = curEvent;
-            Debug.Assert(ev != null);
             var day = m_dataManager.Calendar.GetCurrentDay();
+
+#if (DEBUG)
+            Debug.Assert(ev != null);
             string debugString = String.Format("Currently running event \"{0}\", ID: {1}  on date {2}/{3}/{4}. Has qualification {5} and age requirement {6}-{7}.\n Requires Random: Parent? {8}, Child? {9}, Grandpa? {10} \n Requires: Money? {11}, Accept/Reject? {12}, Child? {16} Parent? {17} \n Also has minMonth {13} and maxMonth {14}. Priority {15}",
                                     ev.EventName, ev.EventId, day["month"], day["day"], day["year"], Qualification.GetQualificationString(ev.Requirements.Qualification), ev.Requirements.MinAge, ev.Requirements.MaxAge, ev.Requirements.RandomParent, ev.Requirements.RandomChild, ev.Requirements.RandomGrandpa,
                                     ev.Requirements.ReqMoney, ev.Requirements.ReqAccept, ev.EventMonth, ev.EventMonthMax, ev.Priority, ev.Requirements.ReqChild, ev.Requirements.ReqParent);
             Debug.Log(debugString);
+#endif
 
             if (m_dataManager.BlacklistYear.Contains(ev.EventId) || m_dataManager.BlacklistForever.Contains(ev.EventId))
             {
                 Debug.Log(string.Format("Event {0} blacklisted... skipping", ev.EventName));
+                ev.ResetEventFields();
                 continue;
             }
 
@@ -160,6 +164,7 @@ public class Main : MonoBehaviour {
                 if (!hasQual)
                 {
                     Debug.Log(String.Format("No one has qual {0} AND meet age requirements, skipping event", ev.Requirements.Qualification));
+                    ev.ResetEventFields();
                     continue;      //immediately exit the event since no one has the qualificaiton STOP. THE FUNCTION. STOP HAVING IT BE RUN.
                 }
 
@@ -185,6 +190,7 @@ public class Main : MonoBehaviour {
             if (noneEligible)
             {
                 Debug.Log(String.Format("No child exists that matches age requirements, skipping event", ev.Requirements.Qualification));
+                ev.ResetEventFields();
                 continue;
             }
 
@@ -195,6 +201,7 @@ public class Main : MonoBehaviour {
                 if (ev.Requirements.Child == null)
                 {
                     Debug.Log("No eligible children found, skipping event");
+                    ev.ResetEventFields();
                     continue;
                 }
                 Debug.Log(String.Format("chose child:{0} for event", ev.Requirements.Child.Name));
@@ -205,6 +212,7 @@ public class Main : MonoBehaviour {
                 if (ev.Requirements.Parent == null)
                 {
                     Debug.Log("No Parent found, skipping event");
+                    ev.ResetEventFields();
                     continue;
                 }
                 Debug.Log(String.Format("chose parent:{0} for event", ev.Requirements.Parent.Name));
@@ -242,8 +250,6 @@ public class Main : MonoBehaviour {
             {
                 m_dataManager.PlayerFamily.Mailbox.Insert(0, eventOutcome.Mail);
                 this.DisplayContent("mail");
-                //AudioClip mail = (AudioClip)Resources.Load("mailpop");
-                //AudioPlayer.PlayClipAtPoint(mail, Camera.main.transform.position);
                 
             }
 
@@ -251,15 +257,20 @@ public class Main : MonoBehaviour {
             if (eventOutcome.Status == (int)Enums.EventOutcome.PASS_BLACKLIST_FOREVER)
             {
                 m_dataManager.BlacklistForever.Add(ev.EventId);
+                ev.ResetEventFields();
                 continue;
             }
             else if (eventOutcome.Status == (int)Enums.EventOutcome.PASS_BLACKLIST_YEAR)
             {
                 m_dataManager.BlacklistYear.Add(ev.EventId);
+                ev.ResetEventFields();
                 continue;
             }
             else if (eventOutcome.Status == (int)Enums.EventOutcome.PASS)
+            {
+                ev.ResetEventFields();
                 continue;
+            }
             else if (eventOutcome.Status == (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR || eventOutcome.Status == (int)Enums.EventOutcome.FAILURE_BLACKLIST_YEAR)
             {
                 m_dataManager.BlacklistYear.Add(ev.EventId);
@@ -305,10 +316,12 @@ public class Main : MonoBehaviour {
         if(eventOutcome.Status == (int)Enums.EventOutcome.SUCCESS || eventOutcome.Status == (int)Enums.EventOutcome.SUCCESS_BLACKLIST_FOREVER || eventOutcome.Status == (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR)
         {
             //PLAY HAPPY SOUND HERE
-        }
+            SceneCamera.GetComponent<SoundEffectPlayer>().PlaySuccess();
+       } 
         else if(eventOutcome.Status == (int)Enums.EventOutcome.FAILURE || eventOutcome.Status == (int)Enums.EventOutcome.FAILURE_BLACKLIST_FOREVER || eventOutcome.Status == (int)Enums.EventOutcome.FAILURE_BLACKLIST_YEAR)
         {
             //PLAY SAD SOUND HERE
+            SceneCamera.GetComponent<SoundEffectPlayer>().PlayFailure();
         }
     }
 		
