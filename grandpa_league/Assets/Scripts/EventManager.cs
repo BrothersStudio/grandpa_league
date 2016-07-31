@@ -475,8 +475,8 @@ public static class EventManager
         ret.Mail.Image = "tutorial_5";
         ret.Mail.Sender = "???";
         ret.Mail.Message = string.Format(
-            "Hey buddy, old pal...good to see you again? Remember the good old days? Me too, me too. Come on down and I'll help you unlock your inner potential and abilities you never even" +
-            "knew you had! Whenever you need help, I'm there for you. I always am, aren't I?\n\nLove,\n????");
+            "Hey buddy, old pal... Good to see you again! Remember the good old days? Me too, me too. Come on down and I'll help you unlock your inner potential and abilities you never even " +
+            "knew you had! Whenever you need help, I'm there for you. I always am, aren't I?\n\nLove,\n???");
 
         return ret;
     }
@@ -706,11 +706,11 @@ public static class EventManager
             returnObj.Status = (int)Enums.EventOutcome.FAILURE;
             returnObj.OutcomeDescription = String.Format(
                 "Well, {0} was never known for {1} intelligence. While out playing in the yard one day, " +
-                "he wandered into traffic to get his wayward ball. Unfortunately, the car did not see his little body " +
-                "in the road in time. It's okay, though. It was just a love tap from the car. However, {1} leg is now screwed up. \n \n" +
+				"{2} wandered into traffic to get {1} wayward ball. Unfortunately, the car did not see {1} little body " +
+                "in the road in time. It's okay, though. It was just a love tap from the car. However, {1} leg is now screwed up.\n\n" +
                 "{0}'s athleticism way down! \n" +
                 "Grandpa's pride down!",
-                requirements.Child.Name, Convert.ToBoolean(requirements.Child.Gender) ? "her" : "his");
+				requirements.Child.Name, Convert.ToBoolean(requirements.Child.Gender) ? "her" : "his", Convert.ToBoolean(requirements.Child.Gender) ? "she" : "he");
         }
         return returnObj;
     }
@@ -2390,7 +2390,7 @@ public static class EventManager
 
 			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
 			returnObj.OutcomeDescription = String.Format (
-				"{0} had a test today on {1}... And aced it! The teacher has never seen a score that high. I didn't know there was a percentage about 100! Congrats!\n\n" +
+				"{0} had a test today on {1}... And aced it! The teacher has never seen a score that high. I didn't know there was a percentage above 100! Congrats!\n\n" +
 				"{0}'s intelligence up.\n" +
 				"Grandpa's pride up.",
 				requirements.Child.Name, Convert.ToBoolean(Constants.RANDOM.Next(0, 1)) ? "History of Asian Fishing" : "Mega Geometry");
@@ -3002,6 +3002,70 @@ public static class EventManager
 
         return returnObj;
     }
+
+	// School Band Tryouts
+	public static Outcome Event1059(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+
+		if ((Constants.Roll(requirements.Child.Cuteness, requirements.Child.Artistry, (int)Enums.Difficulty.STANDARD) &&
+			Constants.Roll(requirements.Child.Cuteness, requirements.Child.Intelligence, (int)Enums.Difficulty.STANDARD)) 
+			||
+			Constants.Roll(requirements.Child.Cuteness, requirements.Child.Artistry, (int)Enums.Difficulty.VERY_HARD))
+		{
+			requirements.Child.AddQualification (Qualification.GetQualificationByString ("IN_SCHOOL_BAND"));
+
+			requirements.Child.Artistry += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+			requirements.Child.ArtistryGrowth += Constants.Character.STANDARD_STAT_GROWTH_AMOUNT;
+			requirements.Child.Intelligence += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+
+			manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT * 2;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+			returnObj.OutcomeDescription = String.Format(
+				"{0} played a beautiful sonata. Incredible. It was so good people were collapsing to their knees having religious revelations. {0} is going to be " +
+				"first chair in band!\n\n" +
+				"{0}'s artistry up.\n" +
+				"{0}'s artistry growth up.\n" +
+				"{0}'s intelligence up.\n" +
+				"Grandpa's pride way up!",
+				requirements.Child.Name, Convert.ToBoolean(requirements.Child.Gender) ? "her" : "his");
+		}
+		else if (Constants.Roll(requirements.Child.Cuteness, requirements.Child.Artistry, (int)Enums.Difficulty.EASY))
+		{
+			requirements.Child.AddQualification (Qualification.GetQualificationByString ("IN_SCHOOL_BAND"));
+
+			requirements.Child.Artistry += Constants.Character.MINOR_STAT_CHANGE_AMOUNT;
+			requirements.Child.ArtistryGrowth += Constants.Character.MINOR_STAT_GROWTH_AMOUNT;
+
+			manager.PlayerFamily.Grandpa.Pride += Constants.Character.MINOR_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
+			returnObj.OutcomeDescription = String.Format(
+				"{0} played Hot-Crossed Buns three times in a row. The judges were not super impressed, but they're lacking for band members. {0} will be last chair! Nice! \n\n" +
+				"{0}'s artistry up slightly.\n" +
+				"{0}'s artistry growth up slightly.\n" +
+				"Grandpa's pride up slightly.",
+				requirements.Child.Name, Convert.ToBoolean(requirements.Child.Gender) ? "her" : "his");
+		}
+		else
+		{
+			requirements.Child.Artistry -= Constants.Character.MINOR_STAT_CHANGE_AMOUNT;
+			requirements.Child.ArtistryGrowth -= Constants.Character.MINOR_STAT_GROWTH_AMOUNT;
+
+			manager.PlayerFamily.Grandpa.Pride -= Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.FAILURE;
+			returnObj.OutcomeDescription = String.Format(
+				"People were covering their ears and screaming. {0} how could you do such horrible things to an oboe?\n\n" +
+				"{0}'s artistry down slightly.\n" +
+				"{0}'s artistry growth dpwm slightly.\n" +
+				"Grandpa's pride down.",
+				requirements.Child.Name, Convert.ToBoolean(requirements.Child.Gender) ? "her" : "his");
+		}	
+
+		return returnObj;
+	}
 
     //finals seeding
     public static Outcome Event3001(DataManager manager, Requirement requirements)
