@@ -1039,7 +1039,7 @@ public static class EventManager
 			returnObj.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR;
 			returnObj.OutcomeDescription = String.Format (
 				"It's the most intense game of indoor football ever displayed! {0} scores every goal personally. " +
-				"The entire indoor stadium are on their feet except {1}. During the last goal, {1}'s son is taken off the field on a stretcher!" +
+				"The entire indoor stadium are on their feet except {1}. During the last goal, {1}'s son is taken off the field on a stretcher! " +
 				"But {0}'s team wins in the end. Of course.\n\n" +
 				"{0}'s athleticism way up!\n" +
 				"{0}'s athleticism growth way up!\n" +
