@@ -23,11 +23,11 @@ public class Child : Character
 		this.m_athleticism.Value = athleticism;
 		this.m_popularity.Value = popularity;
 
-        this.m_cuteness.GrowthRate = -1 * (cuteness / Constants.Character.GROWTH_DIVIDER) > Constants.Character.MAX_INITIAL_GROWTH ? Constants.Character.MAX_INITIAL_GROWTH : (cuteness / Constants.Character.GROWTH_DIVIDER);
+        this.m_cuteness.GrowthRate = (cuteness / Constants.Character.GROWTH_DIVIDER) > Constants.Character.MAX_INITIAL_GROWTH ? Constants.Character.MAX_INITIAL_GROWTH : (cuteness / Constants.Character.GROWTH_DIVIDER);
         this.m_intelligence.GrowthRate = (intelligence / Constants.Character.GROWTH_DIVIDER) > Constants.Character.MAX_INITIAL_GROWTH ? Constants.Character.MAX_INITIAL_GROWTH : (intelligence / Constants.Character.GROWTH_DIVIDER);
         this.m_artistry.GrowthRate = (artistry / Constants.Character.GROWTH_DIVIDER) > Constants.Character.MAX_INITIAL_GROWTH ? Constants.Character.MAX_INITIAL_GROWTH : (artistry / Constants.Character.GROWTH_DIVIDER);
         this.m_athleticism.GrowthRate = (athleticism / Constants.Character.GROWTH_DIVIDER) > Constants.Character.MAX_INITIAL_GROWTH ? Constants.Character.MAX_INITIAL_GROWTH : (athleticism / Constants.Character.GROWTH_DIVIDER);
-        this.m_popularity.GrowthRate = -1 * (popularity / Constants.Character.GROWTH_DIVIDER) > Constants.Character.MAX_INITIAL_GROWTH ? Constants.Character.MAX_INITIAL_GROWTH : (-1 * popularity / Constants.Character.GROWTH_DIVIDER);
+        this.m_popularity.GrowthRate = (popularity / Constants.Character.GROWTH_DIVIDER) > Constants.Character.MAX_INITIAL_GROWTH ? Constants.Character.MAX_INITIAL_GROWTH : (-1 * popularity / Constants.Character.GROWTH_DIVIDER);
 
         this.m_cuteness.GrowthBonus = true;         //TODO: Randomly select a stat to growth bonus
         this.m_spriteName = spriteName;
