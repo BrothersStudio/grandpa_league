@@ -80,7 +80,7 @@ static class Constants
     public struct Player
     {
         public const double INITIAL_MONEY = 500;
-        public const double INITIAL_INCOME = 1000;
+        public const double INITIAL_INCOME = 1300;
         public const string DEFAULT_SURNAME = "Smith";
         public const string DEFAULT_FIRST_NAME = "John";
         public const double INITIAL_WISDOM = 60;
