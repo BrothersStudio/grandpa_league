@@ -796,7 +796,7 @@ public static class EventManager
 					"All parents' love up!\n" +
 					"All parents' popularity up!\n" +
 					"All children's popularity up!\n" +
-					"All children's athleticism up slightly." +
+					"All children's athleticism up slightly.\n" +
 					"Grandpa's pride way up.");
 			} 
 			else
@@ -2426,7 +2426,7 @@ public static class EventManager
 
 			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
 			returnObj.OutcomeDescription = String.Format (
-				"{0}'s class was fingerpainting today. {0} did a very good sharing {1} paints. Even so, painted an exact replica of the Mona Lisa! The fact cats in the pricinpal's office are calling it " +
+				"{0}'s class was fingerpainting today. {0} did a very good job sharing {1} paints. Even so, {2} painted an exact replica of the Mona Lisa! The fat cats in the pricinpal's office are calling it " +
 				"a \"miracle\"! Ha!\n\n" +
 				"{0}'s artistry up.\n" +
 				"{0}'s popularity up.\n" +
@@ -2459,7 +2459,7 @@ public static class EventManager
 
 			returnObj.Status = (int)Enums.EventOutcome.FAILURE;
 			returnObj.OutcomeDescription = String.Format (
-				"{0}'s class was fingerpainting today... But {0} couldn't be roused from nap time. {2} just lay there. They actually thought {1} was dead. This is no way for a young child to " +
+				"{0}'s class was fingerpainting today... But {0} couldn't be roused from nap time. {2} just kept sleeping and couldn't be woken up. They actually thought {1} was dead. This is no way for a young child to " +
 				"build finger painting skills for the real world!\n\n" +
 				"{0}'s artistry down.\n" +
 				"Grandpa's pride down.",
@@ -3055,7 +3055,7 @@ public static class EventManager
 
 			returnObj.Status = (int)Enums.EventOutcome.FAILURE;
 			returnObj.OutcomeDescription = String.Format(
-				"People were covering their ears and screaming. {0} how could you do such horrible things to an oboe?\n\n" +
+				"People were covering their ears and screaming. {0}, how could you do such horrible things to a tuba?\n\n" +
 				"{0}'s artistry down slightly.\n" +
 				"{0}'s artistry growth dpwm slightly.\n" +
 				"Grandpa's pride down.",
