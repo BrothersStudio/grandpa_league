@@ -122,6 +122,10 @@ public class Main : MonoBehaviour {
         if(current_month == 12 && current_day == 27)
         {
             SceneCamera.transform.position = new Vector3(SceneCamera.transform.position.x, SceneCamera.transform.position.y, 100);
+			foreach (Child child in m_dataManager.PlayerFamily.Children) 
+			{
+				child.Age += 1;
+			}
         }
     }
 
