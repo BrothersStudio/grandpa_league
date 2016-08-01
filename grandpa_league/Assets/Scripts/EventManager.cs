@@ -4024,6 +4024,99 @@ public static class EventManager
     {
         Outcome ret = new Outcome();
 
+        if(requirements.Child.Qualifications.Contains(Qualification.GetQualificationByString("BAND_SOLO")))
+        {
+            if (Constants.Roll(requirements.Child.Cuteness, requirements.Child.Artistry, (int)Enums.Difficulty.VERY_HARD))
+            {
+                ret.OutcomeDescription = string.Format("The concert has gone absolutely perfect so far, then {0} stands up to perform their solo. All eyes are on them as they begin to " +
+                                                        "play the sweet sweet sounds of Mozart. {1} is immediately brought to tears and looks around and sees that everyone else in the audience is crying. " +
+                                                        "Grandpa looks over and catches {2} crying too, who immediately wipes away his tears and puts on a scowl. Success!\n\n" +
+                                                        "Grandpa's pride way up!!\n{1}'s popularity up!\n{1}'s love up!\n{0}'s artistry way up!", requirements.Child.Name, requirements.Parent.Name, manager.LeagueFamilies[0].Grandpa.Name);
+
+                requirements.Child.Artistry += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+                requirements.Parent.Popularity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+                requirements.Parent.Love += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+                manager.PlayerFamily.Grandpa.Pride += Constants.Character.MAJOR_PRIDE_CHANGE_AMOUNT;
+
+                ret.Mail = new Mail();
+                ret.Mail.StringDate = "December 9, 1780";
+                ret.Mail.Sender = "Wolfgang Amadeus Mozart";
+                ret.Mail.Subject = "RE: Your grandson";
+                ret.Mail.Message = string.Format("Hello {0},\nIt's me, Mozart. I'm writing to you just to let you know that your grandchild is the single greatest musician in all of human history.\nKeep it real,\nWolfgang Amadeus Mozart", manager.PlayerFamily.Grandpa.Name);
+
+                ret.Status = (int)Enums.EventOutcome.SUCCESS;
+            }
+            else if (Constants.Roll(requirements.Child.Cuteness, requirements.Child.Artistry, (int)Enums.Difficulty.STANDARD))
+            {
+                ret.OutcomeDescription = string.Format("The concert is going pretty well, then {0} stands up to perform their solo. All eyes are on them as they begin to " +
+                                                        "play those beautiful notes. Er, pretty beautiful. They mess up a little bit but recover nicely. By all means a successful concert! " +
+                                                        "Grandpa's pride up!!\n{1}'s love up!\n{0}'s artistry up!", requirements.Child.Name, requirements.Parent.Name);
+
+                requirements.Child.Artistry += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+                requirements.Parent.Love += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+                manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+                ret.Status = (int)Enums.EventOutcome.SUCCESS;
+            }
+            else
+            {
+                ret.OutcomeDescription = string.Format("The concert has been a little rocky, but at least {0} has been doing good...you think? {0} stands up to perform their solo. All eyes are on them as they begin to " +
+                                                        "play the bars. They botch it up pretty bad. Ha, ha, can't get much worse than this! But it does. {1} is in the audience and throws a piece of rotten fruit. Next thing you " +
+                                                        "know {0} being pummeled with spoiled vegetation. They burst into tears and run off the stage. Grandpa quietly slides out of the concert hall.\n\n" +
+                                                        "Grandpa's pride way down!!\n{1}'s love down!\n{0}'s artistry down!\n{0}'s popularity down!", requirements.Child.Name, manager.LeagueFamilies[0].Grandpa.Name);
+
+                requirements.Child.Artistry -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+                requirements.Child.Popularity -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+                requirements.Parent.Love -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+                manager.PlayerFamily.Grandpa.Pride -= Constants.Character.MAJOR_PRIDE_CHANGE_AMOUNT;
+
+
+                ret.Mail = new Mail();
+                ret.Mail.Date = manager.Calendar.GetCurrentDay();
+                ret.Mail.Sender = manager.LeagueFamilies[0].Grandpa.Name;
+                ret.Mail.Subject = "Enjoy the fruit salad?";
+                ret.Mail.Message = string.Format("Hey loser,\nEnjoy that fruit salad the other day? You better keep your loser grandchild away from my grandkids, wouldn't want them to become talentless!\nDeuces,\n{0}", manager.LeagueFamilies[0].Grandpa.Name);
+
+                ret.Status = (int)Enums.EventOutcome.FAILURE;
+            }
+        }
+        else
+        {
+            if (Constants.Roll(requirements.Child.Cuteness, requirements.Child.Artistry, (int)Enums.Difficulty.STANDARD))
+            {
+                ret.OutcomeDescription = string.Format("The concert is going pretty well, then {0}'s grandson stands up to perform their solo. All eyes are on them as they begin to " +
+                                                        "play those beautiful notes. It is amazing. You would never admit it but you wish you had a talented grandchild like that... maybe {0} " +
+                                                        "would be willing to strike up a deal... " +
+                                                        "Grandpa's pride up!\n{1}'s artistry up!", manager.LeagueFamilies[0].Grandpa.Name, requirements.Child.Name);
+
+                requirements.Child.Artistry += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+                manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+                ret.Status = (int)Enums.EventOutcome.SUCCESS;
+            }
+            else
+            {
+                ret.OutcomeDescription = string.Format("The concert has been a little rocky, but at least {0} has been doing good...you think? {0} moves to adjust their music stand and falls off the stage! All eyes are on them as they begin to " +
+                                                        "sob uncontrollably on the floor of the concert hall. Ha, ha, can't get much worse than this! But it does. {1} is in the audience and throws a piece of rotten fruit. Next thing you " +
+                                                        "know {0} being pummeled with spoiled vegetation. {0} runs out of the conert hall but not before tripping and breaking their tuba clean in half. Grandpa quietly slides out of the concert.\n\n" +
+                                                        "Grandpa's pride way down!!\n{2}'s love down!\n{0}'s artistry down!\n{2}'s popularity down!", requirements.Child.Name, manager.LeagueFamilies[0].Grandpa.Name, requirements.Parent.Name);
+
+                requirements.Child.Artistry -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+                requirements.Parent.Love -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+                requirements.Parent.Popularity -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+                manager.PlayerFamily.Grandpa.Pride -= Constants.Character.MAJOR_PRIDE_CHANGE_AMOUNT;
+
+
+                ret.Mail = new Mail();
+                ret.Mail.Date = manager.Calendar.GetCurrentDay();
+                ret.Mail.Sender = manager.LeagueFamilies[0].Grandpa.Name;
+                ret.Mail.Subject = "Enjoy the fruit salad?";
+                ret.Mail.Message = string.Format("Hey loser,\nEnjoy that fruit salad the other day? You better keep your loser grandchild away from my grandkids, wouldn't want them to become talentless!\nDeuces,\n{0}", manager.LeagueFamilies[0].Grandpa.Name);
+
+                ret.Status = (int)Enums.EventOutcome.FAILURE;
+            }
+        }
+
         return ret;
     }
 }
