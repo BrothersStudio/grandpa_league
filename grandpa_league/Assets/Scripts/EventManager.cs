@@ -3188,9 +3188,8 @@ public static class EventManager
 
 		return returnObj;
 	}
-
-
-	// Parents adopt a child
+		
+	// Parents adopt an orphan
 	public static Outcome Event1064(DataManager manager, Requirement requirements)
 	{
 		Outcome returnObj = new Outcome();
@@ -3216,7 +3215,7 @@ public static class EventManager
 
 			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
 			returnObj.OutcomeDescription = String.Format (
-				"{0} has decided that the time is right to adopt a new child! Please welcome {1} to the family! The entire family is overjoyed, especially {1}. {1} " +
+				"{0} has decided that the time is right to adopt an orphan! Please welcome {1} to the family! The entire family is overjoyed, especially {1}. {1} " +
 				"is so happy {2} gets to be in a normal, well-adjusted family for once.\n\n" +
 				"{1} has joined the family!\n" +
 				"All parents' love way up!!\n" +
@@ -3226,6 +3225,50 @@ public static class EventManager
 		}
 		else
 			returnObj.Status = (int)Enums.EventOutcome.PASS;
+
+		return returnObj;
+	}
+
+	// Parent marries a stripper
+	public static Outcome Event1065(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+
+		if (Constants.Roll(0, requirements.Parent.Love, (int)Enums.Difficulty.EASY) && requirements.Money >= 100)
+		{
+			Parent new_parent = manager.Orphanage.GetRandomParent ();
+
+			requirements.Parent.Love += Constants.Character.MAJOR_STAT_CHANGE_AMOUNT;
+			new_parent.Love += Constants.Character.MAJOR_STAT_CHANGE_AMOUNT;
+
+			manager.PlayerFamily.Grandpa.Pride += Constants.Character.MAJOR_PRIDE_CHANGE_AMOUNT;
+
+			manager.Orphanage.Parents.Remove (new_parent);
+			manager.PlayerFamily.Parents.Add (new_parent);
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_FOREVER;
+			returnObj.OutcomeDescription = String.Format (
+				"{0} stumbles home extremely drunk with someone you don't recognize on their arm. \"Kids, this is {1}! Your new, hic, {2}!\" " +
+				"Oh, {0} has married a stripper. Alright, then.\n\n" +
+				"{1} has joined the family!\n" +
+				"{0}'s love way up!\n" +
+				"{1}'s love way up!\n" +
+				"Grandpa's pride way way up!!",
+				requirements.Parent.Name, new_parent.Name, Convert.ToBoolean (new_parent.Gender) ? "mommy" : "daddy");
+		}
+		else
+		{
+			requirements.Parent.Love -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+
+			manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR;
+			returnObj.OutcomeDescription = String.Format (
+				"Well that was weird. And not good weird. Kids, don't go to the strip club with your Grandpa.\n\n" +
+				"{1}'s love down.\n" +
+				"Grandpa's pride up.",
+				requirements.Parent.Name);
+		}
 
 		return returnObj;
 	}
