@@ -301,11 +301,11 @@ public static class EventManager
 
         cpsOutcome.Mail = new Mail();
         cpsOutcome.Mail.Date = manager.Calendar.GetCurrentDay();
-        cpsOutcome.Mail.Subject = string.Format("Monthly CPS Update: {0}", subjectStatus);
+        cpsOutcome.Mail.Subject = string.Format("Quarterly CPS Update: {0}", subjectStatus);
         cpsOutcome.Mail.Sender = "Charlene Dogood";
         cpsOutcome.Mail.Message = string.Format(
             "Hello Mr. {0},\n\n\t" +
-            "This is Ms. Dogood from the Child Protection Services, performing your monthly scheduled check-in as laid out in the terms of your 1993 release from Leagueville County Prison. " +
+            "This is Ms. Dogood from the Child Protection Services, performing your quarterly scheduled check-in as laid out in the terms of your 1993 release from Leagueville County Prison. " +
             "Currently your family {1} and your income seems {2}. We may have to perform additional check-ins during the month if this is not up to our standards. Until next time.\n\nCordially,\nCharlene Dogood",
             manager.PlayerFamily.FamilyName, familyStatusString, incomeStatusString);
 

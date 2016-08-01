@@ -68,9 +68,6 @@ public class Main : MonoBehaviour {
 
     public Camera SceneCamera;
 
-    //declaring variable for the audio player for mail
-    //public AudioSource AudioPlayer;
-
 	public void Awake()
 	{
         user_input_panel.SetActive(false);
