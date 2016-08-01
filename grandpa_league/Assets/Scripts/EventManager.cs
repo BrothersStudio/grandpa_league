@@ -6,6 +6,7 @@ using System.Reflection;
 using System.IO;
 using UnityEngine;
 
+[Serializable]
 public static class EventManager
 {
     private static List<SimulationEvent> m_knownEvents = new List<SimulationEvent>();
