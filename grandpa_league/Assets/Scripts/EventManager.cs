@@ -348,7 +348,7 @@ public static class EventManager
         manager.PlayerFamily.Children.Remove(remChild);
         remChild = null;
 
-        cpsOutcome.OutcomeDescription = string.Format("You hear a screech, then a crash. Before you realize it 20 Leagueville SWAT Team members are surrounding your house. Charlene Dogood walks through the front door," +
+        cpsOutcome.OutcomeDescription = string.Format("You hear a screech, then a crash. Before you realize it, 20 Leagueville SWAT Team members are surrounding your house. Charlene Dogood walks through the front door, " +
                                         "picks up {0} and with quite a bit of effort (and help) drags them into the back of the SWAT van. Then silence.", childName);
         cpsOutcome.Mail = new Mail();
         cpsOutcome.Status = (int)Enums.EventOutcome.SUCCESS;
@@ -3264,7 +3264,7 @@ public static class EventManager
 			returnObj.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR;
 			returnObj.OutcomeDescription = String.Format (
 				"Well that was weird. And not good weird. Kids, don't go to the strip club with your Grandpa.\n\n" +
-				"{1}'s love down.\n" +
+				"{0}'s love down.\n" +
 				"Grandpa's pride up.",
 				requirements.Parent.Name);
 		}
