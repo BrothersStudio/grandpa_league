@@ -94,16 +94,16 @@ static class Constants
     public struct Character
     {
         public const double GROWTH_DIVIDER = 500;
-        public const double MAX_INITIAL_GROWTH = 0.04;
+        public const double MAX_INITIAL_GROWTH = 0.038;
         public const double INITIAL_MONEY_GROWTH = 300;
 
-        public const double MAJOR_STAT_CHANGE_AMOUNT = 3;
-        public const double STANDARD_STAT_CHANGE_AMOUNT = 1.5;
-        public const double MINOR_STAT_CHANGE_AMOUNT = 0.5;
+        public const double MAJOR_STAT_CHANGE_AMOUNT = 2.9;
+        public const double STANDARD_STAT_CHANGE_AMOUNT = 1.4;
+        public const double MINOR_STAT_CHANGE_AMOUNT = 0.4;
 
-        public const double MAJOR_STAT_GROWTH_AMOUNT = 0.015;
-        public const double STANDARD_STAT_GROWTH_AMOUNT = 0.008;
-        public const double MINOR_STAT_GROWTH_AMOUNT = 0.0003;
+        public const double MAJOR_STAT_GROWTH_AMOUNT = 0.013;
+        public const double STANDARD_STAT_GROWTH_AMOUNT = 0.007;
+        public const double MINOR_STAT_GROWTH_AMOUNT = 0.0002;
 
         public const double MAJOR_PRIDE_CHANGE_AMOUNT = 500;
         public const double STANDARD_PRIDE_CHANGE_AMOUNT = 100;
