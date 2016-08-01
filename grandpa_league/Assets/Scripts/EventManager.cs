@@ -1539,7 +1539,7 @@ public static class EventManager
 			returnObj.Status = (int)Enums.EventOutcome.FAILURE;
 			returnObj.OutcomeDescription = String.Format (
 				"{0} was walking through a construction site the other day and got hit by a girder! Why was {1} even walking through there? " +
-				"What a dummy. What a disgrace...\n\n" +
+				"What a dummy...\n\n" +
 				"{0}'s intelligence down.\n" +
 				"{0}'s popularity down!\n" +
 				"Grandpa's pride down slightly.",
@@ -3724,7 +3724,7 @@ public static class EventManager
 			returnObj.OutcomeDescription = String.Format(
 				"With your {1} wins, you won the semi finals! {0} and his family slink off into the distance! The final battle isn't going to be easy. " +
 				"{2} and his family are going to be the hardest challenge yet...\n\n",
-				requirements.Grandpa.Name, wins.ToString());
+				requirements.Grandpa.Name, wins.ToString(), manager.LeagueFamilies[manager.LeagueFamilies.Count - 1].Grandpa.Name);
 			returnObj.Mail = new Mail();
 			returnObj.Mail.Sender = manager.LeagueFamilies[manager.LeagueFamilies.Count - 1].Grandpa.Name;
 			returnObj.Mail.Date = manager.Calendar.GetCurrentDay();
