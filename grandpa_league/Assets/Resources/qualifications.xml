@@ -13,7 +13,7 @@
   <qualification name="GRANDPA_SELLING_DRUGS"    id="10"   hidden="true"   display_name="" />
   <qualification name="IN_SCOUTS"                id="11"   hidden="false"  display_name="Member of scouts" />
   <qualification name="RIGGED_ELECTION"          id="12"   hidden="true"   display_name="" />
-  <qualification name="STUDENT_COUNCIL"          id="13"   hidden="false"  display_name="" />
+  <qualification name="STUDENT_COUNCIL"          id="13"   hidden="false"  display_name="Head of the student council!" />
   <qualification name="QUARTERFINAL_WINNER"      id="14"   hidden="true"   display_name="" />
   <qualification name="SEMIFINAL_WINNER"         id="15"   hidden="true"   display_name="" />
   <qualification name="TOURNAMENT_LOSER"         id="16"   hidden="true"   display_name="" />
