@@ -208,8 +208,8 @@ public static class EventManager
         statOutcome.Mail.Message = string.Format(
 			"Hey Dad,\n\n\t" +
 			"Here is your social security check for the month plus a little something extra I scraped up for you after taking what we needed to keep the family going. The kids are doing just fine " +
-			"and are growing so fast! You'll barely even recognize them soon (between you and me, I'm worred {0} is already getting uglier like " +
-			"Mom did). Anyway have a good month!\n\nTotal Income: ${3}\nTotal Family Expenses: ${4}.00\nTotal Amount Applied to Account: ${1}.00\n\nLove,\n{2}",
+			"and are growing so fast! You'll barely even recognize them soon (between you and me, I'm worred {0} is getting uglier by " +
+			"the day). Anyway have a good month!\n\nTotal Income: ${3}\nTotal Family Expenses: ${4}.00\nTotal Amount Applied to Account: ${1}.00\n\nLove,\n{2}",
 			manager.PlayerFamily.Children[0].Name, manager.PlayerFamily.Grandpa.MoneyGrowth - manager.PlayerFamily.Upkeep, manager.PlayerFamily.Parents[0].Name, manager.PlayerFamily.Grandpa.MoneyGrowth, manager.PlayerFamily.Upkeep);
         return statOutcome;
     }
@@ -436,7 +436,7 @@ public static class EventManager
         ret.Mail.Sender = manager.PlayerFamily.Grandpa.Name;
         ret.Mail.Image = "tutorial_3";
         ret.Mail.Message = 
-			"Those damn commie relics already have a leg up on me. They're cheats, I swear it! No way they could be that proud of their snot-nosed brats. I'm gonna take this " +
+			"Those damn commie relics in the community panel already have a leg up on me. They're cheats, I swear it! No way they could be that proud of their snot-nosed brats. I'm gonna take this " +
 			"community by storm! \nI swear I'll win I swear I'll win I swear I'll win I swear I'll win I swear I'll win I swear I'll win I swear I'll win.";
 
         return ret;
@@ -454,8 +454,8 @@ public static class EventManager
         ret.Mail.Sender = manager.PlayerFamily.Grandpa.Name;
         ret.Mail.Image = "tutorial_4";
         ret.Mail.Message = string.Format(
-			"That's it! I am done with {0} and {1} too! {2}'s grandson already has a full ride to Stanford and he's only {3}! Let's see if we can't con off these idiots to some " +
-			"unsuspecting losers at the adoption agency... A little cash to sweeten the pot wouldn't hurt...", 
+			"That's it! I am done with {0} and {1} too! {2}'s grandson already has a full ride to Stanford and he's only {3}! Let's see if we can't pawn off these idiots to some " +
+			"unsuspecting grandpas using the adoption panel... A little cash to sweeten the pot wouldn't hurt...", 
 			manager.PlayerFamily.Children[0].Name, manager.PlayerFamily.Parents[0].Name, manager.LeagueFamilies[0].Grandpa.Name, manager.LeagueFamilies[0].Children[0].Age);
 
         return ret;
@@ -653,7 +653,7 @@ public static class EventManager
 		Outcome ret = new Outcome ();
 		if (requirements.Accept) 
 		{
-            if(manager.PlayerFamily.Children.Count <= 0)
+            if(manager.PlayerFamily.Children.Count <= 1)
             {
                 ret.Status = (int)Enums.EventOutcome.FAILURE;
                 ret.OutcomeDescription = String.Format(
@@ -1315,7 +1315,7 @@ public static class EventManager
 
 			returnObj.Status = (int)Enums.EventOutcome.FAILURE_BLACKLIST_YEAR;
 			returnObj.OutcomeDescription = String.Format (
-				"Well that could have gone better. People are killing lemurs in the streets. They are calling this the worst play of all time. {0} will never " +
+				"Well, that could have gone better. People are killing lemurs in the streets. They are calling this the worst play of all time. {0} will never " +
 				"live this down at school for being a part of it.\n\n" +
 				"{0}'s popularity down!\n" + 
 				"{0}'s popularity growth down slightly.\n" + 
@@ -2019,7 +2019,7 @@ public static class EventManager
 
 			returnObj.Status = (int)Enums.EventOutcome.FAILURE_BLACKLIST_YEAR;
 			returnObj.OutcomeDescription = String.Format (
-				"That was... awkward. A lot of standing around. I hate when people don't dance. Who invited all those nerds? Grandpa's gone and locked himself " +
+				"That was... awkward. A lot of standing around. I hate it when people don't dance. Who invited all those nerds? Grandpa's gone and locked himself " +
 				"in his room. \n\n" +
 				"{0}'s popularity down slightly.\n" +
 				"{1}'s popularity down slightly.\n" +
@@ -2426,7 +2426,7 @@ public static class EventManager
 
 			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
 			returnObj.OutcomeDescription = String.Format (
-				"{0}'s class was fingerpainting today. {0} did a very good job sharing {1} paints. Even so, {2} painted an exact replica of the Mona Lisa! The fat cats in the pricinpal's office are calling it " +
+				"{0}'s class was fingerpainting today. {0} did a very good job sharing {1} paints. On top of that, {2} painted an exact replica of the Mona Lisa! Cool! The fat cats in the pricinpal's office are calling it " +
 				"a \"miracle\"! Ha!\n\n" +
 				"{0}'s artistry up.\n" +
 				"{0}'s popularity up.\n" +
@@ -2501,12 +2501,12 @@ public static class EventManager
 
 			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
 			returnObj.OutcomeDescription = String.Format (
-				"That went adequately! You may have gotten shot down by every {1} you asked to dance, but at least you tried. That's worth something, right? Wait, it isn't? " +
+				"That went adequately! {0} may have gotten shot down by every {1} {2} asked to dance, but at least {2} tried. That's worth something, right? Wait, it isn't? " +
 				"Nevermind, then, that was a waste of time.\n\n" +
 				"{0}'s popularity up.\n" +
 				"{0}'s popularity growth up slightly.\n" +
 				"Grandpa's pride up.",
-				requirements.Child.Name, Convert.ToBoolean (requirements.Child.Gender) ? "guy" : "girl");
+				requirements.Child.Name, Convert.ToBoolean (requirements.Child.Gender) ? "guy" : "girl", Convert.ToBoolean (requirements.Child.Gender) ? "she" : "he");
 		} 
 		else 
 		{
@@ -2532,7 +2532,7 @@ public static class EventManager
 	{
 		Outcome returnObj = new Outcome();
 		if (Constants.Roll (0, manager.PlayerFamily.Grandpa.Insanity, (int)Enums.Difficulty.STANDARD) &&
-			requirements.Child.Age < 10) 
+			requirements.Child.Age < 10 && manager.PlayerFamily.Children.Count > 1) 
 		{
 			SimulationEvent ev = GetEventById (1048);
 			ev.Requirements.Child = requirements.Child;
@@ -2882,7 +2882,7 @@ public static class EventManager
 	{
 		Outcome returnObj = new Outcome();
 
-		if (!Constants.Roll (requirements.Child.Cuteness, requirements.Child.Intelligence, (int)Enums.Difficulty.VERY_EASY))
+		if (!Constants.Roll (requirements.Child.Cuteness, requirements.Child.Intelligence, (int)Enums.Difficulty.VERY_EASY) && manager.PlayerFamily.Children.Count > 1)
 		{
 			foreach (Parent parent in manager.PlayerFamily.Parents) 
 			{
@@ -3230,10 +3230,10 @@ public static class EventManager
 	{
 		Outcome returnObj = new Outcome();
 
-		if (Constants.Roll(0, requirements.Parent.Love, (int)Enums.Difficulty.EASY) && requirements.Money >= 100)
-		{
-			Parent new_parent = manager.Orphanage.GetRandomParent ();
+		Parent new_parent = manager.Orphanage.GetRandomParent ();
 
+		if (Constants.Roll(0, requirements.Parent.Love, (int)Enums.Difficulty.EASY) && requirements.Money >= 100 && new_parent != null) 
+		{
 			requirements.Parent.Love += Constants.Character.MAJOR_STAT_CHANGE_AMOUNT;
 			new_parent.Love += Constants.Character.MAJOR_STAT_CHANGE_AMOUNT;
 
@@ -4093,33 +4093,38 @@ public static class EventManager
         Outcome ret = new Outcome();
 
         manager.PlayerFamily.Grandpa.Money -= requirements.Money;
-        if (!requirements.Accept)
-        {
-			ret.OutcomeDescription = string.Format("Ugh, Grandpa, you're so lame! The Nazis are NOT going to invade America while I'm gone. You're so lame; you never let me do anything fun! " +
-                                                    "\n\nGrandpa's pride down!\n{0}'s popularity down!\n{0}'s artistry down!\n{0}'s intelligence up!", requirements.Child.Name);
+		if (manager.PlayerFamily.Children.Count > 1)
+		{
+	        if (!requirements.Accept)
+	        {
+				ret.OutcomeDescription = string.Format("Ugh, Grandpa, you're so lame! The Nazis are NOT going to invade America while I'm gone. You're so lame; you never let me do anything fun! " +
+	                                                    "\n\nGrandpa's pride down!\n{0}'s popularity down!\n{0}'s artistry down!\n{0}'s intelligence up!", requirements.Child.Name);
 
-            manager.PlayerFamily.Grandpa.Pride -= Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
-            requirements.Child.Popularity -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
-            requirements.Child.Artistry -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
-            requirements.Child.Intelligence -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+	            manager.PlayerFamily.Grandpa.Pride -= Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+	            requirements.Child.Popularity -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+	            requirements.Child.Artistry -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+	            requirements.Child.Intelligence -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
 
-            ret.Status = (int)Enums.EventOutcome.FAILURE;
-        }
-        else
-        {
-            ret.OutcomeDescription = string.Format("Wow thanks Grandpa! You're the best!\n\n{0}'s popularity up!\n{0} has left the family for a week!", requirements.Child.Name);
+	            ret.Status = (int)Enums.EventOutcome.FAILURE;
+	        }
+	        else
+	        {
+	            ret.OutcomeDescription = string.Format("Wow thanks Grandpa! You're the best!\n\n{0}'s popularity up!\n{0} has left the family for a week!", requirements.Child.Name);
 
-            requirements.Child.Popularity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+	            requirements.Child.Popularity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
 
-            SimulationEvent followUp = EventManager.GetEventById(3019);
-            followUp.Requirements.Child = requirements.Child;
-            followUp.Requirements.Money = requirements.Money;
-            manager.PlayerFamily.Children.Remove(requirements.Child);
+	            SimulationEvent followUp = EventManager.GetEventById(3019);
+	            followUp.Requirements.Child = requirements.Child;
+	            followUp.Requirements.Money = requirements.Money;
+	            manager.PlayerFamily.Children.Remove(requirements.Child);
 
-            manager.Calendar.ScheduleEventInXDays(followUp, 7);
+	            manager.Calendar.ScheduleEventInXDays(followUp, 7);
 
-            ret.Status = (int)Enums.EventOutcome.SUCCESS;
-        }
+	            ret.Status = (int)Enums.EventOutcome.SUCCESS;
+	        }
+		}
+		else
+			ret.Status = (int)Enums.EventOutcome.PASS;
 
         return ret;
     }
@@ -4313,7 +4318,7 @@ public static class EventManager
         {
             ret.Status = (int)Enums.EventOutcome.PASS;
         }
-        else
+		else if (manager.PlayerFamily.Children.Count > 1)
         {
             ret.OutcomeDescription = string.Format("{0} is playing by the Leagueville cliffs with {1} when they fall off the side!! Grandpa is suspicious of {1} but " +
                                                     "{0} is quickly rushed into the hospital. Bad news. {0} is in a deep coma and it doesn't look like he'll be coming out any time soon.\n\n" +
@@ -4336,6 +4341,8 @@ public static class EventManager
 
             requirements.Child = null;
         }
+		else
+			ret.Status = (int)Enums.EventOutcome.PASS;
 
         return ret;
     }
