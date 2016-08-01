@@ -76,6 +76,7 @@
      <Compile Include="Assets\Scripts\Requirement.cs" />
      <Compile Include="Assets\Scripts\SimulationEvent.cs" />
      <Compile Include="Assets\Scripts\SoundEffectPlayer.cs" />
+     <Compile Include="Assets\Scripts\SoundTrackController.cs" />
      <Compile Include="Assets\Scripts\Stat.cs" />
      <Compile Include="Assets\Scripts\Team.cs" />
      <Compile Include="Assets\Scripts\Trade.cs" />
