@@ -3214,7 +3214,7 @@ public static class EventManager
         ret.OutcomeDescription = string.Format(
 			"So {0} wanted us to all go to Christmas Family Bonding Camp together as a family. Some kind of aptly-named bonding camp. Saying something about making memories " +
 			"that we would always remember, blah blah blah. Not interested. What I am interested in, however, is that every member of the Grandpa League " +
-			"will be there. Time to have this year's Christmas Family Bonding Camp final showdown. {1} and I are facing off first one week from today. Here goes!", 
+			"will be there. Time to have this year's Christmas Family Bonding Camp final showdown. \n{1} and I are facing off first one week from today. Here goes!", 
 			requirements.Parent.Name, manager.LeagueFamilies[0].Grandpa.Name);
 
         ret.Mail = new Mail();
@@ -3391,8 +3391,18 @@ public static class EventManager
 
 			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
 			returnObj.OutcomeDescription = String.Format(
-				"With your {1} wins, you won the quarter finals! {0} and his family slink off into the distance!\n\n",
-				requirements.Grandpa.Name, wins.ToString());
+				"With your {1} wins, you won the quarter finals! {0} and his family slink off into the distance! Next round will be against {2} and his family!\n\n",
+				requirements.Grandpa.Name, wins.ToString(), manager.LeagueFamilies[manager.LeagueFamilies.Count - 2].Grandpa.Name);
+			returnObj.Mail = new Mail();
+			returnObj.Mail.Sender = manager.LeagueFamilies[manager.LeagueFamilies.Count - 2].Grandpa.Name;
+			returnObj.Mail.Date = manager.Calendar.GetCurrentDay();
+			returnObj.Mail.Subject = "Semifinal Matchup";
+			returnObj.Mail.Message = string.Format(
+				"{0},\n\n\t" +
+				"How are you, kid? I expect a good, clean fight. Me and my family ain't goin' down easy. Best get ready to take some hits.\n\n" +
+				"From,\n" +
+				"{1}", 
+				manager.PlayerFamily.Grandpa.Name, manager.LeagueFamilies[manager.LeagueFamilies.Count - 2].Grandpa.Name);
 		}
 		else
 		{
@@ -3555,8 +3565,20 @@ public static class EventManager
 
 			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
 			returnObj.OutcomeDescription = String.Format(
-				"With your {1} wins, you won the semi finals! {0} and his family slink off into the distance!\n\n",
+				"With your {1} wins, you won the semi finals! {0} and his family slink off into the distance! The final battle isn't going to be easy. " +
+				"{2} and his family are going to be the hardest challenge yet...\n\n",
 				requirements.Grandpa.Name, wins.ToString());
+			returnObj.Mail = new Mail();
+			returnObj.Mail.Sender = manager.LeagueFamilies[manager.LeagueFamilies.Count - 1].Grandpa.Name;
+			returnObj.Mail.Date = manager.Calendar.GetCurrentDay();
+			returnObj.Mail.Subject = "Grand Final Matchup";
+			returnObj.Mail.Message = string.Format(
+				"Dearest {0},\n\n\t" +
+				"I don't think we've had the pleasure of meeting in person. My name is {1}, and I am the one who will be defeating you and your " +
+				"clan next week. It would be in your best interest to not show up. I will not defile my family name losing to the likes of you.\n\n" +
+				"Cordially yours,\n" +
+				"{1}", 
+				manager.PlayerFamily.Grandpa.Name, manager.LeagueFamilies[manager.LeagueFamilies.Count - 1].Grandpa.Name);
 		}
 		else
 		{
@@ -3786,25 +3808,29 @@ public static class EventManager
     {
         Outcome ret = new Outcome();
 
-        if(Constants.Roll(0, manager.PlayerFamily.Grandpa.Insanity, (int)Enums.Difficulty.STANDARD) && Constants.Roll(0, manager.PlayerFamily.Grandpa.Wisdom, (int)Enums.Difficulty.STANDARD))
+        if(!Constants.Roll(0, manager.PlayerFamily.Grandpa.Insanity, (int)Enums.Difficulty.STANDARD) && Constants.Roll(0, manager.PlayerFamily.Grandpa.Wisdom, (int)Enums.Difficulty.STANDARD))
         {
-            ret.OutcomeDescription = string.Format("Grandpa momentarily loses sight of {0} when a \"Monster Mash\" flash mob floods the streets." +
-                                                    " While searching for them he comes across {1} and his grandson. Grandpa reaches for his rusty spoon but then is hit by a moment of clarity and " +
-                                                    "continues searching for {0}, and finds him passed out from over-exposure to chocolate.\n\nGrandpa's Pride Up!\nGrandpa's Wisdom up\n{0}'s Popularity Up!", requirements.Child.Name, requirements.Grandpa.Name);
+            ret.OutcomeDescription = string.Format(
+				"Grandpa momentarily loses sight of {0} when a \"Monster Mash\" flash mob floods the streets. " +
+				"While searching for {2}, he comes across {1} and his grandson. Grandpa reaches for his rusty spoon but decides family is more important and " +
+				"continues searching for {0}. He finds {2} passed out from over-exposure to chocolate.\n\nGrandpa's pride up.\nGrandpa's wisdom way up!\n{0}'s popularity up.", 
+				requirements.Child.Name, requirements.Grandpa.Name, Convert.ToBoolean(requirements.Child.Gender) ? "her" : "him");
 
-            manager.PlayerFamily.Grandpa.Pride += Constants.Character.MAJOR_PRIDE_CHANGE_AMOUNT;
-            manager.PlayerFamily.Grandpa.Wisdom += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+            manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+            manager.PlayerFamily.Grandpa.Wisdom += Constants.Character.MAJOR_STAT_CHANGE_AMOUNT;
             requirements.Child.Popularity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
         }
         else
         {
-            ret.OutcomeDescription = string.Format("Grandpa momentarily loses sight of {0} when a \"Spooky Scary Skeleton's\" flash mob floods the streets." +
-                                                                " While searching for them he comes across {1} and his grandson. It isn't long before the confronation devolves into a shouting match. " +
-                                                                "Grandpa keeps yelling about stealing his grandson for sacrifice. Hmm, strange. {0} eventually wanders around the corner and is so embarassed by grandpa... " +
-                                                                "\nGrandpa's Pride Down!\nGrandpa's Insanity up\n{0}'s Popularity Way down!", requirements.Child.Name, requirements.Grandpa.Name);
-            manager.PlayerFamily.Grandpa.Pride -= Constants.Character.MAJOR_PRIDE_CHANGE_AMOUNT;
+            ret.OutcomeDescription = string.Format(
+				"Grandpa momentarily loses sight of {0} when a \"Spooky Scary Skeletons\" flash mob floods the streets. " +
+				"While searching for {2} he comes across {1} and his grandson. It isn't long before the chance meeting devolves into a shouting match. " +
+				"Grandpa keeps yelling about {1} stealing his grandson for a human sacrifice. Hmm, strange. {0} eventually wanders around the corner and is really embarassed by Grandpa... " +
+				"\n\nGrandpa's pride down.\nGrandpa's insanity up.\n{0}'s popularity down.", 
+				requirements.Child.Name, requirements.Grandpa.Name, Convert.ToBoolean(requirements.Child.Gender) ? "her" : "him");
+            manager.PlayerFamily.Grandpa.Pride -= Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
             manager.PlayerFamily.Grandpa.Insanity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
-            requirements.Child.Popularity -= Constants.Character.MAJOR_STAT_CHANGE_AMOUNT;
+            requirements.Child.Popularity -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
         }
 
         return ret;
@@ -3817,9 +3843,9 @@ public static class EventManager
 
         if (Constants.Roll(requirements.Child.Cuteness, requirements.Child.Popularity, (int)Enums.Difficulty.HARD))
         {
-            ret.OutcomeDescription = string.Format("While walking home from school one day with their tuba, {0} is confronted by bullies. Rather than fight {1} puts down their tuba and says: " + 
+            ret.OutcomeDescription = string.Format("While walking home from school one day with their tuba, {0} is confronted by bullies. Rather than fight, {1} puts down their tuba and says: " + 
                                                     "\"Let's go beat up some nerds!\" Together they whack at least half of the student band, ouch!" +
-                                                     "\n\n{0}'s popularity up!\n{0}'s artistry slightly down!\nGrandpa's Pride up!", requirements.Child.Name, Convert.ToBoolean(requirements.Child.Gender) ? "she" : "he");
+                                                     "\n\n{0}'s popularity up!\n{0}'s artistry slightly down!\nGrandpa's pride up!", requirements.Child.Name, Convert.ToBoolean(requirements.Child.Gender) ? "she" : "he");
 
             manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
             requirements.Child.Popularity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
@@ -3828,9 +3854,10 @@ public static class EventManager
         }
         else if (Constants.Roll(requirements.Child.Cuteness, requirements.Child.Artistry, (int)Enums.Difficulty.HARD))
         {
-            ret.OutcomeDescription = string.Format("While walking home from school one day with their tuba, {0} is confronted by bullies. Instead of running away {1} takes out his tuba and begins " +
+			ret.OutcomeDescription = string.Format("While walking home from school one day with their tuba, {0} is confronted by bullies. Instead of running away {1} takes out {2} tuba and begins " +
                                                     "playing the most beautiful song! {1} brings the bullies to tears and their eardrums begin to bleed. Well Tuba'd, {0}!" + 
-                                                     "\n\n{0}'s popularity slightly down!\n{0}'s artistry up!\nGrandpa's Pride up!", requirements.Child.Name, Convert.ToBoolean(requirements.Child.Gender) ? "she" : "he");
+                                                     "\n\n{0}'s popularity slightly down!\n{0}'s artistry up!\nGrandpa's pride up!", 
+				requirements.Child.Name, Convert.ToBoolean(requirements.Child.Gender) ? "she" : "he", Convert.ToBoolean(requirements.Child.Gender) ? "her" : "his");
 
             manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
             requirements.Child.Popularity -= Constants.Character.MINOR_STAT_CHANGE_AMOUNT;
@@ -3839,9 +3866,10 @@ public static class EventManager
         }
         else
         {
-            ret.OutcomeDescription = string.Format("While walking home from school one day with their tuba, {0} is confronted by bullies. \"H-Hey guys what's up\" {1} asks sheepishly as they " +
-                                                    "take out his tuba and superglue their head inside the bell. \"O-okay I'll just wait right here\"" +
-                                                     "\n\n{0}'s popularity down!\nGrandpa's Pride down!", requirements.Child.Name, Convert.ToBoolean(requirements.Child.Gender) ? "she" : "he");
+            ret.OutcomeDescription = string.Format(
+				"While walking home from school one day with their tuba, {0} is confronted by bullies. \"H-Hey guys what's up,\" {1} asks sheepishly as the bullies " +
+				"take out {2} tuba and superglue {2} head inside the bell. \"O-okay I'll just wait right here\"" +
+				"\n\n{0}'s popularity down!\nGrandpa's pride down!", requirements.Child.Name, Convert.ToBoolean(requirements.Child.Gender) ? "she" : "he", Convert.ToBoolean(requirements.Child.Gender) ? "her" : "his");
 
             manager.PlayerFamily.Grandpa.Pride -= Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
             requirements.Child.Popularity -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
@@ -3870,9 +3898,9 @@ public static class EventManager
         }
         else if (Constants.Roll(requirements.Child.Cuteness, requirements.Child.Artistry, (int)Enums.Difficulty.VERY_HARD))
         {
-            ret.OutcomeDescription = string.Format("{0} walks up on stage and lets loose the solo, it is so perfectly executed it brings the entire band to tears. {0} has " +
+            ret.OutcomeDescription = string.Format("{0} walks up on stage and lets loose the solo. It is so perfectly executed it brings the entire band to tears. {0} has " +
                                                     "unequivocally played the greatest solo in the history of mankind. No other student even dares to try and beat them!\n\nGrandpa's pride way up!\n" +
-                                                    "{0}'s Aristry up!\n{0}'s popularity up!", requirements.Child.Name);
+                                                    "{0}'s aristry up!\n{0}'s popularity up!", requirements.Child.Name);
 
             manager.PlayerFamily.Grandpa.Pride += Constants.Character.MAJOR_PRIDE_CHANGE_AMOUNT;
             requirements.Child.Popularity += Constants.Character.MINOR_STAT_CHANGE_AMOUNT;
@@ -3882,8 +3910,8 @@ public static class EventManager
         }
         else if (Constants.Roll(requirements.Child.Cuteness, requirements.Child.Artistry, (int)Enums.Difficulty.HARD))
         {
-            ret.OutcomeDescription = string.Format("{0} plays a decent solo...it's not as good as {1}'s grandchild though, who really blows everyone else out of the water... " + 
-                                                    "The band director says {0} can play the solo if {1}'s kid is like, sick, or something. Maybe next year I guess.\n\nGrandpa's Pride down!\n{0}'s Popularity down!",
+            ret.OutcomeDescription = string.Format("{0} plays a decent solo... it's not as good as {1}'s grandchild though, who really blows everyone else out of the water... " + 
+                                                    "The band director says {0} can play the solo if {1}'s kid is, like, sick, or something. Maybe next year, I guess.\n\nGrandpa's pride down!\n{0}'s popularity down!",
                                                     requirements.Child.Name, manager.LeagueFamilies[0].Grandpa.Name);
 
             manager.PlayerFamily.Grandpa.Pride -= Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
@@ -3892,8 +3920,8 @@ public static class EventManager
         }
         else
         {
-            ret.OutcomeDescription = string.Format("{0} walks on stage and lets loose the solo, its...its...completely horrible. People in the band are crying -- in pain. " +
-                                                    "Yo Yo Ma walks up on stage and personally asks {0} to never play their instument again. That's a little demoralizing!" +
+            ret.OutcomeDescription = string.Format("{0} walks on stage and lets loose the solo, it's... it's... completely horrible. People in the band are crying -- in pain. " +
+                                                    "Yo Yo Ma walks up on stage and personally asks {0} to never play the tuba again. That's a little demoralizing!" +
                                                     "\n\nGrandpa's pride down!\n{0}'s popularity down!\n{0}'s artistry down!", requirements.Child.Name);
 
             manager.PlayerFamily.Grandpa.Pride -= Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
@@ -3913,8 +3941,8 @@ public static class EventManager
         manager.PlayerFamily.Grandpa.Money -= requirements.Money;
         if (!requirements.Accept)
         {
-            ret.OutcomeDescription = string.Format("Ugh Grandpa you're so lame!! The Nazis are NOT going to invade America while I'm gone. You're so lame you never let me do anything fun! " +
-                                                    "\n\nGrandpa's Pride down!\n{0}'s Popularity down!\n{0}'s Artistry down!\n{0}'s Intelligence up!", requirements.Child.Name);
+			ret.OutcomeDescription = string.Format("Ugh, Grandpa, you're so lame! The Nazis are NOT going to invade America while I'm gone. You're so lame; you never let me do anything fun! " +
+                                                    "\n\nGrandpa's pride down!\n{0}'s popularity down!\n{0}'s artistry down!\n{0}'s intelligence up!", requirements.Child.Name);
 
             manager.PlayerFamily.Grandpa.Pride -= Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
             requirements.Child.Popularity -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
@@ -3925,7 +3953,7 @@ public static class EventManager
         }
         else
         {
-            ret.OutcomeDescription = string.Format("Wow thanks Grandpa! You're the best!\n\n{0}'s Popularity up!\n{0} has left the family for a week!", requirements.Child.Name);
+            ret.OutcomeDescription = string.Format("Wow thanks Grandpa! You're the best!\n\n{0}'s popularity up!\n{0} has left the family for a week!", requirements.Child.Name);
 
             requirements.Child.Popularity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
 
@@ -3951,40 +3979,38 @@ public static class EventManager
         {
             ret.OutcomeDescription = string.Format("The trip was awesome Grandpa! Me and some of the other kids played \"Rock Around the Clock\" at 3am over Elvis' grave to summon him! " +
                                                     "He kept saying something about needing money and he smelled like you do on Saturday nights so I just gave him all the money you gave me!" +
-                                                    "\n\nGrandpa's Pride up!\n{0}'s Artistry up!\n{0} has rejoined the family!", requirements.Child.Name);
+                                                    "\n\nGrandpa's pride way up!\n{0}'s artistry up!\n{0} has rejoined the family!", requirements.Child.Name);
 
 
             manager.PlayerFamily.Grandpa.Pride += Constants.Character.MAJOR_PRIDE_CHANGE_AMOUNT;
             requirements.Child.Artistry += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
-            manager.PlayerFamily.Children.Add(requirements.Child);
-            requirements.Child = null;
 
             ret.Status = (int)Enums.EventOutcome.SUCCESS;
         }
         else if (Constants.Roll(requirements.Child.Cuteness, requirements.Child.Artistry, (int)Enums.Difficulty.HARD))
         {
-            ret.OutcomeDescription = string.Format("The trip was pretty good Grandpa (even if I wish I had a little more money...)! We played to a crowd of nearly 4000 diehard Elvis fans " +
-                                                    "and impersonators! Did I miss anything good here at home while I was away?\n\nGrandpa's Pride up!\n{0}'s Artistry up!\n{0} has rejoined the family!", requirements.Child.Name);
+            ret.OutcomeDescription = string.Format("The trip was pretty good, Grandpa (even if I wish I had a little more money...)! We played to a crowd of nearly 4000 diehard Elvis fans " +
+                                                    "and impersonators! Did I miss anything good here at home while I was away?\n\nGrandpa's pride up!\n{0}'s artistry up!\n{0} has rejoined the family!", requirements.Child.Name);
 
             manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
             requirements.Child.Artistry += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
-            manager.PlayerFamily.Children.Add(requirements.Child);
-            requirements.Child = null;
 
             ret.Status = (int)Enums.EventOutcome.SUCCESS;
         }
         else
         {
-            ret.OutcomeDescription = string.Format("Oh Grandpa the trip was horrible! Everyone just made fun of me the entire time. They dug up Elvis' grave and burried my tuba with him! " +
-                                                    "Why did you let me go!?\n\nGrandpa's Pride down!\n{0}'s Artistry down!\n{0}'s Popularity down\n{0} has rejoined the family!", requirements.Child.Name);
+            ret.OutcomeDescription = string.Format("Oh, Grandpa, the trip was horrible! Everyone made fun of me the entire time. They dug up Elvis' grave and buried my tuba with him! " +
+                                                    "Why did you let me go!?\n\nGrandpa's pride down!\n{0}'s artistry down!\n{0}'s popularity down\n{0} has rejoined the family!", requirements.Child.Name);
 
             manager.PlayerFamily.Grandpa.Pride -= Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
             requirements.Child.Artistry -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
             requirements.Child.Popularity -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
-            manager.PlayerFamily.Children.Add(requirements.Child);
-            requirements.Child = null;
+            
+			ret.Status = (int)Enums.EventOutcome.FAILURE;
         }
 
+		manager.PlayerFamily.Children.Add(requirements.Child);
+		requirements.Child = null;
         return ret;
     }
 
@@ -3995,15 +4021,18 @@ public static class EventManager
 
         if (!Constants.Roll(requirements.Child.Cuteness, requirements.Child.Artistry, (int)Enums.Difficulty.EASY))
         {
-            ret.OutcomeDescription = string.Format("\"I'm gonna level with you Mr. {0}. {1} is the worst goddamn tuba player I have ever heard in my entire life. As much " +
+            ret.OutcomeDescription = string.Format("\"I'm gonna level with you, Mr. {0}. {1} is the worst goddamn tuba player I have ever heard in my entire life. As much " +
                                                     "as it kills me to do this, I'm gonna have to kick him out of the band. I have never done this in all of my 40 years of instruction " +
-                                                    "but {1} is sincerely horrible. So much so that this might even be a compliment!\""+
-                                                    "\n\n{1} kicked out of band!\nGrandpa's pride way down!\nGrandpa's insanity up!\n{1}'s artistry down!\n{1}'s popularity down!", manager.PlayerFamily.FamilyName, requirements.Child.Name);
+                                                    "but {1} is sincerely horrible. So much so that this might somehow be a compliment!\""+
+                                                    "\n\n{1} kicked out of band!\nGrandpa's pride way down!\nGrandpa's insanity up!\n{1}'s artistry way down!\n{1}'s popularity down!", 
+													manager.PlayerFamily.FamilyName, requirements.Child.Name);
 
+			manager.PlayerFamily.Grandpa.Insanity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
             manager.PlayerFamily.Grandpa.Pride -= Constants.Character.MAJOR_PRIDE_CHANGE_AMOUNT;
             requirements.Child.Popularity -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
             requirements.Child.Artistry -= Constants.Character.MAJOR_STAT_CHANGE_AMOUNT;
             requirements.Child.RemoveQualification(Qualification.GetQualificationByString("IN_SCHOOL_BAND"));
+
             ret.Status = (int)Enums.EventOutcome.FAILURE_BLACKLIST_YEAR;
         }
         else
@@ -4013,6 +4042,7 @@ public static class EventManager
 
             manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
             requirements.Child.Artistry += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+
             ret.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR;
         }
 
