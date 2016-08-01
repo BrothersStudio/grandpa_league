@@ -3900,7 +3900,7 @@ public static class EventManager
 		}
 		else
 		{
-			manager.PlayerFamily.Grandpa.AddQualification(Qualification.GetQualificationByString("TOURNAMENT_LOSER"));
+			//manager.PlayerFamily.Grandpa.AddQualification(Qualification.GetQualificationByString("TOURNAMENT_LOSER"));
 
 			manager.PlayerFamily.Grandpa.Pride -= Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
 

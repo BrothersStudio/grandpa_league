@@ -132,5 +132,5 @@
   <event type="1" id="3012" name="Grand Final Event 3" description="It's the beauty pagent. Time to pick your cutest kid and have at it. Nothing wrong with child beauty pagents, right?" chance="0" priority="1" req_children="01" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" qualification="SEMIFINAL_WINNER" month="12" day="26"/>
   <event type="1" id="3013" name="Grand Final Judging" description="" chance="0" priority="1" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" qualification="SEMIFINAL_WINNER" month="12" day="28"/>
 
-  <event type="0" id="3014" name="Loser" chance="0" description="" priority="1" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" month="1" day="1" qualification="TOURNAMENT_LOSER"/>
+  <event type="0" id="3014" name="Loser" chance="0" description="" priority="1" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" month="12" day="28" qualification="TOURNAMENT_LOSER"/>
 </events>
