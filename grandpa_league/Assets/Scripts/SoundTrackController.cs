@@ -8,7 +8,7 @@ public class SoundTrackController : MonoBehaviour
     public AudioClip[] music;
 
     private float lengthOfClip;
-    private float numOfRepeats = 8;
+    public float numOfRepeats = 6;
     private float timeOfRepeats;
     private float fadeOutTime = 15;
     private int trackNumber = 0;
