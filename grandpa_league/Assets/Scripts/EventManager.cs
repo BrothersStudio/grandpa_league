@@ -1101,7 +1101,7 @@ public static class EventManager
 			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
 			returnObj.OutcomeDescription = String.Format (
 				"Wow, there's no way to put this lightly so I'm just going to come out and say it. {0} is just completely awful at football. " +
-				"I'm not sure what happened. They got on the team okay. Now all the other kids laugh and throw balls at {1}.\n\n" +
+				"I'm not sure what happened. They got on the team okay. Now all the other kids laugh and throw balls at {1}. We can't kick {1} so late into the season, though...\n\n" +
 				"{0}'s athleticism growth down.\n" +
 				"{0}'s popularity down.\n" +
 				"Grandpa's pride down.",

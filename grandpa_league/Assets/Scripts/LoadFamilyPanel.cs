@@ -221,7 +221,7 @@ public class LoadFamilyPanel : MonoBehaviour
 		grandpa_stat_panel.transform.Find("Insanity Bar").GetComponent<Image>().sprite = ReturnSpriteForStat(inputFamily.Grandpa.Insanity, true);
 		grandpa_stat_panel.transform.Find("Wisdom Bar").GetComponent<Image>().sprite = ReturnSpriteForStat(inputFamily.Grandpa.Wisdom);
 		grandpa_stat_panel.transform.Find("Money").GetComponent<Text>().text = "Money:\n$" + inputFamily.Grandpa.Money;
-		grandpa_stat_panel.transform.Find("Pride").GetComponent<Text>().text = "Pride:\n" + inputFamily.Grandpa.Pride;
+		grandpa_stat_panel.transform.Find("Pride").GetComponent<Text>().text = "Pride:\n" + Math.Round(inputFamily.Grandpa.Pride, 0);
 	}
 
 	private void MakePanel<T>(T member, int panel_ind, int color) where T : Character
