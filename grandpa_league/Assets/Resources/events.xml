@@ -74,7 +74,6 @@
   <event type="0" id="1062" name="Grandkid is a chef" description="" priority="1" chance="0.005" req_children="11" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" /> 
 
   <!-- KNOWN EVENTS req_ of the form 1=true, 0=false, [RANDOM][REQUIRED]-->
-  
   <event type="1" id="1003" name="Grandkid tries out for football" description="The indoor football team is having tryouts! I wonder who should go out?" priority="1" req_children="01" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" month="1" day="0" age="10-18"/>
   <event type="1" id="1013" name="Football championship" description="Time for the indoor football championships. The tension in the room is palpable. You spot {EG} on the other side of the stadium and make eye contact. He pours his beer onto a small child. It's on. Good luck!" priority="2" req_children="11" req_parent="00" req_grandpa="11" req_money="00" req_accept="00" month="6" day="0" age="10-18" qualification="ON_FOOTBALL_TEAM"/>
   <event type="1" id="1005" name="Grandkid makes honor roll?" description="{C} tries for the honor roll." priority="1" req_children="11" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" month="1" day="0" age="7-18"/>
@@ -93,6 +92,10 @@
   <event type="1" id="1057" name="Veteran's Day" description="" priority="1" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" month="11" day="11" />  
   <event type="1" id="1058" name="Thanksgiving" description="" priority="1" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" month="11" day="26" />  
   <event type="1" id="3008" name="Halloween" description="It's that spooky time of year again! The day when Grandpa can dress up like a serial killer and not get arrested for having blood on his shirt! Who to take trick-or-treating?" priority="2" req_children="01" req_parent="00" req_grandpa="11" req_money="00" req_accept="00" month="10" day="28" age="5-12"/>
+
+  <!-- COMA EVENT TREE -->
+  <event type="0" id="3022"  name="Grandkid goes into a coma" description="" priority="1" chance="0.002" req_children="11" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" month="5-10"/>
+  <event type="2" id="3023"  name="Hospital visit" description="Time for your weekly visit to the hospital...Who should you take along? These hospital bills are starting to stack up..." priority="1" chance="0" req_children="00" req_parent="01" req_grandpa="00" req_money="01" req_accept="00" month="0" day="0" />
 
   <!-- BAND EVENTS -->
   <event type="1" id="1059" name="School band tryouts" description="Grandpa is not looking forward to sitting through these concerts but having a grandkid in the school band would be quite a boon! Who should try out?" priority="1" req_children="01" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" month="9" day="2" />

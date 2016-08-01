@@ -4149,4 +4149,80 @@ public static class EventManager
 
         return ret;
     }
+
+    //x goes into a coma
+    public static Outcome Event3022(DataManager manager, Requirement requirements)
+    {
+        Outcome ret = new Outcome();
+
+        if (Constants.Roll(requirements.Child.Cuteness, requirements.Child.Athleticism, (int)Enums.Difficulty.HARD))
+        {
+            ret.Status = (int)Enums.EventOutcome.PASS;
+        }
+        else
+        {
+            ret.OutcomeDescription = string.Format("{0} is playing by the Leagueville cliffs with {1} when they fall off the side!! Grandpa is suspicious of {1} but " +
+                                                    "{0} is quickly rushed into the hospital. Bad news. {0} is in a deep coma and it doesn't look like he'll be coming out any time soon.\n\n" +
+                                                    "Grandpa's pride down!\n{0} is now in a coma!", requirements.Child.Name, manager.LeagueFamilies[0].Children[0].Name + " " + manager.LeagueFamilies[0].FamilyName);
+
+            manager.PlayerFamily.Grandpa.Pride -= Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+            SimulationEvent followUp = EventManager.GetEventById(3023);
+            followUp.DoNotDestroy = true;
+            followUp.Requirements.Child = requirements.Child;
+            manager.PlayerFamily.Children.Remove(requirements.Child);
+            manager.Calendar.ScheduleEventInXDays(followUp, 7);
+
+            ret.Status = (int)Enums.EventOutcome.FAILURE_BLACKLIST_YEAR;
+
+            ret.Mail = new Mail();
+            ret.Mail.Date = manager.Calendar.GetCurrentDay();
+            ret.Mail.Sender = "Doctor Fluffernutter";
+            ret.Mail.Subject = "Your grandson";
+            ret.Mail.Message = string.Format("Hello,\n\n{0} is still in a deep deep sleep. I don't think he will die, but I don't know how long it will be until he wakes up. You should visit every once in a while, maybe it will trigger something in him.\n\nYours,\nDoctor Fluffernutter", requirements.Child.Name);
+
+            requirements.Child = null;
+        }
+
+        return ret;
+    }
+
+    //hospital visit
+    public static Outcome Event3023(DataManager manager, Requirement requirements)
+    {
+        Outcome ret = new Outcome();
+
+        if (Constants.Roll(50, requirements.Parent.Love, (int)Enums.Difficulty.HARD) || (manager.Calendar.Day >= 19 && manager.Calendar.Month == 12) || requirements.Money >= 3000)
+        {
+            ret.OutcomeDescription = string.Format("{0} tries their hardest to wake {1} up. By some miracle he begins to rouse from his deep slumber! {1} woke up! The " +
+                                                    "power of love has set {1} free!!\n\n{0}'s love way up!\n{1} has rejoined the family!", requirements.Parent.Name, requirements.Child.Name);
+
+            requirements.Parent.Love += Constants.Character.MAJOR_STAT_CHANGE_AMOUNT;
+
+            SimulationEvent followUp = EventManager.GetEventById(3023);
+            followUp.DoNotDestroy = false;
+            manager.PlayerFamily.Children.Add(requirements.Child);
+            requirements.Child = null;
+
+            ret.Status = (int)Enums.EventOutcome.SUCCESS;
+        }
+        else
+        {
+            ret.OutcomeDescription = string.Format("{0} tries their hardest to wake {1} up, but its no use. He's off in la-la dream land. He mumbles something about " +
+                                                    "unicorns and World War II before falling back into a deep slumber.\n\n{0}'s love up slightly!\n{1}'s stats down slightly!", requirements.Parent.Name, requirements.Child.Name);
+
+            requirements.Parent.Love += Constants.Character.MINOR_STAT_CHANGE_AMOUNT;
+
+            requirements.Child.Intelligence -= Constants.Character.MINOR_STAT_CHANGE_AMOUNT;
+            requirements.Child.Artistry -= Constants.Character.MINOR_STAT_CHANGE_AMOUNT;
+            requirements.Child.Athleticism -= Constants.Character.MINOR_STAT_CHANGE_AMOUNT;
+            requirements.Child.Cuteness -= Constants.Character.MINOR_STAT_CHANGE_AMOUNT;
+            requirements.Child.Popularity -= Constants.Character.MINOR_STAT_CHANGE_AMOUNT;
+
+            ret.Status = (int)Enums.EventOutcome.FAILURE;
+            manager.Calendar.ScheduleEventInXDays(EventManager.GetEventById(3023), 7);
+        }
+
+        return ret;
+    }
+
 }

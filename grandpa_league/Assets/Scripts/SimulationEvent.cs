@@ -23,6 +23,7 @@ public class SimulationEvent
     private Outcome m_outcome = null;
 
     private bool m_finishedExecution = false;
+    private bool m_doNotDestroy = false;
 
     public SimulationEvent(Requirement requirements, double chance, string eventName, string eventDescription, int eventId, int eventType, int priority, string month="0", int day=0, int year=0)
     {
@@ -94,7 +95,7 @@ public class SimulationEvent
 
     public void ResetEventFields()
     {
-        if (this.m_requirements.Trade.Count != 0)
+        if (this.m_requirements.Trade.Count != 0 || this.m_doNotDestroy)
             return;
         this.m_outcome = null;
         this.m_requirements.Accept = false;
@@ -153,6 +154,7 @@ public class SimulationEvent
     public string EventDescription
     {
         get { return this.m_eventDescription; }
+        set { this.m_eventDescription = value; }
     }
 
     public double Chance
@@ -164,5 +166,11 @@ public class SimulationEvent
     {
         get { return this.m_finishedExecution; }
         set { this.m_finishedExecution = value; }
+    }
+
+    public bool DoNotDestroy
+    {
+        get { return this.m_doNotDestroy; }
+        set { this.m_doNotDestroy = value; }
     }
 }
