@@ -4334,4 +4334,79 @@ public static class EventManager
         return ret;
     }
 
+    //parent teacher conference
+    public static Outcome Event3024(DataManager manager, Requirement requirements)
+    {
+        Outcome ret = new Outcome();
+
+        if (Constants.Roll(requirements.Child.Cuteness, requirements.Child.Intelligence, (int)Enums.Difficulty.HARD) && Constants.Roll(requirements.Child.Cuteness, requirements.Child.Artistry, (int)Enums.Difficulty.EASY))
+        {
+            ret.OutcomeDescription = string.Format("{0}'s teacher says that they're the smartest kid in the entire class! Wowza that is some good parenting, {1}. In fact, the teacher nominates you for parent of the year, what an honor! " +
+                                                    "\n\nGrandpa's pride up!\n{1}'s love up!\n{1}'s popularity up!", requirements.Child.Name, requirements.Parent.Name);
+
+            requirements.Parent.Love += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+            requirements.Parent.Popularity += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+            manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
+
+            ret.Status = (int)Enums.EventOutcome.SUCCESS;
+        }
+        else if (Constants.Roll(requirements.Child.Cuteness, requirements.Child.Intelligence, (int)Enums.Difficulty.STANDARD) && Constants.Roll(requirements.Child.Cuteness, requirements.Child.Artistry, (int)Enums.Difficulty.VERY_EASY))
+        {
+            ret.OutcomeDescription = string.Format("{0}'s teacher says that {0} is pretty average intelligence. Whew, dodged a bullet there. Grandpa was worried they'd end up stupid like Grandma was." +
+                                                    "\n\nGrandpa's pride up!\n{1}'s love up slightly!", requirements.Child.Name, requirements.Parent.Name);
+
+            requirements.Parent.Love += Constants.Character.MINOR_STAT_CHANGE_AMOUNT;
+            manager.PlayerFamily.Grandpa.Pride += Constants.Character.MINOR_PRIDE_CHANGE_AMOUNT;
+
+            ret.Status = (int)Enums.EventOutcome.SUCCESS;
+        }
+        else
+        {
+            ret.OutcomeDescription = string.Format("{0}'s teacher says that {0} is dumb as dirt. Literally. When they were outside for a science project {0} couldn't tell the difference between dirt and an American Elm tree. " +
+                                                    "\n\nGrandpa's pride down!\n{1}'s love down!", requirements.Child.Name, requirements.Parent.Name);
+
+            requirements.Parent.Love -= Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+            manager.PlayerFamily.Grandpa.Pride -= Constants.Character.MINOR_PRIDE_CHANGE_AMOUNT;
+
+            SimulationEvent followUp = EventManager.GetEventById(3025);
+            followUp.Requirements.Child = requirements.Child;
+            manager.Calendar.ScheduleEventInXDays(followUp, 4);
+
+            ret.Status = (int)Enums.EventOutcome.FAILURE;
+        }
+
+        return ret;
+    }
+
+    //professional tutor
+    public static Outcome Event3025(DataManager manager, Requirement requirements)
+    {
+        Outcome ret = new Outcome();
+
+        if(!requirements.Accept)
+        {
+            ret.Status = (int)Enums.EventOutcome.PASS;
+            return ret;
+        }
+
+        if ((manager.PlayerFamily.Grandpa.MoneyGrowth - manager.PlayerFamily.Upkeep) < 200)
+        {
+            ret.OutcomeDescription = string.Format("Hey man, are you tring to rip me off? You can't afford that!");
+            ret.Status = (int)Enums.EventOutcome.FAILURE;
+            return ret;
+        }
+        else
+        {
+            manager.PlayerFamily.Grandpa.MoneyGrowth -= 200;
+            ret.OutcomeDescription = string.Format("Thanks, we'll get {0} back on track to being the next Hans Gruber in no time!\n\n{0}'s intelligence up!\n{0}'s intelligence growth up!", requirements.Child.Name);
+
+            requirements.Child.Intelligence += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
+            requirements.Child.IntelligenceGrowth += Constants.Character.STANDARD_STAT_GROWTH_AMOUNT;
+
+            ret.Status = (int)Enums.EventOutcome.SUCCESS;
+        }
+
+        return ret;
+    }
+
 }

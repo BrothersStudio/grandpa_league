@@ -95,6 +95,9 @@
   <event type="1" id="1057" name="Veteran's Day" description="" priority="1" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" month="11" day="11" />  
   <event type="1" id="1058" name="Thanksgiving" description="" priority="1" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" month="11" day="26" />  
   <event type="1" id="3008" name="Halloween" description="It's that spooky time of year again! The day when Grandpa can dress up like a serial killer and not get arrested for having blood on his shirt! Who to take trick-or-treating?" priority="2" req_children="01" req_parent="00" req_grandpa="11" req_money="00" req_accept="00" month="10" day="28" age="5-12"/>
+  <event type="1" id="3024" name="Parent-Teacher Conference" description="Time to measure how {C} is performing in school. This may be rough, who should I take along?" priority="1" req_children="11" req_parent="01" req_grandpa="00" req_money="00" req_accept="00" month="9" age="7-15"/>
+  <event type="2" id="3025" name="Professional Tutoring" description="After that disaster of a parent teacher conference, I think we need a tutor. Problem is it'll cost $200 a month!" priority="1" req_children="00" req_parent="00" req_grandpa="00" req_money="00" req_accept="01" month="0" chance="0"/>
+
 
   <!-- COMA EVENT TREE -->
   <event type="0" id="3022"  name="Grandkid goes into a coma" description="" priority="1" chance="0.002" req_children="11" req_parent="00" req_grandpa="00" req_money="00" req_accept="00" month="5-10"/>
