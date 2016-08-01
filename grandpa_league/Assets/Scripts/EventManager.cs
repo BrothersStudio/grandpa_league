@@ -3190,9 +3190,10 @@ public static class EventManager
 	{
 		Outcome returnObj = new Outcome();
 
-		if (Constants.Roll(0, requirements.Parent.Love, (int)Enums.Difficulty.VERY_HARD))
+		Child new_child = manager.Orphanage.GetRandomEligibleChild (0, 1000);
+
+		if (Constants.Roll(0, requirements.Parent.Love, (int)Enums.Difficulty.VERY_HARD) && new_child != null)
 		{
-			Child new_child = manager.Orphanage.GetRandomEligibleChild (0, 1000);
 			manager.Orphanage.Children.Remove (new_child);
 			manager.PlayerFamily.Children.Add (new_child);
 
