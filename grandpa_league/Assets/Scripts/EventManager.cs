@@ -3924,7 +3924,7 @@ public static class EventManager
     {
         Outcome ret = new Outcome();
         ret.OutcomeDescription = string.Format(
-			"Grandpa sighs. He felt like he deserved the win last year... Well, there's always next year! If only it wasn't for his shitty family!" +
+			"Grandpa sighs. He felt like he deserved the win last year... Well, there's always next year! If only it wasn't for his shitty family! " +
                                                 "Grandpa's negative attitude propagates throughout his entire family\n\nGrandpa's insanity Up!\nFamily slightly depressed!");
 
         foreach(Character ch in manager.PlayerFamily.GetAllCharacters())
