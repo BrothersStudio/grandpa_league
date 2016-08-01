@@ -262,7 +262,7 @@ public static class EventManager
             incomeStatusString = "stable, saving for retirement really pays off I guess";
             incomeStatus = (int)Enums.Status.OK;
         }
-        else if (manager.PlayerFamily.Grandpa.Money < 5000 && manager.PlayerFamily.Grandpa.Money >= 1500)
+        else if (manager.PlayerFamily.Grandpa.Money < 5000 && manager.PlayerFamily.Grandpa.Money >= 3000)
         {
             incomeStatusString = "is looking a little lackluster. Social security alone isn't enough to get by these days";
             incomeStatus = (int)Enums.Status.BAD;
@@ -275,11 +275,7 @@ public static class EventManager
 
         if(incomeStatus == (int)Enums.Status.HORRIBLE && familyStatus == (int)Enums.Status.HORRIBLE)
         {
-            if (manager.Calendar.Month < 4 && manager.Calendar.Year == 2016)
-            {
-                cpsOutcome.Status = (int)Enums.EventOutcome.PASS;
-            }
-            else if (manager.PlayerInfo.FINAL_WARNING)
+            if (manager.PlayerInfo.FINAL_WARNING)
             {
                 manager.Calendar.ScheduleEventInXDays(EventManager.GetEventById(3), 1);
                 manager.PlayerInfo.FINAL_WARNING = false;
@@ -313,7 +309,7 @@ public static class EventManager
             "Currently your family {1} and your income seems {2}. We may have to perform additional check-ins during the month if this is not up to our standards. Until next time.\n\nCordially,\nCharlene Dogood",
             manager.PlayerFamily.FamilyName, familyStatusString, incomeStatusString);
 
-        manager.Calendar.ScheduleEventInXDays(EventManager.GetEventById(2), 28);
+        manager.Calendar.ScheduleEventInXDays(EventManager.GetEventById(2), 84);
 
         return cpsOutcome;
     }
