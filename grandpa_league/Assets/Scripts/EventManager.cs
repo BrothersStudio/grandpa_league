@@ -3234,6 +3234,8 @@ public static class EventManager
 
 		if (Constants.Roll(0, requirements.Parent.Love, (int)Enums.Difficulty.EASY) && requirements.Money >= 100 && new_parent != null) 
 		{
+			requirements.Parent.RemoveQualification (Qualification.GetQualificationByString ("IS_SINGLE"));
+
 			requirements.Parent.Love += Constants.Character.MAJOR_STAT_CHANGE_AMOUNT;
 			new_parent.Love += Constants.Character.MAJOR_STAT_CHANGE_AMOUNT;
 
