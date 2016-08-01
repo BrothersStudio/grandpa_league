@@ -79,6 +79,11 @@ public class LoadAbilitiesPanel : MonoBehaviour {
         else
         {
             eventOutcome = ability.Event.RunEvent(Main.GetDataManager());
+            if(eventOutcome.Status == (int)Enums.EventOutcome.SUCCESS)
+            {
+                Main.GetDataManager().PlayerFamily.Grandpa.Money -= ability.MoneyCost;
+                Main.GetDataManager().PlayerFamily.Grandpa.Insanity += ability.InsanityCost;
+            }
         }
 
         if (eventOutcome.Mail != null)
