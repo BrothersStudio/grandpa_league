@@ -15,28 +15,19 @@ public class LoadAbilitiesPanel : MonoBehaviour {
 
 	public void DisplayAbilities(DataManager manager)
 	{
-		int ability_ind = 0;
+		
+		int ability_ind = 1;
 		foreach (Ability ability_instance in manager.Abilities) 
 		{
 			Ability ability = ability_instance;
 
-			GameObject new_button = Instantiate(ability_button_prefab) as GameObject;
-			new_button.transform.SetParent(ability_panel.transform, false);
+			ability_panel.transform.Find("Ability_Button " + ability_ind.ToString()).GetComponent<Image>().sprite = Resources.Load <Sprite> ("Ability_icons/" + ability.Picture);
+			ability_panel.transform.Find("Ability_Button " + ability_ind.ToString()).GetComponentInChildren<Text>().text = ability.Name;
+			ability_panel.transform.Find ("Cooldown " + ability_ind.ToString ()).GetComponent<Text> ().text = ability.CurrentCooldown == 0 ? "Available Now" : string.Format ("{0} days until available\n", ability.CurrentCooldown.ToString ());
+			ability_panel.transform.Find ("Insanity Cost " + ability_ind.ToString ()).GetComponent<Text> ().text = "Insanity Cost: " + ability.InsanityCost.ToString ();
+			ability_panel.transform.Find ("Money Cost " + ability_ind.ToString ()).GetComponent<Text> ().text = "Money Cost: " + ability.MoneyCost.ToString ();
 
-			// Move to correct location
-			float width = new_button.GetComponent<RectTransform> ().rect.width;
-			float current_x = new_button.GetComponent<RectTransform> ().anchoredPosition.x;
-			float current_y = new_button.GetComponent<RectTransform> ().anchoredPosition.y;
-			new_button.GetComponent<RectTransform> ().anchoredPosition = 
-				new Vector2 (current_x  + (float)(ability_ind) * width, current_y);
-
-			new_button.GetComponent<Image> ().sprite = Resources.Load <Sprite> ("Ability_icons/" + ability.Picture);
-			new_button.GetComponentInChildren<Text> ().text = String.Format (
-				"{0}\n" +
-				"{1}\n" + 
-                "{2} insanity ${3}",
-				ability.Name, ability.CurrentCooldown == 0 ? "Available Now" : string.Format("{0} days until available\n",ability.CurrentCooldown.ToString()), ability.InsanityCost, ability.MoneyCost);
-
+			Button new_button = ability_panel.transform.Find ("Ability_Button " + ability_ind.ToString ()).GetComponent<Button> ();
             if (ability.CurrentCooldown != 0)
                 new_button.GetComponent<Button>().interactable = false;
             new_button.GetComponent<Button>().onClick.RemoveAllListeners();
@@ -44,8 +35,7 @@ public class LoadAbilitiesPanel : MonoBehaviour {
 				{
                     StartCoroutine(EventInputPanel(game_controller, ability));
                 });
-
-			ability_prefab_instance_list.Add (new_button);
+					
 			ability_ind++;
 		}
 	}
@@ -62,7 +52,7 @@ public class LoadAbilitiesPanel : MonoBehaviour {
 
         if(ability.Event.Requirements.Accept == false)
         {
-            DestroyButtons();
+            //DestroyButtons();
             ability_panel.SetActive(false);
             yield return true;
         }
@@ -112,7 +102,7 @@ public class LoadAbilitiesPanel : MonoBehaviour {
             Main.GetDataManager().PlayerFamily.Grandpa.Money -= ability.MoneyCost;
         }
 
-        DestroyButtons();
+        //DestroyButtons();
         ability_panel.SetActive(false);
     }
 
@@ -125,6 +115,7 @@ public class LoadAbilitiesPanel : MonoBehaviour {
         yield break;
     }
 
+	/*
     public void DestroyButtons()
 	{
 		foreach (GameObject button in ability_prefab_instance_list) 
@@ -132,5 +123,5 @@ public class LoadAbilitiesPanel : MonoBehaviour {
 			Destroy (button);
 		}
 		ability_prefab_instance_list.Clear ();
-	}
+	}*/
 }
