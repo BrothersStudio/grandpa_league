@@ -1180,7 +1180,7 @@ public static class EventManager
 		return returnObj;
 	}
 
-	// Grandkid tries out for play
+	// Grandkid auditions for play
 	public static Outcome Event1006(DataManager manager, Requirement requirements)
 	{
 		Outcome returnObj = new Outcome();
@@ -1204,7 +1204,7 @@ public static class EventManager
 
 			returnObj.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR;
 			returnObj.OutcomeDescription = String.Format (
-				"{0} got the lead role in the play! As well as several other roles! {1} performance left everyone " +
+				"{0} got the lead role in the play! As well as several other roles! {1} audition left everyone " +
 				"in tears and it instantly began raining outside. They say drama will never be the same.\n\n" +
 				"{0}'s artistry up.\n" + 
 				"{0}'s artistry growth up.\n" + 
@@ -1226,7 +1226,7 @@ public static class EventManager
 
 			returnObj.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR;
 			returnObj.OutcomeDescription = String.Format (
-				"{0} only messed up a handful of lines and fell off the stage only once or twice. Not too shabby! " +
+				"{0} only messed up a handful of lines and fell off the stage only once or twice. Not too shabby of an audition! " +
 				"{0} got a minor role in the play!\n\n" +
 				"{0}'s artistry up.\n" + 
 				"{0}'s artistry growth up.\n" + 
@@ -1242,8 +1242,8 @@ public static class EventManager
 
 			returnObj.Status = (int)Enums.EventOutcome.FAILURE_BLACKLIST_YEAR;
 			returnObj.OutcomeDescription = String.Format (
-				"Oof, wow, that was really hard to watch. Running off the stage in tears will probably hurt your reputation" +
-				" a bit.\n\n" +
+				"Oof, wow, that was really hard to watch. Running off the audition stage in tears will probably hurt your reputation " +
+				"a bit.\n\n" +
 				"{0}'s artistry slightly up.\n" +
 				"{0}'s popularity slightly down.\n" + 
 				"Grandpa's pride slightly down.",
@@ -3281,7 +3281,7 @@ public static class EventManager
 
 			returnObj.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR;
 			returnObj.OutcomeDescription = String.Format (
-				"Grandpa get a payout from his old insurance fraud scheme. Those were the days.\n\n" +
+				"Grandpa gets a payout from his old insurance fraud scheme. Those were the days.\n\n" +
 				"Grandpa gains $800.\n" +
 				"Grandpa's pride up slightly.");
 		}
@@ -3304,7 +3304,7 @@ public static class EventManager
 			returnObj.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_FOREVER;
 			returnObj.OutcomeDescription = String.Format (
 				"Grandpa gets some starling news from his doctor. Apparently his toenails are laced with uranium. Frankly, it's a medical mystery. Anyway, the doctors " +
-				"are willing to pay you an additional 200 dollars a month to stop by.\n\n" +
+				"are willing to pay him an additional 200 dollars a month to stop by.\n\n" +
 				"Grandpa gains $200 per month.\n" +
 				"Grandpa's pride up slightly.");
 		}
@@ -4345,7 +4345,7 @@ public static class EventManager
     {
         Outcome ret = new Outcome();
 
-        if (Constants.Roll(50, requirements.Parent.Love, (int)Enums.Difficulty.HARD) || (manager.Calendar.Day >= 19 && manager.Calendar.Month == 12) || requirements.Money >= 3000)
+		if (Constants.Roll(0, requirements.Parent.Love, (int)Enums.Difficulty.HARD) || (manager.Calendar.Day >= 26 && manager.Calendar.Month == 11) || (Constants.RANDOM.Next(1,100) <= 10))
         {
             ret.OutcomeDescription = string.Format("{0} tries their hardest to wake {1} up. By some miracle he begins to rouse from his deep slumber! {1} woke up! The " +
                                                     "power of love has set {1} free!!\n\n{0}'s love way up!\n{1} has rejoined the family!", requirements.Parent.Name, requirements.Child.Name);
