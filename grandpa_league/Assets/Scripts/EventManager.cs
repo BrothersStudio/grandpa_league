@@ -3167,10 +3167,10 @@ public static class EventManager
 			requirements.Parent.Intelligence += Constants.Character.STANDARD_STAT_CHANGE_AMOUNT;
 
 			manager.PlayerFamily.Grandpa.Pride += Constants.Character.STANDARD_PRIDE_CHANGE_AMOUNT;
-			int raise_amount = Constants.RANDOM.Next(101, 180);
+			int raise_amount = Constants.RANDOM.Next(170, 280);
 			manager.PlayerFamily.Grandpa.MoneyGrowth += raise_amount;
 
-			returnObj.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_FOREVER;
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR;
 			returnObj.OutcomeDescription = String.Format (
 				"{0}'s boss claps them on the back. \"I've been hearing some good things about you. Some very, very good things. I think it's about " +
 				"time for a promotion!\" The whole family is ecstatic. Grandpa slips a few bills from {0}'s wallet when {1} isn't looking.\n\n" +
@@ -3265,6 +3265,51 @@ public static class EventManager
 				"Grandpa's pride up.",
 				requirements.Parent.Name);
 		}
+
+		return returnObj;
+	}
+
+	// Grandpa gets insurance fraud payout
+	public static Outcome Event1066(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+
+		if (Constants.Roll(0, manager.PlayerFamily.Grandpa.Wisdom, (int)Enums.Difficulty.EASY))
+		{
+			manager.PlayerFamily.Grandpa.Pride += Constants.Character.MINOR_PRIDE_CHANGE_AMOUNT;
+			manager.PlayerFamily.Grandpa.Money += 800;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_YEAR;
+			returnObj.OutcomeDescription = String.Format (
+				"Grandpa get a payout from his old insurance fraud scheme. Those were the days.\n\n" +
+				"Grandpa gains $800.\n" +
+				"Grandpa's pride up slightly.");
+		}
+		else
+			returnObj.Status = (int)Enums.EventOutcome.PASS;
+
+		return returnObj;
+	}
+
+	// Grandpa sells fingernails
+	public static Outcome Event1067(DataManager manager, Requirement requirements)
+	{
+		Outcome returnObj = new Outcome();
+
+		if (Constants.Roll(0, manager.PlayerFamily.Grandpa.Wisdom, (int)Enums.Difficulty.EASY))
+		{
+			manager.PlayerFamily.Grandpa.Pride += Constants.Character.MINOR_PRIDE_CHANGE_AMOUNT;
+			manager.PlayerFamily.Grandpa.MoneyGrowth += 200;
+
+			returnObj.Status = (int)Enums.EventOutcome.SUCCESS_BLACKLIST_FOREVER;
+			returnObj.OutcomeDescription = String.Format (
+				"Grandpa gets some starling news from his doctor. Apparently his toenails are laced with uranium. Frankly, it's a medical mystery. Anyway, the doctors " +
+				"are willing to pay you an additional 200 dollars a month to stop by.\n\n" +
+				"Grandpa gains $200 per month.\n" +
+				"Grandpa's pride up slightly.");
+		}
+		else
+			returnObj.Status = (int)Enums.EventOutcome.PASS;
 
 		return returnObj;
 	}
