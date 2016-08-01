@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -514,8 +514,10 @@ public class LoadTradingPanel : MonoBehaviour {
 		offer_parents.Clear ();
 		offer_children.Clear ();
 		offer_money = 0;
+        offer_money_field.GetComponent<InputField>().text = "";
 
-		receive_parents.Clear ();
+        receive_money_field.GetComponent<InputField>().text = "";
+        receive_parents.Clear ();
 		receive_children.Clear ();
 		receive_money = 0;
 
