@@ -3214,7 +3214,7 @@ public static class EventManager
         ret.OutcomeDescription = string.Format(
 			"So {0} wanted us to all go to Christmas Family Bonding Camp together as a family. Some kind of aptly-named bonding camp. Saying something about making memories " +
 			"that we would always remember, blah blah blah. Not interested. What I am interested in, however, is that every member of the Grandpa League " +
-			"will be there. Time to have this year's Christmas Family Bonding Camp final showdown. {1} and I are facing off first one week from today. Here goes!", 
+			"will be there. Time to have this year's Christmas Family Bonding Camp final showdown. \n{1} and I are facing off first one week from today. Here goes!", 
 			requirements.Parent.Name, manager.LeagueFamilies[0].Grandpa.Name);
 
         ret.Mail = new Mail();
@@ -3391,8 +3391,18 @@ public static class EventManager
 
 			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
 			returnObj.OutcomeDescription = String.Format(
-				"With your {1} wins, you won the quarter finals! {0} and his family slink off into the distance!\n\n",
-				requirements.Grandpa.Name, wins.ToString());
+				"With your {1} wins, you won the quarter finals! {0} and his family slink off into the distance! Next round will be against {2} and his family!\n\n",
+				requirements.Grandpa.Name, wins.ToString(), manager.LeagueFamilies[manager.LeagueFamilies.Count - 2].Grandpa.Name);
+			returnObj.Mail = new Mail();
+			returnObj.Mail.Sender = manager.LeagueFamilies[manager.LeagueFamilies.Count - 2].Grandpa.Name;
+			returnObj.Mail.Date = manager.Calendar.GetCurrentDay();
+			returnObj.Mail.Subject = "Semifinal Matchup";
+			returnObj.Mail.Message = string.Format(
+				"{0},\n\n\t" +
+				"How are you, kid? I expect a good, clean fight. Me and my family ain't goin' down easy. Best get ready to take some hits.\n\n" +
+				"From,\n" +
+				"{1}", 
+				manager.PlayerFamily.Grandpa.Name, manager.LeagueFamilies[manager.LeagueFamilies.Count - 2].Grandpa.Name);
 		}
 		else
 		{
@@ -3555,8 +3565,20 @@ public static class EventManager
 
 			returnObj.Status = (int)Enums.EventOutcome.SUCCESS;
 			returnObj.OutcomeDescription = String.Format(
-				"With your {1} wins, you won the semi finals! {0} and his family slink off into the distance!\n\n",
+				"With your {1} wins, you won the semi finals! {0} and his family slink off into the distance! The final battle isn't going to be easy. " +
+				"{2} and his family are going to be the hardest challenge yet...\n\n",
 				requirements.Grandpa.Name, wins.ToString());
+			returnObj.Mail = new Mail();
+			returnObj.Mail.Sender = manager.LeagueFamilies[manager.LeagueFamilies.Count - 1].Grandpa.Name;
+			returnObj.Mail.Date = manager.Calendar.GetCurrentDay();
+			returnObj.Mail.Subject = "Grand Final Matchup";
+			returnObj.Mail.Message = string.Format(
+				"Dearest {0},\n\n\t" +
+				"I don't think we've had the pleasure of meeting in person. My name is {1}, and I am the one who will be defeating you and your " +
+				"clan next week. It would be in your best interest to not show up. I will not defile my family name losing to the likes of you.\n\n" +
+				"Cordially yours,\n" +
+				"{1}", 
+				manager.PlayerFamily.Grandpa.Name, manager.LeagueFamilies[manager.LeagueFamilies.Count - 1].Grandpa.Name);
 		}
 		else
 		{
